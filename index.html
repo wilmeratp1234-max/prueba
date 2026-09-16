@@ -3,132 +3,499 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Venium Store - Recargas y Streaming</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome para Iconos -->
+    <title>Venium Store - Recargas y Gift Cards</title>
+    <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS GENERAL Y VARIABLES */
+        :root {
+            --bg-main: #0c0d10;
+            --bg-card: #16181e;
+            --bg-card-hover: #1f222b;
+            --primary-red: #e50914;
+            --primary-red-hover: #b80710;
+            --text-main: #ffffff;
+            --text-muted: #8b8e99;
+            --border-color: #262933;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* HEADER / NAVBAR */
+        header {
+            background-color: #111317;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            background-color: var(--bg-card);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a.active, .nav-links a:hover {
+            color: var(--text-main);
+            background-color: var(--primary-red);
+        }
+
+        .search-box {
+            position: relative;
+            width: 250px;
+        }
+
+        .search-box input {
+            width: 100%;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 8px 15px 8px 35px;
+            border-radius: 20px;
+            color: white;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .currency-selector {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: #ffd700;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-login {
+            background-color: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s;
+        }
+
+        .btn-login:hover {
+            background-color: var(--primary-red-hover);
+        }
+
+        /* CONTAINER PRINCIPAL */
+        .main-container {
+            max-width: 1300px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* SECCIONES Y GRID */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 20px;
+            background-color: var(--primary-red);
+            border-radius: 2px;
+        }
+
+        .section-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .see-all {
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .nav-arrows button {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .nav-arrows button:hover {
+            color: white;
+            background-color: var(--primary-red);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 18px;
+            margin-bottom: 50px;
+        }
+
+        /* TARJETAS (CARDS) */
+        .card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s, border-color 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-red);
+        }
+
+        .card-img-wrapper {
+            width: 100%;
+            height: 180px;
+            background-color: #000;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-info {
+            padding: 12px;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-subtitle {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* CARD ESPECIAL PARA GIFT CARDS (FONDO SÓLIDO / ESTILO COLORIDO) */
+        .card.gift-apple .card-img-wrapper { background: #ffffff; }
+        .card.gift-psn .card-img-wrapper { background: #00439c; }
+        .card.gift-steam .card-img-wrapper { background: #171a21; }
+        .card.gift-xbox .card-img-wrapper { background: #107c41; }
+        .card.gift-nintendo .card-img-wrapper { background: #e60012; }
+
+        /* BOTÓN FLOTANTE DE WHATSAPP */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 900px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .search-box {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
-    <header class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <span class="logo-text">VENIUM</span>
+    <!-- NAVBAR -->
+    <header>
+        <div class="navbar">
+            <div class="logo">VENIUM</div>
+
+            <ul class="nav-links">
+                <li><a href="#" class="active">Inicio</a></li>
+                <li><a href="#">Catálogo</a></li>
+                <li><a href="#">Reseñas</a></li>
+                <li><a href="#">Soporte</a></li>
+            </ul>
+
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar...">
             </div>
-            <nav class="nav-links">
-                <a href="#" class="active">INICIO</a>
-                <a href="#">CATÁLOGO</a>
-                <a href="#">RESEÑAS</a>
-                <a href="#">SOPORTE</a>
-            </nav>
-            <div class="nav-actions">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Buscar...">
-                </div>
+
+            <div class="header-actions">
                 <div class="currency-selector">
-                    <span class="flag">????</span>
-                    <span>VES</span>
+                    <span>????</span> VES
                 </div>
-                <button class="btn-login"><i class="fas fa-bolt"></i> INICIAR SESIÓN</button>
+                <button class="btn-login">
+                    <i class="fa-solid fa-bolt"></i> Iniciar Sesión
+                </button>
             </div>
         </div>
     </header>
 
-    <main class="main-content">
-        <!-- Main Banner Carousel Area -->
-        <section class="banner-section">
-            <div class="banner-card">
-                <img src="https://via.placeholder.com/1200x400/120508/ff0044?text=STARLIGHT+SEPTIEMBRE" alt="Starlight Banner" class="banner-img">
-                <div class="banner-dots">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                </div>
-            </div>
-        </section>
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-container">
 
-        <!-- Creator Support Banner -->
-        <section class="creator-section">
-            <div class="creator-card">
-                <div class="creator-info">
-                    <i class="fas fa-crown crown-icon"></i>
-                    <div>
-                        <h3>APOYA A UN CREADOR <span class="badge">-10% SEMANAL</span></h3>
-                        <p>Ingresa el código de tu creador para obtener 10% de descuento semanal fijo y apoyarlo en cada compra.</p>
-                    </div>
-                </div>
-                <button class="btn-apoyar">APOYAR</button>
-            </div>
-        </section>
-
-        <!-- Products Section -->
-        <section class="products-section">
+        <!-- SECCIÓN: JUEGOS -->
+        <section>
             <div class="section-header">
-                <h2><span class="bar">|</span> Boss Deals <i class="fas fa-bolt glow-icon"></i></h2>
-                <div class="arrows">
-                    <button class="arrow-btn"><i class="fas fa-chevron-left"></i></button>
-                    <button class="arrow-btn"><i class="fas fa-chevron-right"></i></button>
+                <h2 class="section-title">Juegos</h2>
+                <div class="section-controls">
+                    <a href="#" class="see-all">Ver todos</a>
+                    <div class="nav-arrows">
+                        <button><i class="fa-solid fa-chevron-left"></i></button>
+                        <button><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
                 </div>
             </div>
 
-            <div class="products-grid">
-                <!-- Product Card 1 -->
-                <div class="product-card">
-                    <div class="discount-tag">-87%</div>
-                    <div class="product-img">
-                        <img src="https://via.placeholder.com/150x150/1a1a2e/ffffff?text=FREE+FIRE" alt="Free Fire">
+            <div class="grid-container">
+                <!-- Card 1 -->
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="https://via.placeholder.com/200x250/111/fff?text=Free+Fire" alt="Free Fire">
                     </div>
-                    <div class="product-details">
-                        <span class="category">FREE FIRE</span>
-                        <h4>100+10</h4>
-                        <div class="price-container">
-                            <span class="old-price">Bs. 811,83</span>
-                            <span class="current-price">Bs. 105,54</span>
-                        </div>
+                    <div class="card-info">
+                        <div class="card-title">Free Fire</div>
+                        <div class="card-subtitle">LATAM</div>
                     </div>
                 </div>
 
-                <!-- Product Card 2 -->
-                <div class="product-card">
-                    <div class="discount-tag">-50%</div>
-                    <div class="product-img">
-                        <img src="https://via.placeholder.com/150x150/1a1a2e/ffffff?text=MOBILE+LEGENDS" alt="MLBB">
+                <!-- Card 2 -->
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="https://via.placeholder.com/200x250/222/fff?text=Blood+Strike" alt="Blood Strike">
                     </div>
-                    <div class="product-details">
-                        <span class="category">MOBILE LEGENDS</span>
-                        <h4>Weekly Pass</h4>
-                        <div class="price-container">
-                            <span class="old-price">Bs. 300,00</span>
-                            <span class="current-price">Bs. 150,00</span>
-                        </div>
+                    <div class="card-info">
+                        <div class="card-title">Blood Strike</div>
+                        <div class="card-subtitle">GLOBAL</div>
                     </div>
                 </div>
 
-                <!-- Product Card 3 -->
-                <div class="product-card">
-                    <div class="discount-tag">-30%</div>
-                    <div class="product-img">
-                        <img src="https://via.placeholder.com/150x150/1a1a2e/ffffff?text=ROBLOX" alt="Roblox">
+                <!-- Card 3 -->
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="https://via.placeholder.com/200x250/333/fff?text=Roblox" alt="Roblox">
                     </div>
-                    <div class="product-details">
-                        <span class="category">ROBLOX</span>
-                        <h4>800 Robux</h4>
-                        <div class="price-container">
-                            <span class="old-price">Bs. 500,00</span>
-                            <span class="current-price">Bs. 350,00</span>
-                        </div>
+                    <div class="card-info">
+                        <div class="card-title">Roblox</div>
+                        <div class="card-subtitle">SUDAMERICA</div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="https://via.placeholder.com/200x250/055/fff?text=Valorant" alt="Valorant">
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">Valorant</div>
+                        <div class="card-subtitle">LATAM</div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="https://via.placeholder.com/200x250/505/fff?text=Mobile+Legends" alt="Mobile Legends">
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">Mobile Legends</div>
+                        <div class="card-subtitle">GLOBAL</div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="https://via.placeholder.com/200x250/550/fff?text=League+of+Legends" alt="League Of Legends">
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">League Of Legends</div>
+                        <div class="card-subtitle">LATAM</div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- SECCIÓN: GIFT CARDS -->
+        <section>
+            <div class="section-header">
+                <h2 class="section-title">Gift Cards</h2>
+                <div class="section-controls">
+                    <a href="#" class="see-all">Ver todos</a>
+                    <div class="nav-arrows">
+                        <button><i class="fa-solid fa-chevron-left"></i></button>
+                        <button><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-container">
+                <!-- Gift Card Apple -->
+                <div class="card gift-apple">
+                    <div class="card-img-wrapper" style="display:flex; align-items:center; justify-content:center; color:#000; font-size:40px;">
+                        <i class="fa-brands fa-apple"></i>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">Apple Gift Card</div>
+                        <div class="card-subtitle">GLOBAL</div>
+                    </div>
+                </div>
+
+                <!-- Gift Card PlayStation -->
+                <div class="card gift-psn">
+                    <div class="card-img-wrapper" style="display:flex; align-items:center; justify-content:center; color:#fff; font-size:40px;">
+                        <i class="fa-brands fa-playstation"></i>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">PlayStation</div>
+                        <div class="card-subtitle">USD</div>
+                    </div>
+                </div>
+
+                <!-- Gift Card Steam -->
+                <div class="card gift-steam">
+                    <div class="card-img-wrapper" style="display:flex; align-items:center; justify-content:center; color:#fff; font-size:40px;">
+                        <i class="fa-brands fa-steam"></i>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">Steam</div>
+                        <div class="card-subtitle">GLOBAL</div>
+                    </div>
+                </div>
+
+                <!-- Gift Card Xbox -->
+                <div class="card gift-xbox">
+                    <div class="card-img-wrapper" style="display:flex; align-items:center; justify-content:center; color:#fff; font-size:40px;">
+                        <i class="fa-brands fa-xbox"></i>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">Xbox</div>
+                        <div class="card-subtitle">GLOBAL</div>
+                    </div>
+                </div>
+
+                <!-- Gift Card Nintendo -->
+                <div class="card gift-nintendo">
+                    <div class="card-img-wrapper" style="display:flex; align-items:center; justify-content:center; color:#fff; font-weight:bold; font-size:20px;">
+                        Nintendo
+                    </div>
+                    <div class="card-info">
+                        <div class="card-title">Nintendo eShop</div>
+                        <div class="card-subtitle">USD</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/1234567890" class="whatsapp-btn" target="_blank" aria-label="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+    <!-- BOTÓN DE WHATSAPP -->
+    <a href="https://wa.me/tu-numero" class="whatsapp-btn" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <script src="script.js"></script>
 </body>
 </html>
