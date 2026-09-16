@@ -1559,6 +1559,15 @@ function updateCarousel() {
   const track = document.getElementById('carouselTrack');
   const dots = document.querySelectorAll('.carousel-dots .dot');
 
+  if (!track) return; // Evita errores si el contenedor no existe
+
+  const totalSlides = track.children.length;
+  if (totalSlides === 0) return;
+
+  // Garantiza que el índice se mantenga dentro del rango
+  if (currentIndex >= totalSlides) currentIndex = 0;
+  if (currentIndex < 0) currentIndex = totalSlides - 1;
+
   track.style.transform = `translateX(-${currentIndex * 100}%)`;
 
   dots.forEach((dot, index) => {
@@ -1568,11 +1577,13 @@ function updateCarousel() {
 
 function moveCarousel(direction) {
   const track = document.getElementById('carouselTrack');
+  if (!track) return;
+  
   const totalSlides = track.children.length;
-
   currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+  
   updateCarousel();
-  resetAutoPlay(); // Reinicia el temporizador de 4s tras la interacción humana
+  resetAutoPlay();
 }
 
 function goToSlide(index) {
@@ -1582,14 +1593,16 @@ function goToSlide(index) {
 }
 
 function startAutoPlay() {
+  // Limpia cualquier temporizador previo antes de crear uno nuevo
+  if (autoPlayTimer) clearInterval(autoPlayTimer);
+  
   autoPlayTimer = setInterval(() => {
     const track = document.getElementById('carouselTrack');
-    if (track) {
-      const totalSlides = track.children.length;
-      currentIndex = (currentIndex + 1) % totalSlides;
+    if (track && track.children.length > 0) {
+      currentIndex = (currentIndex + 1) % track.children.length;
       updateCarousel();
     }
-  }, 4000); // 4000 ms = 4 segundos
+  }, 4000); // 4000 milisegundos = 4 segundos
 }
 
 function resetAutoPlay() {
@@ -1597,10 +1610,8 @@ function resetAutoPlay() {
   startAutoPlay();
 }
 
-// Inicia el carrusel cuando carga la página
-document.addEventListener('DOMContentLoaded', () => {
-  startAutoPlay();
-});
+// Inicia el carrusel inmediatamente
+startAutoPlay();
 
         actualizarCarritoUI();
         let modalSel = document.getElementById('modal-seleccion');
