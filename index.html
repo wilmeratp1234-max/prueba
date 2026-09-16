@@ -70,6 +70,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    transition: transform 0.3s ease;
 }
 
 /* Efecto de luz giratoria en el borde */
@@ -117,6 +119,15 @@
     display: block;
     object-fit: cover;
     border-radius: 12px;
+}
+
+/* Ajuste sutil para agrandar el flyer en móviles */
+@media (max-width: 768px) {
+    .featured-card {
+        transform: scale(1.06); /* Aumenta el tamaño un 6% de forma sutil */
+        margin-top: 10px;
+        margin-bottom: 30px; /* Reduce ligeramente el margen para compensar la escala */
+    }
 }
 
         /* Estructura en 2 columnas */
