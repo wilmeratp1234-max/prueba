@@ -58,7 +58,7 @@
   height: 38px;
 }
 
-        /* Tarjeta Flyer con Luz Giratoria */
+/* Tarjeta Flyer con Luz Giratoria */
 .featured-card { 
     position: relative;
     background: #0f172a; 
@@ -71,7 +71,6 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    transition: transform 0.3s ease;
 }
 
 /* Efecto de luz giratoria en el borde */
@@ -121,12 +120,19 @@
     border-radius: 12px;
 }
 
-/* Ajuste sutil para agrandar el flyer en móviles */
+/* Ajuste de altura exclusiva para móviles */
 @media (max-width: 768px) {
-    .featured-card {
-        transform: scale(1.06); /* Aumenta el tamaño un 6% de forma sutil */
-        margin-top: 10px;
-        margin-bottom: 30px; /* Reduce ligeramente el margen para compensar la escala */
+    .featured-card,
+    .flyer-container {
+        /* Aumentamos la altura del contenedor */
+        min-height: 160px; 
+    }
+
+    .flyer-img {
+        /* Hacemos que la imagen cubra toda la nueva altura */
+        height: 100%; 
+        min-height: 160px;
+        object-fit: cover; 
     }
 }
 
