@@ -30,127 +30,148 @@
         header p { color: #9ca3af; font-size: 1.1rem; }
         header .sub-desc { color: #9ca3af; font-size: 0.95rem; margin-top: 15px; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-/* Fondo oscuro con difuminado */
-.dist-modal-overlay {
-  display: none;
+.whatsapp-float {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.85);
-  z-index: 999999 !important;
-  justify-content: center;
+  width: 60px;
+  height: 60px;
+  bottom: 25px;
+  right: 25px;
+  background-color: #25d366;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  display: flex;
   align-items: center;
-  backdrop-filter: blur(4px);
+  justify-content: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-/* Caja principal con estética neón */
-.dist-modal-card {
-  background-color: #0d0f17;
-  border: 1.5px solid #00ff66;
-  box-shadow: 0 0 20px rgba(0, 255, 102, 0.25);
-  border-radius: 18px;
-  width: 90%;
-  max-width: 430px;
-  padding: 26px;
-  box-sizing: border-box;
-  color: #ffffff;
-  position: relative;
-  font-family: Arial, sans-serif;
-  max-height: 90vh;
-  overflow-y: auto;
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  background-color: #128c7e;
 }
 
-.dist-modal-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: transparent;
-  border: 1px solid #00ff66;
-  color: #00ff66;
-  border-radius: 8px;
-  width: 32px;
-  height: 32px;
-  font-size: 18px;
-  cursor: pointer;
+.whatsapp-icon {
+  width: 35px;
+  height: 35px;
 }
 
-.dist-modal-title {
-  font-size: 22px;
-  font-weight: 800;
-  margin: 0 0 6px 0;
-  line-height: 1.2;
+        /* Oferta destacada con efecto de luz giratoria */
+        .featured-card { 
+            position: relative;
+            background: linear-gradient(145deg, #0f172a, #180d12); 
+            border-radius: 16px; 
+            padding: 30px; 
+            margin-bottom: 40px; 
+            box-shadow: 0 0 25px rgba(0, 255, 127, 0.15);
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .featured-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, transparent, transparent, #00FF7F);
+            animation: rotarLuz 4s linear infinite;
+            z-index: -2;
+        }
+
+        .featured-card::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: linear-gradient(145deg, #0f172a, #180d12);
+            border-radius: 14px;
+            z-index: -1;
+        }
+
+        @keyframes rotarLuz {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .offer-tag {
+    position: absolute;
+    top: 15px; /* Ubicada dentro de la tarjeta para que no la corte ningún borde */
+    right: 20px;
+    background: #00FF7F;
+    color: #050811;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    z-index: 10;
 }
 
-.dist-highlight {
-  color: #00ff66;
+.featured-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    position: relative; /* Asegura que la tarjeta controle la posición interna */
+    padding-top: 10px; /* Espacio extra para que no choque con la etiqueta */
 }
 
-.dist-modal-subtitle {
-  font-size: 13px;
-  color: #a0a5b5;
-  margin: 0 0 16px 0;
+.featured-info h3 {
+    color: #00FF7F;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
 }
 
-.dist-alert-box {
-  background-color: #121422;
-  border: 1px solid #00ff66;
-  border-radius: 10px;
-  padding: 10px 14px;
-  margin-bottom: 18px;
-  font-size: 12px;
-  color: #d1d5db;
+.featured-info h2 {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 8px;
 }
 
-.dist-alert-box p {
-  margin: 0;
+.featured-info p {
+    color: #9ca3af;
+    font-size: 0.95rem;
 }
 
-.dist-form-group {
-  margin-bottom: 14px;
-  text-align: left;
+.price-box {
+    text-align: right;
 }
 
-.dist-form-group label {
-  display: block;
-  font-size: 11px;
-  font-weight: bold;
-  color: #a0a5b5;
-  margin-bottom: 6px;
-  text-transform: uppercase;
+.old-price {
+    color: #FFFFFF;
+    text-decoration: line-through;
+    font-size: 0.9rem;
 }
 
-.dist-form-group input,
-.dist-form-group select {
-  width: 100%;
-  padding: 12px;
-  background-color: #07080c;
-  border: 1px solid #00ff66;
-  border-radius: 8px;
-  color: #ffffff;
-  outline: none;
-  box-sizing: border-box;
-  font-size: 13px;
+.current-price {
+    font-size: 2.2rem;
+    color: #00FF7F;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-.dist-form-group select option {
-  background-color: #0d0f17;
-  color: #ffffff;
+.btn-oferta {
+    display: inline-block;
+    background: linear-gradient(90deg, #00FF7F, #00cc66);
+    color: #050811;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    transition: opacity 0.2s;
+    cursor: pointer;
+    border: none;
 }
 
-.dist-btn-submit {
-  width: 100%;
-  padding: 14px;
-  background: linear-gradient(90deg, #5362f6, #00ff66);
-  border: none;
-  border-radius: 10px;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-  margin-top: 10px;
-  text-transform: uppercase;
+.btn-oferta:hover {
+    opacity: 0.9;
 }
 
         /* Estructura en 2 columnas */
@@ -402,9 +423,9 @@
             <span>LÍDERES EN ENTRETENIMIENTO</span>
         </div>
         <ul class="nav-links">
-            <li><a onclick="solicitarAccesoDistribuidores(document.querySelector('.btn-distri'))" href="#catalogo">DISTRIBUIDORES</a></li>
+            <li><a href="#catalogo">OFERTAS</a></li>
             <li><a href="#catalogo">CATÁLOGO</a></li>
-            <li><a href="#" id="btnDistModal">QUIERO SER DISTRIBUIDOR</a></li>
+            <li><a onclick="solicitarAccesoDistribuidores(document.querySelector('.btn-distri'))" href="#catalogo">DISTRIBUIDORES</a></li>
         </ul>
         <button class="btn-pedido" onclick="toggleCart()">🛒 MI PEDIDO (<span id="cart-count">0</span>)</button>
     </nav>
@@ -415,54 +436,6 @@
         <div class="badge-container">
             <div class="badge green"><div class="dot"></div> Horario: 9 AM - 11 PM</div>
         </div>
-		
-		<!-- Modal -->
-<div id="distributorModal" class="dist-modal-overlay" style="display: none;">
-  <div class="dist-modal-card">
-    <button type="button" class="dist-modal-close" id="btnCerrarDistModal">&times;</button>
-    
-    <h2 class="dist-modal-title">Zona Exclusiva <br><span class="dist-highlight">Distribuidores</span></h2>
-    <p class="dist-modal-subtitle">Bienvenido al área única para distribuidores de STREAMIX STORE.</p>
-    
-    <div class="dist-alert-box">
-      <p>🚨 <strong>Atención:</strong> Completa los siguientes datos para procesar tu solicitud.</p>
-    </div>
-
-    <form id="distributorForm">
-      <div class="dist-form-group">
-        <label for="distNombre">1. Nombre Completo</label>
-        <input type="text" id="distNombre" placeholder="Escribe tu nombre" required>
-      </div>
-
-      <div class="dist-form-group">
-        <label for="distExp">2. ¿Tienes experiencia en venta de streaming?</label>
-        <select id="distExp" required>
-          <option value="" disabled selected>Selecciona una opción</option>
-          <option value="SI">SI</option>
-          <option value="NO">NO</option>
-        </select>
-      </div>
-
-      <div class="dist-form-group">
-        <label for="distPais">3. País de residencia</label>
-        <input type="text" id="distPais" placeholder="Ej. Venezuela, Colombia, México..." required>
-      </div>
-
-      <div class="dist-form-group">
-        <label for="distInversion">4. Presupuesto estimado a invertir</label>
-        <select id="distInversion" required>
-          <option value="" disabled selected>Selecciona un rango</option>
-          <option value="Menos de $50">Menos de $50</option>
-          <option value="$50 - $100">$50 - $100</option>
-          <option value="$100 - $300">$100 - $300</option>
-          <option value="Más de $300">Más de $300</option>
-        </select>
-      </div>
-
-      <button type="submit" class="dist-btn-submit">SOLICITAR ACCESO</button>
-    </form>
-  </div>
-</div>
 
         <!-- Encabezado principal -->
         <header>
@@ -471,45 +444,34 @@
             <div class="sub-desc">Cuentas y Perfiles Originales, renovables y sin caídas. Elige tu plan, paga y estará activo en minutos.</div>
         </header>
 
-        <div class="banner-carousel-container">
-  <div class="carousel-track" id="carouselTrack">
-
-    <!-- Slide 1: Roblox (Ejemplo) -->
-    <div class="carousel-slide active" style="background-image: linear-gradient(to right, rgba(10, 15, 30, 0.95), rgba(10, 15, 30, 0.4)), url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200');">
-      <!-- NOTA: Cambia la URL de arriba por la imagen de fondo que desees o usa una etiqueta <img> si prefieres un banner ya diseñado -->
-      <div class="slide-content">
-        <span class="slide-badge">ROBLOX</span>
-        <h2 class="slide-title">ESTÁN DE VUELTA<br><span class="highlight-text">GIFT CARDS</span></h2>
-        <p class="slide-description">¡Las de 50 y 100 Robux que todos pedían!</p>
-        <button class="slide-btn" onclick="agregarDirecto('Roblox 50', 5, 'gaming')">RECARGA AHORA</button>
-      </div>
-    </div>
-
-    <!-- Slide 2: HBO + VIX (Tu Combo original adaptado) -->
-    <div class="carousel-slide" style="background-image: linear-gradient(to right, rgba(10, 15, 30, 0.95), rgba(10, 15, 30, 0.4)), url('https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=1200');">
-      <div class="slide-content">
-        <span class="slide-badge label-promo">MAS DIAMANTES MISMO PRECIO</span>
-        <h2 class="slide-title">RECARGAS FREE FIRE<br><span class="highlight-text-blue">1166 DIAMANTES</span></h2>
-        <p class="slide-description">Lleva más diamantes por el mismo precio.</p>
-        <div class="slide-price-container">
-          <span class="new-price-banner">$9.05 USD</span>
+        <!-- Tarjeta de Oferta Limitada con Luz Dinámica -->
+        <div class="featured-card">
+            <div class="offer-tag">🤩 Oferta Limitada</div>
+            <div class="featured-content">
+                <div class="featured-info">
+                    <h3>Combo DUO</h3>
+                    <h2>HBO MAX + VIX</h2>
+                    <p>Llévate el DUO perfecto, disfruta de las mejores series y películas del momento.</p>
+                </div>
+                <div class="price-box">
+                    <div class="old-price">$3.60 USD</div>
+                    <div class="current-price" id="oferta-precio" data-usd="1.99">$1.99 <span style="font-size: 1rem; color: #9ca3af;">USD</span></div>
+                    <button class="btn-oferta" onclick="agregarDirecto('Combo Streaming Pro (Oferta)', 1.99, 'cine')">¡Quiero esta oferta!</button>
+                </div>
+            </div>
         </div>
-        <button class="slide-btn" onclick="agregarDirecto('1060+106	diamantes', 9.05, 'gaming')">¡RECARGAR AHORA!</button>
-      </div>
-    </div>
 
-  </div>
-
-  <!-- Flechas de navegación -->
-  <button class="carousel-arrow prev" onclick="moveCarousel(-1)">&#10094;</button>
-  <button class="carousel-arrow next" onclick="moveCarousel(1)">&#10095;</button>
-
-  <!-- Puntos indicadores -->
-  <div class="carousel-dots" id="carouselDots">
-    <span class="dot active" onclick="goToSlide(0)"></span>
-    <span class="dot" onclick="goToSlide(1)"></span>
-  </div>
-</div>
+<!-- Botón flotante de WhatsApp -->
+<a href="https://wa.me/584120000000?text=Hola,%20me%20gustaría%20obtener%20más%20información" 
+   class="whatsapp-float" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   aria-label="Chat en WhatsApp">
+  <svg viewBox="0 0 32 32" class="whatsapp-icon">
+    <path fill="#FFF" d="M19.11 17.205c-.372-.187-2.206-1.09-2.548-1.214-.342-.123-.591-.186-.84.187-.249.373-.967 1.214-1.185 1.463-.219.248-.437.28-.809.093-.372-.187-1.571-.579-2.993-1.847-1.106-.987-1.853-2.207-2.071-2.58-.218-.373-.023-.574.164-.76.168-.168.373-.436.56-.654.187-.218.249-.373.373-.623.124-.249.062-.467-.031-.654-.093-.187-.84-2.024-1.152-2.775-.304-.731-.614-.632-.84-.643l-.715-.011c-.249 0-.653.093-.996.467-.343.373-1.309 1.277-1.309 3.116s1.34 3.614 1.527 3.863c.187.249 2.635 4.024 6.384 5.644.892.386 1.589.617 2.132.79.896.285 1.712.245 2.357.148.72-.108 2.206-.902 2.518-1.774.312-.872.312-1.619.218-1.774-.093-.155-.342-.248-.714-.435z"/>
+    <path fill="#FFF" d="M16 2A13.93 13.93 0 0 0 2.07 16c0 2.478.647 4.887 1.875 7.027L2 29.931l7.087-1.859A13.947 13.947 0 0 0 16 30c7.72 0 14-6.28 14-14S23.72 2 16 2zm0 25.467c-2.26 0-4.471-.607-6.402-1.758l-.459-.273-4.213 1.105 1.124-4.106-.3-.477A11.41 11.41 0 0 1 4.533 16C4.533 9.677 9.677 4.533 16 4.533S27.467 9.677 27.467 16 22.323 27.467 16 27.467z"/>
+  </svg>
+</a>
 
         <!-- Cabecera de Catálogo y Tasa Fija -->
         <div class="catalog-header" id="catalogo">
@@ -1614,116 +1576,17 @@
             }
         });
 
-(function() {
-    try {
-      var btnAbrir = document.getElementById('btnDistModal');
-      var modal = document.getElementById('distributorModal');
-      var btnCerrar = document.getElementById('btnCerrarDistModal');
-      var form = document.getElementById('distributorForm');
-
-      if (btnAbrir) {
-        btnAbrir.onclick = function(e) {
-          e.preventDefault();
-          if (modal) modal.style.display = 'flex';
-        };
-      }
-
-      if (btnCerrar) {
-        btnCerrar.onclick = function() {
-          if (modal) modal.style.display = 'none';
-        };
-      }
-
-      window.addEventListener('click', function(e) {
-        if (e.target === modal) {
-          modal.style.display = 'none';
+        // Actualizar oferta destacada
+        let ofertaEl = document.getElementById('oferta-precio');
+        if (ofertaEl) {
+            let usdOferta = parseFloat(ofertaEl.getAttribute('data-usd'));
+            if (moneda === 'Bs') {
+                let bsOferta = usdOferta * tasaCambio;
+                ofertaEl.innerHTML = 'Bs ' + bsOferta.toLocaleString('es-VE', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            } else {
+                ofertaEl.innerHTML = '$' + usdOferta.toFixed(2) + ' <span style="font-size: 1rem; color: #9ca3af;">USD</span>';
+            }
         }
-      });
-
-      if (form) {
-        form.onsubmit = function(e) {
-          e.preventDefault();
-          var nombre = document.getElementById('distNombre').value;
-          var exp = document.getElementById('distExp').value;
-          var pais = document.getElementById('distPais').value;
-          var inversion = document.getElementById('distInversion').value;
-
-          var numeroWhatsapp = "584120000000";
-          var mensaje = `*SOLICITUD DE DISTRIBUIDOR - STREAMIX STORE*%0A%0A` +
-                        `👤 *Nombre:* ${encodeURIComponent(nombre)}%0A` +
-                        `⭐ *Experiencia:* ${exp}%0A` +
-                        `🌍 *País:* ${encodeURIComponent(pais)}%0A` +
-                        `💵 *Inversión:* ${encodeURIComponent(inversion)}`;
-
-          window.open(`https://wa.me/${numeroWhatsapp}?text=${mensaje}`, '_blank');
-          modal.style.display = 'none';
-        };
-      }
-    } catch (err) {
-      console.log('Error en script de modal:', err);
-    }
-  })();
-
-        let currentIndex = 0;
-let autoPlayTimer = null;
-
-function updateCarousel() {
-  const track = document.getElementById('carouselTrack');
-  const dots = document.querySelectorAll('.carousel-dots .dot');
-
-  if (!track) return; // Evita errores si el contenedor no existe
-
-  const totalSlides = track.children.length;
-  if (totalSlides === 0) return;
-
-  // Garantiza que el índice se mantenga dentro del rango
-  if (currentIndex >= totalSlides) currentIndex = 0;
-  if (currentIndex < 0) currentIndex = totalSlides - 1;
-
-  track.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-  dots.forEach((dot, index) => {
-    dot.classList.toggle('active', index === currentIndex);
-  });
-}
-
-function moveCarousel(direction) {
-  const track = document.getElementById('carouselTrack');
-  if (!track) return;
-  
-  const totalSlides = track.children.length;
-  currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
-  
-  updateCarousel();
-  resetAutoPlay();
-}
-
-function goToSlide(index) {
-  currentIndex = index;
-  updateCarousel();
-  resetAutoPlay();
-}
-
-function startAutoPlay() {
-  // Limpia cualquier temporizador previo antes de crear uno nuevo
-  if (autoPlayTimer) clearInterval(autoPlayTimer);
-  
-  autoPlayTimer = setInterval(() => {
-    const track = document.getElementById('carouselTrack');
-    if (track && track.children.length > 0) {
-      currentIndex = (currentIndex + 1) % track.children.length;
-      updateCarousel();
-    }
-  }, 9000); // 9000 milisegundos =  segundos
-}
-
-function resetAutoPlay() {
-  clearInterval(autoPlayTimer);
-  startAutoPlay();
-}
-
-// Inicia el carrusel inmediatamente
-startAutoPlay();
 
         actualizarCarritoUI();
         let modalSel = document.getElementById('modal-seleccion');
