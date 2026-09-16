@@ -30,6 +30,149 @@
         header p { color: #9ca3af; font-size: 1.1rem; }
         header .sub-desc { color: #9ca3af; font-size: 0.95rem; margin-top: 15px; max-width: 600px; margin-left: auto; margin-right: auto; }
 
+/* Overlay oscuro */
+.dist-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 999999;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(4px);
+}
+
+/* Tarjeta del Modal */
+.dist-modal-card {
+  background-color: #0d0f17;
+  border: 1.5px solid #00ff66;
+  box-shadow: 0 0 15px rgba(0, 255, 102, 0.25);
+  border-radius: 18px;
+  width: 90%;
+  max-width: 440px;
+  padding: 28px;
+  box-sizing: border-box;
+  color: #ffffff;
+  position: relative;
+  font-family: Arial, sans-serif;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Botón X de Cierre */
+.dist-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: transparent;
+  border: 1px solid #00ff66;
+  color: #00ff66;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.dist-modal-close:hover {
+  background-color: rgba(0, 255, 102, 0.15);
+}
+
+/* Encabezados */
+.dist-modal-title {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0 0 6px 0;
+  line-height: 1.2;
+}
+
+.dist-highlight {
+  color: #00ff66;
+}
+
+.dist-modal-subtitle {
+  font-size: 13px;
+  color: #a0a5b5;
+  margin: 0 0 16px 0;
+}
+
+/* Alerta Informativa */
+.dist-alert-box {
+  background-color: #121422;
+  border: 1px solid #00ff66;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: #d1d5db;
+}
+
+.dist-alert-box p {
+  margin: 0;
+}
+
+/* Campos de Formulario */
+.dist-form-group {
+  margin-bottom: 14px;
+  text-align: left;
+}
+
+.dist-form-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: bold;
+  color: #a0a5b5;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dist-form-group input,
+.dist-form-group select {
+  width: 100%;
+  padding: 12px 14px;
+  background-color: #07080c;
+  border: 1px solid #00ff66;
+  border-radius: 8px;
+  color: #ffffff;
+  outline: none;
+  box-sizing: border-box;
+  font-size: 13px;
+}
+
+.dist-form-group select option {
+  background-color: #0d0f17;
+  color: #ffffff;
+}
+
+/* Botón Degradado */
+.dist-btn-submit {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(90deg, #5362f6, #00ff66);
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s;
+}
+
+.dist-btn-submit:hover {
+  opacity: 0.9;
+}
+
        /* Contenedor adaptado a la imagen de muestra */
 .banner-carousel-container {
   position: relative;
@@ -136,117 +279,6 @@
 .dot.active {
   background: #00ff87;
   width: 20px;
-}
-
-/* Fondo oscuro translúcido */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.75);
-  z-index: 1000;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Caja del Modal */
-.modal-content {
-  background-color: #0f111a;
-  border: 2px solid #00ff66;
-  box-shadow: 0 0 15px rgba(0, 255, 102, 0.3);
-  border-radius: 16px;
-  width: 90%;
-  max-width: 420px;
-  padding: 28px;
-  color: #ffffff;
-  position: relative;
-  font-family: Arial, sans-serif;
-}
-
-/* Botón de Cerrar (X) */
-.modal-close {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: transparent;
-  border: 1px solid #00ff66;
-  color: #00ff66;
-  border-radius: 8px;
-  width: 32px;
-  height: 32px;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-/* Títulos */
-.modal-title {
-  font-size: 22px;
-  font-weight: bold;
-  margin: 0 0 5px 0;
-}
-
-.modal-title .highlight {
-  color: #00ff66;
-}
-
-.modal-subtitle {
-  font-size: 13px;
-  color: #a0a5b5;
-  margin-bottom: 20px;
-}
-
-/* Campos del Formulario */
-.form-group {
-  margin-bottom: 15px;
-  text-align: left;
-}
-
-.form-group label {
-  display: block;
-  font-size: 12px;
-  font-weight: bold;
-  color: #a0a5b5;
-  margin-bottom: 6px;
-  text-transform: uppercase;
-}
-
-.form-group input,
-.form-group select {
-  width: 100%;
-  padding: 12px;
-  background-color: #08090d;
-  border: 1px solid #00ff66;
-  border-radius: 8px;
-  color: #ffffff;
-  outline: none;
-  box-sizing: border-box;
-}
-
-.form-group input::placeholder {
-  color: #505565;
-}
-
-/* Botón de Envío */
-.btn-submit {
-  width: 100%;
-  padding: 14px;
-  background: linear-gradient(90deg, #4d5bf7, #00ff66);
-  border: none;
-  border-radius: 10px;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-  margin-top: 10px;
-  text-transform: uppercase;
-  transition: opacity 0.2s;
-}
-
-.btn-submit:hover {
-  opacity: 0.9;
 }
 
         /* Estructura en 2 columnas */
@@ -500,7 +532,7 @@
         <ul class="nav-links">
             <li><a onclick="solicitarAccesoDistribuidores(document.querySelector('.btn-distri'))" href="#catalogo">DISTRIBUIDORES</a></li>
             <li><a href="#catalogo">CATÁLOGO</a></li>
-            <li><a href="#" onclick="openDistributorModal(event)">QUIERO SER DISTRIBUIDOR</a></li>
+            <li><a href="javascript:void(0);" onclick="openDistributorModal(event)">QUIERO SER DISTRIBUIDOR</a></li>
         </ul>
         <button class="btn-pedido" onclick="toggleCart()">🛒 MI PEDIDO (<span id="cart-count">0</span>)</button>
     </nav>
@@ -511,6 +543,58 @@
         <div class="badge-container">
             <div class="badge green"><div class="dot"></div> Horario: 9 AM - 11 PM</div>
         </div>
+		
+		<!-- Ventana Emergente / Modal -->
+<div id="distributorModal" class="dist-modal-overlay">
+  <div class="dist-modal-card">
+    <button type="button" class="dist-modal-close" onclick="closeDistributorModal()">&times;</button>
+    
+    <h2 class="dist-modal-title">Zona Exclusiva <br><span class="dist-highlight">Distribuidores</span></h2>
+    <p class="dist-modal-subtitle">Bienvenido al área única para distribuidores de STREAMIX STORE.</p>
+    
+    <div class="dist-alert-box">
+      <p>🚨 <strong>Atención:</strong> Completa los siguientes datos para procesar tu solicitud de distribuidor.</p>
+    </div>
+
+    <form id="distributorForm" onsubmit="submitDistributorForm(event)">
+      <!-- Pregunta 1 -->
+      <div class="dist-form-group">
+        <label for="nombre">1. Nombre Completo</label>
+        <input type="text" id="nombre" placeholder="Escribe tu nombre" required>
+      </div>
+
+      <!-- Pregunta 2 -->
+      <div class="dist-form-group">
+        <label for="experiencia">2. ¿Tienes experiencia en venta de streaming?</label>
+        <select id="experiencia" required>
+          <option value="" disabled selected>Selecciona una opción</option>
+          <option value="SI">SI</option>
+          <option value="NO">NO</option>
+        </select>
+      </div>
+
+      <!-- Pregunta 3 -->
+      <div class="dist-form-group">
+        <label for="pais">3. País de residencia</label>
+        <input type="text" id="pais" placeholder="Ej. Venezuela, Colombia, México..." required>
+      </div>
+
+      <!-- Pregunta 4 -->
+      <div class="dist-form-group">
+        <label for="volumen">4. ¿Cuánto presupuesto estimado deseas invertir?</label>
+        <select id="volumen" required>
+          <option value="" disabled selected>Selecciona un rango</option>
+          <option value="Menos de $50">Menos de $50</option>
+          <option value="$50 - $100">$50 - $100</option>
+          <option value="$100 - $300">$100 - $300</option>
+          <option value="Más de $300">Más de $300</option>
+        </select>
+      </div>
+
+      <button type="submit" class="dist-btn-submit">SOLICITAR ACCESO</button>
+    </form>
+  </div>
+</div>
 
         <!-- Encabezado principal -->
         <header>
@@ -573,39 +657,6 @@
                 </div>
             </div>
         </div>
-		
-		<!-- Modal / Ventana emergente -->
-<div id="distributorModal" class="modal-overlay">
-  <div class="modal-content">
-    <button class="modal-close" onclick="closeDistributorModal()">&times;</button>
-    
-    <h2 class="modal-title">Zona Exclusiva <br><span class="highlight">Distribuidores</span></h2>
-    <p class="modal-subtitle">Bienvenido al área única para distribuidores de STREAMIX STORE.</p>
-    
-    <form id="distributorForm" onsubmit="submitDistributorForm(event)">
-      <div class="form-group">
-        <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" placeholder="Escribe tu nombre completo" required>
-      </div>
-
-      <div class="form-group">
-        <label for="experiencia">¿Experiencia en Servicios Streaming?</label>
-        <select id="experiencia" required>
-          <option value="" disabled selected>Selecciona una opción</option>
-          <option value="SI">SI</option>
-          <option value="NO">NO</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="pais">País</label>
-        <input type="text" id="pais" placeholder="Escribe tu país" required>
-      </div>
-
-      <button type="submit" class="btn-submit">ENVIAR SOLICITUD</button>
-    </form>
-  </div>
-</div>
 
         <!-- Filtros de Categorías -->
         <div class="filter-buttons">
@@ -1695,28 +1746,44 @@
             }
         });
 
-function openDistributorModal(event) {
-  event.preventDefault();
-  document.getElementById('distributorModal').style.display = 'flex';
-}
+function openDistributorModal(e) {
+    if (e) e.preventDefault();
+    document.getElementById('distributorModal').style.display = 'flex';
+  }
 
-function closeDistributorModal() {
-  document.getElementById('distributorModal').style.display = 'none';
-}
+  function closeDistributorModal() {
+    document.getElementById('distributorModal').style.display = 'none';
+  }
 
-function submitDistributorForm(event) {
-  event.preventDefault();
-  
-  const nombre = document.getElementById('nombre').value;
-  const experiencia = document.getElementById('experiencia').value;
-  const pais = document.getElementById('pais').value;
+  // Cerrar al hacer clic fuera del recuadro
+  window.addEventListener('click', function(e) {
+    var modal = document.getElementById('distributorModal');
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
 
-  // Redirección opcional a WhatsApp con la información del formulario
-  const mensaje = `Hola, quiero ser distribuidor.%0A*Nombre:* ${encodeURIComponent(nombre)}%0A*Experiencia:* ${experiencia}%0A*País:* ${encodeURIComponent(pais)}`;
-  window.open(`https://wa.me/TU_NUMERO?text=${mensaje}`, '_blank');
+  // Envío del formulario
+  function submitDistributorForm(e) {
+    e.preventDefault();
+    
+    var nombre = document.getElementById('nombre').value;
+    var experiencia = document.getElementById('experiencia').value;
+    var pais = document.getElementById('pais').value;
+    var volumen = document.getElementById('volumen').value;
 
-  closeDistributorModal();
-}
+    // Coloca aquí tu número con código de país (sin el signo +)
+    var numeroWhatsapp = "584120000000"; 
+
+    var mensaje = `*SOLICITUD DE DISTRIBUIDOR - STREAMIX STORE*%0A%0A` +
+                  `👤 *Nombre:* ${encodeURIComponent(nombre)}%0A` +
+                  `⭐ *Experiencia:* ${experiencia}%0A` +
+                  `🌍 *País:* ${encodeURIComponent(pais)}%0A` +
+                  `💵 *Inversión estimada:* ${encodeURIComponent(volumen)}`;
+
+    window.open(`https://wa.me/${numeroWhatsapp}?text=${mensaje}`, '_blank');
+    closeDistributorModal();
+  }
 
         let currentIndex = 0;
 let autoPlayTimer = null;
