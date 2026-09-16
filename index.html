@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Streamix Store - Líderes en Entretenimiento</title>
     <style>
+	
+	<!-- Colocar en el <head> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #050811; color: #ffffff; padding: 0; overflow-x: hidden; }
         
@@ -63,7 +67,7 @@
     position: relative;
     background: #0f172a; 
     border-radius: 16px; 
-    padding: 4px; /* Espacio para el borde luminoso */
+    padding: 4px; 
     margin-bottom: 40px; 
     overflow: hidden;
     z-index: 1;
@@ -89,35 +93,31 @@
     z-index: -1;
 }
 
-/* Animación de rotación */
 @keyframes rotateLight {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
-/* Contenedor interno que oculta el centro del gradiente */
+/* Contenedor interno */
 .flyer-container {
     width: 100%;
     height: 100%;
     background: #0f172a;
     border-radius: 12px;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-/* Ajuste necesario para el elemento picture */
-.flyer-container picture {
+/* Ajuste necesario para Swiper y Picture */
+.swiper {
+    width: 100%;
+    border-radius: 12px;
+}
+
+.swiper-slide picture {
     width: 100%;
     display: block;
 }
 
-/* Ajuste de la imagen del flyer */
 .flyer-img {
     width: 100%;
     height: auto;
@@ -126,10 +126,15 @@
     border-radius: 12px;
 }
 
-/* Ajuste de márgenes exclusivos para celulares */
+/* Personalizar puntos de paginación con el verde fosforescente */
+.swiper-pagination-bullet-active {
+    background: #00FF7F !important;
+}
+
+/* Responsivo para móviles */
 @media (max-width: 768px) {
     .featured-card {
-        width: calc(100% - 16px); /* Espacio sutil a los lados */
+        width: calc(100% - 16px);
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 25px;
@@ -378,6 +383,8 @@
 </head>
 <body>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <!-- Barra de navegación -->
     <nav>
         <div class="logo-nav">
@@ -407,13 +414,41 @@
 
        <div class="featured-card">
   <div class="flyer-container">
-    <picture>
-      <!-- Imagen ALTA para celulares (menos de 768px) -->
-      <source media="(max-width: 768px)" srcset="https://i.postimg.cc/cJBdswmc/Gemini-Generated-Image-hpvivhpvivhpvivh.jpg">
-      
-      <!-- Imagen PANORÁMICA para computadoras -->
-      <img src="https://i.postimg.cc/cJBdswmc/Gemini-Generated-Image-hpvivhpvivhpvivh.jpg" class="flyer-img" alt="Flyer Netflix Gift Cards">
-    </picture>
+    
+    <!-- Estructura del Carrusel Swiper -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        
+        <!-- Imagen 1 -->
+        <div class="swiper-slide">
+          <picture>
+            <source media="(max-width: 768px)" srcset="RUTA_IMAGEN_1_MOVIL.jpg">
+            <img src="RUTA_IMAGEN_1_DESKTOP.jpg" class="flyer-img" alt="Flyer 1">
+          </picture>
+        </div>
+
+        <!-- Imagen 2 -->
+        <div class="swiper-slide">
+          <picture>
+            <source media="(max-width: 768px)" srcset="RUTA_IMAGEN_2_MOVIL.jpg">
+            <img src="RUTA_IMAGEN_2_DESKTOP.jpg" class="flyer-img" alt="Flyer 2">
+          </picture>
+        </div>
+
+        <!-- Imagen 3 -->
+        <div class="swiper-slide">
+          <picture>
+            <source media="(max-width: 768px)" srcset="RUTA_IMAGEN_3_MOVIL.jpg">
+            <img src="RUTA_IMAGEN_3_DESKTOP.jpg" class="flyer-img" alt="Flyer 3">
+          </picture>
+        </div>
+
+      </div>
+
+      <!-- Puntos de navegación abajo (Opcional) -->
+      <div class="swiper-pagination"></div>
+    </div>
+
   </div>
 </div>
 
@@ -434,7 +469,7 @@
                 <p>Añade tus plataformas y juegos favoritos.</p>
             </div>
             <div class="tasas-box">
-                <div class="tasas-info">TASA: <span id="tasa-mostrada">960.00</span></div>
+                <div class="tasas-info">TASA: <span id="tasa-mostrada">970.00</span></div>
                 <div class="currency-buttons">
                     <button class="curr-btn active" onclick="cambiarMoneda('USD', this)">USD</button>
                     <button class="curr-btn" onclick="cambiarMoneda('Bs', this)">Bs</button>
@@ -1326,7 +1361,6 @@
             <div class="footer-brand">
                 <div class="footer-logo-title">STREAMIX STORE</div>
                 <div class="footer-status">
-                    <div class="footer-status-dot"></div>
                 </div>
             </div>
             <div class="footer-socials">
@@ -1491,7 +1525,7 @@
 <!-- LÓGICA JAVASCRIPT -->
 <script>
     // Variables globales del estado
-    let tasaCambio = 960.00;
+    let tasaCambio = 970.00;
     let monedaActual = 'USD';
     let carrito = [];
     let distribuidorAutorizado = false;
@@ -1843,6 +1877,18 @@ function mostrarFeedbackCopia() {
         }, 2500);
     }
 }
+
+const swiper = new Swiper('.mySwiper', {
+    loop: true,               // Hace el carrusel infinito
+    autoplay: {
+      delay: 3500,            // Cambia automáticamente cada 3.5 segundos
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,        // Permite hacer clic en los puntos
+    },
+  });
 
     // Actualizar enlace de mensajes si el usuario escribe el nombre del perfil
     document.getElementById('input-nombre-perfil').addEventListener('input', () => {
