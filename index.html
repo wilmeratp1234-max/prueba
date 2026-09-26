@@ -442,6 +442,7 @@
             <li><a href="#catalogo">OFERTAS</a></li>
             <li><a href="#catalogo">CATÁLOGO</a></li>
             <li><a onclick="solicitarAccesoDistribuidores(document.querySelector('.btn-distri'))" href="#catalogo">DISTRIBUIDORES</a></li>
+			<a href="#busqueda-datos" class="nav-item">BÚSQUEDA DE DATOS</a>
         </ul>
         <button class="btn-pedido" onclick="toggleCart()">🛒 MI PEDIDO (<span id="cart-count">0</span>)</button>
     </nav>
@@ -490,6 +491,27 @@
                 </div>
             </div>
         </div>
+		
+		<!-- Formulario de Búsqueda -->
+<div id="busqueda-datos" style="background: #111; color: #fff; padding: 20px; border-radius: 10px; max-width: 500px; margin: 20px auto; font-family: sans-serif;">
+  <h3 style="color: #00ff88; text-align: center;">BÚSQUEDA DE DATOS</h3>
+  
+  <div style="margin-bottom: 12px;">
+    <label>Correo de la Cuenta:</label><br>
+    <input type="email" id="searchEmail" placeholder="correo@ejemplo.com" style="width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid #333; background: #222; color: #fff;">
+  </div>
+
+  <div style="margin-bottom: 12px;">
+    <label>Nombre del Perfil:</label><br>
+    <input type="text" id="searchProfile" placeholder="Ej. Perfil 1 / Juan" style="width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid #333; background: #222; color: #fff;">
+  </div>
+
+  <button onclick="buscarDatos()" style="width: 100%; padding: 10px; background: #00ff88; color: #000; font-weight: bold; border: none; border-radius: 5px; cursor: pointer;">
+    BUSCAR MIS DATOS
+  </button>
+
+  <div id="resultadoBusqueda" style="margin-top: 15px; padding: 10px; display: none; border-radius: 5px;"></div>
+</div>
 
         <!-- Filtros de Categorías -->
         <div class="filter-buttons">
@@ -1737,6 +1759,49 @@
             actualizarSubtotalModal();
         }
     }
+	
+	function buscarDatos() {
+    const email = document.getElementById('searchEmail').value.trim();
+    const profile = document.getElementById('searchProfile').value.trim();
+    const resultDiv = document.getElementById('resultadoBusqueda');
+
+    if (!email || !profile) {
+      resultDiv.style.display = 'block';
+      resultDiv.style.background = '#ff4444';
+      resultDiv.innerText = 'Por favor, llena ambos campos.';
+      return;
+    }
+
+    resultDiv.style.display = 'block';
+    resultDiv.style.background = '#333';
+    resultDiv.innerText = 'Buscando datos...';
+
+    // REEMPLAZA ESTA URL CON TU URL DE APPS SCRIPT
+    const scriptUrl = 'https://script.google.com/macros/s/AKfycbw9DpU7T9QkHDUVmOzwh52xc-3th7Ol9ePbchMpA8OaPF55MkkqWVyRlIWpt6RAY5475w/exec'; 
+
+    fetch(`${scriptUrl}?correo=${encodeURIComponent(email)}&perfil=${encodeURIComponent(profile)}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'success') {
+          resultDiv.style.background = '#1b4332';
+          resultDiv.innerHTML = `
+            <strong>¡Datos Encontrados!</strong><br>
+            <strong>Cuenta:</strong> ${data.data.correo}<br>
+            <strong>Perfil:</strong> ${data.data.perfil}<br>
+            <strong>PIN:</strong> ${data.data.pin}<br>
+            <strong>Clave/Detalles:</strong> ${data.data.password}
+          `;
+        } else {
+          resultDiv.style.background = '#aa0000';
+          resultDiv.innerText = data.message || 'No se encontraron registros.';
+        }
+      })
+      .catch(error => {
+        resultDiv.style.background = '#aa0000';
+        resultDiv.innerText = 'Ocurrió un error en la conexión. Inténtalo de nuevo.';
+        console.error('Error:', error);
+      });
+  }
 
     // Filtro de Categorías
     function filtrar(categoria, btn) {
