@@ -1761,47 +1761,52 @@
     }
 	
 	function buscarDatos() {
-    const email = document.getElementById('searchEmail').value.trim();
-    const profile = document.getElementById('searchProfile').value.trim();
-    const resultDiv = document.getElementById('resultadoBusqueda');
+  const email = document.getElementById('searchEmail').value.trim();
+  const profile = document.getElementById('searchProfile').value.trim();
+  const resultDiv = document.getElementById('resultadoBusqueda');
 
-    if (!email || !profile) {
-      resultDiv.style.display = 'block';
-      resultDiv.style.background = '#ff4444';
-      resultDiv.innerText = 'Por favor, llena ambos campos.';
-      return;
-    }
-
+  if (!email || !profile) {
     resultDiv.style.display = 'block';
-    resultDiv.style.background = '#333';
-    resultDiv.innerText = 'Buscando datos...';
-
-    // REEMPLAZA ESTA URL CON TU URL DE APPS SCRIPT
-    const scriptUrl = 'https://script.google.com/macros/s/AKfycbw9DpU7T9QkHDUVmOzwh52xc-3th7Ol9ePbchMpA8OaPF55MkkqWVyRlIWpt6RAY5475w/exec'; 
-
-    fetch(`${scriptUrl}?correo=${encodeURIComponent(email)}&perfil=${encodeURIComponent(profile)}`)
-      .then(response => response.json())
-      .then(data => {
-        if (data.status === 'success') {
-          resultDiv.style.background = '#1b4332';
-          resultDiv.innerHTML = `
-            <strong>¡Datos Encontrados!</strong><br>
-            <strong>Cuenta:</strong> ${data.data.correo}<br>
-            <strong>Perfil:</strong> ${data.data.perfil}<br>
-            <strong>PIN:</strong> ${data.data.pin}<br>
-            <strong>Clave/Detalles:</strong> ${data.data.password}
-          `;
-        } else {
-          resultDiv.style.background = '#aa0000';
-          resultDiv.innerText = data.message || 'No se encontraron registros.';
-        }
-      })
-      .catch(error => {
-        resultDiv.style.background = '#aa0000';
-        resultDiv.innerText = 'Ocurrió un error en la conexión. Inténtalo de nuevo.';
-        console.error('Error:', error);
-      });
+    resultDiv.style.background = '#ff4444';
+    resultDiv.innerText = 'Por favor, llena ambos campos.';
+    return;
   }
+
+  resultDiv.style.display = 'block';
+  resultDiv.style.background = '#333';
+  resultDiv.innerText = 'Buscando datos...';
+
+  // REEMPLAZA ESTA URL CON TU URL DE APPS SCRIPT
+  const scriptUrl = 'https://script.google.com/macros/s/AKfycbxIvB3X33d6MkjU_3aMRMlvJ-w00ZVLnuhmXEk_iB9yCT_WQtXD-ucDC8x-C0YlRtWk/exec'; 
+
+  fetch(`${scriptUrl}?correo=${encodeURIComponent(email)}&perfil=${encodeURIComponent(profile)}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === 'success') {
+        resultDiv.style.background = '#1b4332';
+        resultDiv.innerHTML = `
+          <div style="text-align: left; line-height: 1.6;">
+            <h4 style="color: #00ff88; margin-top:0;">¡DATOS ENCONTRADOS!</h4>
+            <p><strong>Servicio:</strong> ${data.data.servicio}</p>
+            <p><strong>Cuenta:</strong> ${data.data.correo}</p>
+            <p><strong>Clave:</strong> ${data.data.password}</p>
+            <p><strong>Perfil:</strong> ${data.data.perfil}</p>
+            <p><strong>PIN:</strong> ${data.data.pin}</p>
+            <p><strong>Vencimiento:</strong> ${data.data.vencimiento}</p>
+            <p><strong>Estado:</strong> ${data.data.estado}</p>
+          </div>
+        `;
+      } else {
+        resultDiv.style.background = '#aa0000';
+        resultDiv.innerText = data.message || 'No se encontraron registros.';
+      }
+    })
+    .catch(error => {
+      resultDiv.style.background = '#aa0000';
+      resultDiv.innerText = 'Ocurrió un error en la conexión. Inténtalo de nuevo.';
+      console.error('Error:', error);
+    });
+}
 
     // Filtro de Categorías
     function filtrar(categoria, btn) {
