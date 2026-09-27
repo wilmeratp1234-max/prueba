@@ -192,13 +192,137 @@
   opacity: 0.9;
 }
 
-/* Caja de Resultados */
+/* --- ESTILOS MEJORADOS DE LA CAJA DE RESULTADOS --- */
 .modal-result-box {
   margin-top: 16px;
-  padding: 12px;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 13px;
   line-height: 1.5;
+  box-sizing: border-box;
+}
+
+/* Estado de error / carga */
+.modal-result-box.msg-status {
+  padding: 14px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Tarjeta contenedora de datos encontrados */
+.result-card-container {
+  background: #06090b;
+  border: 1px solid #00ff88;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.1);
+}
+
+.result-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #1f2937;
+  padding-bottom: 10px;
+}
+
+.result-card-title {
+  color: #00ff88;
+  font-weight: bold;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+/* Badge de Estado */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.status-badge.activo {
+  background: rgba(0, 255, 136, 0.12);
+  color: #00ff88;
+  border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.status-badge.inactivo {
+  background: rgba(255, 68, 68, 0.12);
+  color: #ff4444;
+  border: 1px solid rgba(255, 68, 68, 0.3);
+}
+
+.status-badge .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  box-shadow: 0 0 6px currentColor;
+}
+
+/* Grid de Información */
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.info-item {
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-item.full-width {
+  grid-column: span 2;
+}
+
+.info-label {
+  font-size: 10px;
+  color: #9ca3af;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  margin-bottom: 3px;
+}
+
+.info-value-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-value {
+  color: #ffffff;
+  font-size: 13px;
+  word-break: break-all;
+}
+
+.info-value.highlight {
+  color: #00ff88;
+  font-weight: bold;
+}
+
+/* Botón para copiar */
+.copy-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 0 2px;
+  opacity: 0.7;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.copy-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
 }
 
         /* Oferta destacada con efecto de luz giratoria */
