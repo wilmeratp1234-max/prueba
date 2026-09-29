@@ -8,8 +8,6 @@
   
   <!-- Copia esta línea exacta -->
   <link rel="icon" type="image/png" href="./favicon.png?v=2">
-  <!-- CSS de Swiper JS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <title>Streamix Store - Líderes en Entretenimiento</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
@@ -37,103 +35,59 @@
         header p { color: #9ca3af; font-size: 1.1rem; }
         header .sub-desc { color: #9ca3af; font-size: 0.95rem; margin-top: 15px; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-/* Estilos generales */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  background-color: #0d0d11;
+}
 
-    body {
-      background-color: #0b0b0e;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
 
-    /* Contenedor del Carrusel */
-    .carousel-container {
-      width: 100%;
-      max-width: 1200px;
-      padding: 40px 0;
-      position: relative;
-    }
+.carousel-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
 
-    .swiper {
-      width: 100%;
-      padding-top: 20px;
-      padding-bottom: 50px;
-    }
+.carousel-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
 
-    .swiper-slide {
-      background-position: center;
-      background-size: cover;
-      width: 800px; /* Ancho de la tarjeta principal */
-      height: 400px; /* Alto del banner */
-      border-radius: 16px;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-    }
+/* Indicadores */
+.carousel-indicators {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
 
-    /* Imagen dentro de cada banner */
-    .swiper-slide img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+.dot {
+  width: 24px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, width 0.3s ease;
+}
 
-    /* Degradado oscuro para resaltar texto/botones si lo deseas */
-    .slide-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.7) 100%);
-    }
-
-    /* Botones de navegación (Flechas) */
-    .swiper-button-prev,
-    .swiper-button-next {
-      color: #ffffff;
-      background: rgba(20, 20, 25, 0.6);
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    .swiper-button-prev:after,
-    .swiper-button-next:after {
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .swiper-button-prev:hover,
-    .swiper-button-next:hover {
-      background: rgba(230, 0, 50, 0.8);
-      border-color: transparent;
-    }
-
-    /* Indicadores de navegación (Puntos abajo) */
-    .swiper-pagination-bullet {
-      background: #555560;
-      opacity: 0.7;
-      width: 24px;
-      height: 6px;
-      border-radius: 4px;
-      transition: all 0.3s ease;
-    }
-
-    .swiper-pagination-bullet-active {
-      background: #ff0044;
-      width: 35px;
-      opacity: 1;
-    }
+.dot.active {
+  background-color: #ff003c; /* Color rojo de énfasis */
+  width: 32px;
+}
 
 .whatsapp-float {
   position: fixed;
@@ -682,47 +636,29 @@
             <p>Líderes en Entretenimiento</p>
         </header>
 
-<div class="carousel-container">
-    <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-        
-        <!-- Banner 1 -->
-        <div class="swiper-slide">
-          <img src="https://picsum.photos/id/1018/1000/500" alt="Banner 1">
-          <div class="slide-overlay"></div>
-        </div>
-
-        <!-- Banner 2 (Principal) -->
-        <div class="swiper-slide">
-          <img src="https://picsum.photos/id/1015/1000/500" alt="Banner 2">
-          <div class="slide-overlay"></div>
-        </div>
-
-        <!-- Banner 3 -->
-        <div class="swiper-slide">
-          <img src="https://picsum.photos/id/1019/1000/500" alt="Banner 3">
-          <div class="slide-overlay"></div>
-        </div>
-
-        <!-- Banner 4 -->
-        <div class="swiper-slide">
-          <img src="https://picsum.photos/id/1039/1000/500" alt="Banner 4">
-          <div class="slide-overlay"></div>
-        </div>
-
-      </div>
-
-      <!-- Controles -->
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
+        <div class="carousel-container">
+  <div class="carousel-track">
+    <!-- Diapositiva 1 -->
+    <div class="carousel-slide active">
+      <img src="https://via.placeholder.com/1200x400/11111d/ffffff?text=Banner+1" alt="Gala Astral">
+    </div>
+    <!-- Diapositiva 2 -->
+    <div class="carousel-slide">
+      <img src="https://via.placeholder.com/1200x400/1e1e2f/ffffff?text=Banner+2" alt="Colmillos de la Masacre">
+    </div>
+    <!-- Diapositiva 3 -->
+    <div class="carousel-slide">
+      <img src="https://via.placeholder.com/1200x400/2a1a2f/ffffff?text=Banner+3" alt="Promoción 3">
     </div>
   </div>
 
-  <!-- JS de Swiper -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-  <!-- Inicialización del Carrusel -->
+  <!-- Indicadores inferiores (puntos) -->
+  <div class="carousel-indicators">
+    <span class="dot active" onclick="goToSlide(0)"></span>
+    <span class="dot" onclick="goToSlide(1)"></span>
+    <span class="dot" onclick="goToSlide(2)"></span>
+  </div>
+</div>
 
 <!-- Botón flotante de WhatsApp con ícono oficial -->
 <a href="https://wa.me/584124405245?text=Hola,%20me%20gustaría%20obtener%20más%20información" 
@@ -2556,35 +2492,44 @@ Cédula: V27178466`;
             }, 2500);
         }
     }
-	
-	<!-- Inicialización del Carrusel -->
-  <script>
-    const swiper = new Swiper(".mySwiper", {
-      effect: "coverflow",
-      grabCursor: true,
-      centeredSlides: true,
-      slidesPerView: "auto",
-      loop: true,
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-      },
-      coverflowEffect: {
-        rotate: 0,        /* Sin inclinación 3D para mantener las tarjetas planas */
-        stretch: 80,      /* Superposición horizontal entre tarjetas */
-        depth: 200,       /* Distancia hacia el fondo de las tarjetas laterales */
-        modifier: 1,      /* Multiplicador del efecto */
-        slideShadows: true, /* Sombras oscuras en las tarjetas de los lados */
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    })
+
+let currentSlide = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const dots = document.querySelectorAll('.dot');
+const totalSlides = slides.length;
+let autoSlideInterval;
+
+function updateCarousel() {
+  const track = document.querySelector('.carousel-track');
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+  dots.forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlide);
+  });
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  updateCarousel();
+}
+
+function goToSlide(index) {
+  currentSlide = index;
+  updateCarousel();
+  resetAutoSlide();
+}
+
+function startAutoSlide() {
+  autoSlideInterval = setInterval(nextSlide, 4000); // Cambia cada 4 segundos
+}
+
+function resetAutoSlide() {
+  clearInterval(autoSlideInterval);
+  startAutoSlide();
+}
+
+// Iniciar carrusel automático
+startAutoSlide();
 
     document.getElementById('input-nombre-perfil').addEventListener('input', () => {
         let subtotalUSD = carrito.reduce((sum, item) => sum + (item.precioUSD * item.cantidad), 0);
