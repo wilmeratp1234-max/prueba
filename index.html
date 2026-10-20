@@ -215,7 +215,6 @@
         .feature-title { font-size: 0.95rem; font-weight: bold; color: #ffffff; margin-bottom: 4px; }
         .feature-desc { font-size: 0.8rem; color: #9ca3af; line-height: 1.4; }
 
-        /* ADAPTACIÓN MÓVIL EXACTA A LAS IMÁGENES DE REFERENCIA */
         @media(max-width: 992px) {
             .product-page-layout { grid-template-columns: 1fr; }
             .order-summary-card { position: relative; top: 0; margin-top: 20px; }
@@ -278,7 +277,7 @@
                 </button>
 
                 <button class="btn-region btn-region-desktop" onclick="abrirModalRegion()">
-                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                     <span id="label-moneda">VES</span>
                 </button>
 
@@ -508,7 +507,7 @@
         <!-- ==================== VISTA 4: DETALLE DE PRODUCTO ==================== -->
         <div id="vista-producto" class="view-section">
             <div class="breadcrumbs">
-                <a onclick="mostrarVista('servicios')">Inicio</a> &gt; <span id="prod-bread-title">Free fire</span>
+                <a onclick="mostrarVista('servicios')">Inicio</a> &gt; <span id="prod-bread-title">Netflix</span>
             </div>
 
             <div class="product-page-layout">
@@ -516,28 +515,28 @@
                 <div class="product-main-content">
                     
                     <div class="product-header">
-                        <h1 class="product-title-big" id="prod-title">FREE FIRE</h1>
+                        <h1 class="product-title-big" id="prod-title">NETFLIX</h1>
                         <div class="product-region-badge">
                             <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                            <span id="prod-tag-prefix">Canjeable en</span> <strong style="color: white; margin-left: 2px;" id="prod-tag">Norte / Sur</strong>
+                            <span id="prod-tag-prefix">Canjeable en</span> <strong style="color: white; margin-left: 2px;" id="prod-tag">Streaming</strong>
                         </div>
                     </div>
 
-                    <!-- Paso 1: Datos del Jugador -->
+                    <!-- Paso 1: Datos del Jugador / Cuenta -->
                     <div class="step-box">
                         <div class="step-title-row">
                             <div class="step-number">1</div>
-                            <div class="step-title">Datos del <span>Jugador</span></div>
+                            <div class="step-title" id="step1-title">Datos de la <span>Cuenta</span></div>
                         </div>
                         
-                        <div class="input-sublabel">
+                        <div class="input-sublabel" id="input-label-id">
                             <svg viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-                            PLAYER ID
+                            CORREO / USUARIO
                         </div>
 
                         <div class="player-id-input-group">
-                            <input type="text" class="input-player-id" placeholder="Ingresa tu UID">
-                            <button class="btn-verify-id" onclick="alert('ID Verificado')">Verificar</button>
+                            <input type="text" class="input-player-id" id="input-field-id" placeholder="Ingresa tu correo o ID">
+                            <button class="btn-verify-id" onclick="alert('Verificado correctamente')">Verificar</button>
                         </div>
                     </div>
 
@@ -545,82 +544,18 @@
                     <div class="step-box">
                         <div class="step-title-row">
                             <div class="step-number">2</div>
-                            <div class="step-title">SELECCIONA TU <span>PAQUETE</span></div>
+                            <div class="step-title">SELECCIONA TU <span>PLAN / PAQUETE</span></div>
                         </div>
 
-                        <!-- Toggle Móvil Completo Ancho -->
-                        <div class="packages-toggle-container">
-                            <button class="package-tab-btn active">Diamantes</button>
-                            <button class="package-tab-btn">Paquetes</button>
+                        <!-- Toggle Dinámico -->
+                        <div class="packages-toggle-container" id="toggle-container">
+                            <button class="package-tab-btn active" id="tab-btn-1" onclick="cambiarTab(0)">Planes</button>
+                            <button class="package-tab-btn" id="tab-btn-2" onclick="cambiarTab(1)">Cuentas</button>
                         </div>
 
-                        <!-- Opciones de Paquetes en 2 Columnas Móvil -->
-                        <div class="packages-grid">
-                            <div class="package-card" onclick="seleccionarPaquete(100, 10, 838.30, this)">
-                                <div class="package-card-top">
-                                    <div>
-                                        <span class="package-amount">100</span>
-                                        <span class="package-extra"> + 10 Extra</span>
-                                    </div>
-                                    <div class="info-small-circle">i</div>
-                                </div>
-                                <div class="package-price-badge">Bs. 838,30</div>
-                            </div>
-
-                            <div class="package-card active" onclick="seleccionarPaquete(310, 31, 2504.80, this)">
-                                <div class="package-card-top">
-                                    <div>
-                                        <span class="package-amount">310</span>
-                                        <span class="package-extra"> + 31 Extra</span>
-                                    </div>
-                                    <div class="info-small-circle">i</div>
-                                </div>
-                                <div class="package-price-badge">Bs. 2.504,80</div>
-                            </div>
-
-                            <div class="package-card" onclick="seleccionarPaquete(520, 52, 4242.00, this)">
-                                <div class="package-card-top">
-                                    <div>
-                                        <span class="package-amount">520</span>
-                                        <span class="package-extra"> + 52 Extra</span>
-                                    </div>
-                                    <div class="info-small-circle">i</div>
-                                </div>
-                                <div class="package-price-badge">Bs. 4.242,00</div>
-                            </div>
-
-                            <div class="package-card" onclick="seleccionarPaquete(1060, 106, 7878.00, this)">
-                                <div class="package-card-top">
-                                    <div>
-                                        <span class="package-amount">1060</span>
-                                        <span class="package-extra"> + 106 Extra</span>
-                                    </div>
-                                    <div class="info-small-circle">i</div>
-                                </div>
-                                <div class="package-price-badge">Bs. 7.878,00</div>
-                            </div>
-
-                            <div class="package-card" onclick="seleccionarPaquete(2180, 218, 15634.80, this)">
-                                <div class="package-card-top">
-                                    <div>
-                                        <span class="package-amount">2180</span>
-                                        <span class="package-extra"> + 218 Extra</span>
-                                    </div>
-                                    <div class="info-small-circle">i</div>
-                                </div>
-                                <div class="package-price-badge">Bs. 15.634,80</div>
-                            </div>
-
-                            <div class="package-card" onclick="seleccionarPaquete(5600, 560, 39794.00, this)">
-                                <div class="package-card-top">
-                                    <div>
-                                        <span class="package-amount">5600</span>
-                                        <span class="package-extra"> + 560 Extra</span>
-                                    </div>
-                                    <div class="info-small-circle">i</div>
-                                </div>
-                                <div class="package-price-badge">Bs. 39.794,00</div>
-                            </div>
+                        <!-- Opciones de Paquetes Dinámicas -->
+                        <div class="packages-grid" id="packages-grid-container">
+                            <!-- Inyectado dinámicamente por JS -->
                         </div>
                     </div>
 
@@ -637,7 +572,7 @@
                             <span id="accordion-arrow" style="color: #9ca3af; font-size: 0.8rem;">▼</span>
                         </div>
                         <div class="info-accordion-content" id="accordion-body">
-                            ¿Buscas dónde recargar en Venezuela? En AssaX te ofrecemos entregas al instante, 100% seguras y sin riesgo de baneo. Paga fácil en Bolívares por Pago Móvil, o usando Binance Pay. Compra tus diamantes o suscripciones con los precios más bajos del mercado.
+                            Disfruta de tus servicios y entretenimiento favorito al instante y con total garantía. Compra fácil y rápido en Bolívares por Pago Móvil o Binance Pay con la mejor atención del mercado venezolano.
                         </div>
                     </div>
 
@@ -646,15 +581,15 @@
                 <!-- Columna Derecha: Resumen del Pedido (Sticky) -->
                 <div class="order-summary-card">
                     <div class="summary-header">
-                        <img id="summary-prod-img" class="summary-thumb" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=500&auto=format&fit=crop" alt="Thumb">
+                        <img id="summary-prod-img" class="summary-thumb" src="https://assets.nflxext.com/ffe/siteui/vlv3/9d2fc35e-57cf-432d-96f7-ebf345842881/4f808796-03c6-47a3-b2dd-ff8736d75be8/VE-es-20240930-popsignuptwoweeks-perspective_alpha_website_large.jpg" alt="Thumb">
                         <div>
-                            <div class="summary-prod-name" id="summary-prod-name">Free fire</div>
+                            <div class="summary-prod-name" id="summary-prod-name">Netflix</div>
                             <div class="summary-subtitle">RESUMEN DEL PEDIDO</div>
                         </div>
                     </div>
 
                     <div class="summary-item-row">
-                        <span class="summary-item-title" id="summary-pkg-text">310 + 31 Extra</span>
+                        <span class="summary-item-title" id="summary-pkg-text">1 Pantalla • 30 Días</span>
                         <div class="quantity-control">
                             <button class="btn-qty" onclick="cambiarCantidad(-1)">-</button>
                             <span class="qty-number" id="qty-val">1</span>
@@ -669,11 +604,11 @@
 
                     <div class="total-price-row">
                         <span class="total-label">TOTAL A PAGAR</span>
-                        <div class="total-amount"><span>Bs.</span><span id="total-val">2.504,80</span></div>
+                        <div class="total-amount"><span>Bs.</span><span id="total-val">350,00</span></div>
                     </div>
 
                     <button class="btn-checkout" onclick="alert('Procesando pedido...')">
-                        VERIFICAR ID &gt;
+                        VERIFICAR PEDIDO &gt;
                     </button>
                 </div>
             </div>
@@ -682,8 +617,93 @@
     </div>
 
     <script>
+        // Base de datos de paquetes simulada por tipo de producto
+        const catalogoPaquetes = {
+            juego: {
+                tab1Nombre: "Diamantes",
+                tab2Nombre: "Paquetes",
+                idLabel: "PLAYER ID",
+                idPlaceholder: "Ingresa tu UID o ID de juego",
+                paquetesTab1: [
+                    { monto: "100", extra: "+ 10 Extra", precio: 838.30 },
+                    { monto: "310", extra: "+ 31 Extra", precio: 2504.80, active: true },
+                    { monto: "520", extra: "+ 52 Extra", precio: 4242.00 },
+                    { monto: "1060", extra: "+ 106 Extra", precio: 7878.00 },
+                    { monto: "2180", extra: "+ 218 Extra", precio: 15634.80 },
+                    { monto: "5600", extra: "+ 560 Extra", precio: 39794.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "Pase Semanal", extra: "Especial", precio: 950.00 },
+                    { monto: "Pase Mensual", extra: "VIP", precio: 3200.00 },
+                    { monto: "Caja Sorpresa", extra: "Bonus", precio: 450.00 },
+                    { monto: "Paquete Épico", extra: "Top", precio: 5100.00 }
+                ]
+            },
+            streaming: {
+                tab1Nombre: "Perfiles / Pantallas",
+                tab2Nombre: "Cuentas Completas",
+                idLabel: "CORREO DE CONTACTO",
+                idPlaceholder: "Ingresa tu correo para la entrega",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "30 Días", precio: 350.00, active: true },
+                    { monto: "2 Pantallas", extra: "Oferta", precio: 650.00 },
+                    { monto: "Ultra HD 4K", extra: "Completa", precio: 1200.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "Cuenta 1 Mes", extra: "Privada", precio: 1100.00 },
+                    { monto: "Cuenta 3 Meses", extra: "Descuento", precio: 3100.00 },
+                    { monto: "Cuenta 6 Meses", extra: "Anualidad", expr: "", precio: 5800.00 }
+                ]
+            },
+            musica: {
+                tab1Nombre: "Individual",
+                tab2Nombre: "Familiar / Dúo",
+                idLabel: "CORREO DE TU CUENTA",
+                idPlaceholder: "Correo asociado a tu cuenta",
+                paquetesTab1: [
+                    { monto: "1 Mes Premium", extra: "Sin Anuncios", precio: 280.00, active: true },
+                    { monto: "3 Meses Premium", extra: "Ahorro", precio: 780.00 },
+                    { monto: "1 Año Premium", extra: "Anual", precio: 2900.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "Plan Dúo (2 cuentas)", extra: "1 Mes", precio: 450.00 },
+                    { monto: "Plan Familiar (6 cuentas)", extra: "1 Mes", precio: 650.00 }
+                ]
+            },
+            herramientas: {
+                tab1Nombre: "Meses de Acceso",
+                tab2Nombre: "Licencias Anuales",
+                idLabel: "CORREO DE TU CUENTA",
+                idPlaceholder: "Correo electrónico para la invitación",
+                paquetesTab1: [
+                    { monto: "1 Mes Pro", extra: "Completo", precio: 320.00, active: true },
+                    { monto: "3 Meses Pro", extra: "Pack", precio: 850.00 },
+                    { monto: "6 Meses Pro", extra: "Especial", precio: 1500.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "Licencia 1 Año", extra: "VIP Pro", precio: 2800.00 },
+                    { monto: "Acceso Equipo Pro", extra: "Ilimitado", precio: 4500.00 }
+                ]
+            }
+        };
+
+        let productoActualData = null;
+        let tabActivaIndex = 0;
         let precioBase = 2504.80;
         let cantidad = 1;
+
+        function obtenerTipoPorNombre(nombre) {
+            nombre = nombre.toLowerCase();
+            if (nombre.includes('free fire') || nombre.includes('blood strike') || nombre.includes('mobile legends') || nombre.includes('call of duty') || nombre.includes('roblox')) {
+                return 'juego';
+            } else if (nombre.includes('spotify') || nombre.includes('youtube')) {
+                return 'musica';
+            } else if (nombre.includes('canva') || nombre.includes('capcut')) {
+                return 'herramientas';
+            } else {
+                return 'streaming'; // Netflix, Disney+, Prime, etc.
+            }
+        }
 
         function abrirProducto(nombre, tag, imagen) {
             document.getElementById('prod-title').innerText = nombre;
@@ -692,16 +712,73 @@
             document.getElementById('summary-prod-name').innerText = nombre;
             if(imagen) document.getElementById('summary-prod-img').src = imagen;
 
+            const tipo = obtenerTipoPorNombre(nombre);
+            productoActualData = catalogoPaquetes[tipo];
+
+            // Configurar textos dinámicos del paso 1
+            document.getElementById('input-label-id').innerHTML = `<svg viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>` + productoActualData.idLabel;
+            document.getElementById('input-field-id').placeholder = productoActualData.idPlaceholder;
+
+            // Configurar botones de pestañas
+            document.getElementById('tab-btn-1').innerText = productoActualData.tab1Nombre;
+            document.getElementById('tab-btn-2').innerText = productoActualData.tab2Nombre;
+
+            tabActivaIndex = 0;
+            document.getElementById('tab-btn-1').classList.add('active');
+            document.getElementById('tab-btn-2').classList.remove('active');
+
+            renderizarPaquetes();
             mostrarVista('producto');
         }
 
-        function seleccionarPaquete(monto, extra, precio, elemento) {
-            document.querySelectorAll('.package-card').forEach(el => el.classList.remove('active'));
-            elemento.classList.add('active');
+        function cambiarTab(index) {
+            tabActivaIndex = index;
+            if(index === 0) {
+                document.getElementById('tab-btn-1').classList.add('active');
+                document.getElementById('tab-btn-2').classList.remove('active');
+            } else {
+                document.getElementById('tab-btn-2').classList.add('active');
+                document.getElementById('tab-btn-1').classList.remove('active');
+            }
+            renderizarPaquetes();
+        }
 
-            precioBase = precio;
-            document.getElementById('summary-pkg-text').innerText = `${monto} + ${extra} Extra`;
-            actualizarTotal();
+        function renderizarPaquetes() {
+            const grid = document.getElementById('packages-grid-container');
+            grid.innerHTML = '';
+
+            const lista = tabActivaIndex === 0 ? productoActualData.paquetesTab1 : productoActualData.paquetesTab2;
+
+            lista.forEach((item, idx) => {
+                let esActivo = item.active || (idx === 0 && !lista.some(p => p.active));
+                if(esActivo) {
+                    precioBase = item.precio;
+                    document.getElementById('summary-pkg-text').innerText = `${item.monto} ${item.extra ? '• ' + item.extra : ''}`;
+                    actualizarTotal();
+                }
+
+                const card = document.createElement('div');
+                card.className = `package-card ${esActivo ? 'active' : ''}`;
+                card.onclick = function() {
+                    document.querySelectorAll('.package-card').forEach(el => el.classList.remove('active'));
+                    card.classList.add('active');
+                    precioBase = item.precio;
+                    document.getElementById('summary-pkg-text').innerText = `${item.monto} ${item.extra ? '• ' + item.extra : ''}`;
+                    actualizarTotal();
+                };
+
+                card.innerHTML = `
+                    <div class="package-card-top">
+                        <div>
+                            <span class="package-amount">${item.monto}</span>
+                            <span class="package-extra"> ${item.extra ? '/ ' + item.extra : ''}</span>
+                        </div>
+                        <div class="info-small-circle">i</div>
+                    </div>
+                    <div class="package-price-badge">Bs. ${item.precio.toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+                `;
+                grid.appendChild(card);
+            });
         }
 
         function cambiarCantidad(delta) {
@@ -753,7 +830,6 @@
             const navRecargas = document.getElementById('nav-recargas');
             const navSoporte = document.getElementById('nav-soporte');
 
-            // Reset
             vistaServicios.classList.remove('active');
             vistaRecargas.classList.remove('active');
             vistaSoporte.classList.remove('active');
