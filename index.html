@@ -157,8 +157,8 @@
         }
         .btn-support-link:hover { background: #00FF7F; color: #050811; border-color: #00FF7F; }
 
-        /* Tarjetas Informativas de Garantías */
-        .support-features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        /* Tarjetas Informativas de Garantías (2 elementos) */
+        .support-features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .feature-card { background: #080c16; border: 1px solid #192233; border-radius: 16px; padding: 20px; display: flex; align-items: flex-start; gap: 15px; }
         .feature-icon { width: 42px; height: 42px; border-radius: 12px; background: rgba(0, 255, 127, 0.1); border: 1px solid rgba(0, 255, 127, 0.2); color: #00FF7F; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
         .feature-title { font-size: 0.95rem; font-weight: bold; color: #ffffff; margin-bottom: 4px; }
@@ -182,6 +182,7 @@
             .support-title { font-size: 1.8rem; }
             .support-subtitle { font-size: 0.88rem; }
             .support-cards-grid { grid-template-columns: 1fr; gap: 15px; }
+            .support-features-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -192,7 +193,7 @@
         <div class="top-subbar-mobile">
             <span>Streamix Store</span>
             <button class="btn-region" onclick="abrirModalRegion()">
-                <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                 <span id="label-moneda-mob">VES</span>
             </button>
         </div>
@@ -221,7 +222,7 @@
 
                 <!-- Botón VES Desktop -->
                 <button class="btn-region btn-region-desktop" onclick="abrirModalRegion()">
-                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                     <span id="label-moneda">VES</span>
                 </button>
 
@@ -624,16 +625,8 @@
                 </div>
             </div>
 
-            <!-- Garantías e Información -->
+            <!-- Garantías e Información (2 Cuadros) -->
             <div class="support-features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
-                    <div>
-                        <div class="feature-title">TRANSACCIONES SEGURAS</div>
-                        <div class="feature-desc">Cada pago y recarga está protegido por el sistema de seguridad avanzado de nuestra plataforma.</div>
-                    </div>
-                </div>
-
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
                     <div>
