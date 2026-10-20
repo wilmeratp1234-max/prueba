@@ -44,7 +44,7 @@
         .mobile-drawer.open { left: 0; }
         .drawer-close { align-self: flex-end; background: transparent; border: none; color: #9ca3af; font-size: 1.5rem; cursor: pointer; }
         .drawer-links { list-style: none; display: flex; flex-direction: column; gap: 18px; }
-        .drawer-links a { color: #ffffff; text-decoration: none; font-size: 1.1rem; font-weight: bold; display: block; }
+        .drawer-links a { color: #ffffff; text-decoration: none; font-size: 1.1rem; font-weight: bold; display: block; cursor: pointer; }
         .drawer-links a:hover { color: #00FF7F; }
 
         .container { max-width: 1400px; margin: 0 auto; padding: 40px 30px; position: relative; z-index: 1; }
@@ -52,41 +52,6 @@
         /* CONTROL DE VISTAS */
         .view-section { display: none; }
         .view-section.active { display: block; }
-
-        /* CÓDIGO DE CREADOR (ESTILO MÓVIL / ASSAX) */
-        .creator-code-card {
-            background: linear-gradient(135deg, #0e1320 0%, #070a12 100%);
-            border: 1px solid #1f2937;
-            border-radius: 20px;
-            padding: 22px 25px;
-            margin-bottom: 40px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-        }
-        .creator-title-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
-        .creator-title { font-size: 1.1rem; font-weight: 800; color: #ffffff; }
-        .badge-axp { background: rgba(0, 255, 127, 0.1); border: 1px solid rgba(0, 255, 127, 0.3); color: #00FF7F; font-size: 0.72rem; font-weight: bold; padding: 4px 10px; border-radius: 12px; display: flex; align-items: center; gap: 5px; }
-        .creator-desc { color: #9ca3af; font-size: 0.88rem; line-height: 1.4; margin-bottom: 18px; max-width: 600px; }
-        .btn-ingresar-codigo {
-            width: 100%;
-            background: #00FF7F;
-            color: #050811;
-            border: none;
-            padding: 14px;
-            border-radius: 14px;
-            font-weight: 800;
-            font-size: 0.92rem;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: background 0.2s;
-        }
-        .btn-ingresar-codigo:hover { background: #00cc66; }
 
         /* MODAL DE REGIÓN Y MONEDA */
         .region-modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(6px); display: none; justify-content: center; align-items: center; z-index: 999999; }
@@ -140,7 +105,66 @@
         .service-tag { font-size: 0.65rem; font-weight: bold; color: #00FF7F; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; display: block; }
         .service-name { font-size: 0.98rem; font-weight: bold; color: #ffffff; }
 
-        /* ADAPTACIÓN MÓVIL EXACTA (IMAGEN DE REFERENCIA) */
+        /* ESTILOS DE LA SECCIÓN DE SOPORTE */
+        .support-header-box { text-align: center; margin-bottom: 45px; margin-top: 10px; }
+        .support-title { font-size: 2.5rem; font-weight: 900; letter-spacing: 1px; color: #ffffff; margin-bottom: 12px; text-transform: uppercase; }
+        .support-title span { color: #00FF7F; }
+        .support-subtitle { color: #9ca3af; font-size: 1rem; max-width: 650px; margin: 0 auto; line-height: 1.5; }
+
+        .support-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 50px; }
+        .support-card {
+            background: #0b0f19;
+            border: 1px solid #1f2937;
+            border-radius: 20px;
+            padding: 30px 22px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .support-card:hover { transform: translateY(-5px); border-color: #00FF7F; }
+        
+        .support-icon-circle {
+            width: 65px; height: 65px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 18px; font-size: 1.8rem;
+        }
+        .support-icon-circle.wa { background: rgba(37, 211, 102, 0.12); color: #25d366; border: 1px solid rgba(37, 211, 102, 0.3); }
+        .support-icon-circle.ig { background: rgba(225, 48, 108, 0.12); color: #e1306c; border: 1px solid rgba(225, 48, 108, 0.3); }
+        .support-icon-circle.fb { background: rgba(24, 119, 242, 0.12); color: #1877f2; border: 1px solid rgba(24, 119, 242, 0.3); }
+
+        .support-tag { font-size: 0.7rem; font-weight: 800; color: #00FF7F; background: rgba(0, 255, 127, 0.08); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(0, 255, 127, 0.2); text-transform: uppercase; margin-bottom: 12px; }
+        .support-channel-name { font-size: 1.4rem; font-weight: 800; color: #ffffff; margin-bottom: 10px; }
+        .support-channel-desc { font-size: 0.88rem; color: #9ca3af; line-height: 1.5; margin-bottom: 25px; min-height: 40px; }
+        
+        .btn-support-link {
+            width: 100%;
+            background: #111827;
+            border: 1px solid #1f2937;
+            color: #ffffff;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        .btn-support-link:hover { background: #00FF7F; color: #050811; border-color: #00FF7F; }
+
+        /* Tarjetas Informativas de Garantías */
+        .support-features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .feature-card { background: #080c16; border: 1px solid #192233; border-radius: 16px; padding: 20px; display: flex; align-items: flex-start; gap: 15px; }
+        .feature-icon { width: 42px; height: 42px; border-radius: 12px; background: rgba(0, 255, 127, 0.1); border: 1px solid rgba(0, 255, 127, 0.2); color: #00FF7F; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+        .feature-title { font-size: 0.95rem; font-weight: bold; color: #ffffff; margin-bottom: 4px; }
+        .feature-desc { font-size: 0.8rem; color: #9ca3af; line-height: 1.4; }
+
+        /* ADAPTACIÓN MÓVIL RESPONSIVA */
         @media(max-width: 768px) {
             .top-subbar-mobile { display: flex; }
             nav.nav-bar { padding: 12px 20px; }
@@ -154,11 +178,10 @@
             .section-title { font-size: 1.35rem; }
             .services-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
             .service-image-box { height: 110px; }
-            
-            .creator-code-card { padding: 18px; margin-bottom: 25px; }
-            .creator-title { font-size: 1rem; }
-            .creator-desc { font-size: 0.8rem; margin-bottom: 14px; }
-            .btn-ingresar-codigo { padding: 12px; font-size: 0.85rem; }
+
+            .support-title { font-size: 1.8rem; }
+            .support-subtitle { font-size: 0.88rem; }
+            .support-cards-grid { grid-template-columns: 1fr; gap: 15px; }
         }
     </style>
 </head>
@@ -169,7 +192,7 @@
         <div class="top-subbar-mobile">
             <span>Streamix Store</span>
             <button class="btn-region" onclick="abrirModalRegion()">
-                <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/></svg>
                 <span id="label-moneda-mob">VES</span>
             </button>
         </div>
@@ -187,8 +210,7 @@
             <ul class="nav-links">
                 <li><a id="nav-recargas" onclick="mostrarVista('recargas')">Recargas</a></li>
                 <li><a id="nav-servicios" class="active" onclick="mostrarVista('servicios')">Servicios</a></li>
-                <li><a onclick="alert('Sección de Reseñas')">Reseñas</a></li>
-                <li><a onclick="alert('Sección de Soporte')">Soporte</a></li>
+                <li><a id="nav-soporte" onclick="mostrarVista('soporte')">Soporte</a></li>
             </ul>
             
             <!-- Acciones Derecha -->
@@ -199,7 +221,7 @@
 
                 <!-- Botón VES Desktop -->
                 <button class="btn-region btn-region-desktop" onclick="abrirModalRegion()">
-                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/></svg>
                     <span id="label-moneda">VES</span>
                 </button>
 
@@ -216,8 +238,7 @@
         <ul class="drawer-links">
             <li><a onclick="mostrarVista('recargas'); toggleDrawer();">Recargas</a></li>
             <li><a onclick="mostrarVista('servicios'); toggleDrawer();">Servicios</a></li>
-            <li><a onclick="alert('Sección de Reseñas'); toggleDrawer();">Reseñas</a></li>
-            <li><a onclick="alert('Sección de Soporte'); toggleDrawer();">Soporte</a></li>
+            <li><a onclick="mostrarVista('soporte'); toggleDrawer();">Soporte</a></li>
         </ul>
     </div>
 
@@ -275,20 +296,6 @@
                     <span class="dot" onclick="goToSlide(1)"></span>
                     <span class="dot" onclick="goToSlide(2)"></span>
                 </div>
-            </div>
-
-            <!-- CÓDIGO DE CREADOR -->
-            <div class="creator-code-card">
-                <div class="creator-title-row">
-                    <div class="creator-title">Código de Creador</div>
-                    <div class="badge-axp">★ Gana Puntos AXP</div>
-                </div>
-                <div class="creator-desc">
-                    Apoya a tu streamer o creador favorito en cada compra y acumula puntos <strong style="color: #00FF7F;">AXP</strong> de recompensa para canjear por saldo real.
-                </div>
-                <button class="btn-ingresar-codigo" onclick="alert('Ingresar Código')">
-                    ♥ INGRESAR CÓDIGO
-                </button>
             </div>
 
             <!-- CINES Y SERIES -->
@@ -574,6 +581,77 @@
             </div>
         </div>
 
+        <!-- ==================== VISTA 3: CENTRO DE SOPORTE ==================== -->
+        <div id="vista-soporte" class="view-section">
+            <div class="support-header-box">
+                <h1 class="support-title">¿NECESITAS <span>AYUDA?</span></h1>
+                <p class="support-subtitle">Nuestro equipo de soporte está listo para asistirte. Elige el canal que prefieras para contactarnos. ¡Atención garantizada!</p>
+            </div>
+
+            <!-- Canales Principales -->
+            <div class="support-cards-grid">
+                <!-- WhatsApp -->
+                <div class="support-card">
+                    <div class="support-icon-circle wa">💬</div>
+                    <span class="support-tag">Soporte Directo</span>
+                    <div class="support-channel-name">WHATSAPP</div>
+                    <div class="support-channel-desc">Habla con un asesor en tiempo real para resolver tus dudas sobre pagos o entregas inmediatas.</div>
+                    <a href="https://wa.me/584124405245" target="_blank" class="btn-support-link">
+                        WHATSAPP ↗
+                    </a>
+                </div>
+
+                <!-- Instagram -->
+                <div class="support-card">
+                    <div class="support-icon-circle ig">📷</div>
+                    <span class="support-tag">Comunidad & Noticias</span>
+                    <div class="support-channel-name">INSTAGRAM</div>
+                    <div class="support-channel-desc">Síguenos para sorteos, actualizaciones de stock y contacto por mensaje directo.</div>
+                    <a href="#" target="_blank" class="btn-support-link">
+                        INSTAGRAM ↗
+                    </a>
+                </div>
+
+                <!-- Facebook -->
+                <div class="support-card">
+                    <div class="support-icon-circle fb">👥</div>
+                    <span class="support-tag">Página Oficial</span>
+                    <div class="support-channel-name">FACEBOOK</div>
+                    <div class="support-channel-desc">Mantente al tanto de nuestras promociones y envía un mensaje a nuestra Fan Page.</div>
+                    <a href="#" target="_blank" class="btn-support-link">
+                        FACEBOOK ↗
+                    </a>
+                </div>
+            </div>
+
+            <!-- Garantías e Información -->
+            <div class="support-features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <div>
+                        <div class="feature-title">TRANSACCIONES SEGURAS</div>
+                        <div class="feature-desc">Cada pago y recarga está protegido por el sistema de seguridad avanzado de nuestra plataforma.</div>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <div>
+                        <div class="feature-title">ENTREGAS RÁPIDAS</div>
+                        <div class="feature-desc">La mayoría de nuestros pedidos se procesan en pocos minutos durante el horario de atención.</div>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🌟</div>
+                    <div>
+                        <div class="feature-title">ASISTENCIA VIP</div>
+                        <div class="feature-desc">¿Problemas con tu suscripción? Nuestro equipo resolverá cualquier inconveniente con prioridad.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
@@ -590,23 +668,35 @@
             }
         }
 
-        // Cambio dinámico de vista
+        // Cambio dinámico de vista (Servicios vs Recargas vs Soporte)
         function mostrarVista(vista) {
             const vistaServicios = document.getElementById('vista-servicios');
             const vistaRecargas = document.getElementById('vista-recargas');
+            const vistaSoporte = document.getElementById('vista-soporte');
+
             const navServicios = document.getElementById('nav-servicios');
             const navRecargas = document.getElementById('nav-recargas');
+            const navSoporte = document.getElementById('nav-soporte');
+
+            // Reset de Vistas
+            vistaServicios.classList.remove('active');
+            vistaRecargas.classList.remove('active');
+            vistaSoporte.classList.remove('active');
+
+            // Reset de Links
+            if(navServicios) navServicios.classList.remove('active');
+            if(navRecargas) navRecargas.classList.remove('active');
+            if(navSoporte) navSoporte.classList.remove('active');
 
             if (vista === 'recargas') {
-                vistaServicios.classList.remove('active');
                 vistaRecargas.classList.add('active');
                 if(navRecargas) navRecargas.classList.add('active');
-                if(navServicios) navServicios.classList.remove('active');
+            } else if (vista === 'soporte') {
+                vistaSoporte.classList.add('active');
+                if(navSoporte) navSoporte.classList.add('active');
             } else {
-                vistaRecargas.classList.remove('active');
                 vistaServicios.classList.add('active');
                 if(navServicios) navServicios.classList.add('active');
-                if(navRecargas) navRecargas.classList.remove('active');
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
