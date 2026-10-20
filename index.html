@@ -213,4 +213,118 @@
             <div class="region-option" id="optGlobal" onclick="seleccionarMoneda('USD')">
                 <div class="region-info">
                     <div class="region-icon-circle">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    </div>
+                    <div>
+                        <div class="region-name">Global</div>
+                        <div class="region-currency">USD · $</div>
+                    </div>
+                </div>
+                <div class="arrow-icon" id="arrowGlobal">❯</div>
+                <div class="region-radio" id="radioGlobal" style="display: none;"></div>
+            </div>
+
+            <!-- Opción Venezuela (con bandera circular oficial) -->
+            <div class="region-option active" id="optVES" onclick="seleccionarMoneda('VES')">
+                <div class="region-info">
+                    <div class="region-icon-circle">
+                        <!-- Flagicon circular oficial de Venezuela con estrellas -->
+                        <img src="https://flagcdn.com/w80/ve.png" alt="Venezuela">
+                    </div>
+                    <div>
+                        <div class="region-name">Venezuela</div>
+                        <div class="region-currency">VES · Bs.</div>
+                    </div>
+                </div>
+                <div class="region-radio" id="radioVES">✓</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <header style="text-align: center; margin-bottom: 40px;">
+            <h1>AssaX Store</h1>
+            <p>Líderes en Entretenimiento</p>
+        </header>
+
+        <!-- Carrusel Principal -->
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <div class="carousel-slide"><img src="https://i.imgur.com/wMd8QmY.jpeg" alt="Banner 1"></div>
+                <div class="carousel-slide"><img src="https://i.imgur.com/QLg6Fnl.png" alt="Banner 2"></div>
+                <div class="carousel-slide"><img src="https://i.imgur.com/i6K1rEH.png" alt="Banner 3"></div>
+            </div>
+            <div class="carousel-indicators">
+                <span class="dot active" onclick="goToSlide(0)"></span>
+                <span class="dot" onclick="goToSlide(1)"></span>
+                <span class="dot" onclick="goToSlide(2)"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const btnRegionTrigger = document.getElementById('btnRegionTrigger');
+        const modalRegion = document.getElementById('modalRegion');
+        const btnCloseRegion = document.getElementById('btnCloseRegion');
+        const labelMoneda = document.getElementById('label-moneda');
+
+        btnRegionTrigger.addEventListener('click', function() {
+            modalRegion.style.display = 'flex';
+        });
+
+        btnCloseRegion.addEventListener('click', function() {
+            modalRegion.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === modalRegion) {
+                modalRegion.style.display = 'none';
+            }
+        });
+
+        function seleccionarMoneda(moneda) {
+            labelMoneda.innerText = moneda;
+
+            const optGlobal = document.getElementById('optGlobal');
+            const optVES = document.getElementById('optVES');
+            const radioGlobal = document.getElementById('radioGlobal');
+            const radioVES = document.getElementById('radioVES');
+            const arrowGlobal = document.getElementById('arrowGlobal');
+
+            if (moneda === 'VES') {
+                optVES.classList.add('active');
+                optGlobal.classList.remove('active');
+                
+                radioVES.style.display = 'flex';
+                radioVES.innerText = '✓';
+                
+                radioGlobal.style.display = 'none';
+                arrowGlobal.style.display = 'block';
+            } else {
+                optGlobal.classList.add('active');
+                optVES.classList.remove('active');
+                
+                radioGlobal.style.display = 'flex';
+                radioGlobal.innerText = '✓';
+                
+                arrowGlobal.style.display = 'none';
+                radioVES.style.display = 'none';
+            }
+
+            modalRegion.style.display = 'none';
+        }
+
+        // Lógica del Carrusel
+        let currentSlide = 0;
+        const dots = document.querySelectorAll('.carousel-indicators .dot');
+
+        function goToSlide(index) {
+            currentSlide = index;
+            document.querySelector('.carousel-track').style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+    </script>
+</body>
+</html>
