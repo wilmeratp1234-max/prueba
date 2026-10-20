@@ -105,6 +105,99 @@
         .service-tag { font-size: 0.65rem; font-weight: bold; color: #00FF7F; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; display: block; }
         .service-name { font-size: 0.98rem; font-weight: bold; color: #ffffff; }
 
+        /* ESTILOS DE LA VISTA DE PRODUCTO (PRODUCT DETAIL) */
+        .breadcrumbs { font-size: 0.85rem; color: #6b7280; margin-bottom: 20px; }
+        .breadcrumbs a { color: #9ca3af; text-decoration: none; cursor: pointer; }
+        .breadcrumbs a:hover { color: #00FF7F; }
+
+        .product-page-layout { display: grid; grid-template-columns: 1fr 360px; gap: 30px; align-items: start; }
+        
+        .product-main-content { display: flex; flex-direction: column; gap: 25px; }
+
+        .product-header { margin-bottom: 10px; }
+        .product-title-big { font-size: 2.8rem; font-weight: 900; color: #ffffff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .product-region-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; color: #00FF7F; font-weight: 600; }
+        .product-region-badge svg { width: 16px; height: 16px; fill: currentColor; }
+
+        .step-box { background: #0b0f19; border: 1px solid #1f2937; border-radius: 18px; padding: 25px; }
+        .step-title-row { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .step-number { width: 28px; height: 28px; border-radius: 50%; background: #00FF7F; color: #050811; font-weight: 900; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; }
+        .step-title { font-size: 1.1rem; font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; }
+        .step-title span { color: #00FF7F; }
+
+        .player-id-input-group { display: flex; gap: 12px; }
+        .input-player-id { flex: 1; background: #070a12; border: 1px solid #1f2937; border-radius: 12px; padding: 14px 18px; color: #ffffff; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
+        .input-player-id:focus { border-color: #00FF7F; }
+        .btn-verify-id { background: #192233; border: 1px solid #2b3548; color: #ffffff; font-weight: 700; padding: 0 24px; border-radius: 12px; cursor: pointer; transition: all 0.2s; }
+        .btn-verify-id:hover { background: #253147; border-color: #00FF7F; color: #00FF7F; }
+
+        /* Categorías / Tabs de paquetes */
+        .packages-tabs-row { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 18px; }
+        .package-tab-btn { background: #070a12; border: 1px solid #1f2937; color: #9ca3af; padding: 8px 18px; border-radius: 10px; font-weight: bold; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
+        .package-tab-btn.active { background: #0d261b; border-color: #00FF7F; color: #00FF7F; }
+
+        .packages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .package-card { background: #070a12; border: 1px solid #1f2937; border-radius: 14px; padding: 16px; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column; justify-content: space-between; gap: 15px; position: relative; }
+        .package-card:hover { border-color: #374151; }
+        .package-card.active { border: 2px solid #00FF7F; background: #081812; }
+
+        .package-card-top { display: flex; align-items: center; gap: 10px; }
+        .package-icon { width: 32px; height: 32px; object-fit: contain; }
+        .package-amount { font-size: 1.05rem; font-weight: 800; color: #ffffff; }
+        .package-extra { color: #ffb703; font-weight: 800; font-size: 0.85rem; }
+
+        .package-price-badge { background: #111827; border: 1px solid #1f2937; border-radius: 8px; padding: 10px; text-align: center; font-weight: 800; font-size: 0.95rem; color: #ffffff; transition: background 0.2s; }
+        .package-card.active .package-price-badge { background: #00FF7F; color: #050811; }
+
+        /* Acordeón Información del Producto */
+        .info-accordion { background: #0b0f19; border: 1px solid #1f2937; border-radius: 16px; overflow: hidden; }
+        .info-accordion-header { padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .info-accordion-title { display: flex; align-items: center; gap: 12px; font-size: 1.05rem; font-weight: 800; color: #ffffff; }
+        .info-accordion-icon { width: 36px; height: 36px; border-radius: 50%; background: #0d1726; border: 1px solid #1f2937; color: #00FF7F; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .info-accordion-content { padding: 0 25px 25px 25px; color: #9ca3af; font-size: 0.9rem; line-height: 1.6; border-top: 1px solid #151c2c; display: none; margin-top: 10px; padding-top: 20px; }
+        .info-accordion-content.open { display: block; }
+
+        /* SECCIÓN DE RESEÑAS DE PRODUCTO */
+        .reviews-section-box { margin-top: 10px; }
+        .reviews-header-title { font-size: 0.85rem; font-weight: bold; color: #9ca3af; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px; }
+        .reviews-layout { display: grid; grid-template-columns: 240px 1fr; gap: 20px; }
+        
+        .review-score-card { background: #0b0f19; border: 1px solid #1f2937; border-radius: 16px; padding: 25px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .review-score-label { font-size: 0.75rem; font-weight: 800; color: #9ca3af; text-transform: uppercase; margin-bottom: 10px; }
+        .review-score-number { font-size: 3.5rem; font-weight: 900; color: #ffffff; line-height: 1; }
+
+        .reviews-list-card { background: #0b0f19; border: 1px solid #1f2937; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; }
+        .single-review-item { display: flex; justify-content: space-between; align-items: center; }
+        .reviewer-info { display: flex; align-items: center; gap: 12px; }
+        .reviewer-avatar { width: 42px; height: 42px; border-radius: 50%; background: #131d2e; border: 1px solid #2b3548; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        .reviewer-name { font-weight: 800; font-size: 0.95rem; color: #ffffff; display: flex; align-items: center; gap: 8px; }
+        .badge-verified { background: rgba(0, 255, 127, 0.15); border: 1px solid rgba(0, 255, 127, 0.3); color: #00FF7F; font-size: 0.65rem; font-weight: 800; padding: 2px 8px; border-radius: 10px; }
+        .reviewer-meta { font-size: 0.78rem; color: #6b7280; margin-top: 3px; }
+        .review-stars { color: #ffb703; font-size: 1rem; letter-spacing: 2px; }
+
+        /* SIDEBAR DE RESUMEN DE PEDIDO (RIGHT STICKY) */
+        .order-summary-card { background: #0b0f19; border: 1px solid #1f2937; border-radius: 20px; padding: 22px; position: sticky; top: 90px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); }
+        .summary-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #192233; }
+        .summary-thumb { width: 44px; height: 44px; border-radius: 12px; background: #131d2e; object-fit: cover; }
+        .summary-prod-name { font-size: 1.1rem; font-weight: 800; color: #ffffff; }
+        .summary-subtitle { font-size: 0.72rem; color: #6b7280; text-transform: uppercase; font-weight: 700; margin-top: 2px; }
+
+        .summary-item-row { background: #070a12; border: 1px solid #1f2937; border-radius: 12px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .summary-item-title { font-size: 0.95rem; font-weight: 800; color: #ffffff; }
+        .quantity-control { display: flex; align-items: center; gap: 12px; background: #0b0f19; border: 1px solid #1f2937; border-radius: 8px; padding: 4px 10px; }
+        .btn-qty { background: transparent; border: none; color: #ffffff; font-weight: bold; cursor: pointer; font-size: 1.1rem; }
+        .qty-number { font-weight: bold; font-size: 0.9rem; color: #ffffff; }
+
+        .axp-bonus-box { background: rgba(255, 183, 3, 0.08); border: 1px solid rgba(255, 183, 3, 0.2); border-radius: 10px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; font-weight: bold; color: #ffb703; margin-bottom: 20px; }
+
+        .total-price-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
+        .total-label { font-size: 0.75rem; font-weight: 800; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.5px; }
+        .total-amount { font-size: 1.8rem; font-weight: 900; color: #ffffff; }
+        .total-amount span { font-size: 1.1rem; color: #9ca3af; margin-right: 4px; }
+
+        .btn-checkout { width: 100%; background: #00FF7F; color: #050811; border: none; padding: 16px; border-radius: 14px; font-weight: 900; font-size: 0.95rem; letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; }
+        .btn-checkout:hover { background: #00cc66; }
+
         /* ESTILOS DE LA SECCIÓN DE SOPORTE */
         .support-header-box { text-align: center; margin-bottom: 45px; margin-top: 10px; }
         .support-title { font-size: 2.5rem; font-weight: 900; letter-spacing: 1px; color: #ffffff; margin-bottom: 12px; text-transform: uppercase; }
@@ -112,25 +205,10 @@
         .support-subtitle { color: #9ca3af; font-size: 1rem; max-width: 650px; margin: 0 auto; line-height: 1.5; }
 
         .support-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-bottom: 50px; max-width: 900px; margin-left: auto; margin-right: auto; }
-        .support-card {
-            background: #0b0f19;
-            border: 1px solid #1f2937;
-            border-radius: 20px;
-            padding: 35px 25px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
+        .support-card { background: #0b0f19; border: 1px solid #1f2937; border-radius: 20px; padding: 35px 25px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: space-between; transition: transform 0.2s ease, border-color 0.2s ease; }
         .support-card:hover { transform: translateY(-5px); border-color: #00FF7F; }
         
-        .support-icon-circle {
-            width: 70px; height: 70px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 20px;
-        }
+        .support-icon-circle { width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
         .support-icon-circle svg { width: 36px; height: 36px; }
         .support-icon-circle.wa { background: rgba(37, 211, 102, 0.12); border: 1px solid rgba(37, 211, 102, 0.3); }
         .support-icon-circle.wa svg { fill: #25d366; }
@@ -141,25 +219,9 @@
         .support-channel-name { font-size: 1.4rem; font-weight: 800; color: #ffffff; margin-bottom: 10px; }
         .support-channel-desc { font-size: 0.88rem; color: #9ca3af; line-height: 1.5; margin-bottom: 25px; min-height: 40px; }
         
-        .btn-support-link {
-            width: 100%;
-            background: #111827;
-            border: 1px solid #1f2937;
-            color: #ffffff;
-            padding: 13px;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.2s;
-        }
+        .btn-support-link { width: 100%; background: #111827; border: 1px solid #1f2937; color: #ffffff; padding: 13px; border-radius: 12px; font-weight: bold; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; }
         .btn-support-link:hover { background: #00FF7F; color: #050811; border-color: #00FF7F; }
 
-        /* Tarjetas Informativas de Garantías (2 Cuadros) */
         .support-features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 900px; margin-left: auto; margin-right: auto; }
         .feature-card { background: #080c16; border: 1px solid #192233; border-radius: 16px; padding: 20px; display: flex; align-items: flex-start; gap: 15px; }
         .feature-icon { width: 42px; height: 42px; border-radius: 12px; background: rgba(0, 255, 127, 0.1); border: 1px solid rgba(0, 255, 127, 0.2); color: #00FF7F; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
@@ -167,6 +229,12 @@
         .feature-desc { font-size: 0.8rem; color: #9ca3af; line-height: 1.4; }
 
         /* ADAPTACIÓN MÓVIL RESPONSIVA */
+        @media(max-width: 992px) {
+            .product-page-layout { grid-template-columns: 1fr; }
+            .order-summary-card { position: fixed; bottom: 0; left: 0; right: 0; width: 100%; z-index: 999; border-radius: 20px 20px 0 0; top: auto; }
+            .packages-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
         @media(max-width: 768px) {
             .top-subbar-mobile { display: flex; }
             nav.nav-bar { padding: 12px 20px; }
@@ -185,6 +253,10 @@
             .support-subtitle { font-size: 0.88rem; }
             .support-cards-grid { grid-template-columns: 1fr; gap: 15px; }
             .support-features-grid { grid-template-columns: 1fr; }
+
+            .reviews-layout { grid-template-columns: 1fr; }
+            .packages-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .product-title-big { font-size: 2.1rem; }
         }
     </style>
 </head>
@@ -201,34 +273,28 @@
         </div>
 
         <nav class="nav-bar">
-            <!-- Hamburguesa Móvil -->
             <button class="mobile-menu-btn" onclick="toggleDrawer()">☰</button>
 
-            <!-- Logo Central / Izquierda -->
             <div class="logo-nav" onclick="mostrarVista('servicios')">
                 ASSA<span>X</span>
             </div>
 
-            <!-- Navegación Desktop -->
             <ul class="nav-links">
                 <li><a id="nav-recargas" onclick="mostrarVista('recargas')">Recargas</a></li>
                 <li><a id="nav-servicios" class="active" onclick="mostrarVista('servicios')">Servicios</a></li>
                 <li><a id="nav-soporte" onclick="mostrarVista('soporte')">Soporte</a></li>
             </ul>
             
-            <!-- Acciones Derecha -->
             <div class="nav-right-actions">
                 <button class="search-icon-btn" onclick="alert('Búsqueda activa')" title="Buscar">
                     <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
                 </button>
 
-                <!-- Botón VES Desktop -->
                 <button class="btn-region btn-region-desktop" onclick="abrirModalRegion()">
                     <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                     <span id="label-moneda">VES</span>
                 </button>
 
-                <!-- Botón Entrar Móvil -->
                 <button class="btn-entrar-mobile" onclick="alert('Login')">Entrar</button>
             </div>
         </nav>
@@ -252,7 +318,6 @@
             <div class="region-modal-title">Región y Moneda</div>
             <div class="region-modal-subtitle">Elige la divisa en la que deseas ver el catálogo</div>
 
-            <!-- Opción Global -->
             <div class="region-option" id="optGlobal" onclick="seleccionarMoneda('USD')">
                 <div class="region-info">
                     <div class="region-icon-circle">
@@ -267,7 +332,6 @@
                 <div class="region-radio" id="radioGlobal" style="display: none;"></div>
             </div>
 
-            <!-- Opción Venezuela -->
             <div class="region-option active" id="optVES" onclick="seleccionarMoneda('VES')">
                 <div class="region-info">
                     <div class="region-icon-circle">
@@ -308,95 +372,30 @@
             </div>
 
             <div class="services-grid">
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://assets.nflxext.com/ffe/siteui/vlv3/9d2fc35e-57cf-432d-96f7-ebf345842881/4f808796-03c6-47a3-b2dd-ff8736d75be8/VE-es-20240930-popsignuptwoweeks-perspective_alpha_website_large.jpg" alt="Netflix">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">Streaming</span>
-                        <div class="service-name">Netflix</div>
-                    </div>
-                </a>
+                <div class="service-card" onclick="abrirProducto('Netflix', 'Streaming', 'https://assets.nflxext.com/ffe/siteui/vlv3/9d2fc35e-57cf-432d-96f7-ebf345842881/4f808796-03c6-47a3-b2dd-ff8736d75be8/VE-es-20240930-popsignuptwoweeks-perspective_alpha_website_large.jpg')">
+                    <div class="service-image-box"><img src="https://assets.nflxext.com/ffe/siteui/vlv3/9d2fc35e-57cf-432d-96f7-ebf345842881/4f808796-03c6-47a3-b2dd-ff8736d75be8/VE-es-20240930-popsignuptwoweeks-perspective_alpha_website_large.jpg" alt="Netflix"></div>
+                    <div class="service-content"><span class="service-tag">Streaming</span><div class="service-name">Netflix</div></div>
+                </div>
 
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=500&auto=format&fit=crop" alt="Disney+">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">Streaming</span>
-                        <div class="service-name">Disney+</div>
-                    </div>
-                </a>
+                <div class="service-card" onclick="abrirProducto('Disney+', 'Streaming', 'https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=500&auto=format&fit=crop" alt="Disney+"></div>
+                    <div class="service-content"><span class="service-tag">Streaming</span><div class="service-name">Disney+</div></div>
+                </div>
 
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=500&auto=format&fit=crop" alt="Prime Video">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">Streaming</span>
-                        <div class="service-name">Prime Video</div>
-                    </div>
-                </a>
+                <div class="service-card" onclick="abrirProducto('Prime Video', 'Streaming', 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=500&auto=format&fit=crop" alt="Prime Video"></div>
+                    <div class="service-content"><span class="service-tag">Streaming</span><div class="service-name">Prime Video</div></div>
+                </div>
 
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=500&auto=format&fit=crop" alt="HBO Max">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">Streaming</span>
-                        <div class="service-name">HBO Max</div>
-                    </div>
-                </a>
+                <div class="service-card" onclick="abrirProducto('HBO Max', 'Streaming', 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=500&auto=format&fit=crop" alt="HBO Max"></div>
+                    <div class="service-content"><span class="service-tag">Streaming</span><div class="service-name">HBO Max</div></div>
+                </div>
 
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=500&auto=format&fit=crop" alt="Crunchyroll">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">Anime / Streaming</span>
-                        <div class="service-name">Crunchyroll</div>
-                    </div>
-                </a>
-
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=500&auto=format&fit=crop" alt="Vix+">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">Streaming</span>
-                        <div class="service-name">Vix+</div>
-                    </div>
-                </a>
-
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=500&auto=format&fit=crop" alt="Paramount+">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">Streaming</span>
-                        <div class="service-name">Paramount+</div>
-                    </div>
-                </a>
-
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=500&auto=format&fit=crop" alt="Universal+">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">Streaming</span>
-                        <div class="service-name">Universal+</div>
-                    </div>
-                </a>
-
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=500&auto=format&fit=crop" alt="Apple TV+">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">Streaming</span>
-                        <div class="service-name">Apple TV+</div>
-                    </div>
-                </a>
+                <div class="service-card" onclick="abrirProducto('Crunchyroll', 'Anime / Streaming', 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=500&auto=format&fit=crop" alt="Crunchyroll"></div>
+                    <div class="service-content"><span class="service-tag">Anime / Streaming</span><div class="service-name">Crunchyroll</div></div>
+                </div>
             </div>
 
             <!-- MÚSICA SIN ANUNCIOS -->
@@ -406,63 +405,15 @@
             </div>
 
             <div class="services-grid">
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1614680376593-902f749f7edc?q=80&w=500&auto=format&fit=crop" alt="Spotify">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">Música / Streaming</span>
-                        <div class="service-name">Spotify</div>
-                    </div>
-                </a>
+                <div class="service-card" onclick="abrirProducto('Spotify Premium', 'Música / Streaming', 'https://images.unsplash.com/photo-1614680376593-902f749f7edc?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1614680376593-902f749f7edc?q=80&w=500&auto=format&fit=crop" alt="Spotify"></div>
+                    <div class="service-content"><span class="service-tag">Música / Streaming</span><div class="service-name">Spotify</div></div>
+                </div>
 
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=500&auto=format&fit=crop" alt="YouTube Premium">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">Música & Video</span>
-                        <div class="service-name">YouTube Premium</div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- IPTV TV -->
-            <div class="section-header">
-                <h2 class="section-title">IPTV <span>TV</span></h2>
-                <a href="#" class="btn-ver-todos">Ver todos</a>
-            </div>
-
-            <div class="services-grid">
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=500&auto=format&fit=crop" alt="FlujoTV">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">IPTV en Vivo</span>
-                        <div class="service-name">FlujoTV</div>
-                    </div>
-                </a>
-
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=500&auto=format&fit=crop" alt="StreamixTV">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">IPTV Exclusivo</span>
-                        <div class="service-name">StreamixTV</div>
-                    </div>
-                </a>
-
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1540655037529-dec987208707?q=80&w=500&auto=format&fit=crop" alt="IboPlayer">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">Licencia IPTV</span>
-                        <div class="service-name">IboPlayer</div>
-                    </div>
-                </a>
+                <div class="service-card" onclick="abrirProducto('YouTube Premium', 'Música & Video', 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=500&auto=format&fit=crop" alt="YouTube Premium"></div>
+                    <div class="service-content"><span class="service-tag">Música & Video</span><div class="service-name">YouTube Premium</div></div>
+                </div>
             </div>
 
             <!-- IA & SISTEMAS -->
@@ -472,55 +423,15 @@
             </div>
 
             <div class="services-grid">
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=500&auto=format&fit=crop" alt="Canva Pro Edu">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">Diseño / Herramientas</span>
-                        <div class="service-name">Canva Pro Edu</div>
-                    </div>
-                </a>
+                <div class="service-card" onclick="abrirProducto('Canva Pro Edu', 'Diseño / Herramientas', 'https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=500&auto=format&fit=crop" alt="Canva Pro Edu"></div>
+                    <div class="service-content"><span class="service-tag">Diseño / Herramientas</span><div class="service-name">Canva Pro Edu</div></div>
+                </div>
 
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=500&auto=format&fit=crop" alt="CapCut">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">Edición de Video</span>
-                        <div class="service-name">CapCut Pro</div>
-                    </div>
-                </a>
-
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=500&auto=format&fit=crop" alt="Duolingo">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">Educación / Idiomas</span>
-                        <div class="service-name">Duolingo Plus</div>
-                    </div>
-                </a>
-
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=500&auto=format&fit=crop" alt="Gemini">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">Inteligencia Artificial</span>
-                        <div class="service-name">Gemini Advanced</div>
-                    </div>
-                </a>
-
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1633419461186-7d40a38105ec?q=80&w=500&auto=format&fit=crop" alt="Office 365">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">Productividad / Software</span>
-                        <div class="service-name">Microsoft Office 365</div>
-                    </div>
-                </a>
+                <div class="service-card" onclick="abrirProducto('CapCut Pro', 'Edición de Video', 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=500&auto=format&fit=crop" alt="CapCut"></div>
+                    <div class="service-content"><span class="service-tag">Edición de Video</span><div class="service-name">CapCut Pro</div></div>
+                </div>
             </div>
         </div>
 
@@ -532,55 +443,30 @@
             </div>
 
             <div class="services-grid">
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=500&auto=format&fit=crop" alt="Free Fire">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">NORTE / SUR</span>
-                        <div class="service-name">Free fire</div>
-                    </div>
-                </a>
+                <div class="service-card" onclick="abrirProducto('Free fire', 'NORTE / SUR', 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=500&auto=format&fit=crop" alt="Free Fire"></div>
+                    <div class="service-content"><span class="service-tag">NORTE / SUR</span><div class="service-name">Free fire</div></div>
+                </div>
 
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1552824722-b2d97a9fef1c?q=80&w=500&auto=format&fit=crop" alt="Blood Strike">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">GLOBAL</span>
-                        <div class="service-name">Blood Strike</div>
-                    </div>
-                </a>
+                <div class="service-card" onclick="abrirProducto('Blood Strike', 'GLOBAL', 'https://images.unsplash.com/photo-1552824722-b2d97a9fef1c?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1552824722-b2d97a9fef1c?q=80&w=500&auto=format&fit=crop" alt="Blood Strike"></div>
+                    <div class="service-content"><span class="service-tag">GLOBAL</span><div class="service-name">Blood Strike</div></div>
+                </div>
 
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=500&auto=format&fit=crop" alt="Mobile Legends">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">GLOBAL</span>
-                        <div class="service-name">Mobile Legends</div>
-                    </div>
-                </a>
+                <div class="service-card" onclick="abrirProducto('Mobile Legends', 'GLOBAL', 'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=500&auto=format&fit=crop" alt="Mobile Legends"></div>
+                    <div class="service-content"><span class="service-tag">GLOBAL</span><div class="service-name">Mobile Legends</div></div>
+                </div>
 
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=500&auto=format&fit=crop" alt="Call of Duty Mobile">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">GLOBAL</span>
-                        <div class="service-name">Call of Duty Mobile</div>
-                    </div>
-                </a>
+                <div class="service-card" onclick="abrirProducto('Call of Duty Mobile', 'GLOBAL', 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=500&auto=format&fit=crop" alt="Call of Duty"></div>
+                    <div class="service-content"><span class="service-tag">GLOBAL</span><div class="service-name">Call of Duty Mobile</div></div>
+                </div>
 
-                <a href="#" class="service-card">
-                    <div class="service-image-box">
-                        <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=500&auto=format&fit=crop" alt="Roblox">
-                    </div>
-                    <div class="service-content">
-                        <span class="service-tag">GLOBAL</span>
-                        <div class="service-name">Roblox</div>
-                    </div>
-                </a>
+                <div class="service-card" onclick="abrirProducto('Roblox', 'GLOBAL', 'https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=500&auto=format&fit=crop" alt="Roblox"></div>
+                    <div class="service-content"><span class="service-tag">GLOBAL</span><div class="service-name">Roblox</div></div>
+                </div>
             </div>
         </div>
 
@@ -591,9 +477,7 @@
                 <p class="support-subtitle">Nuestro equipo de soporte está listo para asistirte. Elige el canal que prefieras para contactarnos. ¡Atención garantizada!</p>
             </div>
 
-            <!-- Canales Principales (WhatsApp e Instagram) -->
             <div class="support-cards-grid">
-                <!-- WhatsApp -->
                 <div class="support-card">
                     <div class="support-icon-circle wa">
                         <svg viewBox="0 0 24 24"><path d="M12.031 2c-5.514 0-9.989 4.475-9.989 9.989 0 1.763.459 3.488 1.332 5.006l-1.374 5.016 5.132-1.347c1.472.803 3.136 1.226 4.899 1.226 5.514 0 9.989-4.475 9.989-9.989 0-5.515-4.475-9.99-9.989-9.99zm0 18.254c-1.55 0-3.072-.417-4.402-1.206l-.316-.188-3.053.801.815-2.977-.206-.328c-.868-1.383-1.326-2.983-1.326-4.622 0-4.555 3.707-8.262 8.263-8.262 4.555 0 8.262 3.707 8.262 8.262 0 4.556-3.707 8.263-8.263 8.263zm4.531-6.185c-.248-.124-1.468-.724-1.696-.807-.228-.083-.393-.124-.559.124-.165.248-.642.807-.787.973-.145.165-.29.186-.538.062-.248-.124-1.048-.386-1.996-1.232-.738-.658-1.237-1.47-1.382-1.718-.145-.248-.015-.382.109-.505.111-.11.248-.29.372-.435.124-.145.165-.248.248-.414.083-.165.042-.311-.021-.435-.062-.124-.559-1.348-.765-1.844-.201-.484-.406-.418-.559-.426l-.476-.008c-.165 0-.435.062-.663.311-.228.248-.87 0.851-.87 2.076 0 1.225.891 2.408 1.015 2.574.124.165 1.752 2.675 4.246 3.752.593.256 1.056.409 1.417.524.596.19 1.138.163 1.567.099.479-.071 1.468-.601 1.675-1.18.207-.579.207-1.076.145-1.18-.062-.104-.227-.166-.475-.29z"/></svg>
@@ -601,12 +485,9 @@
                     <span class="support-tag">Soporte Directo</span>
                     <div class="support-channel-name">WHATSAPP</div>
                     <div class="support-channel-desc">Habla con un asesor en tiempo real para resolver tus dudas sobre pagos o entregas inmediatas.</div>
-                    <a href="https://wa.me/584124405245" target="_blank" class="btn-support-link">
-                        WHATSAPP ↗
-                    </a>
+                    <a href="https://wa.me/584124405245" target="_blank" class="btn-support-link">WHATSAPP ↗</a>
                 </div>
 
-                <!-- Instagram -->
                 <div class="support-card">
                     <div class="support-icon-circle ig">
                         <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -614,13 +495,10 @@
                     <span class="support-tag">Comunidad & Noticias</span>
                     <div class="support-channel-name">INSTAGRAM</div>
                     <div class="support-channel-desc">Síguenos para sorteos, actualizaciones de stock y contacto por mensaje directo.</div>
-                    <a href="#" target="_blank" class="btn-support-link">
-                        INSTAGRAM ↗
-                    </a>
+                    <a href="#" target="_blank" class="btn-support-link">INSTAGRAM ↗</a>
                 </div>
             </div>
 
-            <!-- Garantías e Información (2 Cuadros) -->
             <div class="support-features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
@@ -640,9 +518,230 @@
             </div>
         </div>
 
+        <!-- ==================== VISTA 4: DETALLE DE PRODUCTO (NUEVA) ==================== -->
+        <div id="vista-producto" class="view-section">
+            <div class="breadcrumbs">
+                <a onclick="mostrarVista('servicios')">Inicio</a> &gt; <span id="prod-bread-title">Free fire</span>
+            </div>
+
+            <div class="product-page-layout">
+                <!-- Columna Izquierda: Pasos de Compra -->
+                <div class="product-main-content">
+                    
+                    <div class="product-header">
+                        <h1 class="product-title-big" id="prod-title">FREE FIRE</h1>
+                        <div class="product-region-badge">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                            Canjeable en <strong style="color: white; margin-left: 4px;" id="prod-tag">Norte / Sur</strong>
+                        </div>
+                    </div>
+
+                    <!-- Paso 1: Datos del Jugador -->
+                    <div class="step-box">
+                        <div class="step-title-row">
+                            <div class="step-number">1</div>
+                            <div class="step-title">Datos del <span>Jugador</span></div>
+                        </div>
+                        <div class="player-id-input-group">
+                            <input type="text" class="input-player-id" placeholder="Ingresa tu UID o ID de cuenta">
+                            <button class="btn-verify-id" onclick="alert('ID Verificado correctamente')">Verificar</button>
+                        </div>
+                    </div>
+
+                    <!-- Paso 2: Selecciona tu Paquete -->
+                    <div class="step-box">
+                        <div class="step-title-row" style="justify-content: space-between;">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div class="step-number">2</div>
+                                <div class="step-title">SELECCIONA TU <span>PAQUETE</span></div>
+                            </div>
+                            <div class="packages-tabs-row" style="margin-bottom:0;">
+                                <button class="package-tab-btn active">Diamantes</button>
+                                <button class="package-tab-btn">Paquetes</button>
+                            </div>
+                        </div>
+
+                        <!-- Opciones de Paquetes -->
+                        <div class="packages-grid">
+                            <div class="package-card" onclick="seleccionarPaquete(100, 10, 838.30, this)">
+                                <div class="package-card-top">
+                                    <span class="package-amount">100</span>
+                                    <span class="package-extra">+ 10 Extra</span>
+                                </div>
+                                <div class="package-price-badge">Bs. 838,30</div>
+                            </div>
+
+                            <div class="package-card active" onclick="seleccionarPaquete(310, 31, 2504.80, this)">
+                                <div class="package-card-top">
+                                    <span class="package-amount">310</span>
+                                    <span class="package-extra">+ 31 Extra</span>
+                                </div>
+                                <div class="package-price-badge">Bs. 2.504,80</div>
+                            </div>
+
+                            <div class="package-card" onclick="seleccionarPaquete(520, 52, 4242.00, this)">
+                                <div class="package-card-top">
+                                    <span class="package-amount">520</span>
+                                    <span class="package-extra">+ 52 Extra</span>
+                                </div>
+                                <div class="package-price-badge">Bs. 4.242,00</div>
+                            </div>
+
+                            <div class="package-card" onclick="seleccionarPaquete(1060, 106, 7878.00, this)">
+                                <div class="package-card-top">
+                                    <span class="package-amount">1060</span>
+                                    <span class="package-extra">+ 106 Extra</span>
+                                </div>
+                                <div class="package-price-badge">Bs. 7.878,00</div>
+                            </div>
+
+                            <div class="package-card" onclick="seleccionarPaquete(2180, 218, 15634.80, this)">
+                                <div class="package-card-top">
+                                    <span class="package-amount">2180</span>
+                                    <span class="package-extra">+ 218 Extra</span>
+                                </div>
+                                <div class="package-price-badge">Bs. 15.634,80</div>
+                            </div>
+
+                            <div class="package-card" onclick="seleccionarPaquete(5600, 560, 39794.00, this)">
+                                <div class="package-card-top">
+                                    <span class="package-amount">5600</span>
+                                    <span class="package-extra">+ 560 Extra</span>
+                                </div>
+                                <div class="package-price-badge">Bs. 39.794,00</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Acordeón Información del Producto -->
+                    <div class="info-accordion">
+                        <div class="info-accordion-header" onclick="toggleAccordion()">
+                            <div class="info-accordion-title">
+                                <div class="info-accordion-icon">i</div>
+                                Información del <span style="color: #00FF7F; margin-left: 4px;">Producto</span>
+                            </div>
+                            <span id="accordion-arrow" style="color: #9ca3af;">▼</span>
+                        </div>
+                        <div class="info-accordion-content" id="accordion-body">
+                            ¿Buscas dónde recargar en Venezuela? En AssaX te ofrecemos entregas al instante, 100% seguras y sin riesgo de baneo. Paga fácil en Bolívares por Pago Móvil, o usando Binance Pay. Compra con los precios más baratos del mercado y la tienda más confiable del país.
+                        </div>
+                    </div>
+
+                    <!-- Sección Reseñas de Producto -->
+                    <div class="reviews-section-box">
+                        <div class="reviews-header-title">MOSTRANDO 1-5 DE 416 RESEÑAS</div>
+                        <div class="reviews-layout">
+                            <div class="review-score-card">
+                                <div class="review-score-label">CALIFICACIÓN GENERAL</div>
+                                <div class="review-score-number">4.9</div>
+                                <div class="review-stars" style="margin-top: 8px;">★★★★★</div>
+                            </div>
+
+                            <div class="reviews-list-card">
+                                <div class="single-review-item">
+                                    <div class="reviewer-info">
+                                        <div class="reviewer-avatar">👤</div>
+                                        <div>
+                                            <div class="reviewer-name">Miguel González <span class="badge-verified">VERIFICADA</span></div>
+                                            <div class="reviewer-meta">20 oct 2026 • Recarga Recibida al Instante</div>
+                                        </div>
+                                    </div>
+                                    <div class="review-stars">★★★★★</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Columna Derecha: Resumen del Pedido (Sticky) -->
+                <div class="order-summary-card">
+                    <div class="summary-header">
+                        <img id="summary-prod-img" class="summary-thumb" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=500&auto=format&fit=crop" alt="Thumb">
+                        <div>
+                            <div class="summary-prod-name" id="summary-prod-name">Free fire</div>
+                            <div class="summary-subtitle">RESUMEN DEL PEDIDO</div>
+                        </div>
+                    </div>
+
+                    <div class="summary-item-row">
+                        <span class="summary-item-title" id="summary-pkg-text">310 + 31 Extra</span>
+                        <div class="quantity-control">
+                            <button class="btn-qty" onclick="cambiarCantidad(-1)">-</button>
+                            <span class="qty-number" id="qty-val">1</span>
+                            <button class="btn-qty" onclick="cambiarCantidad(1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="axp-bonus-box">
+                        <span>★ AXP</span>
+                        <span>Apoya a un creador: +5 AXP</span>
+                    </div>
+
+                    <div class="total-price-row">
+                        <span class="total-label">TOTAL A PAGAR</span>
+                        <div class="total-amount"><span>Bs.</span><span id="total-val">2.504,80</span></div>
+                    </div>
+
+                    <button class="btn-checkout" onclick="alert('Procesando pedido...')">
+                        VERIFICAR ID &gt;
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
+        // Variables de estado del producto activo
+        let precioBase = 2504.80;
+        let cantidad = 1;
+
+        // Abrir vista de producto
+        function abrirProducto(nombre, tag, imagen) {
+            document.getElementById('prod-title').innerText = nombre;
+            document.getElementById('prod-bread-title').innerText = nombre;
+            document.getElementById('prod-tag').innerText = tag;
+            document.getElementById('summary-prod-name').innerText = nombre;
+            if(imagen) document.getElementById('summary-prod-img').src = imagen;
+
+            mostrarVista('producto');
+        }
+
+        function seleccionarPaquete(monto, extra, precio, elemento) {
+            document.querySelectorAll('.package-card').forEach(el => el.classList.remove('active'));
+            elemento.classList.add('active');
+
+            precioBase = precio;
+            document.getElementById('summary-pkg-text').innerText = `${monto} + ${extra} Extra`;
+            actualizarTotal();
+        }
+
+        function cambiarCantidad(delta) {
+            if (cantidad + delta >= 1) {
+                cantidad += delta;
+                document.getElementById('qty-val').innerText = cantidad;
+                actualizarTotal();
+            }
+        }
+
+        function actualizarTotal() {
+            let total = precioBase * cantidad;
+            document.getElementById('total-val').innerText = total.toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function toggleAccordion() {
+            const body = document.getElementById('accordion-body');
+            const arrow = document.getElementById('accordion-arrow');
+            if (body.classList.contains('open')) {
+                body.classList.remove('open');
+                arrow.innerText = '▼';
+            } else {
+                body.classList.add('open');
+                arrow.innerText = '▲';
+            }
+        }
+
         // Drawer Móvil
         function toggleDrawer() {
             const drawer = document.getElementById('mobileDrawer');
@@ -656,22 +755,23 @@
             }
         }
 
-        // Cambio dinámico de vista (Servicios vs Recargas vs Soporte)
+        // Cambio dinámico de vista
         function mostrarVista(vista) {
             const vistaServicios = document.getElementById('vista-servicios');
             const vistaRecargas = document.getElementById('vista-recargas');
             const vistaSoporte = document.getElementById('vista-soporte');
+            const vistaProducto = document.getElementById('vista-producto');
 
             const navServicios = document.getElementById('nav-servicios');
             const navRecargas = document.getElementById('nav-recargas');
             const navSoporte = document.getElementById('nav-soporte');
 
-            // Reset de Vistas
+            // Reset
             vistaServicios.classList.remove('active');
             vistaRecargas.classList.remove('active');
             vistaSoporte.classList.remove('active');
+            vistaProducto.classList.remove('active');
 
-            // Reset de Links
             if(navServicios) navServicios.classList.remove('active');
             if(navRecargas) navRecargas.classList.remove('active');
             if(navSoporte) navSoporte.classList.remove('active');
@@ -682,6 +782,8 @@
             } else if (vista === 'soporte') {
                 vistaSoporte.classList.add('active');
                 if(navSoporte) navSoporte.classList.add('active');
+            } else if (vista === 'producto') {
+                vistaProducto.classList.add('active');
             } else {
                 vistaServicios.classList.add('active');
                 if(navServicios) navServicios.classList.add('active');
@@ -690,19 +792,12 @@
         }
 
         // Modal de Región
-        function abrirModalRegion() {
-            document.getElementById('modalRegion').style.display = 'flex';
-        }
-
-        function cerrarModalRegion() {
-            document.getElementById('modalRegion').style.display = 'none';
-        }
+        function abrirModalRegion() { document.getElementById('modalRegion').style.display = 'flex'; }
+        function cerrarModalRegion() { document.getElementById('modalRegion').style.display = 'none'; }
 
         window.onclick = function(event) {
             const modal = document.getElementById('modalRegion');
-            if (event.target === modal) {
-                cerrarModalRegion();
-            }
+            if (event.target === modal) cerrarModalRegion();
         };
 
         function seleccionarMoneda(moneda) {
