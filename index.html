@@ -13,7 +13,7 @@
         header.main-header { position: sticky; top: 0; z-index: 1000; background: #0b0f19; border-bottom: 1px solid #1f2937; }
         
         /* Top Bar Móvil */
-        .top-subbar-mobile { display: none; justify-content: space-between; align-items: center; padding: 8px 20px; background: #070a12; border-bottom: 1px solid #151c2c; font-size: 0.78rem; color: #9ca3af; }
+        .top-subbar-mobile { display: none; justify-content: space-between; align-items: center; padding: 8px 16px; background: #070a12; border-bottom: 1px solid #151c2c; font-size: 0.78rem; color: #9ca3af; }
         
         nav.nav-bar { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; }
         
@@ -33,8 +33,6 @@
         .btn-region { background: #111827; border: 1px solid #374151; color: #ffffff; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: border-color 0.2s, background 0.2s; }
         .btn-region:hover { border-color: #00FF7F; background: #1a2332; }
         .globe-icon { color: #00FF7F; width: 16px; height: 16px; }
-
-        .btn-entrar-mobile { display: none; background: #00FF7F; color: #050811; padding: 7px 18px; border-radius: 20px; text-decoration: none; font-weight: 800; font-size: 0.85rem; border: none; cursor: pointer; }
 
         .mobile-menu-btn { display: none; background: transparent; border: none; color: #ffffff; font-size: 1.4rem; cursor: pointer; }
 
@@ -106,21 +104,21 @@
         .service-name { font-size: 0.98rem; font-weight: bold; color: #ffffff; }
 
         /* ESTILOS DE LA VISTA DE PRODUCTO (PRODUCT DETAIL) */
-        .breadcrumbs { font-size: 0.85rem; color: #6b7280; margin-bottom: 20px; }
+        .breadcrumbs { font-size: 0.85rem; color: #6b7280; margin-bottom: 15px; }
         .breadcrumbs a { color: #9ca3af; text-decoration: none; cursor: pointer; }
         .breadcrumbs a:hover { color: #00FF7F; }
 
         .product-page-layout { display: grid; grid-template-columns: 1fr 360px; gap: 30px; align-items: start; }
         
-        .product-main-content { display: flex; flex-direction: column; gap: 22px; }
+        .product-main-content { display: flex; flex-direction: column; gap: 20px; }
 
         .product-header { margin-bottom: 5px; }
-        .product-title-big { font-size: 2.8rem; font-weight: 900; color: #ffffff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .product-title-big { font-size: 2.8rem; font-weight: 900; color: #ffffff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
         .product-region-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.88rem; color: #00FF7F; font-weight: 600; }
         .product-region-badge svg { width: 16px; height: 16px; fill: currentColor; }
 
         .step-box { background: #0b0f19; border: 1px solid #1f2937; border-radius: 18px; padding: 22px; }
-        .step-title-row { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+        .step-title-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
         .step-number { width: 28px; height: 28px; border-radius: 50%; background: #00FF7F; color: #050811; font-weight: 900; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .step-title { font-size: 1.05rem; font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; }
         .step-title span { color: #00FF7F; }
@@ -128,38 +126,38 @@
         .input-sublabel { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 800; color: #00FF7F; text-transform: uppercase; margin-bottom: 10px; }
         .input-sublabel svg { width: 14px; height: 14px; fill: currentColor; }
 
-        .player-id-input-group { display: flex; gap: 12px; }
-        .input-player-id { flex: 1; background: #070a12; border: 1px solid #1f2937; border-radius: 12px; padding: 14px 18px; color: #ffffff; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
+        .player-id-input-group { display: flex; gap: 10px; width: 100%; }
+        .input-player-id { flex: 1; min-width: 0; background: #070a12; border: 1px solid #1f2937; border-radius: 12px; padding: 12px 14px; color: #ffffff; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
         .input-player-id:focus { border-color: #00FF7F; }
-        .btn-verify-id { background: #192233; border: 1px solid #2b3548; color: #ffffff; font-weight: 700; padding: 0 24px; border-radius: 12px; cursor: pointer; transition: all 0.2s; }
+        .btn-verify-id { background: #192233; border: 1px solid #2b3548; color: #ffffff; font-weight: 700; padding: 0 18px; border-radius: 12px; cursor: pointer; transition: all 0.2s; flex-shrink: 0; font-size: 0.85rem; }
         .btn-verify-id:hover { background: #253147; border-color: #00FF7F; color: #00FF7F; }
 
-        /* Categorías / Toggle de paquetes en móvil */
-        .packages-toggle-container { background: #070a12; border: 1px solid #1f2937; border-radius: 14px; padding: 4px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 20px; }
-        .package-tab-btn { background: transparent; border: none; color: #9ca3af; padding: 10px; border-radius: 10px; font-weight: bold; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; text-align: center; }
+        /* Categorías / Toggle de paquetes */
+        .packages-toggle-container { background: #070a12; border: 1px solid #1f2937; border-radius: 14px; padding: 4px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 16px; }
+        .package-tab-btn { background: transparent; border: none; color: #9ca3af; padding: 10px; border-radius: 10px; font-weight: bold; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; text-align: center; }
         .package-tab-btn.active { background: #0d261b; border: 1px solid #00FF7F; color: #00FF7F; }
 
-        .packages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-        .package-card { background: #070a12; border: 1px solid #1f2937; border-radius: 14px; padding: 16px; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column; justify-content: space-between; gap: 15px; position: relative; }
+        .packages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .package-card { background: #070a12; border: 1px solid #1f2937; border-radius: 14px; padding: 14px; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; position: relative; }
         .package-card:hover { border-color: #374151; }
         .package-card.active { border: 1.5px solid #00FF7F; background: #081812; }
 
         .package-card-top { display: flex; align-items: center; justify-content: space-between; }
-        .package-amount { font-size: 0.95rem; font-weight: 800; color: #ffffff; }
-        .package-extra { color: #ffb703; font-weight: 800; font-size: 0.82rem; }
-        .info-small-circle { width: 14px; height: 14px; border-radius: 50%; border: 1px solid #374151; color: #6b7280; font-size: 10px; display: flex; align-items: center; justify-content: center; }
+        .package-amount { font-size: 0.9rem; font-weight: 800; color: #ffffff; }
+        .package-extra { color: #ffb703; font-weight: 800; font-size: 0.8rem; }
+        .info-small-circle { width: 14px; height: 14px; border-radius: 50%; border: 1px solid #374151; color: #6b7280; font-size: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
-        .package-price-badge { background: #0e1320; border: 1px solid #1f2937; border-radius: 10px; padding: 12px; text-align: center; font-weight: 800; font-size: 0.92rem; color: #ffffff; transition: background 0.2s; }
+        .package-price-badge { background: #0e1320; border: 1px solid #1f2937; border-radius: 10px; padding: 10px; text-align: center; font-weight: 800; font-size: 0.88rem; color: #ffffff; transition: background 0.2s; }
         .package-card.active .package-price-badge { background: #0a1e16; border-color: #00FF7F; color: #00FF7F; }
 
         /* Acordeón Información del Producto */
         .info-accordion { background: #0b0f19; border: 1px solid #1f2937; border-radius: 16px; overflow: hidden; }
-        .info-accordion-header { padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .info-accordion-header { padding: 16px 18px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
         .info-accordion-title-box { display: flex; align-items: center; gap: 12px; }
-        .info-accordion-icon { width: 36px; height: 36px; border-radius: 50%; background: #070a12; border: 1px solid #1f2937; color: #00FF7F; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-        .info-accordion-main-text { font-size: 0.98rem; font-weight: 800; color: #ffffff; }
-        .info-accordion-sub-text { font-size: 0.75rem; color: #6b7280; margin-top: 2px; }
-        .info-accordion-content { padding: 0 20px 20px 20px; color: #9ca3af; font-size: 0.88rem; line-height: 1.6; border-top: 1px solid #151c2c; display: none; margin-top: 10px; padding-top: 15px; }
+        .info-accordion-icon { width: 34px; height: 34px; border-radius: 50%; background: #070a12; border: 1px solid #1f2937; color: #00FF7F; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+        .info-accordion-main-text { font-size: 0.92rem; font-weight: 800; color: #ffffff; }
+        .info-accordion-sub-text { font-size: 0.72rem; color: #6b7280; margin-top: 2px; }
+        .info-accordion-content { padding: 0 18px 18px 18px; color: #9ca3af; font-size: 0.85rem; line-height: 1.5; border-top: 1px solid #151c2c; display: none; margin-top: 8px; padding-top: 12px; }
         .info-accordion-content.open { display: block; }
 
         /* SIDEBAR DE RESUMEN DE PEDIDO (RIGHT STICKY) */
@@ -215,34 +213,46 @@
         .feature-title { font-size: 0.95rem; font-weight: bold; color: #ffffff; margin-bottom: 4px; }
         .feature-desc { font-size: 0.8rem; color: #9ca3af; line-height: 1.4; }
 
+        /* OPTIMIZACIÓN EXCLUSIVA PARA MÓVILES (SIN BOTÓN ENTRAR Y MÁS COMPACTO) */
         @media(max-width: 992px) {
             .product-page-layout { grid-template-columns: 1fr; }
-            .order-summary-card { position: relative; top: 0; margin-top: 20px; }
-            .packages-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .order-summary-card { position: relative; top: 0; margin-top: 15px; }
+            .packages-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
         }
 
         @media(max-width: 768px) {
             .top-subbar-mobile { display: flex; }
-            nav.nav-bar { padding: 12px 20px; }
+            nav.nav-bar { padding: 10px 16px; }
             .nav-links, .search-icon-btn, .btn-region-desktop { display: none !important; }
             
             .mobile-menu-btn { display: block; }
-            .btn-entrar-mobile { display: inline-block; }
-            
-            .container { padding: 20px 16px; }
-            
-            .section-title { font-size: 1.35rem; }
-            .services-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .service-image-box { height: 110px; }
 
-            .support-title { font-size: 1.8rem; }
-            .support-subtitle { font-size: 0.88rem; }
+            .container { padding: 15px 12px; }
+            
+            .section-title { font-size: 1.3rem; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .service-image-box { height: 100px; }
+
+            .product-title-big { font-size: 1.8rem; margin-bottom: 4px; }
+            .product-region-badge { font-size: 0.8rem; }
+            
+            .step-box { padding: 14px; border-radius: 14px; }
+            .step-title { font-size: 0.92rem; }
+            .step-number { width: 24px; height: 24px; font-size: 0.8rem; }
+            
+            .input-player-id { padding: 10px 12px; font-size: 0.82rem; }
+            .btn-verify-id { padding: 0 14px; font-size: 0.8rem; }
+            
+            .packages-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .package-card { padding: 12px; gap: 8px; }
+            .package-amount { font-size: 0.85rem; }
+            .package-extra { font-size: 0.75rem; }
+            .package-price-badge { padding: 8px; font-size: 0.82rem; }
+
+            .support-title { font-size: 1.6rem; }
+            .support-subtitle { font-size: 0.85rem; }
             .support-cards-grid { grid-template-columns: 1fr; gap: 15px; }
             .support-features-grid { grid-template-columns: 1fr; }
-
-            .product-title-big { font-size: 2.2rem; }
-            .packages-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .step-box { padding: 16px; }
         }
     </style>
 </head>
@@ -280,8 +290,6 @@
                     <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                     <span id="label-moneda">VES</span>
                 </button>
-
-                <button class="btn-entrar-mobile" onclick="alert('Login')">Entrar</button>
             </div>
         </nav>
     </header>
@@ -531,11 +539,11 @@
                         
                         <div class="input-sublabel" id="input-label-id">
                             <svg viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-                            CORREO / USUARIO
+                            CORREO DE CONTACTO
                         </div>
 
                         <div class="player-id-input-group">
-                            <input type="text" class="input-player-id" id="input-field-id" placeholder="Ingresa tu correo o ID">
+                            <input type="text" class="input-player-id" id="input-field-id" placeholder="Ingresa tu correo para la entrega">
                             <button class="btn-verify-id" onclick="alert('Verificado correctamente')">Verificar</button>
                         </div>
                     </div>
@@ -549,8 +557,8 @@
 
                         <!-- Toggle Dinámico -->
                         <div class="packages-toggle-container" id="toggle-container">
-                            <button class="package-tab-btn active" id="tab-btn-1" onclick="cambiarTab(0)">Planes</button>
-                            <button class="package-tab-btn" id="tab-btn-2" onclick="cambiarTab(1)">Cuentas</button>
+                            <button class="package-tab-btn active" id="tab-btn-1" onclick="cambiarTab(0)">Perfiles / Pantallas</button>
+                            <button class="package-tab-btn" id="tab-btn-2" onclick="cambiarTab(1)">Cuentas Completas</button>
                         </div>
 
                         <!-- Opciones de Paquetes Dinámicas -->
@@ -617,13 +625,12 @@
     </div>
 
     <script>
-        // Base de datos de paquetes simulada por tipo de producto
         const catalogoPaquetes = {
             juego: {
                 tab1Nombre: "Diamantes",
                 tab2Nombre: "Paquetes",
                 idLabel: "PLAYER ID",
-                idPlaceholder: "Ingresa tu UID o ID de juego",
+                idPlaceholder: "Ingresa tu UID",
                 paquetesTab1: [
                     { monto: "100", extra: "+ 10 Extra", precio: 838.30 },
                     { monto: "310", extra: "+ 31 Extra", precio: 2504.80, active: true },
@@ -652,7 +659,7 @@
                 paquetesTab2: [
                     { monto: "Cuenta 1 Mes", extra: "Privada", precio: 1100.00 },
                     { monto: "Cuenta 3 Meses", extra: "Descuento", precio: 3100.00 },
-                    { monto: "Cuenta 6 Meses", extra: "Anualidad", expr: "", precio: 5800.00 }
+                    { monto: "Cuenta 6 Meses", extra: "Anualidad", precio: 5800.00 }
                 ]
             },
             musica: {
@@ -674,7 +681,7 @@
                 tab1Nombre: "Meses de Acceso",
                 tab2Nombre: "Licencias Anuales",
                 idLabel: "CORREO DE TU CUENTA",
-                idPlaceholder: "Correo electrónico para la invitación",
+                idPlaceholder: "Correo para la invitación",
                 paquetesTab1: [
                     { monto: "1 Mes Pro", extra: "Completo", precio: 320.00, active: true },
                     { monto: "3 Meses Pro", extra: "Pack", precio: 850.00 },
@@ -701,7 +708,7 @@
             } else if (nombre.includes('canva') || nombre.includes('capcut')) {
                 return 'herramientas';
             } else {
-                return 'streaming'; // Netflix, Disney+, Prime, etc.
+                return 'streaming';
             }
         }
 
@@ -715,11 +722,9 @@
             const tipo = obtenerTipoPorNombre(nombre);
             productoActualData = catalogoPaquetes[tipo];
 
-            // Configurar textos dinámicos del paso 1
             document.getElementById('input-label-id').innerHTML = `<svg viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>` + productoActualData.idLabel;
             document.getElementById('input-field-id').placeholder = productoActualData.idPlaceholder;
 
-            // Configurar botones de pestañas
             document.getElementById('tab-btn-1').innerText = productoActualData.tab1Nombre;
             document.getElementById('tab-btn-2').innerText = productoActualData.tab2Nombre;
 
