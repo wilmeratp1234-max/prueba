@@ -27,35 +27,96 @@
         .search-icon-btn:hover { color: #00FF7F; }
         .search-icon-btn svg { width: 18px; height: 18px; fill: currentColor; }
 
-        .btn-region { background: #111827; border: 1px solid #374151; color: #ffffff; padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: border-color 0.2s; }
-        .btn-region:hover { border-color: #00FF7F; }
+        .btn-region { background: #111827; border: 1px solid #374151; color: #ffffff; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: border-color 0.2s, background 0.2s; }
+        .btn-region:hover { border-color: #00FF7F; background: #1a2332; }
         .globe-icon { color: #00FF7F; width: 16px; height: 16px; }
-
-        .btn-ingresar { background: #00FF7F; color: #050811; padding: 8px 20px; border-radius: 20px; text-decoration: none; font-weight: bold; font-size: 0.9rem; cursor: pointer; border: none; transition: background 0.2s; }
-        .btn-ingresar:hover { background: #00cc66; }
 
         .container { max-width: 1400px; margin: 0 auto; padding: 40px 30px; }
 
         /* MODAL DE REGIÓN Y MONEDA (Imagen 2) */
-        .region-modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 9999; }
-        .region-modal-card { background: #0e1320; border: 1px solid #2b3548; width: 90%; max-width: 440px; border-radius: 20px; padding: 25px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.8); }
-        .region-modal-close { position: absolute; top: 20px; right: 20px; background: #1a2234; border: none; color: #9ca3af; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+        .region-modal-overlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh; 
+            background: rgba(0, 0, 0, 0.85); 
+            backdrop-filter: blur(6px); 
+            display: none; 
+            justify-content: center; 
+            align-items: center; 
+            z-index: 999999; 
+        }
+        
+        .region-modal-card { 
+            background: #0e1320; 
+            border: 1px solid #2b3548; 
+            width: 90%; 
+            max-width: 440px; 
+            border-radius: 20px; 
+            padding: 25px; 
+            position: relative; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9); 
+        }
+        
+        .region-modal-close { 
+            position: absolute; 
+            top: 20px; 
+            right: 20px; 
+            background: #1a2234; 
+            border: none; 
+            color: #9ca3af; 
+            width: 32px; 
+            height: 32px; 
+            border-radius: 50%; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.1rem; 
+            transition: all 0.2s;
+        }
         .region-modal-close:hover { background: #2b3548; color: white; }
         
-        .region-modal-title { font-size: 1.15rem; font-weight: bold; color: white; margin-bottom: 4px; }
-        .region-modal-subtitle { font-size: 0.82rem; color: #9ca3af; margin-bottom: 20px; }
+        .region-modal-title { font-size: 1.2rem; font-weight: bold; color: white; margin-bottom: 4px; }
+        .region-modal-subtitle { font-size: 0.85rem; color: #9ca3af; margin-bottom: 20px; }
 
-        .region-option { background: #161d2e; border: 1px solid #2b3548; border-radius: 14px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; cursor: pointer; transition: border-color 0.2s; }
-        .region-option:hover, .region-option.active { border-color: #00FF7F; }
-        .region-info { display: flex; align-items: center; gap: 12px; }
-        .region-flag { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; }
-        .region-name { font-weight: bold; font-size: 0.95rem; color: white; }
-        .region-currency { font-size: 0.78rem; color: #9ca3af; }
+        .region-option { 
+            background: #161d2e; 
+            border: 1px solid #2b3548; 
+            border-radius: 14px; 
+            padding: 14px 16px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 12px; 
+            cursor: pointer; 
+            transition: border-color 0.2s, background 0.2s; 
+        }
+        .region-option:hover { border-color: #00FF7F; background: #1c263c; }
+        .region-option.active { border-color: #00FF7F; background: #142232; }
         
-        .region-radio { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #374151; display: flex; align-items: center; justify-content: center; background: #0b0f19; }
-        .region-option.active .region-radio { background: #00FF7F; border-color: #00FF7F; color: #050811; font-size: 12px; font-weight: bold; }
+        .region-info { display: flex; align-items: center; gap: 12px; }
+        .region-flag { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+        .region-name { font-weight: bold; font-size: 0.95rem; color: white; }
+        .region-currency { font-size: 0.8rem; color: #9ca3af; }
+        
+        .region-radio { 
+            width: 24px; 
+            height: 24px; 
+            border-radius: 50%; 
+            border: 2px solid #374151; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            background: #0b0f19; 
+            color: #050811;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .region-option.active .region-radio { background: #00FF7F; border-color: #00FF7F; }
 
-        /* Carrusel y demás componentes base */
+        /* Carrusel y estructura */
         .carousel-container { position: relative; width: 100%; max-width: 1100px; margin: 0 auto; overflow: hidden; border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); background-color: #0d0d11; }
         .carousel-track { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
         .carousel-slide { min-width: 100%; box-sizing: border-box; }
@@ -63,16 +124,11 @@
         .carousel-indicators { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
         .dot { width: 24px; height: 4px; background-color: rgba(255, 255, 255, 0.3); border-radius: 2px; cursor: pointer; transition: background-color 0.3s ease, width 0.3s ease; }
         .dot.active { background-color: #00FF7F; width: 32px; }
-
-        @media(max-width: 768px) {
-            nav { padding: 12px 20px; }
-            .nav-links { display: none; } /* Ocultar menú en móviles o adaptar */
-        }
     </style>
 </head>
 <body>
 
-    <!-- Barra de navegación exacta a la imagen 1 -->
+    <!-- Barra de navegación -->
     <nav>
         <div class="logo-nav">
             ASSA<span>X</span>
@@ -98,31 +154,28 @@
         </ul>
         
         <div class="nav-right-actions">
-            <!-- Botón de Lupa de Búsqueda -->
-            <button class="search-icon-btn" onclick="alert('Función de búsqueda rápida')" title="Buscar">
+            <!-- Botón Lupa de Búsqueda -->
+            <button class="search-icon-btn" onclick="alert('Búsqueda activada')" title="Buscar">
                 <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
             </button>
 
-            <!-- Botón VES que abre el Modal de la Imagen 2 -->
-            <button class="btn-region" onclick="abrirModalRegion()">
+            <!-- Botón de Región y Moneda (Abre el Modal) -->
+            <button class="btn-region" id="btnRegionTrigger">
                 <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                 <span id="label-moneda">VES</span>
             </button>
-
-            <!-- Botón Ingresar -->
-            <a href="#ingresar" class="btn-ingresar">Ingresar</a>
         </div>
     </nav>
 
-    <!-- Modal de Región y Moneda (Imagen 2) -->
+    <!-- Modal de Región y Moneda -->
     <div class="region-modal-overlay" id="modalRegion">
         <div class="region-modal-card">
-            <button class="region-modal-close" onclick="cerrarModalRegion()">✕</button>
+            <button class="region-modal-close" id="btnCloseRegion">✕</button>
             <div class="region-modal-title">Región y Moneda</div>
             <div class="region-modal-subtitle">Elige la divisa en la que deseas ver el catálogo</div>
 
             <!-- Opción Global -->
-            <div class="region-option" onclick="seleccionarMoneda('USD', 'Global')">
+            <div class="region-option" id="optGlobal" onclick="seleccionarMoneda('USD')">
                 <div class="region-info">
                     <div class="region-flag" style="background: #1e293b;">🌐</div>
                     <div>
@@ -130,11 +183,11 @@
                         <div class="region-currency">USD · $</div>
                     </div>
                 </div>
-                <div class="region-radio" id="radio-global"></div>
+                <div class="region-radio" id="radioGlobal"></div>
             </div>
 
-            <!-- Opción Venezuela (Activa por defecto) -->
-            <div class="region-option active" id="opt-venezuela" onclick="seleccionarMoneda('VES', 'Venezuela')">
+            <!-- Opción Venezuela (Seleccionada por defecto) -->
+            <div class="region-option active" id="optVES" onclick="seleccionarMoneda('VES')">
                 <div class="region-info">
                     <div class="region-flag">🇻🇪</div>
                     <div>
@@ -142,7 +195,7 @@
                         <div class="region-currency">VES · Bs.</div>
                     </div>
                 </div>
-                <div class="region-radio" id="radio-ves">✓</div>
+                <div class="region-radio" id="radioVES">✓</div>
             </div>
         </div>
     </div>
@@ -169,20 +222,63 @@
     </div>
 
     <script>
-        // Funciones para el Modal de Región / Moneda
-        function abrirModalRegion() {
-            document.getElementById('modalRegion').style.display = 'flex';
+        // Obtener elementos del DOM
+        const btnRegionTrigger = document.getElementById('btnRegionTrigger');
+        const modalRegion = document.getElementById('modalRegion');
+        const btnCloseRegion = document.getElementById('btnCloseRegion');
+        const labelMoneda = document.getElementById('label-moneda');
+
+        // Eventos para abrir y cerrar modal
+        btnRegionTrigger.addEventListener('click', function() {
+            modalRegion.style.display = 'flex';
+        });
+
+        btnCloseRegion.addEventListener('click', function() {
+            modalRegion.style.display = 'none';
+        });
+
+        // Cerrar si hace clic fuera de la tarjeta
+        window.addEventListener('click', function(event) {
+            if (event.target === modalRegion) {
+                modalRegion.style.display = 'none';
+            }
+        });
+
+        // Función para cambiar moneda activa
+        function seleccionarMoneda(moneda) {
+            labelMoneda.innerText = moneda;
+
+            const optGlobal = document.getElementById('optGlobal');
+            const optVES = document.getElementById('optVES');
+            const radioGlobal = document.getElementById('radioGlobal');
+            const radioVES = document.getElementById('radioVES');
+
+            if (moneda === 'VES') {
+                optVES.classList.add('active');
+                optGlobal.classList.remove('active');
+                radioVES.innerText = '✓';
+                radioGlobal.innerText = '';
+            } else {
+                optGlobal.classList.add('active');
+                optVES.classList.remove('active');
+                radioGlobal.innerText = '✓';
+                radioVES.innerText = '';
+            }
+
+            modalRegion.style.display = 'none';
         }
 
-        function cerrarModalRegion() {
-            document.getElementById('modalRegion').style.display = 'none';
-        }
+        // Lógica del Carrusel
+        let currentSlide = 0;
+        const dots = document.querySelectorAll('.carousel-indicators .dot');
 
-        function seleccionarMoneda(moneda, region) {
-            document.getElementById('label-moneda').innerText = moneda;
-            
-            // Cambiar clases visuales activas
-            const opciones = document.querySelectorAll('.region-option');
-            opciones.forEach(opt => opt.classList.remove('active'));
-            
-            if
+        function goToSlide(index) {
+            currentSlide = index;
+            document.querySelector('.carousel-track').style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+    </script>
+</body>
+</html>
