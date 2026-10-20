@@ -12,14 +12,12 @@
         /* Navegación */
         nav { background: #0b0f19; display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; border-bottom: 1px solid #1f2937; position: sticky; top: 0; z-index: 1000; }
         
-        .logo-nav { font-weight: 900; font-size: 1.6rem; letter-spacing: 1px; color: #fff; display: flex; align-items: center; text-transform: uppercase; }
+        .logo-nav { font-weight: 900; font-size: 1.6rem; letter-spacing: 1px; color: #fff; display: flex; align-items: center; text-transform: uppercase; cursor: pointer; }
         .logo-nav span { color: #00FF7F; }
 
         .nav-links { display: flex; gap: 25px; align-items: center; list-style: none; font-size: 0.9rem; }
-        .nav-item-dropdown { position: relative; }
         .nav-links a { color: #d1d5db; text-decoration: none; transition: color 0.2s; cursor: pointer; display: flex; align-items: center; gap: 4px; font-weight: 500; }
-        .nav-links a:hover { color: #00FF7F; }
-        .nav-links svg { width: 12px; height: 12px; fill: currentColor; }
+        .nav-links a:hover, .nav-links a.active { color: #00FF7F; }
 
         .nav-right-actions { display: flex; align-items: center; gap: 15px; }
         
@@ -32,6 +30,10 @@
         .globe-icon { color: #00FF7F; width: 16px; height: 16px; }
 
         .container { max-width: 1400px; margin: 0 auto; padding: 40px 30px; position: relative; z-index: 1; }
+
+        /* Control de Vistas */
+        .view-section { display: none; }
+        .view-section.active { display: block; }
 
         /* MODAL DE REGIÓN Y MONEDA */
         .region-modal-overlay { 
@@ -86,7 +88,7 @@
         .dot.active { background-color: #00FF7F; width: 32px; }
 
         /* Títulos de Secciones */
-        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; margin-top: 20px; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; margin-top: 20px; }
         .section-title { font-size: 1.8rem; font-weight: 800; color: #ffffff; letter-spacing: 0.5px; }
         .section-title span { color: #00FF7F; }
 
@@ -119,27 +121,18 @@
 
     <!-- Navegación -->
     <nav>
-        <div class="logo-nav">
+        <div class="logo-nav" onclick="mostrarVista('servicios')">
             ASSA<span>X</span>
         </div>
         <ul class="nav-links">
-            <li class="nav-item-dropdown">
-                <a href="#catalogo">Recargas 
-                    <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-                </a>
+            <li>
+                <a id="nav-recargas" onclick="mostrarVista('recargas')">Recargas</a>
             </li>
-            <li class="nav-item-dropdown">
-                <a href="#catalogo">Gift Cards 
-                    <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-                </a>
+            <li>
+                <a id="nav-servicios" class="active" onclick="mostrarVista('servicios')">Servicios</a>
             </li>
-            <li class="nav-item-dropdown">
-                <a href="#catalogo">Servicios 
-                    <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-                </a>
-            </li>
-            <li><a href="#catalogo">Reseñas</a></li>
-            <li><a href="#catalogo">Soporte</a></li>
+            <li><a onclick="alert('Sección de Reseñas')">Reseñas</a></li>
+            <li><a onclick="alert('Sección de Soporte')">Soporte</a></li>
         </ul>
         
         <div class="nav-right-actions">
@@ -195,244 +188,335 @@
     </div>
 
     <div class="container">
-        <!-- Carrusel Principal -->
-        <div class="carousel-container">
-            <div class="carousel-track" id="carouselTrack">
-                <div class="carousel-slide"><img src="https://i.imgur.com/wMd8QmY.jpeg" alt="Banner 1"></div>
-                <div class="carousel-slide"><img src="https://i.imgur.com/QLg6Fnl.png" alt="Banner 2"></div>
-                <div class="carousel-slide"><img src="https://i.imgur.com/i6K1rEH.png" alt="Banner 3"></div>
+
+        <!-- ==================== VISTA 1: SERVICIOS (PRINCIPAL) ==================== -->
+        <div id="vista-servicios" class="view-section active">
+            <!-- Carrusel Principal -->
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide"><img src="https://i.imgur.com/wMd8QmY.jpeg" alt="Banner 1"></div>
+                    <div class="carousel-slide"><img src="https://i.imgur.com/QLg6Fnl.png" alt="Banner 2"></div>
+                    <div class="carousel-slide"><img src="https://i.imgur.com/i6K1rEH.png" alt="Banner 3"></div>
+                </div>
+                <div class="carousel-indicators">
+                    <span class="dot active" onclick="goToSlide(0)"></span>
+                    <span class="dot" onclick="goToSlide(1)"></span>
+                    <span class="dot" onclick="goToSlide(2)"></span>
+                </div>
             </div>
-            <div class="carousel-indicators">
-                <span class="dot active" onclick="goToSlide(0)"></span>
-                <span class="dot" onclick="goToSlide(1)"></span>
-                <span class="dot" onclick="goToSlide(2)"></span>
+
+            <!-- CINES Y SERIES -->
+            <div class="section-header">
+                <h2 class="section-title">Cines y <span>Series</span></h2>
+                <a href="#" class="btn-ver-todos">Ver todos</a>
+            </div>
+
+            <div class="services-grid">
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://assets.nflxext.com/ffe/siteui/vlv3/9d2fc35e-57cf-432d-96f7-ebf345842881/4f808796-03c6-47a3-b2dd-ff8736d75be8/VE-es-20240930-popsignuptwoweeks-perspective_alpha_website_large.jpg" alt="Netflix">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">Streaming</span>
+                        <div class="service-name">Netflix</div>
+                    </div>
+                </a>
+
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=500&auto=format&fit=crop" alt="Disney+">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">Streaming</span>
+                        <div class="service-name">Disney+</div>
+                    </div>
+                </a>
+
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=500&auto=format&fit=crop" alt="Prime Video">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">Streaming</span>
+                        <div class="service-name">Prime Video</div>
+                    </div>
+                </a>
+
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=500&auto=format&fit=crop" alt="HBO Max">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">Streaming</span>
+                        <div class="service-name">HBO Max</div>
+                    </div>
+                </a>
+
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=500&auto=format&fit=crop" alt="Crunchyroll">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">Anime / Streaming</span>
+                        <div class="service-name">Crunchyroll</div>
+                    </div>
+                </a>
+
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=500&auto=format&fit=crop" alt="Vix+">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">Streaming</span>
+                        <div class="service-name">Vix+</div>
+                    </div>
+                </a>
+
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=500&auto=format&fit=crop" alt="Paramount+">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">Streaming</span>
+                        <div class="service-name">Paramount+</div>
+                    </div>
+                </a>
+
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=500&auto=format&fit=crop" alt="Universal+">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">Streaming</span>
+                        <div class="service-name">Universal+</div>
+                    </div>
+                </a>
+
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=500&auto=format&fit=crop" alt="Apple TV+">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">Streaming</span>
+                        <div class="service-name">Apple TV+</div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- MÚSICA SIN ANUNCIOS -->
+            <div class="section-header">
+                <h2 class="section-title">Música <span>sin Anuncios</span></h2>
+                <a href="#" class="btn-ver-todos">Ver todos</a>
+            </div>
+
+            <div class="services-grid">
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1614680376593-902f749f7edc?q=80&w=500&auto=format&fit=crop" alt="Spotify">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">Música / Streaming</span>
+                        <div class="service-name">Spotify</div>
+                    </div>
+                </a>
+
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=500&auto=format&fit=crop" alt="YouTube Premium">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">Música & Video</span>
+                        <div class="service-name">YouTube Premium</div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- IPTV TV -->
+            <div class="section-header">
+                <h2 class="section-title">IPTV <span>TV</span></h2>
+                <a href="#" class="btn-ver-todos">Ver todos</a>
+            </div>
+
+            <div class="services-grid">
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=500&auto=format&fit=crop" alt="FlujoTV">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">IPTV en Vivo</span>
+                        <div class="service-name">FlujoTV</div>
+                    </div>
+                </a>
+
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=500&auto=format&fit=crop" alt="StreamixTV">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">IPTV Exclusivo</span>
+                        <div class="service-name">StreamixTV</div>
+                    </div>
+                </a>
+
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1540655037529-dec987208707?q=80&w=500&auto=format&fit=crop" alt="IboPlayer">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">Licencia IPTV</span>
+                        <div class="service-name">IboPlayer</div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- IA & SISTEMAS -->
+            <div class="section-header">
+                <h2 class="section-title">IA & <span>Sistemas</span></h2>
+                <a href="#" class="btn-ver-todos">Ver todos</a>
+            </div>
+
+            <div class="services-grid">
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=500&auto=format&fit=crop" alt="Canva Pro Edu">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">Diseño / Herramientas</span>
+                        <div class="service-name">Canva Pro Edu</div>
+                    </div>
+                </a>
+
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=500&auto=format&fit=crop" alt="CapCut">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">Edición de Video</span>
+                        <div class="service-name">CapCut Pro</div>
+                    </div>
+                </a>
+
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=500&auto=format&fit=crop" alt="Duolingo">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">Educación / Idiomas</span>
+                        <div class="service-name">Duolingo Plus</div>
+                    </div>
+                </a>
+
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=500&auto=format&fit=crop" alt="Gemini">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">Inteligencia Artificial</span>
+                        <div class="service-name">Gemini Advanced</div>
+                    </div>
+                </a>
+
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1633419461186-7d40a38105ec?q=80&w=500&auto=format&fit=crop" alt="Office 365">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">Productividad / Software</span>
+                        <div class="service-name">Microsoft Office 365</div>
+                    </div>
+                </a>
             </div>
         </div>
 
-        <!-- 1. CATEGORÍA: CINES Y SERIES -->
-        <div class="section-header">
-            <h2 class="section-title">Cines y <span>Series</span></h2>
-            <a href="#" class="btn-ver-todos">Ver todos</a>
+        <!-- ==================== VISTA 2: JUEGOS DE RECARGA (APARTE) ==================== -->
+        <div id="vista-recargas" class="view-section">
+            <div class="section-header" style="margin-top: 10px;">
+                <h2 class="section-title">Juegos de <span>Recarga</span></h2>
+                <a href="#" class="btn-ver-todos">Ver todos</a>
+            </div>
+
+            <div class="services-grid">
+                <!-- Free Fire -->
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=500&auto=format&fit=crop" alt="Free Fire">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">NORTE / SUR</span>
+                        <div class="service-name">Free fire</div>
+                    </div>
+                </a>
+
+                <!-- Call of Duty Mobile -->
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=500&auto=format&fit=crop" alt="Call of Duty Mobile">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">GLOBAL</span>
+                        <div class="service-name">Call of Duty Mobile</div>
+                    </div>
+                </a>
+
+                <!-- Roblox -->
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=500&auto=format&fit=crop" alt="Roblox">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">GLOBAL</span>
+                        <div class="service-name">Roblox</div>
+                    </div>
+                </a>
+
+                <!-- Mobile Legends -->
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=500&auto=format&fit=crop" alt="Mobile Legends">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">GLOBAL</span>
+                        <div class="service-name">Mobile Legends</div>
+                    </div>
+                </a>
+
+                <!-- Blood Strike -->
+                <a href="#" class="service-card">
+                    <div class="service-image-box">
+                        <img src="https://images.unsplash.com/photo-1552824722-b2d97a9fef1c?q=80&w=500&auto=format&fit=crop" alt="Blood Strike">
+                    </div>
+                    <div class="service-content">
+                        <span class="service-tag">GLOBAL</span>
+                        <div class="service-name">Blood Strike</div>
+                    </div>
+                </a>
+            </div>
         </div>
 
-        <div class="services-grid">
-            <a href="#" class="service-card">
-                <div class="service-image-box">
-                    <img src="https://assets.nflxext.com/ffe/siteui/vlv3/9d2fc35e-57cf-432d-96f7-ebf345842881/4f808796-03c6-47a3-b2dd-ff8736d75be8/VE-es-20240930-popsignuptwoweeks-perspective_alpha_website_large.jpg" alt="Netflix">
-                </div>
-                <div class="service-content">
-                    <span class="service-tag">Streaming</span>
-                    <div class="service-name">Netflix</div>
-                </div>
-            </a>
-
-            <a href="#" class="service-card">
-                <div class="service-image-box">
-                    <img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=500&auto=format&fit=crop" alt="Disney+">
-                </div>
-                <div class="service-content">
-                    <span class="service-tag">Streaming</span>
-                    <div class="service-name">Disney+</div>
-                </div>
-            </a>
-
-            <a href="#" class="service-card">
-                <div class="service-image-box">
-                    <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=500&auto=format&fit=crop" alt="Prime Video">
-                </div>
-                <div class="service-content">
-                    <span class="service-tag">Streaming</span>
-                    <div class="service-name">Prime Video</div>
-                </div>
-            </a>
-
-            <a href="#" class="service-card">
-                <div class="service-image-box">
-                    <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=500&auto=format&fit=crop" alt="HBO Max">
-                </div>
-                <div class="service-content">
-                    <span class="service-tag">Streaming</span>
-                    <div class="service-name">HBO Max</div>
-                </div>
-            </a>
-
-            <a href="#" class="service-card">
-                <div class="service-image-box">
-                    <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=500&auto=format&fit=crop" alt="Crunchyroll">
-                </div>
-                <div class="service-content">
-                    <span class="service-tag">Anime / Streaming</span>
-                    <div class="service-name">Crunchyroll</div>
-                </div>
-            </a>
-
-            <a href="#" class="service-card">
-                <div class="service-image-box">
-                    <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=500&auto=format&fit=crop" alt="Vix+">
-                </div>
-                <div class="service-content">
-                    <span class="service-tag">Streaming</span>
-                    <div class="service-name">Vix+</div>
-                </div>
-            </a>
-
-            <a href="#" class="service-card">
-                <div class="service-image-box">
-                    <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=500&auto=format&fit=crop" alt="Paramount+">
-                </div>
-                <div class="service-content">
-                    <span class="service-tag">Streaming</span>
-                    <div class="service-name">Paramount+</div>
-                </div>
-            </a>
-
-            <a href="#" class="service-card">
-                <div class="service-image-box">
-                    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=500&auto=format&fit=crop" alt="Universal+">
-                </div>
-                <div class="service-content">
-                    <span class="service-tag">Streaming</span>
-                    <div class="service-name">Universal+</div>
-                </div>
-            </a>
-
-            <a href="#" class="service-card">
-                <div class="service-image-box">
-                    <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=500&auto=format&fit=crop" alt="Apple TV+">
-                </div>
-                <div class="service-content">
-                    <span class="service-tag">Streaming</span>
-                    <div class="service-name">Apple TV+</div>
-                </div>
-            </a>
-        </div>
-
-        <!-- 2. CATEGORÍA: MÚSICA SIN ANUNCIOS -->
-        <div class="section-header">
-            <h2 class="section-title">Música <span>sin Anuncios</span></h2>
-            <a href="#" class="btn-ver-todos">Ver todos</a>
-        </div>
-
-        <div class="services-grid">
-            <a href="#" class="service-card">
-                <div class="service-image-box">
-                    <img src="https://images.unsplash.com/photo-1614680376593-902f749f7edc?q=80&w=500&auto=format&fit=crop" alt="Spotify">
-                </div>
-                <div class="service-content">
-                    <span class="service-tag">Música / Streaming</span>
-                    <div class="service-name">Spotify</div>
-                </div>
-            </a>
-
-            <a href="#" class="service-card">
-                <div class="service-image-box">
-                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=500&auto=format&fit=crop" alt="YouTube Premium">
-                </div>
-                <div class="service-content">
-                    <span class="service-tag">Música & Video</span>
-                    <div class="service-name">YouTube Premium</div>
-                </div>
-            </a>
-        </div>
-
-        <!-- 3. CATEGORÍA: IPTV TV -->
-        <div class="section-header">
-            <h2 class="section-title">IPTV <span>TV</span></h2>
-            <a href="#" class="btn-ver-todos">Ver todos</a>
-        </div>
-
-        <div class="services-grid">
-            <a href="#" class="service-card">
-                <div class="service-image-box">
-                    <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=500&auto=format&fit=crop" alt="FlujoTV">
-                </div>
-                <div class="service-content">
-                    <span class="service-tag">IPTV en Vivo</span>
-                    <div class="service-name">FlujoTV</div>
-                </div>
-            </a>
-
-            <a href="#" class="service-card">
-                <div class="service-image-box">
-                    <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=500&auto=format&fit=crop" alt="StreamixTV">
-                </div>
-                <div class="service-content">
-                    <span class="service-tag">IPTV Exclusivo</span>
-                    <div class="service-name">StreamixTV</div>
-                </div>
-            </a>
-
-            <a href="#" class="service-card">
-                <div class="service-image-box">
-                    <img src="https://images.unsplash.com/photo-1540655037529-dec987208707?q=80&w=500&auto=format&fit=crop" alt="IboPlayer">
-                </div>
-                <div class="service-content">
-                    <span class="service-tag">Licencia IPTV</span>
-                    <div class="service-name">IboPlayer</div>
-                </div>
-            </a>
-        </div>
-
-        <!-- 4. CATEGORÍA: IA & SISTEMAS -->
-        <div class="section-header">
-            <h2 class="section-title">IA & <span>Sistemas</span></h2>
-            <a href="#" class="btn-ver-todos">Ver todos</a>
-        </div>
-
-        <div class="services-grid">
-            <a href="#" class="service-card">
-                <div class="service-image-box">
-                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=500&auto=format&fit=crop" alt="Canva Pro Edu">
-                </div>
-                <div class="service-content">
-                    <span class="service-tag">Diseño / Herramientas</span>
-                    <div class="service-name">Canva Pro Edu</div>
-                </div>
-            </a>
-
-            <a href="#" class="service-card">
-                <div class="service-image-box">
-                    <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=500&auto=format&fit=crop" alt="CapCut">
-                </div>
-                <div class="service-content">
-                    <span class="service-tag">Edición de Video</span>
-                    <div class="service-name">CapCut Pro</div>
-                </div>
-            </a>
-
-            <a href="#" class="service-card">
-                <div class="service-image-box">
-                    <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=500&auto=format&fit=crop" alt="Duolingo">
-                </div>
-                <div class="service-content">
-                    <span class="service-tag">Educación / Idiomas</span>
-                    <div class="service-name">Duolingo Plus</div>
-                </div>
-            </a>
-
-            <a href="#" class="service-card">
-                <div class="service-image-box">
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=500&auto=format&fit=crop" alt="Gemini">
-                </div>
-                <div class="service-content">
-                    <span class="service-tag">Inteligencia Artificial</span>
-                    <div class="service-name">Gemini Advanced</div>
-                </div>
-            </a>
-
-            <a href="#" class="service-card">
-                <div class="service-image-box">
-                    <img src="https://images.unsplash.com/photo-1633419461186-7d40a38105ec?q=80&w=500&auto=format&fit=crop" alt="Office 365">
-                </div>
-                <div class="service-content">
-                    <span class="service-tag">Productividad / Software</span>
-                    <div class="service-name">Microsoft Office 365</div>
-                </div>
-            </a>
-        </div>
     </div>
 
     <script>
+        // Cambio dinámico de vista (Recargas vs Servicios)
+        function mostrarVista(vista) {
+            const vistaServicios = document.getElementById('vista-servicios');
+            const vistaRecargas = document.getElementById('vista-recargas');
+            const navServicios = document.getElementById('nav-servicios');
+            const navRecargas = document.getElementById('nav-recargas');
+
+            if (vista === 'recargas') {
+                vistaServicios.classList.remove('active');
+                vistaRecargas.classList.add('active');
+                navRecargas.classList.add('active');
+                navServicios.classList.remove('active');
+            } else {
+                vistaRecargas.classList.remove('active');
+                vistaServicios.classList.add('active');
+                navServicios.classList.add('active');
+                navRecargas.classList.remove('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         // Modal de Región
         function abrirModalRegion() {
             document.getElementById('modalRegion').style.display = 'flex';
