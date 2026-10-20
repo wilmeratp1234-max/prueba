@@ -112,18 +112,21 @@
 
         .product-page-layout { display: grid; grid-template-columns: 1fr 360px; gap: 30px; align-items: start; }
         
-        .product-main-content { display: flex; flex-direction: column; gap: 25px; }
+        .product-main-content { display: flex; flex-direction: column; gap: 22px; }
 
-        .product-header { margin-bottom: 10px; }
+        .product-header { margin-bottom: 5px; }
         .product-title-big { font-size: 2.8rem; font-weight: 900; color: #ffffff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-        .product-region-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; color: #00FF7F; font-weight: 600; }
+        .product-region-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.88rem; color: #00FF7F; font-weight: 600; }
         .product-region-badge svg { width: 16px; height: 16px; fill: currentColor; }
 
-        .step-box { background: #0b0f19; border: 1px solid #1f2937; border-radius: 18px; padding: 25px; }
-        .step-title-row { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-        .step-number { width: 28px; height: 28px; border-radius: 50%; background: #00FF7F; color: #050811; font-weight: 900; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; }
-        .step-title { font-size: 1.1rem; font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; }
+        .step-box { background: #0b0f19; border: 1px solid #1f2937; border-radius: 18px; padding: 22px; }
+        .step-title-row { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+        .step-number { width: 28px; height: 28px; border-radius: 50%; background: #00FF7F; color: #050811; font-weight: 900; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .step-title { font-size: 1.05rem; font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; }
         .step-title span { color: #00FF7F; }
+
+        .input-sublabel { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 800; color: #00FF7F; text-transform: uppercase; margin-bottom: 10px; }
+        .input-sublabel svg { width: 14px; height: 14px; fill: currentColor; }
 
         .player-id-input-group { display: flex; gap: 12px; }
         .input-player-id { flex: 1; background: #070a12; border: 1px solid #1f2937; border-radius: 12px; padding: 14px 18px; color: #ffffff; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
@@ -131,49 +134,33 @@
         .btn-verify-id { background: #192233; border: 1px solid #2b3548; color: #ffffff; font-weight: 700; padding: 0 24px; border-radius: 12px; cursor: pointer; transition: all 0.2s; }
         .btn-verify-id:hover { background: #253147; border-color: #00FF7F; color: #00FF7F; }
 
-        /* Categorías / Tabs de paquetes */
-        .packages-tabs-row { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 18px; }
-        .package-tab-btn { background: #070a12; border: 1px solid #1f2937; color: #9ca3af; padding: 8px 18px; border-radius: 10px; font-weight: bold; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; }
-        .package-tab-btn.active { background: #0d261b; border-color: #00FF7F; color: #00FF7F; }
+        /* Categorías / Toggle de paquetes en móvil */
+        .packages-toggle-container { background: #070a12; border: 1px solid #1f2937; border-radius: 14px; padding: 4px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 20px; }
+        .package-tab-btn { background: transparent; border: none; color: #9ca3af; padding: 10px; border-radius: 10px; font-weight: bold; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; text-align: center; }
+        .package-tab-btn.active { background: #0d261b; border: 1px solid #00FF7F; color: #00FF7F; }
 
         .packages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
         .package-card { background: #070a12; border: 1px solid #1f2937; border-radius: 14px; padding: 16px; cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column; justify-content: space-between; gap: 15px; position: relative; }
         .package-card:hover { border-color: #374151; }
-        .package-card.active { border: 2px solid #00FF7F; background: #081812; }
+        .package-card.active { border: 1.5px solid #00FF7F; background: #081812; }
 
-        .package-card-top { display: flex; align-items: center; gap: 10px; }
-        .package-icon { width: 32px; height: 32px; object-fit: contain; }
-        .package-amount { font-size: 1.05rem; font-weight: 800; color: #ffffff; }
-        .package-extra { color: #ffb703; font-weight: 800; font-size: 0.85rem; }
+        .package-card-top { display: flex; align-items: center; justify-content: space-between; }
+        .package-amount { font-size: 0.95rem; font-weight: 800; color: #ffffff; }
+        .package-extra { color: #ffb703; font-weight: 800; font-size: 0.82rem; }
+        .info-small-circle { width: 14px; height: 14px; border-radius: 50%; border: 1px solid #374151; color: #6b7280; font-size: 10px; display: flex; align-items: center; justify-content: center; }
 
-        .package-price-badge { background: #111827; border: 1px solid #1f2937; border-radius: 8px; padding: 10px; text-align: center; font-weight: 800; font-size: 0.95rem; color: #ffffff; transition: background 0.2s; }
-        .package-card.active .package-price-badge { background: #00FF7F; color: #050811; }
+        .package-price-badge { background: #0e1320; border: 1px solid #1f2937; border-radius: 10px; padding: 12px; text-align: center; font-weight: 800; font-size: 0.92rem; color: #ffffff; transition: background 0.2s; }
+        .package-card.active .package-price-badge { background: #0a1e16; border-color: #00FF7F; color: #00FF7F; }
 
         /* Acordeón Información del Producto */
         .info-accordion { background: #0b0f19; border: 1px solid #1f2937; border-radius: 16px; overflow: hidden; }
-        .info-accordion-header { padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
-        .info-accordion-title { display: flex; align-items: center; gap: 12px; font-size: 1.05rem; font-weight: 800; color: #ffffff; }
-        .info-accordion-icon { width: 36px; height: 36px; border-radius: 50%; background: #0d1726; border: 1px solid #1f2937; color: #00FF7F; display: flex; align-items: center; justify-content: center; font-weight: bold; }
-        .info-accordion-content { padding: 0 25px 25px 25px; color: #9ca3af; font-size: 0.9rem; line-height: 1.6; border-top: 1px solid #151c2c; display: none; margin-top: 10px; padding-top: 20px; }
+        .info-accordion-header { padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .info-accordion-title-box { display: flex; align-items: center; gap: 12px; }
+        .info-accordion-icon { width: 36px; height: 36px; border-radius: 50%; background: #070a12; border: 1px solid #1f2937; color: #00FF7F; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .info-accordion-main-text { font-size: 0.98rem; font-weight: 800; color: #ffffff; }
+        .info-accordion-sub-text { font-size: 0.75rem; color: #6b7280; margin-top: 2px; }
+        .info-accordion-content { padding: 0 20px 20px 20px; color: #9ca3af; font-size: 0.88rem; line-height: 1.6; border-top: 1px solid #151c2c; display: none; margin-top: 10px; padding-top: 15px; }
         .info-accordion-content.open { display: block; }
-
-        /* SECCIÓN DE RESEÑAS DE PRODUCTO */
-        .reviews-section-box { margin-top: 10px; }
-        .reviews-header-title { font-size: 0.85rem; font-weight: bold; color: #9ca3af; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px; }
-        .reviews-layout { display: grid; grid-template-columns: 240px 1fr; gap: 20px; }
-        
-        .review-score-card { background: #0b0f19; border: 1px solid #1f2937; border-radius: 16px; padding: 25px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .review-score-label { font-size: 0.75rem; font-weight: 800; color: #9ca3af; text-transform: uppercase; margin-bottom: 10px; }
-        .review-score-number { font-size: 3.5rem; font-weight: 900; color: #ffffff; line-height: 1; }
-
-        .reviews-list-card { background: #0b0f19; border: 1px solid #1f2937; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; }
-        .single-review-item { display: flex; justify-content: space-between; align-items: center; }
-        .reviewer-info { display: flex; align-items: center; gap: 12px; }
-        .reviewer-avatar { width: 42px; height: 42px; border-radius: 50%; background: #131d2e; border: 1px solid #2b3548; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
-        .reviewer-name { font-weight: 800; font-size: 0.95rem; color: #ffffff; display: flex; align-items: center; gap: 8px; }
-        .badge-verified { background: rgba(0, 255, 127, 0.15); border: 1px solid rgba(0, 255, 127, 0.3); color: #00FF7F; font-size: 0.65rem; font-weight: 800; padding: 2px 8px; border-radius: 10px; }
-        .reviewer-meta { font-size: 0.78rem; color: #6b7280; margin-top: 3px; }
-        .review-stars { color: #ffb703; font-size: 1rem; letter-spacing: 2px; }
 
         /* SIDEBAR DE RESUMEN DE PEDIDO (RIGHT STICKY) */
         .order-summary-card { background: #0b0f19; border: 1px solid #1f2937; border-radius: 20px; padding: 22px; position: sticky; top: 90px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); }
@@ -228,11 +215,11 @@
         .feature-title { font-size: 0.95rem; font-weight: bold; color: #ffffff; margin-bottom: 4px; }
         .feature-desc { font-size: 0.8rem; color: #9ca3af; line-height: 1.4; }
 
-        /* ADAPTACIÓN MÓVIL RESPONSIVA */
+        /* ADAPTACIÓN MÓVIL EXACTA A LAS IMÁGENES DE REFERENCIA */
         @media(max-width: 992px) {
             .product-page-layout { grid-template-columns: 1fr; }
-            .order-summary-card { position: fixed; bottom: 0; left: 0; right: 0; width: 100%; z-index: 999; border-radius: 20px 20px 0 0; top: auto; }
-            .packages-grid { grid-template-columns: repeat(2, 1fr); }
+            .order-summary-card { position: relative; top: 0; margin-top: 20px; }
+            .packages-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
         }
 
         @media(max-width: 768px) {
@@ -254,9 +241,9 @@
             .support-cards-grid { grid-template-columns: 1fr; gap: 15px; }
             .support-features-grid { grid-template-columns: 1fr; }
 
-            .reviews-layout { grid-template-columns: 1fr; }
+            .product-title-big { font-size: 2.2rem; }
             .packages-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .product-title-big { font-size: 2.1rem; }
+            .step-box { padding: 16px; }
         }
     </style>
 </head>
@@ -291,7 +278,7 @@
                 </button>
 
                 <button class="btn-region btn-region-desktop" onclick="abrirModalRegion()">
-                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/></svg>
                     <span id="label-moneda">VES</span>
                 </button>
 
@@ -518,7 +505,7 @@
             </div>
         </div>
 
-        <!-- ==================== VISTA 4: DETALLE DE PRODUCTO (NUEVA) ==================== -->
+        <!-- ==================== VISTA 4: DETALLE DE PRODUCTO ==================== -->
         <div id="vista-producto" class="view-section">
             <div class="breadcrumbs">
                 <a onclick="mostrarVista('servicios')">Inicio</a> &gt; <span id="prod-bread-title">Free fire</span>
@@ -532,7 +519,7 @@
                         <h1 class="product-title-big" id="prod-title">FREE FIRE</h1>
                         <div class="product-region-badge">
                             <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                            Canjeable en <strong style="color: white; margin-left: 4px;" id="prod-tag">Norte / Sur</strong>
+                            <span id="prod-tag-prefix">Canjeable en</span> <strong style="color: white; margin-left: 2px;" id="prod-tag">Norte / Sur</strong>
                         </div>
                     </div>
 
@@ -542,71 +529,95 @@
                             <div class="step-number">1</div>
                             <div class="step-title">Datos del <span>Jugador</span></div>
                         </div>
+                        
+                        <div class="input-sublabel">
+                            <svg viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                            PLAYER ID
+                        </div>
+
                         <div class="player-id-input-group">
-                            <input type="text" class="input-player-id" placeholder="Ingresa tu UID o ID de cuenta">
-                            <button class="btn-verify-id" onclick="alert('ID Verificado correctamente')">Verificar</button>
+                            <input type="text" class="input-player-id" placeholder="Ingresa tu UID">
+                            <button class="btn-verify-id" onclick="alert('ID Verificado')">Verificar</button>
                         </div>
                     </div>
 
                     <!-- Paso 2: Selecciona tu Paquete -->
                     <div class="step-box">
-                        <div class="step-title-row" style="justify-content: space-between;">
-                            <div style="display: flex; align-items: center; gap: 12px;">
-                                <div class="step-number">2</div>
-                                <div class="step-title">SELECCIONA TU <span>PAQUETE</span></div>
-                            </div>
-                            <div class="packages-tabs-row" style="margin-bottom:0;">
-                                <button class="package-tab-btn active">Diamantes</button>
-                                <button class="package-tab-btn">Paquetes</button>
-                            </div>
+                        <div class="step-title-row">
+                            <div class="step-number">2</div>
+                            <div class="step-title">SELECCIONA TU <span>PAQUETE</span></div>
                         </div>
 
-                        <!-- Opciones de Paquetes -->
+                        <!-- Toggle Móvil Completo Ancho -->
+                        <div class="packages-toggle-container">
+                            <button class="package-tab-btn active">Diamantes</button>
+                            <button class="package-tab-btn">Paquetes</button>
+                        </div>
+
+                        <!-- Opciones de Paquetes en 2 Columnas Móvil -->
                         <div class="packages-grid">
                             <div class="package-card" onclick="seleccionarPaquete(100, 10, 838.30, this)">
                                 <div class="package-card-top">
-                                    <span class="package-amount">100</span>
-                                    <span class="package-extra">+ 10 Extra</span>
+                                    <div>
+                                        <span class="package-amount">100</span>
+                                        <span class="package-extra"> + 10 Extra</span>
+                                    </div>
+                                    <div class="info-small-circle">i</div>
                                 </div>
                                 <div class="package-price-badge">Bs. 838,30</div>
                             </div>
 
                             <div class="package-card active" onclick="seleccionarPaquete(310, 31, 2504.80, this)">
                                 <div class="package-card-top">
-                                    <span class="package-amount">310</span>
-                                    <span class="package-extra">+ 31 Extra</span>
+                                    <div>
+                                        <span class="package-amount">310</span>
+                                        <span class="package-extra"> + 31 Extra</span>
+                                    </div>
+                                    <div class="info-small-circle">i</div>
                                 </div>
                                 <div class="package-price-badge">Bs. 2.504,80</div>
                             </div>
 
                             <div class="package-card" onclick="seleccionarPaquete(520, 52, 4242.00, this)">
                                 <div class="package-card-top">
-                                    <span class="package-amount">520</span>
-                                    <span class="package-extra">+ 52 Extra</span>
+                                    <div>
+                                        <span class="package-amount">520</span>
+                                        <span class="package-extra"> + 52 Extra</span>
+                                    </div>
+                                    <div class="info-small-circle">i</div>
                                 </div>
                                 <div class="package-price-badge">Bs. 4.242,00</div>
                             </div>
 
                             <div class="package-card" onclick="seleccionarPaquete(1060, 106, 7878.00, this)">
                                 <div class="package-card-top">
-                                    <span class="package-amount">1060</span>
-                                    <span class="package-extra">+ 106 Extra</span>
+                                    <div>
+                                        <span class="package-amount">1060</span>
+                                        <span class="package-extra"> + 106 Extra</span>
+                                    </div>
+                                    <div class="info-small-circle">i</div>
                                 </div>
                                 <div class="package-price-badge">Bs. 7.878,00</div>
                             </div>
 
                             <div class="package-card" onclick="seleccionarPaquete(2180, 218, 15634.80, this)">
                                 <div class="package-card-top">
-                                    <span class="package-amount">2180</span>
-                                    <span class="package-extra">+ 218 Extra</span>
+                                    <div>
+                                        <span class="package-amount">2180</span>
+                                        <span class="package-extra"> + 218 Extra</span>
+                                    </div>
+                                    <div class="info-small-circle">i</div>
                                 </div>
                                 <div class="package-price-badge">Bs. 15.634,80</div>
                             </div>
 
                             <div class="package-card" onclick="seleccionarPaquete(5600, 560, 39794.00, this)">
                                 <div class="package-card-top">
-                                    <span class="package-amount">5600</span>
-                                    <span class="package-extra">+ 560 Extra</span>
+                                    <div>
+                                        <span class="package-amount">5600</span>
+                                        <span class="package-extra"> + 560 Extra</span>
+                                    </div>
+                                    <div class="info-small-circle">i</div>
                                 </div>
                                 <div class="package-price-badge">Bs. 39.794,00</div>
                             </div>
@@ -616,39 +627,17 @@
                     <!-- Acordeón Información del Producto -->
                     <div class="info-accordion">
                         <div class="info-accordion-header" onclick="toggleAccordion()">
-                            <div class="info-accordion-title">
+                            <div class="info-accordion-title-box">
                                 <div class="info-accordion-icon">i</div>
-                                Información del <span style="color: #00FF7F; margin-left: 4px;">Producto</span>
-                            </div>
-                            <span id="accordion-arrow" style="color: #9ca3af;">▼</span>
-                        </div>
-                        <div class="info-accordion-content" id="accordion-body">
-                            ¿Buscas dónde recargar en Venezuela? En AssaX te ofrecemos entregas al instante, 100% seguras y sin riesgo de baneo. Paga fácil en Bolívares por Pago Móvil, o usando Binance Pay. Compra con los precios más baratos del mercado y la tienda más confiable del país.
-                        </div>
-                    </div>
-
-                    <!-- Sección Reseñas de Producto -->
-                    <div class="reviews-section-box">
-                        <div class="reviews-header-title">MOSTRANDO 1-5 DE 416 RESEÑAS</div>
-                        <div class="reviews-layout">
-                            <div class="review-score-card">
-                                <div class="review-score-label">CALIFICACIÓN GENERAL</div>
-                                <div class="review-score-number">4.9</div>
-                                <div class="review-stars" style="margin-top: 8px;">★★★★★</div>
-                            </div>
-
-                            <div class="reviews-list-card">
-                                <div class="single-review-item">
-                                    <div class="reviewer-info">
-                                        <div class="reviewer-avatar">👤</div>
-                                        <div>
-                                            <div class="reviewer-name">Miguel González <span class="badge-verified">VERIFICADA</span></div>
-                                            <div class="reviewer-meta">20 oct 2026 • Recarga Recibida al Instante</div>
-                                        </div>
-                                    </div>
-                                    <div class="review-stars">★★★★★</div>
+                                <div>
+                                    <div class="info-accordion-main-text">Información del <span style="color: #00FF7F;">Producto</span></div>
+                                    <div class="info-accordion-sub-text">Toca para ver detalles</div>
                                 </div>
                             </div>
+                            <span id="accordion-arrow" style="color: #9ca3af; font-size: 0.8rem;">▼</span>
+                        </div>
+                        <div class="info-accordion-content" id="accordion-body">
+                            ¿Buscas dónde recargar en Venezuela? En AssaX te ofrecemos entregas al instante, 100% seguras y sin riesgo de baneo. Paga fácil en Bolívares por Pago Móvil, o usando Binance Pay. Compra tus diamantes o suscripciones con los precios más bajos del mercado.
                         </div>
                     </div>
 
@@ -693,11 +682,9 @@
     </div>
 
     <script>
-        // Variables de estado del producto activo
         let precioBase = 2504.80;
         let cantidad = 1;
 
-        // Abrir vista de producto
         function abrirProducto(nombre, tag, imagen) {
             document.getElementById('prod-title').innerText = nombre;
             document.getElementById('prod-bread-title').innerText = nombre;
