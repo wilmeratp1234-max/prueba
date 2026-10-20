@@ -33,7 +33,7 @@
 
         .container { max-width: 1400px; margin: 0 auto; padding: 40px 30px; }
 
-        /* MODAL DE REGIÓN Y MONEDA (Imagen 2) */
+        /* MODAL DE REGIÓN Y MONEDA (Imagen 2 y 4) */
         .region-modal-overlay { 
             position: fixed; 
             top: 0; 
@@ -96,14 +96,40 @@
         .region-option:hover { border-color: #00FF7F; background: #1c263c; }
         .region-option.active { border-color: #00FF7F; background: #142232; }
         
-        .region-info { display: flex; align-items: center; gap: 12px; }
-        .region-flag { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+        .region-info { display: flex; align-items: center; gap: 14px; }
+        
+        /* Estilos para los iconos circulares */
+        .region-icon-circle { 
+            width: 38px; 
+            height: 38px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #121929;
+            border: 1px solid #253147;
+        }
+        
+        .region-icon-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .region-icon-circle svg {
+            width: 20px;
+            height: 20px;
+            fill: #00FF7F;
+        }
+
         .region-name { font-weight: bold; font-size: 0.95rem; color: white; }
-        .region-currency { font-size: 0.8rem; color: #9ca3af; }
+        .region-currency { font-size: 0.8rem; color: #9ca3af; margin-top: 2px; }
         
         .region-radio { 
-            width: 24px; 
-            height: 24px; 
+            width: 26px; 
+            height: 26px; 
             border-radius: 50%; 
             border: 2px solid #374151; 
             display: flex; 
@@ -112,11 +138,20 @@
             background: #0b0f19; 
             color: #050811;
             font-weight: bold;
-            font-size: 12px;
+            font-size: 13px;
         }
-        .region-option.active .region-radio { background: #00FF7F; border-color: #00FF7F; }
 
-        /* Carrusel y estructura */
+        .arrow-icon {
+            color: #4b5563;
+            font-size: 14px;
+        }
+
+        .region-option.active .region-radio { 
+            background: #00FF7F; 
+            border-color: #00FF7F; 
+        }
+
+        /* Carrusel */
         .carousel-container { position: relative; width: 100%; max-width: 1100px; margin: 0 auto; overflow: hidden; border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); background-color: #0d0d11; }
         .carousel-track { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
         .carousel-slide { min-width: 100%; box-sizing: border-box; }
@@ -128,7 +163,7 @@
 </head>
 <body>
 
-    <!-- Barra de navegación -->
+    <!-- Navegación -->
     <nav>
         <div class="logo-nav">
             ASSA<span>X</span>
@@ -159,7 +194,7 @@
                 <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
             </button>
 
-            <!-- Botón de Región y Moneda (Abre el Modal) -->
+            <!-- Botón de Región y Moneda -->
             <button class="btn-region" id="btnRegionTrigger">
                 <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                 <span id="label-moneda">VES</span>
@@ -177,108 +212,5 @@
             <!-- Opción Global -->
             <div class="region-option" id="optGlobal" onclick="seleccionarMoneda('USD')">
                 <div class="region-info">
-                    <div class="region-flag" style="background: #1e293b;">🌐</div>
-                    <div>
-                        <div class="region-name">Global</div>
-                        <div class="region-currency">USD · $</div>
-                    </div>
-                </div>
-                <div class="region-radio" id="radioGlobal"></div>
-            </div>
-
-            <!-- Opción Venezuela (Seleccionada por defecto) -->
-            <div class="region-option active" id="optVES" onclick="seleccionarMoneda('VES')">
-                <div class="region-info">
-                    <div class="region-flag">🇻🇪</div>
-                    <div>
-                        <div class="region-name">Venezuela</div>
-                        <div class="region-currency">VES · Bs.</div>
-                    </div>
-                </div>
-                <div class="region-radio" id="radioVES">✓</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <header style="text-align: center; margin-bottom: 40px;">
-            <h1>AssaX Store</h1>
-            <p>Líderes en Entretenimiento</p>
-        </header>
-
-        <!-- Carrusel Principal -->
-        <div class="carousel-container">
-            <div class="carousel-track">
-                <div class="carousel-slide"><img src="https://i.imgur.com/wMd8QmY.jpeg" alt="Banner 1"></div>
-                <div class="carousel-slide"><img src="https://i.imgur.com/QLg6Fnl.png" alt="Banner 2"></div>
-                <div class="carousel-slide"><img src="https://i.imgur.com/i6K1rEH.png" alt="Banner 3"></div>
-            </div>
-            <div class="carousel-indicators">
-                <span class="dot active" onclick="goToSlide(0)"></span>
-                <span class="dot" onclick="goToSlide(1)"></span>
-                <span class="dot" onclick="goToSlide(2)"></span>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Obtener elementos del DOM
-        const btnRegionTrigger = document.getElementById('btnRegionTrigger');
-        const modalRegion = document.getElementById('modalRegion');
-        const btnCloseRegion = document.getElementById('btnCloseRegion');
-        const labelMoneda = document.getElementById('label-moneda');
-
-        // Eventos para abrir y cerrar modal
-        btnRegionTrigger.addEventListener('click', function() {
-            modalRegion.style.display = 'flex';
-        });
-
-        btnCloseRegion.addEventListener('click', function() {
-            modalRegion.style.display = 'none';
-        });
-
-        // Cerrar si hace clic fuera de la tarjeta
-        window.addEventListener('click', function(event) {
-            if (event.target === modalRegion) {
-                modalRegion.style.display = 'none';
-            }
-        });
-
-        // Función para cambiar moneda activa
-        function seleccionarMoneda(moneda) {
-            labelMoneda.innerText = moneda;
-
-            const optGlobal = document.getElementById('optGlobal');
-            const optVES = document.getElementById('optVES');
-            const radioGlobal = document.getElementById('radioGlobal');
-            const radioVES = document.getElementById('radioVES');
-
-            if (moneda === 'VES') {
-                optVES.classList.add('active');
-                optGlobal.classList.remove('active');
-                radioVES.innerText = '✓';
-                radioGlobal.innerText = '';
-            } else {
-                optGlobal.classList.add('active');
-                optVES.classList.remove('active');
-                radioGlobal.innerText = '✓';
-                radioVES.innerText = '';
-            }
-
-            modalRegion.style.display = 'none';
-        }
-
-        // Lógica del Carrusel
-        let currentSlide = 0;
-        const dots = document.querySelectorAll('.carousel-indicators .dot');
-
-        function goToSlide(index) {
-            currentSlide = index;
-            document.querySelector('.carousel-track').style.transform = `translateX(-${currentSlide * 100}%)`;
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentSlide);
-            });
-        }
-    </script>
-</body>
-</html>
+                    <div class="region-icon-circle">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1
