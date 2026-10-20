@@ -85,9 +85,11 @@
         .dot { width: 24px; height: 4px; background-color: rgba(255, 255, 255, 0.3); border-radius: 2px; cursor: pointer; transition: background-color 0.3s ease, width 0.3s ease; }
         .dot.active { background-color: #00FF7F; width: 32px; }
 
-        /* Estilos de Secciones y Categorías */
+        /* Estilos de Títulos con resalte en Verde Neón */
         .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; margin-top: 20px; }
-        .section-title { font-size: 1.8rem; font-weight: bold; color: #ffffff; letter-spacing: 0.5px; }
+        .section-title { font-size: 1.8rem; font-weight: 800; color: #ffffff; letter-spacing: 0.5px; }
+        .section-title span { color: #00FF7F; } /* Estilo idéntico a la referencia */
+
         .btn-ver-todos { background: #111827; border: 1px solid #1f2937; color: #9ca3af; padding: 8px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; cursor: pointer; text-decoration: none; transition: all 0.2s; }
         .btn-ver-todos:hover { background: #1f2937; color: white; border-color: #00FF7F; }
 
@@ -146,7 +148,7 @@
                 <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
             </button>
 
-            <!-- Botón VES (Disparador del Modal) -->
+            <!-- Botón VES -->
             <button class="btn-region" onclick="abrirModalRegion()">
                 <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                 <span id="label-moneda">VES</span>
@@ -209,7 +211,7 @@
 
         <!-- 1. CATEGORÍA: CINES Y SERIES -->
         <div class="section-header">
-            <h2 class="section-title">Cines y Series</h2>
+            <h2 class="section-title">Cines y <span>Series</span></h2>
             <a href="#" class="btn-ver-todos">Ver todos</a>
         </div>
 
@@ -305,9 +307,9 @@
             </a>
         </div>
 
-        <!-- 2. CATEGORÍA: MÚSICA -->
+        <!-- 2. CATEGORÍA: MÚSICA SIN ANUNCIOS -->
         <div class="section-header">
-            <h2 class="section-title">Música</h2>
+            <h2 class="section-title">Música <span>sin Anuncios</span></h2>
             <a href="#" class="btn-ver-todos">Ver todos</a>
         </div>
 
@@ -333,9 +335,9 @@
             </a>
         </div>
 
-        <!-- 3. CATEGORÍA: IPTV -->
+        <!-- 3. CATEGORÍA: IPTV TV -->
         <div class="section-header">
-            <h2 class="section-title">IPTV</h2>
+            <h2 class="section-title">IPTV <span>TV</span></h2>
             <a href="#" class="btn-ver-todos">Ver todos</a>
         </div>
 
