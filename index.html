@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="./favicon.png?v=2">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #050811; color: #ffffff; padding: 0; overflow-x: hidden; }
+        body { background-color: #050811; color: #ffffff; padding: 0; overflow-x: hidden; position: relative; }
         
         /* NAVEGACIÓN DESKTOP */
         header.main-header { position: sticky; top: 0; z-index: 1000; background: #0b0f19; border-bottom: 1px solid #1f2937; }
@@ -334,11 +334,200 @@
         .feature-title { font-size: 0.95rem; font-weight: bold; color: #ffffff; margin-bottom: 4px; }
         .feature-desc { font-size: 0.8rem; color: #9ca3af; line-height: 1.4; }
 
+        /* ==================== FOOTER FINAL COMPLETO ==================== */
+        footer.main-footer {
+            background-color: #0b0f19;
+            border-top: 1px solid #1f2937;
+            padding: 50px 30px 30px 30px;
+            margin-top: 60px;
+            color: #9ca3af;
+            font-size: 0.85rem;
+        }
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+        .footer-top-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+        .footer-brand-box .logo-nav {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+        .footer-brand-desc {
+            line-height: 1.5;
+            max-width: 320px;
+            margin-bottom: 20px;
+            color: #9ca3af;
+        }
+        .footer-social-links {
+            display: flex;
+            gap: 12px;
+        }
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #111827;
+            border: 1px solid #1f2937;
+            color: #9ca3af;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .social-btn:hover {
+            border-color: #40E0D0;
+            color: #40E0D0;
+            background: #192334;
+        }
+        .social-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+        
+        .footer-col-title {
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+        .footer-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .footer-links-list a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+        .footer-links-list a:hover {
+            color: #40E0D0;
+        }
+
+        .footer-middle-bar {
+            background: #070a12;
+            border: 1px solid #151c2c;
+            border-radius: 16px;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .footer-secure-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .secure-icon-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(64, 224, 208, 0.1);
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            color: #40E0D0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+        .secure-text-main {
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+        .secure-text-sub {
+            font-size: 0.7rem;
+            color: #6b7280;
+            text-transform: uppercase;
+        }
+        
+        .footer-payment-badges {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .pay-badge {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-legal-disclaimer {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-align: center;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .footer-bottom-copyright {
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #9ca3af;
+            border-top: 1px solid #151c2c;
+            padding-top: 20px;
+        }
+
+        /* BOTÓN FLOTANTE WHATSAPP */
+        .whatsapp-float-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 55px;
+            height: 55px;
+            background-color: #25d366;
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 9999;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .whatsapp-float-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+        .whatsapp-float-btn svg {
+            width: 30px;
+            height: 30px;
+            fill: currentColor;
+        }
+
         @media(max-width: 992px) {
             .product-page-layout { grid-template-columns: 1fr; }
             .order-summary-card { position: relative; top: 0; margin-top: 15px; }
             .packages-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .payment-methods-grid { grid-template-columns: 1fr; }
+            .footer-top-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
         }
         @media(max-width: 768px) {
             .top-subbar-mobile { display: flex; }
@@ -353,6 +542,8 @@
             .step-box { padding: 14px; border-radius: 14px; }
             .packages-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
             .pm-grid-2x2 { grid-template-columns: 1fr; }
+            .footer-top-grid { grid-template-columns: 1fr; gap: 25px; }
+            .footer-middle-bar { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -390,7 +581,7 @@
                 </button>
 
                 <button class="btn-region btn-region-desktop" onclick="abrirModalRegion()">
-                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                     <span id="label-moneda">VES</span>
                 </button>
             </div>
@@ -586,7 +777,7 @@
                 </div>
             </div>
 
-            <!-- NUEVA CATEGORÍA: OTROS SERVICIOS -->
+            <!-- CATEGORÍA: OTROS SERVICIOS -->
             <div class="section-header">
                 <h2 class="section-title">Otros <span>Servicios</span></h2>
                 <a href="#" class="btn-ver-todos">Ver todos</a>
@@ -1092,6 +1283,89 @@
         </div>
 
     </div>
+
+    <!-- ==================== FOOTER FINAL COMPLETO ==================== -->
+    <footer class="main-footer">
+        <div class="footer-inner">
+            <div class="footer-top-grid">
+                <div class="footer-brand-box">
+                    <div class="logo-nav" onclick="mostrarVista('servicios')">
+                        STREAM<span>MIX</span>
+                    </div>
+                    <p class="footer-brand-desc">Tu arsenal gamer premium. Entregas al instante y el mejor precio garantizado en toda Latinoamérica.</p>
+                    <div class="footer-social-links">
+                        <a href="https://instagram.com" target="_blank" class="social-btn" title="Instagram">
+                            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" class="social-btn" title="Facebook">
+                            <svg viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/></svg>
+                        </a>
+                        <a href="https://wa.me/584124405245" target="_blank" class="social-btn" title="WhatsApp">
+                            <svg viewBox="0 0 24 24"><path d="M12.031 2c-5.514 0-9.989 4.475-9.989 9.989 0 1.763.459 3.488 1.332 5.006l-1.374 5.016 5.132-1.347c1.472.803 3.136 1.226 4.899 1.226 5.514 0 9.989-4.475 9.989-9.989 0-5.515-4.475-9.99-9.989-9.99zm0 18.254c-1.55 0-3.072-.417-4.402-1.206l-.316-.188-3.053.801.815-2.977-.206-.328c-.868-1.383-1.326-2.983-1.326-4.622 0-4.555 3.707-8.262 8.263-8.262 4.555 0 8.262 3.707 8.262 8.262 0 4.556-3.707 8.263-8.263 8.263zm4.531-6.185c-.248-.124-1.468-.724-1.696-.807-.228-.083-.393-.124-.559.124-.165.248-.642.807-.787.973-.145.165-.29.186-.538.062-.248-.124-1.048-.386-1.996-1.232-.738-.658-1.237-1.47-1.382-1.718-.145-.248-.015-.382.109-.505.111-.11.248-.29.372-.435.124-.145.165-.248.248-.414.083-.165.042-.311-.021-.435-.062-.124-.559-1.348-.765-1.844-.201-.484-.406-.418-.559-.426l-.476-.008c-.165 0-.435.062-.663.311-.228.248-.87 0.851-.87 2.076 0 1.225.891 2.408 1.015 2.574.124.165 1.752 2.675 4.246 3.752.593.256 1.056.409 1.417.524.596.19 1.138.163 1.567.099.479-.071 1.468-.601 1.675-1.18.207-.579.207-1.076.145-1.18-.062-.104-.227-.166-.475-.29z"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="footer-col-title">AYUDA</div>
+                    <ul class="footer-links-list">
+                        <li><a onclick="mostrarVista('soporte')">¿Cómo comprar?</a></li>
+                        <li><a onclick="mostrarVista('soporte')">Contactar Agente</a></li>
+                        <li><a onclick="mostrarVista('soporte')">Preguntas Frecuentes</a></li>
+                        <li><a href="https://t.me" target="_blank">Únete a Telegram</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="footer-col-title">CATEGORÍAS</div>
+                    <ul class="footer-links-list">
+                        <li><a onclick="mostrarVista('servicios')">Todo el Catálogo</a></li>
+                        <li><a onclick="mostrarVista('recargas')">Juegos</a></li>
+                        <li><a onclick="mostrarVista('servicios')">Gift Cards</a></li>
+                        <li><a onclick="mostrarVista('servicios')">Otros Servicios</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="footer-col-title">SOPORTE Y LEGAL</div>
+                    <ul class="footer-links-list">
+                        <li><a onclick="alert('Términos y Condiciones')">Términos y Condiciones</a></li>
+                        <li><a onclick="alert('Política de Privacidad')">Política de Privacidad</a></li>
+                        <li><a onclick="alert('Políticas de Reembolso')">Políticas de Reembolso</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-middle-bar">
+                <div class="footer-secure-box">
+                    <div class="secure-icon-circle">🛡️</div>
+                    <div>
+                        <div class="secure-text-main">COMPRA 100% SEGURA</div>
+                        <div class="secure-text-sub">ENCRIPTACIÓN SSL DE GRADO BANCARIO</div>
+                    </div>
+                </div>
+                <div class="footer-payment-badges">
+                    <span style="font-size: 0.75rem; font-weight: 800; color: #6b7280; text-transform: uppercase;">ACEPTAMOS:</span>
+                    <div class="pay-badge"><span style="color:#f0b90b;">⬡</span> BINANCE PAY</div>
+                    <div class="pay-badge"><span style="color:#40E0D0;">✓</span> PAGO MÓVIL</div>
+                    <span style="font-size: 0.75rem; font-weight: 800; color: #6b7280; text-transform: uppercase; margin-left: 4px;">Y MUCHOS MÁS</span>
+                </div>
+            </div>
+
+            <p class="footer-legal-disclaimer">
+                Streamix Store es una plataforma comercial independiente de intermediación y distribución de bienes digitales y pines. No estamos afiliados, asociados, autorizados ni respaldados oficialmente por Garena, Activision, Supercell ni ninguna otra desarrolladora mencionada. Todas las marcas comerciales y derechos pertenecen a sus respectivos dueños.
+            </p>
+
+            <div class="footer-bottom-copyright">
+                © 2026 STREAMIX STORE. TODOS LOS DERECHOS RESERVADOS.
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <a href="https://wa.me/584124405245" target="_blank" class="whatsapp-float-btn" title="Contactar por WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M12.031 2c-5.514 0-9.989 4.475-9.989 9.989 0 1.763.459 3.488 1.332 5.006l-1.374 5.016 5.132-1.347c1.472.803 3.136 1.226 4.899 1.226 5.514 0 9.989-4.475 9.989-9.989 0-5.515-4.475-9.99-9.989-9.99zm0 18.254c-1.55 0-3.072-.417-4.402-1.206l-.316-.188-3.053.801.815-2.977-.206-.328c-.868-1.383-1.326-2.983-1.326-4.622 0-4.555 3.707-8.262 8.263-8.262 4.555 0 8.262 3.707 8.262 8.262 0 4.556-3.707 8.263-8.263 8.263zm4.531-6.185c-.248-.124-1.468-.724-1.696-.807-.228-.083-.393-.124-.559.124-.165.248-.642.807-.787.973-.145.165-.29.186-.538.062-.248-.124-1.048-.386-1.996-1.232-.738-.658-1.237-1.47-1.382-1.718-.145-.248-.015-.382.109-.505.111-.11.248-.29.372-.435.124-.145.165-.248.248-.414.083-.165.042-.311-.021-.435-.062-.124-.559-1.348-.765-1.844-.201-.484-.406-.418-.559-.426l-.476-.008c-.165 0-.435.062-.663.311-.228.248-.87 0.851-.87 2.076 0 1.225.891 2.408 1.015 2.574.124.165 1.752 2.675 4.246 3.752.593.256 1.056.409 1.417.524.596.19 1.138.163 1.567.099.479-.071 1.468-.601 1.675-1.18.207-.579.207-1.076.145-1.18-.062-.104-.227-.166-.475-.29z"/></svg>
+    </a>
 
     <script>
         let tasaVES = 60.00;
