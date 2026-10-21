@@ -168,7 +168,7 @@
         .summary-subtitle { font-size: 0.72rem; color: #6b7280; text-transform: uppercase; font-weight: 700; margin-top: 2px; }
 
         .summary-item-row { background: #070a12; border: 1px solid #1f2937; border-radius: 12px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .summary-item-title { font-size: 0.95rem; font-weight: 800; color: #ffffff; }
+        .summary-item-title { font-size: 0.88rem; font-weight: 800; color: #ffffff; }
         .quantity-control { display: flex; align-items: center; gap: 12px; background: #0b0f19; border: 1px solid #1f2937; border-radius: 8px; padding: 4px 10px; }
         .btn-qty { background: transparent; border: none; color: #ffffff; font-weight: bold; cursor: pointer; font-size: 1.1rem; }
         .qty-number { font-weight: bold; font-size: 0.9rem; color: #ffffff; }
@@ -213,7 +213,7 @@
         .feature-title { font-size: 0.95rem; font-weight: bold; color: #ffffff; margin-bottom: 4px; }
         .feature-desc { font-size: 0.8rem; color: #9ca3af; line-height: 1.4; }
 
-        /* OPTIMIZACIÓN EXCLUSIVA PARA MÓVILES (SIN BOTÓN ENTRAR Y MÁS COMPACTO) */
+        /* MÓVIL OPTIMIZADO */
         @media(max-width: 992px) {
             .product-page-layout { grid-template-columns: 1fr; }
             .order-summary-card { position: relative; top: 0; margin-top: 15px; }
@@ -371,9 +371,9 @@
                     <div class="service-content"><span class="service-tag">Streaming</span><div class="service-name">Netflix</div></div>
                 </div>
 
-                <div class="service-card" onclick="abrirProducto('Disney+', 'Streaming', 'https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=500&auto=format&fit=crop')">
+                <div class="service-card" onclick="abrirProducto('Disney+ Premium', 'Streaming', 'https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=500&auto=format&fit=crop')">
                     <div class="service-image-box"><img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=500&auto=format&fit=crop" alt="Disney+"></div>
-                    <div class="service-content"><span class="service-tag">Streaming</span><div class="service-name">Disney+</div></div>
+                    <div class="service-content"><span class="service-tag">Streaming</span><div class="service-name">Disney+ Premium</div></div>
                 </div>
 
                 <div class="service-card" onclick="abrirProducto('Prime Video', 'Streaming', 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=500&auto=format&fit=crop')">
@@ -381,14 +381,52 @@
                     <div class="service-content"><span class="service-tag">Streaming</span><div class="service-name">Prime Video</div></div>
                 </div>
 
-                <div class="service-card" onclick="abrirProducto('HBO Max', 'Streaming', 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=500&auto=format&fit=crop')">
+                <div class="service-card" onclick="abrirProducto('HBO Max Standar', 'Streaming', 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=500&auto=format&fit=crop')">
                     <div class="service-image-box"><img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=500&auto=format&fit=crop" alt="HBO Max"></div>
-                    <div class="service-content"><span class="service-tag">Streaming</span><div class="service-name">HBO Max</div></div>
+                    <div class="service-content"><span class="service-tag">Streaming</span><div class="service-name">HBO Max Standar</div></div>
                 </div>
 
                 <div class="service-card" onclick="abrirProducto('Crunchyroll', 'Anime / Streaming', 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=500&auto=format&fit=crop')">
                     <div class="service-image-box"><img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=500&auto=format&fit=crop" alt="Crunchyroll"></div>
                     <div class="service-content"><span class="service-tag">Anime / Streaming</span><div class="service-name">Crunchyroll</div></div>
+                </div>
+
+                <div class="service-card" onclick="abrirProducto('Paramount+', 'Streaming', 'https://images.unsplash.com/photo-1578022761797-b8636ac1773c?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1578022761797-b8636ac1773c?q=80&w=500&auto=format&fit=crop" alt="Paramount+"></div>
+                    <div class="service-content"><span class="service-tag">Streaming</span><div class="service-name">Paramount+</div></div>
+                </div>
+
+                <div class="service-card" onclick="abrirProducto('Vix', 'Streaming', 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=500&auto=format&fit=crop" alt="Vix"></div>
+                    <div class="service-content"><span class="service-tag">Streaming</span><div class="service-name">Vix</div></div>
+                </div>
+
+                <div class="service-card" onclick="abrirProducto('AppleTV', 'Streaming', 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=500&auto=format&fit=crop" alt="AppleTV"></div>
+                    <div class="service-content"><span class="service-tag">Streaming</span><div class="service-name">AppleTV</div></div>
+                </div>
+
+                <div class="service-card" onclick="abrirProducto('Universal+', 'Streaming', 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=500&auto=format&fit=crop" alt="Universal+"></div>
+                    <div class="service-content"><span class="service-tag">Streaming</span><div class="service-name">Universal+</div></div>
+                </div>
+            </div>
+
+            <!-- TV EN VIVO E IPTV -->
+            <div class="section-header">
+                <h2 class="section-title">TV en Vivo & <span>IPTV</span></h2>
+                <a href="#" class="btn-ver-todos">Ver todos</a>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card" onclick="abrirProducto('Streamix TV', 'IPTV / Canales', 'https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=500&auto=format&fit=crop" alt="Streamix TV"></div>
+                    <div class="service-content"><span class="service-tag">IPTV / Canales</span><div class="service-name">Streamix TV</div></div>
+                </div>
+
+                <div class="service-card" onclick="abrirProducto('FlujoTV', 'IPTV / Streaming', 'https://images.unsplash.com/photo-1461151304267-38535e780c79?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1461151304267-38535e780c79?q=80&w=500&auto=format&fit=crop" alt="FlujoTV"></div>
+                    <div class="service-content"><span class="service-tag">IPTV / Streaming</span><div class="service-name">FlujoTV</div></div>
                 </div>
             </div>
 
@@ -401,18 +439,18 @@
             <div class="services-grid">
                 <div class="service-card" onclick="abrirProducto('Spotify Premium', 'Música / Streaming', 'https://images.unsplash.com/photo-1614680376593-902f749f7edc?q=80&w=500&auto=format&fit=crop')">
                     <div class="service-image-box"><img src="https://images.unsplash.com/photo-1614680376593-902f749f7edc?q=80&w=500&auto=format&fit=crop" alt="Spotify"></div>
-                    <div class="service-content"><span class="service-tag">Música / Streaming</span><div class="service-name">Spotify</div></div>
+                    <div class="service-content"><span class="service-tag">Música / Streaming</span><div class="service-name">Spotify Premium</div></div>
                 </div>
 
-                <div class="service-card" onclick="abrirProducto('YouTube Premium', 'Música & Video', 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=500&auto=format&fit=crop')">
+                <div class="service-card" onclick="abrirProducto('Youtube Premium', 'Música & Video', 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=500&auto=format&fit=crop')">
                     <div class="service-image-box"><img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=500&auto=format&fit=crop" alt="YouTube Premium"></div>
-                    <div class="service-content"><span class="service-tag">Música & Video</span><div class="service-name">YouTube Premium</div></div>
+                    <div class="service-content"><span class="service-tag">Música & Video</span><div class="service-name">Youtube Premium</div></div>
                 </div>
             </div>
 
-            <!-- IA & SISTEMAS -->
+            <!-- IA & DISEÑO -->
             <div class="section-header">
-                <h2 class="section-title">IA & <span>Sistemas</span></h2>
+                <h2 class="section-title">IA & <span>Diseño</span></h2>
                 <a href="#" class="btn-ver-todos">Ver todos</a>
             </div>
 
@@ -422,9 +460,9 @@
                     <div class="service-content"><span class="service-tag">Diseño / Herramientas</span><div class="service-name">Canva Pro Edu</div></div>
                 </div>
 
-                <div class="service-card" onclick="abrirProducto('CapCut Pro', 'Edición de Video', 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=500&auto=format&fit=crop')">
+                <div class="service-card" onclick="abrirProducto('Capcut', 'Edición de Video', 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=500&auto=format&fit=crop')">
                     <div class="service-image-box"><img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=500&auto=format&fit=crop" alt="CapCut"></div>
-                    <div class="service-content"><span class="service-tag">Edición de Video</span><div class="service-name">CapCut Pro</div></div>
+                    <div class="service-content"><span class="service-tag">Edición de Video</span><div class="service-name">Capcut</div></div>
                 </div>
             </div>
         </div>
@@ -557,8 +595,8 @@
 
                         <!-- Toggle Dinámico -->
                         <div class="packages-toggle-container" id="toggle-container">
-                            <button class="package-tab-btn active" id="tab-btn-1" onclick="cambiarTab(0)">Perfiles / Pantallas</button>
-                            <button class="package-tab-btn" id="tab-btn-2" onclick="cambiarTab(1)">Cuentas Completas</button>
+                            <button class="package-tab-btn active" id="tab-btn-1" onclick="cambiarTab(0)">Planes Disponibles</button>
+                            <button class="package-tab-btn" id="tab-btn-2" onclick="cambiarTab(1)">Opciones Extra</button>
                         </div>
 
                         <!-- Opciones de Paquetes Dinámicas -->
@@ -597,7 +635,7 @@
                     </div>
 
                     <div class="summary-item-row">
-                        <span class="summary-item-title" id="summary-pkg-text">1 Pantalla • 30 Días</span>
+                        <span class="summary-item-title" id="summary-pkg-text">1 Pantalla (Con código de Viaje)</span>
                         <div class="quantity-control">
                             <button class="btn-qty" onclick="cambiarCantidad(-1)">-</button>
                             <span class="qty-number" id="qty-val">1</span>
@@ -612,7 +650,7 @@
 
                     <div class="total-price-row">
                         <span class="total-label">TOTAL A PAGAR</span>
-                        <div class="total-amount"><span>Bs.</span><span id="total-val">350,00</span></div>
+                        <div class="total-amount"><span id="curr-symbol">Bs.</span><span id="total-val">240,00</span></div>
                     </div>
 
                     <button class="btn-checkout" onclick="alert('Procesando pedido...')">
@@ -625,92 +663,238 @@
     </div>
 
     <script>
-        const catalogoPaquetes = {
-            juego: {
+        // Tasa de cambio de USD a VES
+        let tasaVES = 60.00;
+        let monedaActual = 'VES';
+
+        // Base de Datos con todos los precios exactos que enviaste
+        const baseDeDatosPrecios = {
+            "netflix": {
+                tab1Nombre: "Planes Principales",
+                tab2Nombre: "Cuentas",
+                idLabel: "CORREO DE CONTACTO",
+                idPlaceholder: "Ingresa tu correo para la entrega",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Con código de Viaje", precioUSD: 4.00, active: true },
+                    { monto: "1 Pantalla", extra: "Personalizada", precioUSD: 5.00 },
+                    { monto: "Cuenta Completa", extra: "Acceso Total", precioUSD: 14.99 }
+                ],
+                paquetesTab2: [
+                    { monto: "Cuenta Completa", extra: "Ilimitada", precioUSD: 14.99 }
+                ]
+            },
+            "disney+ premium": {
+                tab1Nombre: "Planes Pantallas",
+                tab2Nombre: "Cuentas Completa",
+                idLabel: "CORREO DE CONTACTO",
+                idPlaceholder: "Correo para la suscripción",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "ESPN Incluido", precioUSD: 3.50, active: true },
+                    { monto: "Cuenta Completa", extra: "Multipantalla", precioUSD: 15.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "Cuenta Completa", extra: "4K UHD", precioUSD: 15.00 }
+                ]
+            },
+            "prime video": {
+                tab1Nombre: "Opciones de Pantalla",
+                tab2Nombre: "Cuenta Completa",
+                idLabel: "CORREO DE CONTACTO",
+                idPlaceholder: "Tu correo electrónico",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Full HD", precioUSD: 1.40, active: true },
+                    { monto: "Cuenta Completa", extra: "3 Dispositivos", precioUSD: 5.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "Cuenta Completa", extra: "Privada", precioUSD: 5.00 }
+                ]
+            },
+            "hbo max standar": {
+                tab1Nombre: "Pantallas",
+                tab2Nombre: "Cuentas",
+                idLabel: "CORREO DE CONTACTO",
+                idPlaceholder: "Correo para la activación",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Standar", precioUSD: 2.00, active: true },
+                    { monto: "Cuenta Completa", extra: "4K Standar", precioUSD: 5.50 }
+                ],
+                paquetesTab2: [
+                    { monto: "Cuenta Completa", extra: "Privada", precioUSD: 5.50 }
+                ]
+            },
+            "crunchyroll": {
+                tab1Nombre: "Mega Fan",
+                tab2Nombre: "Cuenta Completa",
+                idLabel: "CORREO DE CONTACTO",
+                idPlaceholder: "Tu correo electrónico",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Mega Fan", precioUSD: 1.20, active: true },
+                    { monto: "Cuenta Completa", extra: "4 Pantallas", precioUSD: 5.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "Cuenta Completa", extra: "Anual / Mensual", precioUSD: 5.00 }
+                ]
+            },
+            "paramount+": {
+                tab1Nombre: "Planes",
+                tab2Nombre: "Cuentas",
+                idLabel: "CORREO DE CONTACTO",
+                idPlaceholder: "Tu correo electrónico",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Full HD", precioUSD: 2.00, active: true },
+                    { monto: "Cuenta Completa", extra: "Privada", precioUSD: 5.50 }
+                ],
+                paquetesTab2: [
+                    { monto: "Cuenta Completa", extra: "VIP", precioUSD: 5.50 }
+                ]
+            },
+            "vix": {
+                tab1Nombre: "Planes Premium",
+                tab2Nombre: "Cuentas",
+                idLabel: "CORREO DE CONTACTO",
+                idPlaceholder: "Tu correo para la entrega",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Deportes & Novelas", precioUSD: 1.20, active: true },
+                    { monto: "Cuenta Completa", extra: "Full Pass", precioUSD: 4.50 }
+                ],
+                paquetesTab2: [
+                    { monto: "Cuenta Completa", extra: "Privada", precioUSD: 4.50 }
+                ]
+            },
+            "appletv": {
+                tab1Nombre: "Opciones de Servicio",
+                tab2Nombre: "Cuentas",
+                idLabel: "CORREO DE CONTACTO",
+                idPlaceholder: "Tu ID o correo de Apple",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Apple Originals", precioUSD: 1.50, active: true },
+                    { monto: "Cuenta Completa", extra: "Acceso Total", precioUSD: 4.50 }
+                ],
+                paquetesTab2: [
+                    { monto: "Cuenta Completa", extra: "Original", precioUSD: 4.50 }
+                ]
+            },
+            "universal+": {
+                tab1Nombre: "Planes",
+                tab2Nombre: "Cuentas",
+                idLabel: "CORREO DE CONTACTO",
+                idPlaceholder: "Correo de contacto",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Universal Channels", precioUSD: 1.50, active: true },
+                    { monto: "Cuenta Completa", extra: "HD", precioUSD: 5.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "Cuenta Completa", extra: "Privada", precioUSD: 5.00 }
+                ]
+            },
+            "spotify premium": {
+                tab1Nombre: "Suscripción a tu correo",
+                tab2Nombre: "Planes Largos",
+                idLabel: "CORREO DE TU CUENTA SPOTIFY",
+                idPlaceholder: "Ingresa el correo de tu cuenta Spotify",
+                paquetesTab1: [
+                    { monto: "A tu correo", extra: "1 Mes", precioUSD: 5.00, active: true },
+                    { monto: "A tu correo", extra: "3 Meses", precioUSD: 15.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "A tu correo", extra: "3 Meses", precioUSD: 15.00 }
+                ]
+            },
+            "youtube premium": {
+                tab1Nombre: "Individual",
+                tab2Nombre: "Renovable",
+                idLabel: "CORREO DE TU CUENTA YOUTUBE",
+                idPlaceholder: "Tu correo para invitarte al plan",
+                paquetesTab1: [
+                    { monto: "1 Mes", extra: "Renovable", precioUSD: 4.00, active: true }
+                ],
+                paquetesTab2: [
+                    { monto: "1 Mes", extra: "Renovable", precioUSD: 4.00 }
+                ]
+            },
+            "capcut": {
+                tab1Nombre: "Planes Pro",
+                tab2Nombre: "Suscripción",
+                idLabel: "CORREO DE CONTACTO",
+                idPlaceholder: "Tu correo electrónico",
+                paquetesTab1: [
+                    { monto: "1 Mes", extra: "No Renovable", precioUSD: 6.50, active: true }
+                ],
+                paquetesTab2: [
+                    { monto: "1 Mes", extra: "No Renovable", precioUSD: 6.50 }
+                ]
+            },
+            "streamix tv": {
+                tab1Nombre: "Suscripciones IPTV",
+                tab2Nombre: "Ofertas Especiales",
+                idLabel: "DISPOSITIVO / APP",
+                idPlaceholder: "Ej: Smart TV / Firestick / Celular",
+                paquetesTab1: [
+                    { monto: "1 Mes de Servicio", extra: "1800+ Canales", precioUSD: 2.50, active: true },
+                    { monto: "3 Meses", extra: "Oferta", precioUSD: 6.00 },
+                    { monto: "6 Meses", extra: "Ahorro", precioUSD: 9.50 },
+                    { monto: "12 Meses", extra: "Anual VIP", precioUSD: 14.50 }
+                ],
+                paquetesTab2: [
+                    { monto: "3 Meses", extra: "Oferta", precioUSD: 6.00 },
+                    { monto: "12 Meses", extra: "VIP", precioUSD: 14.50 }
+                ]
+            },
+            "flujotv": {
+                tab1Nombre: "Planes FlujoTV",
+                tab2Nombre: "Promociones Extra",
+                idLabel: "DISPOSITIVO / APP",
+                idPlaceholder: "Ej: Magis / Firestick / Android",
+                paquetesTab1: [
+                    { monto: "1 Mes de Servicio", extra: "Estándar", precioUSD: 3.00, active: true },
+                    { monto: "3 Meses", extra: "Pack", precioUSD: 8.00 },
+                    { monto: "6 Meses + 1", extra: "Bonus +1 Mes", precioUSD: 17.00 },
+                    { monto: "12 Meses + 2", extra: "Bonus +2 Meses", precioUSD: 36.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "6 Meses + 1", extra: "Combo", precioUSD: 17.00 },
+                    { monto: "12 Meses + 2", extra: "Anual Mega", precioUSD: 36.00 }
+                ]
+            },
+            "canva pro edu": {
+                tab1Nombre: "Planes a tu Correo",
+                tab2Nombre: "Suscripciones Anuales",
+                idLabel: "CORREO DE TU CUENTA CANVA",
+                idPlaceholder: "Correo donde recibirás la invitación Pro",
+                paquetesTab1: [
+                    { monto: "Cuenta Pro", extra: "1 Mes A tu correo", precioUSD: 1.50, active: true },
+                    { monto: "Cuenta Pro", extra: "3 Meses A tu correo", precioUSD: 3.00 },
+                    { monto: "Cuenta Pro", extra: "6 Meses A tu correo", precioUSD: 5.50 },
+                    { monto: "Cuenta Pro", extra: "12 Meses A tu correo", precioUSD: 10.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "Cuenta Pro", extra: "12 Meses A tu correo", precioUSD: 10.00 }
+                ]
+            },
+            "free fire": {
                 tab1Nombre: "Diamantes",
                 tab2Nombre: "Paquetes",
                 idLabel: "PLAYER ID",
                 idPlaceholder: "Ingresa tu UID",
                 paquetesTab1: [
-                    { monto: "100", extra: "+ 10 Extra", precio: 838.30 },
-                    { monto: "310", extra: "+ 31 Extra", precio: 2504.80, active: true },
-                    { monto: "520", extra: "+ 52 Extra", precio: 4242.00 },
-                    { monto: "1060", extra: "+ 106 Extra", precio: 7878.00 },
-                    { monto: "2180", extra: "+ 218 Extra", precio: 15634.80 },
-                    { monto: "5600", extra: "+ 560 Extra", precio: 39794.00 }
+                    { monto: "100", extra: "+ 10 Extra", precioUSD: 13.97 },
+                    { monto: "310", extra: "+ 31 Extra", precioUSD: 41.74, active: true },
+                    { monto: "520", extra: "+ 52 Extra", precioUSD: 70.70 },
+                    { monto: "1060", extra: "+ 106 Extra", precioUSD: 131.30 },
+                    { monto: "2180", extra: "+ 218 Extra", precioUSD: 260.58 },
+                    { monto: "5600", extra: "+ 560 Extra", precioUSD: 663.23 }
                 ],
                 paquetesTab2: [
-                    { monto: "Pase Semanal", extra: "Especial", precio: 950.00 },
-                    { monto: "Pase Mensual", extra: "VIP", precio: 3200.00 },
-                    { monto: "Caja Sorpresa", extra: "Bonus", precio: 450.00 },
-                    { monto: "Paquete Épico", extra: "Top", precio: 5100.00 }
-                ]
-            },
-            streaming: {
-                tab1Nombre: "Perfiles / Pantallas",
-                tab2Nombre: "Cuentas Completas",
-                idLabel: "CORREO DE CONTACTO",
-                idPlaceholder: "Ingresa tu correo para la entrega",
-                paquetesTab1: [
-                    { monto: "1 Pantalla", extra: "30 Días", precio: 350.00, active: true },
-                    { monto: "2 Pantallas", extra: "Oferta", precio: 650.00 },
-                    { monto: "Ultra HD 4K", extra: "Completa", precio: 1200.00 }
-                ],
-                paquetesTab2: [
-                    { monto: "Cuenta 1 Mes", extra: "Privada", precio: 1100.00 },
-                    { monto: "Cuenta 3 Meses", extra: "Descuento", precio: 3100.00 },
-                    { monto: "Cuenta 6 Meses", extra: "Anualidad", precio: 5800.00 }
-                ]
-            },
-            musica: {
-                tab1Nombre: "Individual",
-                tab2Nombre: "Familiar / Dúo",
-                idLabel: "CORREO DE TU CUENTA",
-                idPlaceholder: "Correo asociado a tu cuenta",
-                paquetesTab1: [
-                    { monto: "1 Mes Premium", extra: "Sin Anuncios", precio: 280.00, active: true },
-                    { monto: "3 Meses Premium", extra: "Ahorro", precio: 780.00 },
-                    { monto: "1 Año Premium", extra: "Anual", precio: 2900.00 }
-                ],
-                paquetesTab2: [
-                    { monto: "Plan Dúo (2 cuentas)", extra: "1 Mes", precio: 450.00 },
-                    { monto: "Plan Familiar (6 cuentas)", extra: "1 Mes", precio: 650.00 }
-                ]
-            },
-            herramientas: {
-                tab1Nombre: "Meses de Acceso",
-                tab2Nombre: "Licencias Anuales",
-                idLabel: "CORREO DE TU CUENTA",
-                idPlaceholder: "Correo para la invitación",
-                paquetesTab1: [
-                    { monto: "1 Mes Pro", extra: "Completo", precio: 320.00, active: true },
-                    { monto: "3 Meses Pro", extra: "Pack", precio: 850.00 },
-                    { monto: "6 Meses Pro", extra: "Especial", precio: 1500.00 }
-                ],
-                paquetesTab2: [
-                    { monto: "Licencia 1 Año", extra: "VIP Pro", precio: 2800.00 },
-                    { monto: "Acceso Equipo Pro", extra: "Ilimitado", precio: 4500.00 }
+                    { monto: "Pase Semanal", extra: "VIP", precioUSD: 15.00 },
+                    { monto: "Pase Mensual", extra: "Top", precioUSD: 50.00 }
                 ]
             }
         };
 
         let productoActualData = null;
         let tabActivaIndex = 0;
-        let precioBase = 2504.80;
+        let precioUSDActual = 4.00;
         let cantidad = 1;
-
-        function obtenerTipoPorNombre(nombre) {
-            nombre = nombre.toLowerCase();
-            if (nombre.includes('free fire') || nombre.includes('blood strike') || nombre.includes('mobile legends') || nombre.includes('call of duty') || nombre.includes('roblox')) {
-                return 'juego';
-            } else if (nombre.includes('spotify') || nombre.includes('youtube')) {
-                return 'musica';
-            } else if (nombre.includes('canva') || nombre.includes('capcut')) {
-                return 'herramientas';
-            } else {
-                return 'streaming';
-            }
-        }
 
         function abrirProducto(nombre, tag, imagen) {
             document.getElementById('prod-title').innerText = nombre;
@@ -719,8 +903,8 @@
             document.getElementById('summary-prod-name').innerText = nombre;
             if(imagen) document.getElementById('summary-prod-img').src = imagen;
 
-            const tipo = obtenerTipoPorNombre(nombre);
-            productoActualData = catalogoPaquetes[tipo];
+            const claveNorm = nombre.toLowerCase().trim();
+            productoActualData = baseDeDatosPrecios[claveNorm] || baseDeDatosPrecios["netflix"];
 
             document.getElementById('input-label-id').innerHTML = `<svg viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>` + productoActualData.idLabel;
             document.getElementById('input-field-id').placeholder = productoActualData.idPlaceholder;
@@ -757,8 +941,8 @@
             lista.forEach((item, idx) => {
                 let esActivo = item.active || (idx === 0 && !lista.some(p => p.active));
                 if(esActivo) {
-                    precioBase = item.precio;
-                    document.getElementById('summary-pkg-text').innerText = `${item.monto} ${item.extra ? '• ' + item.extra : ''}`;
+                    precioUSDActual = item.precioUSD;
+                    document.getElementById('summary-pkg-text').innerText = `${item.monto} ${item.extra ? '(' + item.extra + ')' : ''}`;
                     actualizarTotal();
                 }
 
@@ -767,10 +951,14 @@
                 card.onclick = function() {
                     document.querySelectorAll('.package-card').forEach(el => el.classList.remove('active'));
                     card.classList.add('active');
-                    precioBase = item.precio;
-                    document.getElementById('summary-pkg-text').innerText = `${item.monto} ${item.extra ? '• ' + item.extra : ''}`;
+                    precioUSDActual = item.precioUSD;
+                    document.getElementById('summary-pkg-text').innerText = `${item.monto} ${item.extra ? '(' + item.extra + ')' : ''}`;
                     actualizarTotal();
                 };
+
+                let precioMostrado = monedaActual === 'VES' 
+                    ? `Bs. ${(item.precioUSD * tasaVES).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+                    : `$${item.precioUSD.toFixed(2)}`;
 
                 card.innerHTML = `
                     <div class="package-card-top">
@@ -780,7 +968,7 @@
                         </div>
                         <div class="info-small-circle">i</div>
                     </div>
-                    <div class="package-price-badge">Bs. ${item.precio.toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+                    <div class="package-price-badge">${precioMostrado}</div>
                 `;
                 grid.appendChild(card);
             });
@@ -795,8 +983,15 @@
         }
 
         function actualizarTotal() {
-            let total = precioBase * cantidad;
-            document.getElementById('total-val').innerText = total.toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            let totalUSD = precioUSDActual * cantidad;
+            if (monedaActual === 'VES') {
+                let totalVES = totalUSD * tasaVES;
+                document.getElementById('curr-symbol').innerText = 'Bs.';
+                document.getElementById('total-val').innerText = totalVES.toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            } else {
+                document.getElementById('curr-symbol').innerText = '$';
+                document.getElementById('total-val').innerText = totalUSD.toFixed(2);
+            }
         }
 
         function toggleAccordion() {
@@ -869,6 +1064,7 @@
         };
 
         function seleccionarMoneda(moneda) {
+            monedaActual = moneda;
             const labelDesk = document.getElementById('label-moneda');
             const labelMob = document.getElementById('label-moneda-mob');
             if(labelDesk) labelDesk.innerText = moneda;
@@ -896,6 +1092,7 @@
                 radioVES.style.display = 'none';
             }
 
+            if(productoActualData) renderizarPaquetes();
             cerrarModalRegion();
         }
 
