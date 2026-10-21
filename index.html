@@ -375,11 +375,11 @@
                 STREAMI<span>X</span>
             </div>
 
-            <!-- Menú Principal Desktop con Distribuidores -->
+            <!-- Menú Principal Desktop (Distribuidores con estilo normal) -->
             <ul class="nav-links">
                 <li><a id="nav-recargas" onclick="mostrarVista('recargas')">Recargas</a></li>
                 <li><a id="nav-servicios" class="active" onclick="mostrarVista('servicios')">Servicios</a></li>
-                <li><a id="nav-distribuidores" onclick="solicitarAccesoDistribuidores()" style="color: #ff00ff; font-weight: 700;">👑 Distribuidores</a></li>
+                <li><a id="nav-distribuidores" onclick="solicitarAccesoDistribuidores()">👑 Distribuidores</a></li>
                 <li><a id="nav-soporte" onclick="mostrarVista('soporte')">Soporte</a></li>
             </ul>
             
@@ -403,7 +403,7 @@
         <ul class="drawer-links">
             <li><a onclick="mostrarVista('recargas'); toggleDrawer();">Recargas</a></li>
             <li><a onclick="mostrarVista('servicios'); toggleDrawer();">Servicios</a></li>
-            <li><a onclick="solicitarAccesoDistribuidores(); toggleDrawer();" style="color: #ff00ff; font-weight: bold;">👑 Distribuidores</a></li>
+            <li><a onclick="solicitarAccesoDistribuidores(); toggleDrawer();">👑 Distribuidores</a></li>
             <li><a onclick="mostrarVista('soporte'); toggleDrawer();">Soporte</a></li>
         </ul>
     </div>
@@ -589,7 +589,7 @@
         <!-- ==================== VISTA DISTRIBUIDORES (ÁREA VIP) ==================== -->
         <div id="vista-distribuidores" class="view-section">
             <div class="section-header" style="margin-top: 10px;">
-                <h2 class="section-title">Streaming <span>Precios Mayoristas</span></h2>
+                <h2 class="section-title">Cines y <span>Series (Mayorista)</span></h2>
                 <span style="color: #ff00ff; font-size: 0.85rem; font-weight: bold;">👑 VIP ACTIVADO</span>
             </div>
 
@@ -627,6 +627,54 @@
                 <div class="service-card" onclick="abrirProductoDistri('Vix', 'Streaming Mayorista', 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=500&auto=format&fit=crop')">
                     <div class="service-image-box"><img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=500&auto=format&fit=crop" alt="Vix"></div>
                     <div class="service-content"><span class="service-tag">PRECIO MAYORISTA</span><div class="service-name">Vix VIP</div></div>
+                </div>
+            </div>
+
+            <!-- TV en Vivo & IPTV (Mayorista) -->
+            <div class="section-header">
+                <h2 class="section-title">TV en Vivo & <span>IPTV (Mayorista)</span></h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" onclick="abrirProductoDistri('Streamix TV', 'IPTV Mayorista', 'https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=500&auto=format&fit=crop" alt="Streamix TV"></div>
+                    <div class="service-content"><span class="service-tag">PRECIO MAYORISTA</span><div class="service-name">Streamix TV VIP</div></div>
+                </div>
+
+                <div class="service-card" onclick="abrirProductoDistri('FlujoTV', 'IPTV Mayorista', 'https://images.unsplash.com/photo-1461151304267-38535e780c79?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1461151304267-38535e780c79?q=80&w=500&auto=format&fit=crop" alt="FlujoTV"></div>
+                    <div class="service-content"><span class="service-tag">PRECIO MAYORISTA</span><div class="service-name">FlujoTV VIP</div></div>
+                </div>
+            </div>
+
+            <!-- Música sin Anuncios (Mayorista) -->
+            <div class="section-header">
+                <h2 class="section-title">Música <span>sin Anuncios (Mayorista)</span></h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" onclick="abrirProductoDistri('Spotify Premium', 'Música Mayorista', 'https://images.unsplash.com/photo-1614680376593-902f749f7edc?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1614680376593-902f749f7edc?q=80&w=500&auto=format&fit=crop" alt="Spotify"></div>
+                    <div class="service-content"><span class="service-tag">PRECIO MAYORISTA</span><div class="service-name">Spotify Premium VIP</div></div>
+                </div>
+
+                <div class="service-card" onclick="abrirProductoDistri('Youtube Premium', 'Música Mayorista', 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=500&auto=format&fit=crop" alt="YouTube Premium"></div>
+                    <div class="service-content"><span class="service-tag">PRECIO MAYORISTA</span><div class="service-name">Youtube Premium VIP</div></div>
+                </div>
+            </div>
+
+            <!-- IA & Diseño (Mayorista) -->
+            <div class="section-header">
+                <h2 class="section-title">IA & <span>Diseño (Mayorista)</span></h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" onclick="abrirProductoDistri('Canva Pro Edu', 'Diseño Mayorista', 'https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=500&auto=format&fit=crop" alt="Canva Pro Edu"></div>
+                    <div class="service-content"><span class="service-tag">PRECIO MAYORISTA</span><div class="service-name">Canva Pro Edu VIP</div></div>
+                </div>
+
+                <div class="service-card" onclick="abrirProductoDistri('Capcut', 'Diseño Mayorista', 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=500&auto=format&fit=crop" alt="CapCut"></div>
+                    <div class="service-content"><span class="service-tag">PRECIO MAYORISTA</span><div class="service-name">Capcut VIP</div></div>
                 </div>
             </div>
         </div>
@@ -809,7 +857,7 @@
                             <span id="accordion-arrow" style="color: #9ca3af; font-size: 0.8rem;">▼</span>
                         </div>
                         <div class="info-accordion-content" id="accordion-body">
-                            Disfruta de tus servicios y entretenimiento favorito al instante y con total garantía. Compra fácil y rápido en Bolívares por Pago Móvil o Binance Pay con la mejor atención del mercado venezolano.
+                            Disfruta de tus servicios y entretenimiento favorito al instante y con total garantía. Compra fácil y rápido en Bolívares por Pago Móvil institucional o Binance Pay con la mejor atención del mercado venezolano.
                         </div>
                     </div>
 
@@ -1424,6 +1472,88 @@
                 ],
                 paquetesTab2: [
                     { monto: "Cuenta Completa", extra: "Lote Mayorista", precioUSD: 3.00 }
+                ]
+            },
+            "streamix tv": {
+                categoria: "distribuidores",
+                tab1Nombre: "IPTV Mayorista",
+                tab2Nombre: "Pack Anual VIP",
+                idLabel: "NOMBRE O DISPOSITIVO",
+                idPlaceholder: "Ej: Smart TV / Mi Nombre",
+                paquetesTab1: [
+                    { monto: "1 Mes VIP", extra: "Revendedor", precioUSD: 1.80, active: true },
+                    { monto: "3 Meses", extra: "Mayorista", precioUSD: 4.50 }
+                ],
+                paquetesTab2: [
+                    { monto: "12 Meses", extra: "Anual VIP", precioUSD: 10.00 }
+                ]
+            },
+            "flujotv": {
+                categoria: "distribuidores",
+                tab1Nombre: "IPTV Mayorista",
+                tab2Nombre: "Pack Anual VIP",
+                idLabel: "NOMBRE O DISPOSITIVO",
+                idPlaceholder: "Ej: Firestick / Mi Nombre",
+                paquetesTab1: [
+                    { monto: "1 Mes VIP", extra: "Revendedor", precioUSD: 2.00, active: true },
+                    { monto: "3 Meses", extra: "Mayorista", precioUSD: 6.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "12 Meses", extra: "Anual VIP", precioUSD: 24.00 }
+                ]
+            },
+            "spotify premium": {
+                categoria: "distribuidores",
+                tab1Nombre: "Mayorista Correo",
+                tab2Nombre: "Lote",
+                idLabel: "CORREO DE TU CUENTA SPOTIFY",
+                idPlaceholder: "Ingresa el correo",
+                paquetesTab1: [
+                    { monto: "1 Mes", extra: "Revendedor", precioUSD: 3.50, active: true },
+                    { monto: "3 Meses", extra: "Mayorista", precioUSD: 10.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "3 Meses", extra: "Mayorista", precioUSD: 10.00 }
+                ]
+            },
+            "youtube premium": {
+                categoria: "distribuidores",
+                tab1Nombre: "Individual Mayorista",
+                tab2Nombre: "Renovable VIP",
+                idLabel: "CORREO DE TU CUENTA YOUTUBE",
+                idPlaceholder: "Tu correo para invitarte",
+                paquetesTab1: [
+                    { monto: "1 Mes", extra: "Revendedor", precioUSD: 2.80, active: true }
+                ],
+                paquetesTab2: [
+                    { monto: "1 Mes", extra: "Revendedor", precioUSD: 2.80 }
+                ]
+            },
+            "canva pro edu": {
+                categoria: "distribuidores",
+                tab1Nombre: "Canva Pro Mayorista",
+                tab2Nombre: "Anual",
+                idLabel: "CORREO DE TU CUENTA CANVA",
+                idPlaceholder: "Correo para invitación Pro",
+                paquetesTab1: [
+                    { monto: "1 Mes Pro", extra: "Revendedor", precioUSD: 1.00, active: true },
+                    { monto: "12 Meses Pro", extra: "Mayorista", precioUSD: 7.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "12 Meses Pro", extra: "Mayorista", precioUSD: 7.00 }
+                ]
+            },
+            "capcut": {
+                categoria: "distribuidores",
+                tab1Nombre: "CapCut Pro Mayorista",
+                tab2Nombre: "Suscripción",
+                idLabel: "CORREO DE CONTACTO",
+                idPlaceholder: "Tu correo electrónico",
+                paquetesTab1: [
+                    { monto: "1 Mes Pro", extra: "Revendedor", precioUSD: 4.50, active: true }
+                ],
+                paquetesTab2: [
+                    { monto: "1 Mes Pro", extra: "Revendedor", precioUSD: 4.50 }
                 ]
             }
         };
