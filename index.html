@@ -155,7 +155,7 @@
         .btn-checkout { width: 100%; background: #00FF7F; color: #050811; border: none; padding: 16px; border-radius: 14px; font-weight: 900; font-size: 0.95rem; letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; }
         .btn-checkout:hover { background: #00cc66; }
 
-        /* VISTA SELECCIÓN MÉTODOS DE PAGO (IMAGEN 1) */
+        /* VISTA SELECCIÓN MÉTODOS DE PAGO */
         .payment-methods-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 15px; }
         .payment-card-opt { background: #070a12; border: 1px solid #1f2937; border-radius: 16px; padding: 20px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; transition: all 0.2s; }
         .payment-card-opt:hover { border-color: #00FF7F; background: #0c1424; }
@@ -165,42 +165,58 @@
         .pay-opt-name { font-size: 1rem; font-weight: 800; color: #ffffff; }
         .pay-opt-sub { font-size: 0.75rem; color: #9ca3af; margin-top: 2px; }
 
-        /* VISTAS DE PASARELA (IMÁGENES 2, 3 Y 4) */
-        .gateway-container { max-width: 520px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
-        .timer-box { background: #0b0f19; border: 1px solid #1f2937; border-radius: 14px; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
-        .timer-title { font-size: 0.8rem; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
-        .timer-clock { font-size: 1.2rem; color: #00FF7F; font-weight: 900; }
+        /* ESTILOS EXACTOS PAGO MÓVIL (IMAGEN 5) */
+        .gateway-container { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
         
-        .qr-card-box { background: #0b0f19; border: 1px solid #1f2937; border-radius: 20px; padding: 25px; text-align: center; }
-        .qr-card-title { font-size: 0.85rem; font-weight: 800; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-        .qr-card-subtitle { font-size: 0.75rem; color: #6b7280; margin-bottom: 18px; }
-        .amount-highlight-box { background: #070a12; border: 1px solid #1f2937; border-radius: 12px; padding: 12px; display: inline-block; margin-bottom: 20px; width: 100%; }
-        .amount-highlight-label { font-size: 0.7rem; color: #ffb703; font-weight: 800; text-transform: uppercase; margin-bottom: 2px; }
-        .amount-highlight-val { font-size: 1.6rem; font-weight: 900; color: #ffffff; }
+        .top-badge-row { display: flex; justify-content: center; margin-bottom: 5px; }
+        .badge-pm-pill { background: #0b1d16; border: 1px solid #00FF7F; color: #ffffff; padding: 6px 16px; border-radius: 20px; font-size: 0.82rem; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; }
+        .badge-pm-pill span.check { color: #00FF7F; font-weight: 900; }
+
+        .timer-box-card { background: #0b0f19; border: 1px solid #1f2937; border-radius: 16px; padding: 18px; }
+        .timer-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .timer-title-text { font-size: 0.75rem; font-weight: 800; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
+        .timer-title-text svg { width: 16px; height: 16px; fill: #00FF7F; }
+        .timer-clock-digits { font-size: 1.1rem; color: #ffffff; font-weight: 800; }
         
-        .qr-image-container { background: #ffffff; border-radius: 16px; padding: 15px; display: inline-block; margin-bottom: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-        .qr-image-container img { width: 180px; height: 180px; display: block; }
-        .status-wait-text { font-size: 0.78rem; color: #00FF7F; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .timer-progress-bar-bg { width: 100%; height: 6px; background: #111827; border-radius: 3px; overflow: hidden; }
+        .timer-progress-bar-fill { height: 100%; background: #00FF7F; width: 100%; transition: width 1s linear; }
 
-        .btn-binance-app { width: 100%; background: #f0b90b; color: #000000; border: none; padding: 16px; border-radius: 14px; font-weight: 900; font-size: 0.95rem; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; margin-top: 10px; text-decoration: none; }
-        .btn-binance-app:hover { background: #d9a407; }
+        .summary-dropdown-card { background: #0b0f19; border: 1px solid #1f2937; border-radius: 16px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .summary-drop-left { display: flex; align-items: center; gap: 12px; }
+        .summary-drop-icon { color: #00FF7F; font-size: 1.2rem; }
+        .summary-drop-title { font-size: 0.85rem; font-weight: 800; color: #ffffff; text-transform: uppercase; }
+        .summary-drop-sub { font-size: 0.95rem; font-weight: 800; color: #ffffff; margin-top: 2px; }
 
-        /* TABLA DE DATOS PAGO MÓVIL */
-        .pm-details-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .pm-title-tag { font-size: 0.9rem; font-weight: 800; color: #ffffff; display: flex; align-items: center; gap: 8px; }
-        .btn-copy-all { background: #111827; border: 1px solid #1f2937; color: #9ca3af; padding: 6px 12px; border-radius: 10px; font-size: 0.75rem; font-weight: bold; cursor: pointer; transition: all 0.2s; }
-        .btn-copy-all:hover { color: #00FF7F; border-color: #00FF7F; }
+        .pm-main-card { background: #0b0f19; border: 1px solid #1f2937; border-radius: 20px; padding: 22px; }
+        .pm-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .pm-header-title-box { display: flex; align-items: center; gap: 10px; }
+        .pm-header-icon-circle { width: 26px; height: 26px; border-radius: 50%; background: #0d261b; border: 1px solid #00FF7F; color: #00FF7F; font-size: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .pm-header-main-text { font-size: 0.75rem; color: #00FF7F; font-weight: 800; text-transform: uppercase; }
+        .pm-header-sub-text { font-size: 1.05rem; font-weight: 800; color: #ffffff; }
 
-        .pm-grid-info { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-        .pm-info-card { background: #070a12; border: 1px solid #1f2937; border-radius: 12px; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; }
-        .pm-info-label { font-size: 0.68rem; color: #6b7280; font-weight: 800; text-transform: uppercase; margin-bottom: 2px; }
-        .pm-info-val { font-size: 0.92rem; font-weight: 800; color: #ffffff; }
-        .btn-copy-icon { background: transparent; border: none; color: #6b7280; cursor: pointer; padding: 4px; transition: color 0.2s; }
-        .btn-copy-icon:hover { color: #00FF7F; }
-        .btn-copy-icon svg { width: 16px; height: 16px; fill: currentColor; }
+        .btn-copy-all-exact { background: #111827; border: 1px solid #1f2937; color: #ffffff; padding: 8px 14px; border-radius: 10px; font-size: 0.8rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s; }
+        .btn-copy-all-exact:hover { border-color: #00FF7F; color: #00FF7F; }
 
-        .btn-confirm-paid { width: 100%; background: #00FF7F; color: #050811; border: none; padding: 16px; border-radius: 14px; font-weight: 900; font-size: 0.95rem; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; margin-top: 10px; }
-        .btn-confirm-paid:hover { background: #00cc66; }
+        .total-pay-box-exact { background: #070a12; border: 1px solid #1f2937; border-radius: 14px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .total-pay-label { font-size: 0.75rem; font-weight: 800; color: #9ca3af; text-transform: uppercase; }
+        .total-pay-sublabel { font-size: 0.7rem; color: #6b7280; margin-top: 2px; }
+        .total-pay-amount { font-size: 1.8rem; font-weight: 900; color: #ffffff; }
+        .total-pay-amount span { font-size: 1.1rem; }
+
+        .pm-grid-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+        .pm-box-field { background: #070a12; border: 1px solid #1f2937; border-radius: 12px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; }
+        .pm-box-label { font-size: 0.65rem; color: #6b7280; font-weight: 800; text-transform: uppercase; margin-bottom: 4px; }
+        .pm-box-val { font-size: 0.95rem; font-weight: 800; color: #ffffff; word-break: break-word; }
+        
+        .btn-box-copy { background: transparent; border: none; color: #6b7280; cursor: pointer; padding: 4px; transition: color 0.2s; flex-shrink: 0; }
+        .btn-box-copy:hover { color: #00FF7F; }
+        .btn-box-copy svg { width: 16px; height: 16px; fill: currentColor; }
+
+        .btn-qr-option { width: 100%; background: #070a12; border: 1px solid #1f2937; color: #ffffff; padding: 14px; border-radius: 12px; font-weight: bold; font-size: 0.88rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 16px; transition: all 0.2s; }
+        .btn-qr-option:hover { border-color: #00FF7F; color: #00FF7F; }
+
+        .btn-paid-green-huge { width: 100%; background: #00FF7F; color: #050811; border: none; padding: 18px; border-radius: 14px; font-weight: 900; font-size: 1rem; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+        .btn-paid-green-huge:hover { background: #00cc66; }
 
         /* SOPORTE Y MÓVIL */
         .support-header-box { text-align: center; margin-bottom: 45px; margin-top: 10px; }
@@ -245,7 +261,7 @@
             .product-title-big { font-size: 1.8rem; margin-bottom: 4px; }
             .step-box { padding: 14px; border-radius: 14px; }
             .packages-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-            .pm-grid-info { grid-template-columns: 1fr; }
+            .pm-grid-2x2 { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -596,7 +612,7 @@
                             </div>
                         </div>
 
-                        <!-- Estado 2: Elección de Método de Pago (Imagen 1) -->
+                        <!-- Estado 2: Elección de Método de Pago -->
                         <div id="step2-payment-wrapper" style="display: none;">
                             <div class="payment-methods-grid">
                                 <div class="payment-card-opt" id="opt-pay-binance" onclick="seleccionarMetodoMetodo('binance')">
@@ -686,9 +702,17 @@
             </div>
 
             <div class="gateway-container">
-                <div class="timer-box">
-                    <div class="timer-title">⏱ TIEMPO RESTANTE</div>
-                    <div class="timer-clock" id="timer-binance">29:59</div>
+                <div class="timer-box-card">
+                    <div class="timer-header-flex">
+                        <div class="timer-title-text">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            TIEMPO RESTANTE
+                        </div>
+                        <div class="timer-clock-digits" id="timer-binance">29:59</div>
+                    </div>
+                    <div class="timer-progress-bar-bg">
+                        <div class="timer-progress-bar-fill" id="progress-binance"></div>
+                    </div>
                 </div>
 
                 <div class="qr-card-box">
@@ -719,73 +743,117 @@
             </div>
         </div>
 
-        <!-- ==================== VISTA 6: PASARELA PAGO MÓVIL ==================== -->
+        <!-- ==================== VISTA 6: PASARELA PAGO MÓVIL (IMAGEN 5 EXACTA) ==================== -->
         <div id="vista-pagomovil-gateway" class="view-section">
-            <div class="breadcrumbs">
-                <a onclick="mostrarVista('servicios')">Inicio</a> &gt; <a onclick="mostrarVista('producto')">Producto</a> &gt; <span>Pago Móvil</span>
-            </div>
-
             <div class="gateway-container">
-                <div class="timer-box">
-                    <div class="timer-title">⏱ TIEMPO RESTANTE</div>
-                    <div class="timer-clock" id="timer-pm">29:59</div>
+                <!-- Insignia Superior -->
+                <div class="top-badge-row">
+                    <div class="badge-pm-pill"><span class="check">✓</span> Pago Móvil</div>
                 </div>
 
-                <div class="qr-card-box">
-                    <div class="pm-details-header">
-                        <div class="pm-title-tag">✓ Datos de transferencia</div>
-                        <button class="btn-copy-all" onclick="copiarTodoPagoMovil()">Copiar Todo</button>
+                <!-- Temporizador con Barra de Progreso -->
+                <div class="timer-box-card">
+                    <div class="timer-header-flex">
+                        <div class="timer-title-text">
+                            <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            TIEMPO RESTANTE
+                        </div>
+                        <div class="timer-clock-digits" id="timer-pm">29:50</div>
                     </div>
-
-                    <div class="amount-highlight-box">
-                        <div class="amount-highlight-label">TOTAL A PAGAR (Monto exacto)</div>
-                        <div class="amount-highlight-val">Bs. <span id="gateway-pm-amount">240,00</span></div>
+                    <div class="timer-progress-bar-bg">
+                        <div class="timer-progress-bar-fill" id="progress-pm"></div>
                     </div>
+                </div>
 
-                    <div class="pm-grid-info">
-                        <div class="pm-info-card">
-                            <div>
-                                <div class="pm-info-label">BANCO</div>
-                                <div class="pm-info-val">Venezuela 0102</div>
-                            </div>
-                            <button class="btn-copy-icon" onclick="copiarTexto('0102', 'Banco')" title="Copiar Banco">
-                                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-                            </button>
-                        </div>
-
-                        <div class="pm-info-card">
-                            <div>
-                                <div class="pm-info-label">TELÉFONO</div>
-                                <div class="pm-info-val">04129490569</div>
-                            </div>
-                            <button class="btn-copy-icon" onclick="copiarTexto('04129490569', 'Teléfono')" title="Copiar Teléfono">
-                                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-                            </button>
-                        </div>
-
-                        <div class="pm-info-card">
-                            <div>
-                                <div class="pm-info-label">CÉDULA / RIF</div>
-                                <div class="pm-info-val">J-504978965</div>
-                            </div>
-                            <button class="btn-copy-icon" onclick="copiarTexto('J-504978965', 'RIF')" title="Copiar RIF">
-                                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-                            </button>
-                        </div>
-
-                        <div class="pm-info-card">
-                            <div>
-                                <div class="pm-info-label">TITULAR</div>
-                                <div class="pm-info-val">ASSAX STORE</div>
-                            </div>
-                            <button class="btn-copy-icon" onclick="copiarTexto('ASSAX STORE', 'Titular')" title="Copiar Titular">
-                                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-                            </button>
+                <!-- Desplegable Detalles de tu Compra -->
+                <div class="summary-dropdown-card" onclick="toggleAccordion()">
+                    <div class="summary-drop-left">
+                        <span class="summary-drop-icon">🛒</span>
+                        <div>
+                            <div class="summary-drop-title">RESUMEN</div>
+                            <div class="summary-drop-sub">Detalles de tu compra</div>
                         </div>
                     </div>
+                    <span style="color: #9ca3af; font-size: 0.8rem;">▼</span>
+                </div>
 
-                    <button class="btn-confirm-paid" onclick="enviarPagoWhatsApp('Pago Móvil')">
-                        YA REALICÉ EL PAGO
+                <!-- Tarjeta Principal de Datos -->
+                <div class="pm-main-card">
+                    <div class="pm-header-row">
+                        <div class="pm-header-title-box">
+                            <div class="pm-header-icon-circle">✓</div>
+                            <div>
+                                <div class="pm-header-main-text">PAGO MÓVIL</div>
+                                <div class="pm-header-sub-text">Datos de transferencia</div>
+                            </div>
+                        </div>
+                        <button class="btn-copy-all-exact" onclick="copiarTodoPagoMovil()">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                            Copiar Todo
+                        </button>
+                    </div>
+
+                    <!-- Total a Pagar -->
+                    <div class="total-pay-box-exact">
+                        <div>
+                            <div class="total-pay-label">TOTAL A PAGAR</div>
+                            <div class="total-pay-sublabel">Monto exacto a transferir</div>
+                        </div>
+                        <div class="total-pay-amount"><span>Bs.</span> <span id="gateway-pm-amount">25.452,00</span></div>
+                    </div>
+
+                    <!-- Cuadrícula 2x2 de Datos -->
+                    <div class="pm-grid-2x2">
+                        <div class="pm-box-field">
+                            <div>
+                                <div class="pm-box-label">BANCO</div>
+                                <div class="pm-box-val">Venezuela 0102</div>
+                            </div>
+                            <button class="btn-box-copy" onclick="copiarTexto('0102', 'Banco')">
+                                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                            </button>
+                        </div>
+
+                        <div class="pm-box-field">
+                            <div>
+                                <div class="pm-box-label">TELÉFONO</div>
+                                <div class="pm-box-val">04129490569</div>
+                            </div>
+                            <button class="btn-box-copy" onclick="copiarTexto('04129490569', 'Teléfono')">
+                                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                            </button>
+                        </div>
+
+                        <div class="pm-box-field">
+                            <div>
+                                <div class="pm-box-label">CÉDULA / RIF</div>
+                                <div class="pm-box-val">J-504978965</div>
+                            </div>
+                            <button class="btn-box-copy" onclick="copiarTexto('J-504978965', 'Cédula / RIF')">
+                                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                            </button>
+                        </div>
+
+                        <!-- 4ta Tarjeta Dinámica según Verificación -->
+                        <div class="pm-box-field">
+                            <div>
+                                <div class="pm-box-label" id="pm-card4-label">NOMBRE DE PANTALLA</div>
+                                <div class="pm-box-val" id="pm-card4-val">Mi Nombre</div>
+                            </div>
+                            <button class="btn-box-copy" onclick="copiarDatoPantalla()">
+                                <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Botón Ver QR -->
+                    <button class="btn-qr-option" onclick="alert('Mostrando QR de Pago Móvil')">
+                        <span style="color: #00FF7F;">⬡</span> Ver Código QR
+                    </button>
+
+                    <!-- Botón Grande Verde -->
+                    <button class="btn-paid-green-huge" onclick="enviarPagoWhatsApp('Pago Móvil')">
+                        Ya realicé el pago
                     </button>
                 </div>
             </div>
@@ -796,8 +864,8 @@
     <script>
         let tasaVES = 60.00;
         let monedaActual = 'VES';
-        let estadoCheckoutStep = 1; // 1: Seleccionar paquete, 2: Seleccionar método de pago
-        let metodoPagoSeleccionado = 'pago_movil'; // 'binance' o 'pago_movil'
+        let estadoCheckoutStep = 1;
+        let metodoPagoSeleccionado = 'pago_movil';
 
         const baseDeDatosPrecios = {
             "netflix": {
@@ -1121,7 +1189,6 @@
             document.getElementById('tab-btn-1').innerText = productoActualData.tab1Nombre;
             document.getElementById('tab-btn-2').innerText = productoActualData.tab2Nombre;
 
-            // Resetear estado al paso 1
             estadoCheckoutStep = 1;
             document.getElementById('step2-title-head').innerHTML = 'SELECCIONA TU <span>PLAN / PAQUETE</span>';
             document.getElementById('step2-packages-wrapper').style.display = 'block';
@@ -1256,7 +1323,6 @@
             if (!validarCampoObligatorio()) return;
 
             if (estadoCheckoutStep === 1) {
-                // Pasar al paso 2: Selección de Método de Pago (Imagen 1)
                 estadoCheckoutStep = 2;
                 document.getElementById('step2-title-head').innerHTML = 'SELECCIONA TU <span>MÉTODO DE PAGO</span>';
                 document.getElementById('step2-packages-wrapper').style.display = 'none';
@@ -1264,14 +1330,17 @@
                 document.getElementById('btn-main-action').innerText = 'REALIZAR PAGO >';
                 window.scrollTo({ top: 300, behavior: 'smooth' });
             } else {
-                // Ir a la pasarela correspondiente
                 let totalUSD = (precioUSDActual * cantidad).toFixed(2);
                 let totalVES = (precioUSDActual * cantidad * tasaVES).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                let valorIngresado = document.getElementById('input-field-id').value.trim();
 
                 if (metodoPagoSeleccionado === 'binance') {
                     document.getElementById('gateway-binance-amount').innerText = totalUSD;
                     mostrarVista('binance-gateway');
                 } else {
+                    // Actualizar dinámicamente la cuarta tarjeta de Pago Móvil con la etiqueta y el nombre/ID verificado
+                    document.getElementById('pm-card4-label').innerText = productoActualData.idLabel;
+                    document.getElementById('pm-card4-val').innerText = valorIngresado;
                     document.getElementById('gateway-pm-amount').innerText = totalVES;
                     mostrarVista('pagomovil-gateway');
                 }
@@ -1281,7 +1350,8 @@
 
         function iniciarTemporizador() {
             if (timerInterval) clearInterval(timerInterval);
-            let tiempoRestante = 1799; // 29:59
+            let tiempoTotal = 1790; // ~29:50
+            let tiempoRestante = tiempoTotal;
 
             timerInterval = setInterval(() => {
                 let minutos = Math.floor(tiempoRestante / 60);
@@ -1290,6 +1360,10 @@
                 
                 document.getElementById('timer-binance').innerText = texto;
                 document.getElementById('timer-pm').innerText = texto;
+
+                let porcentaje = (tiempoRestante / tiempoTotal) * 100;
+                document.getElementById('progress-binance').style.width = porcentaje + '%';
+                document.getElementById('progress-pm').style.width = porcentaje + '%';
 
                 if (tiempoRestante <= 0) {
                     clearInterval(timerInterval);
@@ -1305,9 +1379,20 @@
             });
         }
 
+        function copiarDatoPantalla() {
+            let label = document.getElementById('pm-card4-label').innerText;
+            let val = document.getElementById('pm-card4-val').innerText;
+            navigator.clipboard.writeText(val).then(() => {
+                alert(`✓ ${label} copiado: ${val}`);
+            });
+        }
+
         function copiarTodoPagoMovil() {
             let totalVES = (precioUSDActual * cantidad * tasaVES).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            let textoCompleto = `DATOS DE PAGO MÓVIL:\nBanco: Venezuela 0102\nTeléfono: 04129490569\nCédula/RIF: J-504978965\nTitular: ASSAX STORE\nMonto Exacto: Bs. ${totalVES}`;
+            let labelDato = document.getElementById('pm-card4-label').innerText;
+            let valDato = document.getElementById('pm-card4-val').innerText;
+
+            let textoCompleto = `DATOS DE PAGO MÓVIL:\nBanco: Venezuela 0102\nTeléfono: 04129490569\nCédula/RIF: J-504978965\n${labelDato}: ${valDato}\nMonto Exacto: Bs. ${totalVES}`;
             
             navigator.clipboard.writeText(textoCompleto).then(() => {
                 alert('✓ Todos los datos de Pago Móvil han sido copiados.');
@@ -1323,7 +1408,7 @@
             let msg = `Hola ASSAX STORE, ya realicé mi pago por ${metodo}.\n\n` +
                       `📌 *Producto:* ${productoNombreActual}\n` +
                       `📦 *Plan:* ${paquete} (x${cantidad})\n` +
-                      `👤 *Dato registrado:* ${idCuenta}\n` +
+                      `👤 *${productoActualData.idLabel}:* ${idCuenta}\n` +
                       `💰 *Monto:* ${metodo === 'Binance Pay' ? totalUSD + ' USDT' : 'Bs. ' + totalVES}\n\n` +
                       `Adjunto comprobante de pago:`;
 
@@ -1334,12 +1419,12 @@
         function toggleAccordion() {
             const body = document.getElementById('accordion-body');
             const arrow = document.getElementById('accordion-arrow');
-            if (body.classList.contains('open')) {
+            if (body && body.classList.contains('open')) {
                 body.classList.remove('open');
-                arrow.innerText = '▼';
-            } else {
+                if(arrow) arrow.innerText = '▼';
+            } else if(body) {
                 body.classList.add('open');
-                arrow.innerText = '▲';
+                if(arrow) arrow.innerText = '▲';
             }
         }
 
