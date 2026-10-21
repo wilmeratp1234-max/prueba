@@ -126,9 +126,13 @@
         .input-sublabel { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 800; color: #00FF7F; text-transform: uppercase; margin-bottom: 10px; }
         .input-sublabel svg { width: 14px; height: 14px; fill: currentColor; }
 
-        .player-id-input-group { display: flex; gap: 10px; width: 100%; }
-        .input-player-id { flex: 1; min-width: 0; background: #070a12; border: 1px solid #1f2937; border-radius: 12px; padding: 12px 14px; color: #ffffff; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+        .player-id-input-group { display: flex; gap: 10px; width: 100%; flex-direction: column; }
+        .input-wrapper-row { display: flex; gap: 10px; width: 100%; }
+        .input-player-id { flex: 1; min-width: 0; background: #070a12; border: 1px solid #1f2937; border-radius: 12px; padding: 12px 14px; color: #ffffff; font-size: 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
         .input-player-id:focus { border-color: #00FF7F; }
+        .input-player-id.error-input { border-color: #ff4d4d !important; box-shadow: 0 0 10px rgba(255, 77, 77, 0.3); }
+        .error-msg-text { color: #ff4d4d; font-size: 0.78rem; font-weight: 700; display: none; margin-top: 2px; }
+
         .btn-verify-id { background: #192233; border: 1px solid #2b3548; color: #ffffff; font-weight: 700; padding: 0 18px; border-radius: 12px; cursor: pointer; transition: all 0.2s; flex-shrink: 0; font-size: 0.85rem; }
         .btn-verify-id:hover { background: #253147; border-color: #00FF7F; color: #00FF7F; }
 
@@ -577,12 +581,15 @@
                         
                         <div class="input-sublabel" id="input-label-id">
                             <svg viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-                            CORREO DE CONTACTO
+                            <span id="label-field-text">NOMBRE PARA LA PANTALLA</span>
                         </div>
 
                         <div class="player-id-input-group">
-                            <input type="text" class="input-player-id" id="input-field-id" placeholder="Ingresa tu correo para la entrega">
-                            <button class="btn-verify-id" onclick="alert('Verificado correctamente')">Verificar</button>
+                            <div class="input-wrapper-row">
+                                <input type="text" class="input-player-id" id="input-field-id" placeholder="Ingresa el nombre para tu pantalla" oninput="limpiarErrorInput()">
+                                <button class="btn-verify-id" onclick="validarYVerificar()">Verificar</button>
+                            </div>
+                            <div class="error-msg-text" id="error-msg">* Este campo es obligatorio para continuar</div>
                         </div>
                     </div>
 
@@ -595,8 +602,8 @@
 
                         <!-- Toggle Dinámico -->
                         <div class="packages-toggle-container" id="toggle-container">
-                            <button class="package-tab-btn active" id="tab-btn-1" onclick="cambiarTab(0)">Planes Disponibles</button>
-                            <button class="package-tab-btn" id="tab-btn-2" onclick="cambiarTab(1)">Opciones Extra</button>
+                            <button class="package-tab-btn active" id="tab-btn-1" onclick="cambiarTab(0)">Planes Principales</button>
+                            <button class="package-tab-btn" id="tab-btn-2" onclick="cambiarTab(1)">Cuentas</button>
                         </div>
 
                         <!-- Opciones de Paquetes Dinámicas -->
@@ -653,7 +660,7 @@
                         <div class="total-amount"><span id="curr-symbol">Bs.</span><span id="total-val">240,00</span></div>
                     </div>
 
-                    <button class="btn-checkout" onclick="alert('Procesando pedido...')">
+                    <button class="btn-checkout" onclick="validarYProcesarPedido()">
                         VERIFICAR PEDIDO &gt;
                     </button>
                 </div>
@@ -667,13 +674,14 @@
         let tasaVES = 1020.00;
         let monedaActual = 'VES';
 
-        // Base de Datos con todos los precios exactos que enviaste
+        // Base de Datos con configuración exacta de campos por categoría
         const baseDeDatosPrecios = {
             "netflix": {
+                categoria: "streaming",
                 tab1Nombre: "Planes Principales",
                 tab2Nombre: "Cuentas",
-                idLabel: "CORREO DE CONTACTO",
-                idPlaceholder: "Ingresa tu correo para la entrega",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
                 paquetesTab1: [
                     { monto: "1 Pantalla", extra: "Con código de Viaje", precioUSD: 4.00, active: true },
                     { monto: "1 Pantalla", extra: "Personalizada", precioUSD: 5.00 },
@@ -684,10 +692,11 @@
                 ]
             },
             "disney+ premium": {
+                categoria: "streaming",
                 tab1Nombre: "Planes Pantallas",
                 tab2Nombre: "Cuentas Completa",
-                idLabel: "CORREO DE CONTACTO",
-                idPlaceholder: "Correo para la suscripción",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
                 paquetesTab1: [
                     { monto: "1 Pantalla", extra: "ESPN Incluido", precioUSD: 3.50, active: true },
                     { monto: "Cuenta Completa", extra: "Multipantalla", precioUSD: 15.00 }
@@ -697,10 +706,11 @@
                 ]
             },
             "prime video": {
+                categoria: "streaming",
                 tab1Nombre: "Opciones de Pantalla",
                 tab2Nombre: "Cuenta Completa",
-                idLabel: "CORREO DE CONTACTO",
-                idPlaceholder: "Tu correo electrónico",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
                 paquetesTab1: [
                     { monto: "1 Pantalla", extra: "Full HD", precioUSD: 1.40, active: true },
                     { monto: "Cuenta Completa", extra: "3 Dispositivos", precioUSD: 5.00 }
@@ -710,10 +720,11 @@
                 ]
             },
             "hbo max standar": {
+                categoria: "streaming",
                 tab1Nombre: "Pantallas",
                 tab2Nombre: "Cuentas",
-                idLabel: "CORREO DE CONTACTO",
-                idPlaceholder: "Correo para la activación",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
                 paquetesTab1: [
                     { monto: "1 Pantalla", extra: "Standar", precioUSD: 2.00, active: true },
                     { monto: "Cuenta Completa", extra: "4K Standar", precioUSD: 5.50 }
@@ -723,10 +734,11 @@
                 ]
             },
             "crunchyroll": {
+                categoria: "streaming",
                 tab1Nombre: "Mega Fan",
                 tab2Nombre: "Cuenta Completa",
-                idLabel: "CORREO DE CONTACTO",
-                idPlaceholder: "Tu correo electrónico",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
                 paquetesTab1: [
                     { monto: "1 Pantalla", extra: "Mega Fan", precioUSD: 1.20, active: true },
                     { monto: "Cuenta Completa", extra: "4 Pantallas", precioUSD: 5.00 }
@@ -736,10 +748,11 @@
                 ]
             },
             "paramount+": {
+                categoria: "streaming",
                 tab1Nombre: "Planes",
                 tab2Nombre: "Cuentas",
-                idLabel: "CORREO DE CONTACTO",
-                idPlaceholder: "Tu correo electrónico",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
                 paquetesTab1: [
                     { monto: "1 Pantalla", extra: "Full HD", precioUSD: 2.00, active: true },
                     { monto: "Cuenta Completa", extra: "Privada", precioUSD: 5.50 }
@@ -749,10 +762,11 @@
                 ]
             },
             "vix": {
+                categoria: "streaming",
                 tab1Nombre: "Planes Premium",
                 tab2Nombre: "Cuentas",
-                idLabel: "CORREO DE CONTACTO",
-                idPlaceholder: "Tu correo para la entrega",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
                 paquetesTab1: [
                     { monto: "1 Pantalla", extra: "Deportes & Novelas", precioUSD: 1.20, active: true },
                     { monto: "Cuenta Completa", extra: "Full Pass", precioUSD: 4.50 }
@@ -762,10 +776,11 @@
                 ]
             },
             "appletv": {
+                categoria: "streaming",
                 tab1Nombre: "Opciones de Servicio",
                 tab2Nombre: "Cuentas",
-                idLabel: "CORREO DE CONTACTO",
-                idPlaceholder: "Tu ID o correo de Apple",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
                 paquetesTab1: [
                     { monto: "1 Pantalla", extra: "Apple Originals", precioUSD: 1.50, active: true },
                     { monto: "Cuenta Completa", extra: "Acceso Total", precioUSD: 4.50 }
@@ -775,10 +790,11 @@
                 ]
             },
             "universal+": {
+                categoria: "streaming",
                 tab1Nombre: "Planes",
                 tab2Nombre: "Cuentas",
-                idLabel: "CORREO DE CONTACTO",
-                idPlaceholder: "Correo de contacto",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
                 paquetesTab1: [
                     { monto: "1 Pantalla", extra: "Universal Channels", precioUSD: 1.50, active: true },
                     { monto: "Cuenta Completa", extra: "HD", precioUSD: 5.00 }
@@ -788,6 +804,7 @@
                 ]
             },
             "spotify premium": {
+                categoria: "musica",
                 tab1Nombre: "Suscripción a tu correo",
                 tab2Nombre: "Planes Largos",
                 idLabel: "CORREO DE TU CUENTA SPOTIFY",
@@ -801,6 +818,7 @@
                 ]
             },
             "youtube premium": {
+                categoria: "musica",
                 tab1Nombre: "Individual",
                 tab2Nombre: "Renovable",
                 idLabel: "CORREO DE TU CUENTA YOUTUBE",
@@ -813,6 +831,7 @@
                 ]
             },
             "capcut": {
+                categoria: "herramientas",
                 tab1Nombre: "Planes Pro",
                 tab2Nombre: "Suscripción",
                 idLabel: "CORREO DE CONTACTO",
@@ -825,10 +844,11 @@
                 ]
             },
             "streamix tv": {
+                categoria: "iptv",
                 tab1Nombre: "Suscripciones IPTV",
                 tab2Nombre: "Ofertas Especiales",
-                idLabel: "DISPOSITIVO / APP",
-                idPlaceholder: "Ej: Smart TV / Firestick / Celular",
+                idLabel: "NOMBRE O DISPOSITIVO",
+                idPlaceholder: "Ej: Smart TV / Mi Nombre",
                 paquetesTab1: [
                     { monto: "1 Mes de Servicio", extra: "1800+ Canales", precioUSD: 2.50, active: true },
                     { monto: "3 Meses", extra: "Oferta", precioUSD: 6.00 },
@@ -841,10 +861,11 @@
                 ]
             },
             "flujotv": {
+                categoria: "iptv",
                 tab1Nombre: "Planes FlujoTV",
                 tab2Nombre: "Promociones Extra",
-                idLabel: "DISPOSITIVO / APP",
-                idPlaceholder: "Ej: Magis / Firestick / Android",
+                idLabel: "NOMBRE O DISPOSITIVO",
+                idPlaceholder: "Ej: Firestick / Mi Nombre",
                 paquetesTab1: [
                     { monto: "1 Mes de Servicio", extra: "Estándar", precioUSD: 3.00, active: true },
                     { monto: "3 Meses", extra: "Pack", precioUSD: 8.00 },
@@ -857,6 +878,7 @@
                 ]
             },
             "canva pro edu": {
+                categoria: "herramientas",
                 tab1Nombre: "Planes a tu Correo",
                 tab2Nombre: "Suscripciones Anuales",
                 idLabel: "CORREO DE TU CUENTA CANVA",
@@ -872,10 +894,11 @@
                 ]
             },
             "free fire": {
+                categoria: "juegos",
                 tab1Nombre: "Diamantes",
                 tab2Nombre: "Paquetes",
-                idLabel: "PLAYER ID",
-                idPlaceholder: "Ingresa tu UID",
+                idLabel: "ID DEL JUGADOR / CORREO DE LA CUENTA",
+                idPlaceholder: "Ingresa tu ID o Correo",
                 paquetesTab1: [
                     { monto: "100", extra: "+ 10 Extra", precioUSD: 13.97 },
                     { monto: "310", extra: "+ 31 Extra", precioUSD: 41.74, active: true },
@@ -887,6 +910,62 @@
                 paquetesTab2: [
                     { monto: "Pase Semanal", extra: "VIP", precioUSD: 15.00 },
                     { monto: "Pase Mensual", extra: "Top", precioUSD: 50.00 }
+                ]
+            },
+            "blood strike": {
+                categoria: "juegos",
+                tab1Nombre: "Oro / Pases",
+                tab2Nombre: "Paquetes",
+                idLabel: "ID DEL JUGADOR / CORREO DE LA CUENTA",
+                idPlaceholder: "Ingresa tu ID o Correo",
+                paquetesTab1: [
+                    { monto: "100 Oro", extra: "Básico", precioUSD: 1.20, active: true },
+                    { monto: "500 Oro", extra: "Extra", precioUSD: 5.50 }
+                ],
+                paquetesTab2: [
+                    { monto: "Pase de Batalla", extra: "Pro", precioUSD: 6.00 }
+                ]
+            },
+            "mobile legends": {
+                categoria: "juegos",
+                tab1Nombre: "Diamantes",
+                tab2Nombre: "Pases",
+                idLabel: "ID DEL JUGADOR / CORREO DE LA CUENTA",
+                idPlaceholder: "Ingresa tu ID o Correo",
+                paquetesTab1: [
+                    { monto: "86 Diamantes", extra: "Fast", precioUSD: 1.50, active: true },
+                    { monto: "257 Diamantes", extra: "Pack", precioUSD: 4.20 }
+                ],
+                paquetesTab2: [
+                    { monto: "Pase Semanal", extra: "Bonus", precioUSD: 2.20 }
+                ]
+            },
+            "call of duty mobile": {
+                categoria: "juegos",
+                tab1Nombre: "CP Points",
+                tab2Nombre: "Pases",
+                idLabel: "ID DEL JUGADOR / CORREO DE LA CUENTA",
+                idPlaceholder: "Ingresa tu ID o Correo",
+                paquetesTab1: [
+                    { monto: "80 CP", extra: "Normal", precioUSD: 1.20, active: true },
+                    { monto: "420 CP", extra: "Mega", precioUSD: 5.80 }
+                ],
+                paquetesTab2: [
+                    { monto: "Pase Premium", extra: "Pase", precioUSD: 7.00 }
+                ]
+            },
+            "roblox": {
+                categoria: "juegos",
+                tab1Nombre: "Robux",
+                tab2Nombre: "Tarjetas",
+                idLabel: "ID DEL JUGADOR / CORREO DE LA CUENTA",
+                idPlaceholder: "Ingresa tu ID o Correo",
+                paquetesTab1: [
+                    { monto: "80 Robux", extra: "Directo", precioUSD: 1.30, active: true },
+                    { monto: "400 Robux", extra: "Pack", precioUSD: 5.50 }
+                ],
+                paquetesTab2: [
+                    { monto: "Gift Card $10", extra: "Código", precioUSD: 10.50 }
                 ]
             }
         };
@@ -903,10 +982,14 @@
             document.getElementById('summary-prod-name').innerText = nombre;
             if(imagen) document.getElementById('summary-prod-img').src = imagen;
 
+            limpiarErrorInput();
+            document.getElementById('input-field-id').value = '';
+
             const claveNorm = nombre.toLowerCase().trim();
             productoActualData = baseDeDatosPrecios[claveNorm] || baseDeDatosPrecios["netflix"];
 
-            document.getElementById('input-label-id').innerHTML = `<svg viewBox="0 0 24 24"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>` + productoActualData.idLabel;
+            // Configuración dinámica estricta según requerimiento
+            document.getElementById('label-field-text').innerText = productoActualData.idLabel;
             document.getElementById('input-field-id').placeholder = productoActualData.idPlaceholder;
 
             document.getElementById('tab-btn-1').innerText = productoActualData.tab1Nombre;
@@ -992,6 +1075,42 @@
                 document.getElementById('curr-symbol').innerText = '$';
                 document.getElementById('total-val').innerText = totalUSD.toFixed(2);
             }
+        }
+
+        /* VALIDACIONES OBLIGATORIAS */
+        function limpiarErrorInput() {
+            const input = document.getElementById('input-field-id');
+            const errorMsg = document.getElementById('error-msg');
+            input.classList.remove('error-input');
+            errorMsg.style.display = 'none';
+        }
+
+        function validarCampoObligatorio() {
+            const input = document.getElementById('input-field-id');
+            const errorMsg = document.getElementById('error-msg');
+            const val = input.value.trim();
+
+            if (val === '') {
+                input.classList.add('error-input');
+                errorMsg.style.display = 'block';
+                input.focus();
+                return false;
+            }
+            limpiarErrorInput();
+            return true;
+        }
+
+        function validarYVerificar() {
+            if (validarCampoObligatorio()) {
+                alert('✓ Datos validados correctamente.');
+            }
+        }
+
+        function validarYProcesarPedido() {
+            if (!validarCampoObligatorio()) {
+                return; // Bloquea el avance si está vacío
+            }
+            alert('Procesando pedido...');
         }
 
         function toggleAccordion() {
