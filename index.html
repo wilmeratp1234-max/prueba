@@ -15,8 +15,8 @@
         nav.nav-bar { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; }
         .logo-nav { font-weight: 900; font-size: 1.6rem; letter-spacing: 1px; color: #fff; display: flex; align-items: center; text-transform: uppercase; cursor: pointer; }
         .logo-nav span { color: #00FF7F; }
-        .nav-links { display: flex; gap: 25px; align-items: center; list-style: none; font-size: 0.9rem; }
-        .nav-links a { color: #d1d5db; text-decoration: none; transition: color 0.2s; cursor: pointer; display: flex; align-items: center; gap: 4px; font-weight: 500; }
+        .nav-links { display: flex; gap: 22px; align-items: center; list-style: none; font-size: 0.9rem; }
+        .nav-links a { color: #d1d5db; text-decoration: none; transition: color 0.2s; cursor: pointer; display: flex; align-items: center; gap: 4px; font-weight: 500; white-space: nowrap; }
         .nav-links a:hover, .nav-links a.active { color: #00FF7F; }
         .nav-right-actions { display: flex; align-items: center; gap: 15px; }
         .search-icon-btn { background: transparent; border: none; color: #9ca3af; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 8px; transition: color 0.2s; }
@@ -58,6 +58,73 @@
         .region-radio { width: 26px; height: 26px; border-radius: 50%; border: 2px solid #374151; display: flex; align-items: center; justify-content: center; background: #0b0f19; color: #050811; font-weight: bold; font-size: 13px; }
         .arrow-icon { color: #4b5563; font-size: 14px; }
         .region-option.active .region-radio { background: #00FF7F; border-color: #00FF7F; }
+
+        /* MODAL ÁREA VIP MAYORISTAS (DISTRIBUIDORES) */
+        .distri-modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(6px); display: none; justify-content: center; align-items: center; z-index: 999999; }
+        .distri-modal-card {
+            background: #0d111d;
+            border: 1px solid #00FF7F;
+            width: 90%;
+            max-width: 460px;
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8), 0 0 20px rgba(124, 58, 237, 0.15);
+        }
+        .distri-modal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+        .distri-modal-title { font-size: 1.6rem; font-weight: 800; color: #ffffff; letter-spacing: 0.5px; }
+        .distri-modal-title span { color: #00FF7F; }
+        .distri-modal-close { background: #1a1b2d; border: 1px solid #00FF7F; color: #9ca3af; width: 34px; height: 34px; border-radius: 8px; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+        .distri-modal-close:hover { background: #00FF7F; color: white; }
+        .distri-modal-subtext { color: #9ca3af; font-size: 0.88rem; margin-bottom: 22px; line-height: 1.4; }
+        
+        .distri-alert-box {
+            background: #17152d;
+            border: 1px solid #00FF7F;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 22px;
+            font-size: 0.85rem;
+            color: #d1d5db;
+            line-height: 1.4;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .distri-alert-box strong { color: #ffffff; }
+
+        .distri-input-label { font-size: 0.75rem; text-transform: uppercase; font-weight: 800; color: #9ca3af; letter-spacing: 1px; margin-bottom: 8px; display: block; }
+        .distri-input-code {
+            width: 100%;
+            background: #090c15;
+            border: 1px solid #00FF7F;
+            border-radius: 12px;
+            padding: 16px 18px;
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            margin-bottom: 22px;
+            transition: border-color 0.2s;
+        }
+        .distri-input-code:focus { border-color: #00FF7F; }
+
+        .btn-distri-verify {
+            width: 100%;
+            background: linear-gradient(90deg, #6366f1, #00FF7F);
+            border: none;
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.1s;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+        }
+        .btn-distri-verify:hover { opacity: 0.95; transform: translateY(-1px); }
+        .btn-distri-verify:active { transform: translateY(0); }
 
         /* Carrusel y Secciones */
         .carousel-container { position: relative; width: 100%; max-width: 1100px; margin: 0 auto 30px auto; overflow: hidden; border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); background-color: #0d0d11; }
@@ -291,7 +358,7 @@
 </head>
 <body>
 
-    <!-- Header con Doble Barra Móvil -->
+    <!-- Header con Navegación -->
     <header class="main-header">
         <div class="top-subbar-mobile">
             <span>Streamix Store</span>
@@ -308,9 +375,11 @@
                 ASSA<span>X</span>
             </div>
 
+            <!-- Menú Principal Desktop con Distribuidores -->
             <ul class="nav-links">
                 <li><a id="nav-recargas" onclick="mostrarVista('recargas')">Recargas</a></li>
                 <li><a id="nav-servicios" class="active" onclick="mostrarVista('servicios')">Servicios</a></li>
+                <li><a id="nav-distribuidores" onclick="solicitarAccesoDistribuidores()" style="color: #00FF7F; font-weight: 700;">👑 Distribuidores</a></li>
                 <li><a id="nav-soporte" onclick="mostrarVista('soporte')">Soporte</a></li>
             </ul>
             
@@ -334,6 +403,7 @@
         <ul class="drawer-links">
             <li><a onclick="mostrarVista('recargas'); toggleDrawer();">Recargas</a></li>
             <li><a onclick="mostrarVista('servicios'); toggleDrawer();">Servicios</a></li>
+            <li><a onclick="solicitarAccesoDistribuidores(); toggleDrawer();" style="color: #00FF7F; font-weight: bold;">👑 Distribuidores</a></li>
             <li><a onclick="mostrarVista('soporte'); toggleDrawer();">Soporte</a></li>
         </ul>
     </div>
@@ -371,6 +441,27 @@
                 </div>
                 <div class="region-radio" id="radioVES">✓</div>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal Área VIP Mayoristas (Distribuidores) -->
+    <div class="distri-modal-overlay" id="modal-distribuidores">
+        <div class="distri-modal-card">
+            <div class="distri-modal-header">
+                <div class="distri-modal-title">ÁREA <span>DISTRIBUIDORES</span></div>
+                <button class="distri-modal-close" onclick="cerrarModalDistribuidores()">✕</button>
+            </div>
+            <div class="distri-modal-subtext">Ingresa tu código de acceso VIP para desbloquear el catálogo exclusivo a precios de mayorista.</div>
+            
+            <div class="distri-alert-box">
+                <span style="color: #00FF7F; font-weight: bold;">🔒</span>
+                <div><strong>Acceso Restringido:</strong> Si eres revendedor y no posees tu código, contáctanos por soporte para solicitarlo.</div>
+            </div>
+
+            <label class="distri-input-label">CÓDIGO DE DISTRIBUIDOR</label>
+            <input type="text" class="distri-input-code" id="distri-code-input" placeholder="Ej: SXDISTRIVZ" style="text-transform: uppercase;">
+
+            <button class="btn-distri-verify" onclick="validarCodigoDistribuidor()">VERIFICAR CÓDIGO</button>
         </div>
     </div>
 
@@ -495,6 +586,51 @@
             </div>
         </div>
 
+        <!-- ==================== VISTA DISTRIBUIDORES (ÁREA VIP) ==================== -->
+        <div id="vista-distribuidores" class="view-section">
+            <div class="section-header" style="margin-top: 10px;">
+                <h2 class="section-title">Streaming <span>Precios Mayoristas</span></h2>
+                <span style="color: #00FF7F; font-size: 0.85rem; font-weight: bold;">👑 VIP ACTIVADO</span>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card" onclick="abrirProductoDistri('Netflix', 'Streaming Mayorista', 'https://assets.nflxext.com/ffe/siteui/vlv3/9d2fc35e-57cf-432d-96f7-ebf345842881/4f808796-03c6-47a3-b2dd-ff8736d75be8/VE-es-20240930-popsignuptwoweeks-perspective_alpha_website_large.jpg')">
+                    <div class="service-image-box"><img src="https://assets.nflxext.com/ffe/siteui/vlv3/9d2fc35e-57cf-432d-96f7-ebf345842881/4f808796-03c6-47a3-b2dd-ff8736d75be8/VE-es-20240930-popsignuptwoweeks-perspective_alpha_website_large.jpg" alt="Netflix"></div>
+                    <div class="service-content"><span class="service-tag">PRECIO MAYORISTA</span><div class="service-name">Netflix VIP</div></div>
+                </div>
+
+                <div class="service-card" onclick="abrirProductoDistri('Disney+ Premium', 'Streaming Mayorista', 'https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1618336753974-aae8e04506aa?q=80&w=500&auto=format&fit=crop" alt="Disney+"></div>
+                    <div class="service-content"><span class="service-tag">PRECIO MAYORISTA</span><div class="service-name">Disney+ Premium VIP</div></div>
+                </div>
+
+                <div class="service-card" onclick="abrirProductoDistri('Prime Video', 'Streaming Mayorista', 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=500&auto=format&fit=crop" alt="Prime Video"></div>
+                    <div class="service-content"><span class="service-tag">PRECIO MAYORISTA</span><div class="service-name">Prime Video VIP</div></div>
+                </div>
+
+                <div class="service-card" onclick="abrirProductoDistri('HBO Max Standar', 'Streaming Mayorista', 'https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=500&auto=format&fit=crop" alt="HBO Max"></div>
+                    <div class="service-content"><span class="service-tag">PRECIO MAYORISTA</span><div class="service-name">HBO Max Standar VIP</div></div>
+                </div>
+
+                <div class="service-card" onclick="abrirProductoDistri('Crunchyroll', 'Streaming Mayorista', 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=500&auto=format&fit=crop" alt="Crunchyroll"></div>
+                    <div class="service-content"><span class="service-tag">PRECIO MAYORISTA</span><div class="service-name">Crunchyroll VIP</div></div>
+                </div>
+
+                <div class="service-card" onclick="abrirProductoDistri('Paramount+', 'Streaming Mayorista', 'https://images.unsplash.com/photo-1578022761797-b8636ac1773c?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1578022761797-b8636ac1773c?q=80&w=500&auto=format&fit=crop" alt="Paramount+"></div>
+                    <div class="service-content"><span class="service-tag">PRECIO MAYORISTA</span><div class="service-name">Paramount+ VIP</div></div>
+                </div>
+
+                <div class="service-card" onclick="abrirProductoDistri('Vix', 'Streaming Mayorista', 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=500&auto=format&fit=crop" alt="Vix"></div>
+                    <div class="service-content"><span class="service-tag">PRECIO MAYORISTA</span><div class="service-name">Vix VIP</div></div>
+                </div>
+            </div>
+        </div>
+
         <!-- ==================== VISTA 2: JUEGOS DE RECARGA ==================== -->
         <div id="vista-recargas" class="view-section">
             <div class="section-header" style="margin-top: 10px;">
@@ -585,7 +721,6 @@
             </div>
 
             <div class="product-page-layout">
-                <!-- Columna Izquierda: Pasos de Compra -->
                 <div class="product-main-content">
                     
                     <div class="product-header">
@@ -624,7 +759,6 @@
                             <div class="step-title" id="step2-title-head">SELECCIONA TU <span>PLAN / PAQUETE</span></div>
                         </div>
 
-                        <!-- Estado 1: Elección de Paquetes -->
                         <div id="step2-packages-wrapper">
                             <div class="packages-toggle-container" id="toggle-container">
                                 <button class="package-tab-btn active" id="tab-btn-1" onclick="cambiarTab(0)">Planes Principales</button>
@@ -636,7 +770,6 @@
                             </div>
                         </div>
 
-                        <!-- Estado 2: Elección de Método de Pago -->
                         <div id="step2-payment-wrapper" style="display: none;">
                             <div class="payment-methods-grid">
                                 <div class="payment-card-opt" id="opt-pay-binance" onclick="seleccionarMetodoMetodo('binance')">
@@ -664,7 +797,6 @@
                         </div>
                     </div>
 
-                    <!-- Acordeón Información del Producto -->
                     <div class="info-accordion">
                         <div class="info-accordion-header" onclick="toggleAccordion()">
                             <div class="info-accordion-title-box">
@@ -683,7 +815,6 @@
 
                 </div>
 
-                <!-- Columna Derecha: Resumen del Pedido (Sticky) -->
                 <div class="order-summary-card">
                     <div class="summary-header">
                         <img id="summary-prod-img" class="summary-thumb" src="https://assets.nflxext.com/ffe/siteui/vlv3/9d2fc35e-57cf-432d-96f7-ebf345842881/4f808796-03c6-47a3-b2dd-ff8736d75be8/VE-es-20240930-popsignuptwoweeks-perspective_alpha_website_large.jpg" alt="Thumb">
@@ -717,7 +848,6 @@
         <!-- ==================== VISTA 5: PASARELA BINANCE PAY ==================== -->
         <div id="vista-binance-gateway" class="view-section">
             <div class="gateway-container">
-                <!-- Botón Volver y Nombre -->
                 <div class="gateway-header-bar">
                     <button class="btn-volver-checkout" onclick="volverACheckout()">
                         &lt; VOLVER
@@ -727,7 +857,6 @@
                     </div>
                 </div>
 
-                <!-- Temporizador con Barra de Progreso -->
                 <div class="timer-box-card">
                     <div class="timer-header-flex">
                         <div class="timer-title-text">
@@ -741,7 +870,6 @@
                     </div>
                 </div>
 
-                <!-- Desplegable Detalles de tu Compra -->
                 <div class="summary-dropdown-card" onclick="toggleAccordion()">
                     <div class="summary-drop-left">
                         <span class="summary-drop-icon">🛒</span>
@@ -753,7 +881,6 @@
                     <span style="color: #9ca3af; font-size: 0.8rem;">▼</span>
                 </div>
 
-                <!-- Tarjeta Central de Pago con QR -->
                 <div class="binance-main-card">
                     <div class="binance-qr-title">CÓDIGO QR DE PAGO</div>
                     <div class="binance-qr-sub">ESCANEA ESTE CÓDIGO DESDE LA APP DE BINANCE</div>
@@ -788,7 +915,6 @@
         <!-- ==================== VISTA 6: PASARELA PAGO MÓVIL ==================== -->
         <div id="vista-pagomovil-gateway" class="view-section">
             <div class="gateway-container">
-                <!-- Botón Volver -->
                 <div class="gateway-header-bar">
                     <button class="btn-volver-checkout" onclick="volverACheckout()">
                         &lt; VOLVER
@@ -796,7 +922,6 @@
                     <div class="badge-pm-pill"><span class="check">✓</span> Pago Móvil</div>
                 </div>
 
-                <!-- Temporizador con Barra de Progreso -->
                 <div class="timer-box-card">
                     <div class="timer-header-flex">
                         <div class="timer-title-text">
@@ -810,7 +935,6 @@
                     </div>
                 </div>
 
-                <!-- Desplegable Detalles de tu Compra -->
                 <div class="summary-dropdown-card" onclick="toggleAccordion()">
                     <div class="summary-drop-left">
                         <span class="summary-drop-icon">🛒</span>
@@ -822,7 +946,6 @@
                     <span style="color: #9ca3af; font-size: 0.8rem;">▼</span>
                 </div>
 
-                <!-- Tarjeta Principal de Datos -->
                 <div class="pm-main-card">
                     <div class="pm-header-row">
                         <div class="pm-header-title-box">
@@ -838,7 +961,6 @@
                         </button>
                     </div>
 
-                    <!-- Total a Pagar -->
                     <div class="total-pay-box-exact">
                         <div>
                             <div class="total-pay-label">TOTAL A PAGAR</div>
@@ -847,7 +969,6 @@
                         <div class="total-pay-amount"><span>Bs.</span> <span id="gateway-pm-amount">25.452,00</span></div>
                     </div>
 
-                    <!-- Cuadrícula 2x2 de Datos -->
                     <div class="pm-grid-2x2">
                         <div class="pm-box-field">
                             <div>
@@ -879,7 +1000,6 @@
                             </button>
                         </div>
 
-                        <!-- 4ta Tarjeta Dinámica según Verificación -->
                         <div class="pm-box-field">
                             <div>
                                 <div class="pm-box-label" id="pm-card4-label">NOMBRE DE PANTALLA</div>
@@ -891,12 +1011,10 @@
                         </div>
                     </div>
 
-                    <!-- Botón Ver QR -->
                     <button class="btn-qr-option" onclick="alert('Mostrando QR de Pago Móvil')">
                         <span style="color: #00FF7F;">⬡</span> Ver Código QR
                     </button>
 
-                    <!-- Botón Grande Verde -->
                     <button class="btn-paid-green-huge" onclick="enviarPagoWhatsApp('Pago Móvil')">
                         Ya realicé el pago
                     </button>
@@ -911,6 +1029,7 @@
         let monedaActual = 'VES';
         let estadoCheckoutStep = 1;
         let metodoPagoSeleccionado = 'pago_movil';
+        let distribuidorAutorizado = false;
 
         const baseDeDatosPrecios = {
             "netflix": {
@@ -1207,12 +1326,140 @@
             }
         };
 
+        const baseDeDatosPreciosDistri = {
+            "netflix": {
+                categoria: "distribuidores",
+                tab1Nombre: "Planes Mayoristas",
+                tab2Nombre: "Cuentas Mayoristas",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Lote Mayorista", precioUSD: 2.80, active: true },
+                    { monto: "1 Pantalla", extra: "Personalizada VIP", precioUSD: 3.50 },
+                    { monto: "Cuenta Completa", extra: "Mayorista", precioUSD: 11.50 }
+                ],
+                paquetesTab2: [
+                    { monto: "Cuenta Completa", extra: "Panel VIP", precioUSD: 11.50 }
+                ]
+            },
+            "disney+ premium": {
+                categoria: "distribuidores",
+                tab1Nombre: "Pantallas Mayoristas",
+                tab2Nombre: "Cuentas Mayoristas",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Precio Revendedor", precioUSD: 2.50, active: true },
+                    { monto: "Cuenta Completa", extra: "Mayorista VIP", precioUSD: 11.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "Cuenta Completa", extra: "Pack Mayorista", precioUSD: 11.00 }
+                ]
+            },
+            "prime video": {
+                categoria: "distribuidores",
+                tab1Nombre: "Opciones Mayoristas",
+                tab2Nombre: "Cuenta Mayorista",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Revendedor", precioUSD: 0.90, active: true },
+                    { monto: "Cuenta Completa", extra: "VIP Revendedor", precioUSD: 3.80 }
+                ],
+                paquetesTab2: [
+                    { monto: "Cuenta Completa", extra: "Pack VIP", precioUSD: 3.80 }
+                ]
+            },
+            "hbo max standar": {
+                categoria: "distribuidores",
+                tab1Nombre: "Pantallas Mayoristas",
+                tab2Nombre: "Cuentas Mayoristas",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Revendedor", precioUSD: 1.30, active: true },
+                    { monto: "Cuenta Completa", extra: "VIP Mayorista", precioUSD: 4.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "Cuenta Completa", extra: "Privada VIP", precioUSD: 4.00 }
+                ]
+            },
+            "crunchyroll": {
+                categoria: "distribuidores",
+                tab1Nombre: "Mega Fan Revendedor",
+                tab2Nombre: "Cuenta Completa VIP",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Mayorista", precioUSD: 0.80, active: true },
+                    { monto: "Cuenta Completa", extra: "VIP Mayorista", precioUSD: 3.50 }
+                ],
+                paquetesTab2: [
+                    { monto: "Cuenta Completa", extra: "Lote Revendedores", precioUSD: 3.50 }
+                ]
+            },
+            "paramount+": {
+                categoria: "distribuidores",
+                tab1Nombre: "Planes VIP",
+                tab2Nombre: "Cuentas VIP",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Precio Mayorista", precioUSD: 1.20, active: true },
+                    { monto: "Cuenta Completa", extra: "Mayorista VIP", precioUSD: 3.80 }
+                ],
+                paquetesTab2: [
+                    { monto: "Cuenta Completa", extra: "Lote Mayorista", precioUSD: 3.80 }
+                ]
+            },
+            "vix": {
+                categoria: "distribuidores",
+                tab1Nombre: "Planes Mayoristas",
+                tab2Nombre: "Cuentas Mayoristas",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Revendedor", precioUSD: 0.80, active: true },
+                    { monto: "Cuenta Completa", extra: "VIP Mayorista", precioUSD: 3.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "Cuenta Completa", extra: "Lote Mayorista", precioUSD: 3.00 }
+                ]
+            }
+        };
+
         let productoNombreActual = "Netflix";
         let productoActualData = null;
         let tabActivaIndex = 0;
         let precioUSDActual = 4.00;
         let cantidad = 1;
         let timerInterval = null;
+
+        function solicitarAccesoDistribuidores() {
+            if (distribuidorAutorizado) {
+                mostrarVista('distribuidores');
+            } else {
+                let modalDist = document.getElementById('modal-distribuidores');
+                if (modalDist) modalDist.style.display = 'flex';
+            }
+        }
+
+        function cerrarModalDistribuidores() {
+            let modalDist = document.getElementById('modal-distribuidores');
+            if (modalDist) modalDist.style.display = 'none';
+        }
+
+        function validarCodigoDistribuidor() {
+            const inputCode = document.getElementById('distri-code-input').value.trim().toUpperCase();
+            if (inputCode === "SXDISTRIVZ" || inputCode === "SXDISTRVE") {
+                distribuidorAutorizado = true;
+                cerrarModalDistribuidores();
+                document.getElementById('distri-code-input').value = "";
+                mostrarVista('distribuidores');
+            } else {
+                alert("Código de distribuidor incorrecto. Solicita tu código a soporte.");
+            }
+        }
 
         function abrirProducto(nombre, tag, imagen) {
             productoNombreActual = nombre;
@@ -1236,6 +1483,40 @@
 
             estadoCheckoutStep = 1;
             document.getElementById('step2-title-head').innerHTML = 'SELECCIONA TU <span>PLAN / PAQUETE</span>';
+            document.getElementById('step2-packages-wrapper').style.display = 'block';
+            document.getElementById('step2-payment-wrapper').style.display = 'none';
+            document.getElementById('btn-main-action').innerText = 'VERIFICAR PEDIDO >';
+
+            tabActivaIndex = 0;
+            document.getElementById('tab-btn-1').classList.add('active');
+            document.getElementById('tab-btn-2').classList.remove('active');
+
+            renderizarPaquetes();
+            mostrarVista('producto');
+        }
+
+        function abrirProductoDistri(nombre, tag, imagen) {
+            productoNombreActual = nombre + " (VIP Mayorista)";
+            document.getElementById('prod-title').innerText = nombre + " VIP";
+            document.getElementById('prod-bread-title').innerText = nombre + " Mayorista";
+            document.getElementById('prod-tag').innerText = tag;
+            document.getElementById('summary-prod-name').innerText = nombre + " VIP";
+            if(imagen) document.getElementById('summary-prod-img').src = imagen;
+
+            limpiarErrorInput();
+            document.getElementById('input-field-id').value = '';
+
+            const claveNorm = nombre.toLowerCase().trim();
+            productoActualData = baseDeDatosPreciosDistri[claveNorm] || baseDeDatosPreciosDistri["netflix"];
+
+            document.getElementById('label-field-text').innerText = productoActualData.idLabel;
+            document.getElementById('input-field-id').placeholder = productoActualData.idPlaceholder;
+
+            document.getElementById('tab-btn-1').innerText = productoActualData.tab1Nombre;
+            document.getElementById('tab-btn-2').innerText = productoActualData.tab2Nombre;
+
+            estadoCheckoutStep = 1;
+            document.getElementById('step2-title-head').innerHTML = 'SELECCIONA TU <span>PLAN / PAQUETE MAYORISTA</span>';
             document.getElementById('step2-packages-wrapper').style.display = 'block';
             document.getElementById('step2-payment-wrapper').style.display = 'none';
             document.getElementById('btn-main-action').innerText = 'VERIFICAR PEDIDO >';
@@ -1490,7 +1771,7 @@
         }
 
         function mostrarVista(vista) {
-            const vistas = ['vista-servicios', 'vista-recargas', 'vista-soporte', 'vista-producto', 'vista-binance-gateway', 'vista-pagomovil-gateway'];
+            const vistas = ['vista-servicios', 'vista-recargas', 'vista-distribuidores', 'vista-soporte', 'vista-producto', 'vista-binance-gateway', 'vista-pagomovil-gateway'];
             vistas.forEach(v => {
                 const el = document.getElementById(v);
                 if(el) el.classList.remove('active');
@@ -1498,15 +1779,20 @@
 
             const navServicios = document.getElementById('nav-servicios');
             const navRecargas = document.getElementById('nav-recargas');
+            const navDistribuidores = document.getElementById('nav-distribuidores');
             const navSoporte = document.getElementById('nav-soporte');
 
             if(navServicios) navServicios.classList.remove('active');
             if(navRecargas) navRecargas.classList.remove('active');
+            if(navDistribuidores) navDistribuidores.classList.remove('active');
             if(navSoporte) navSoporte.classList.remove('active');
 
             if (vista === 'recargas') {
                 document.getElementById('vista-recargas').classList.add('active');
                 if(navRecargas) navRecargas.classList.add('active');
+            } else if (vista === 'distribuidores') {
+                document.getElementById('vista-distribuidores').classList.add('active');
+                if(navDistribuidores) navDistribuidores.classList.add('active');
             } else if (vista === 'soporte') {
                 document.getElementById('vista-soporte').classList.add('active');
                 if(navSoporte) navSoporte.classList.add('active');
@@ -1527,8 +1813,10 @@
         function cerrarModalRegion() { document.getElementById('modalRegion').style.display = 'none'; }
 
         window.onclick = function(event) {
-            const modal = document.getElementById('modalRegion');
-            if (event.target === modal) cerrarModalRegion();
+            const modalRegion = document.getElementById('modalRegion');
+            const modalDist = document.getElementById('modal-distribuidores');
+            if (event.target === modalRegion) cerrarModalRegion();
+            if (event.target === modalDist) cerrarModalDistribuidores();
         };
 
         function seleccionarMoneda(moneda) {
