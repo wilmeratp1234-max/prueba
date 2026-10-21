@@ -165,14 +165,16 @@
         .pay-opt-name { font-size: 1rem; font-weight: 800; color: #ffffff; }
         .pay-opt-sub { font-size: 0.75rem; color: #9ca3af; margin-top: 2px; }
 
-        /* ESTILOS EXACTOS PAGO MÓVIL (IMAGEN 5) */
-        .gateway-container { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+        /* ESTILOS COMUNES PASARELAS (BINANCE & PAGO MÓVIL) */
+        .gateway-container { max-width: 580px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
         
-        .top-badge-row { display: flex; justify-content: center; margin-bottom: 5px; }
-        .badge-pm-pill { background: #0b1d16; border: 1px solid #00FF7F; color: #ffffff; padding: 6px 16px; border-radius: 20px; font-size: 0.82rem; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; }
-        .badge-pm-pill span.check { color: #00FF7F; font-weight: 900; }
+        .gateway-header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .btn-volver-checkout { background: #111827; border: 1px solid #1f2937; color: #ffffff; padding: 6px 16px; border-radius: 18px; font-size: 0.78rem; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; text-transform: uppercase; }
+        .btn-volver-checkout:hover { border-color: #00FF7F; color: #00FF7F; }
 
-        .timer-box-card { background: #0b0f19; border: 1px solid #1f2937; border-radius: 16px; padding: 18px; }
+        .binance-logo-title { font-weight: 900; color: #f0b90b; font-size: 1.1rem; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .timer-box-card { background: #0c101c; border: 1px solid #1f2937; border-radius: 16px; padding: 18px 20px; }
         .timer-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
         .timer-title-text { font-size: 0.75rem; font-weight: 800; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
         .timer-title-text svg { width: 16px; height: 16px; fill: #00FF7F; }
@@ -181,13 +183,39 @@
         .timer-progress-bar-bg { width: 100%; height: 6px; background: #111827; border-radius: 3px; overflow: hidden; }
         .timer-progress-bar-fill { height: 100%; background: #00FF7F; width: 100%; transition: width 1s linear; }
 
-        .summary-dropdown-card { background: #0b0f19; border: 1px solid #1f2937; border-radius: 16px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .summary-dropdown-card { background: #0c101c; border: 1px solid #1f2937; border-radius: 16px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
         .summary-drop-left { display: flex; align-items: center; gap: 12px; }
         .summary-drop-icon { color: #00FF7F; font-size: 1.2rem; }
-        .summary-drop-title { font-size: 0.85rem; font-weight: 800; color: #ffffff; text-transform: uppercase; }
+        .summary-drop-title { font-size: 0.7rem; font-weight: 800; color: #6b7280; text-transform: uppercase; }
         .summary-drop-sub { font-size: 0.95rem; font-weight: 800; color: #ffffff; margin-top: 2px; }
 
-        .pm-main-card { background: #0b0f19; border: 1px solid #1f2937; border-radius: 20px; padding: 22px; }
+        /* ESTILOS BINANCE PAY (IMAGEN 21) */
+        .binance-main-card { background: #0c101c; border: 1px solid #1f2937; border-radius: 20px; padding: 30px 25px; text-align: center; }
+        .binance-qr-title { font-size: 0.85rem; font-weight: 900; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .binance-qr-sub { font-size: 0.72rem; color: #9ca3af; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; }
+
+        .binance-amount-badge { background: #070a12; border: 1px solid #374151; border-radius: 14px; padding: 12px 20px; display: inline-block; margin-bottom: 22px; width: 100%; max-width: 320px; }
+        .binance-amount-label { font-size: 0.65rem; color: #f0b90b; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+        .binance-amount-val { font-size: 1.7rem; font-weight: 900; color: #ffffff; }
+        .binance-amount-val span { font-size: 1rem; color: #f0b90b; margin-left: 2px; }
+
+        .binance-qr-frame { background: #ffffff; border-radius: 18px; padding: 16px; display: inline-block; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+        .binance-qr-frame img { width: 190px; height: 190px; display: block; }
+
+        .binance-wait-status { font-size: 0.75rem; color: #00FF7F; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 25px; letter-spacing: 0.5px; }
+
+        .btn-binance-gold-huge { width: 100%; background: #f0b90b; color: #000000; border: none; padding: 18px; border-radius: 14px; font-weight: 900; font-size: 0.95rem; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s; margin-bottom: 12px; text-decoration: none; }
+        .btn-binance-gold-huge:hover { background: #d9a407; }
+
+        .btn-paid-green-huge { width: 100%; background: #00FF7F; color: #050811; border: none; padding: 18px; border-radius: 14px; font-weight: 900; font-size: 1rem; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+        .btn-paid-green-huge:hover { background: #00cc66; }
+
+        /* ESTILOS PAGO MÓVIL (IMAGEN 5) */
+        .top-badge-row { display: flex; justify-content: center; margin-bottom: 5px; }
+        .badge-pm-pill { background: #0b1d16; border: 1px solid #00FF7F; color: #ffffff; padding: 6px 16px; border-radius: 20px; font-size: 0.82rem; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; }
+        .badge-pm-pill span.check { color: #00FF7F; font-weight: 900; }
+
+        .pm-main-card { background: #0c101c; border: 1px solid #1f2937; border-radius: 20px; padding: 22px; }
         .pm-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .pm-header-title-box { display: flex; align-items: center; gap: 10px; }
         .pm-header-icon-circle { width: 26px; height: 26px; border-radius: 50%; background: #0d261b; border: 1px solid #00FF7F; color: #00FF7F; font-size: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
@@ -214,9 +242,6 @@
 
         .btn-qr-option { width: 100%; background: #070a12; border: 1px solid #1f2937; color: #ffffff; padding: 14px; border-radius: 12px; font-weight: bold; font-size: 0.88rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 16px; transition: all 0.2s; }
         .btn-qr-option:hover { border-color: #00FF7F; color: #00FF7F; }
-
-        .btn-paid-green-huge { width: 100%; background: #00FF7F; color: #050811; border: none; padding: 18px; border-radius: 14px; font-weight: 900; font-size: 1rem; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
-        .btn-paid-green-huge:hover { background: #00cc66; }
 
         /* SOPORTE Y MÓVIL */
         .support-header-box { text-align: center; margin-bottom: 45px; margin-top: 10px; }
@@ -296,7 +321,7 @@
                 </button>
 
                 <button class="btn-region btn-region-desktop" onclick="abrirModalRegion()">
-                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/></svg>
                     <span id="label-moneda">VES</span>
                 </button>
             </div>
@@ -695,59 +720,85 @@
             </div>
         </div>
 
-        <!-- ==================== VISTA 5: PASARELA BINANCE PAY ==================== -->
+        <!-- ==================== VISTA 5: PASARELA BINANCE PAY (IMAGEN 21 EXACTA) ==================== -->
         <div id="vista-binance-gateway" class="view-section">
-            <div class="breadcrumbs">
-                <a onclick="mostrarVista('servicios')">Inicio</a> &gt; <a onclick="mostrarVista('producto')">Producto</a> &gt; <span>Binance Pay</span>
-            </div>
-
             <div class="gateway-container">
+                <!-- Botón Volver y Nombre -->
+                <div class="gateway-header-bar">
+                    <button class="btn-volver-checkout" onclick="volverACheckout()">
+                        &lt; VOLVER
+                    </button>
+                    <div class="binance-logo-title">
+                        <span>⬡</span> BINANCE PAY
+                    </div>
+                </div>
+
+                <!-- Temporizador con Barra de Progreso -->
                 <div class="timer-box-card">
                     <div class="timer-header-flex">
                         <div class="timer-title-text">
                             <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
                             TIEMPO RESTANTE
                         </div>
-                        <div class="timer-clock-digits" id="timer-binance">29:59</div>
+                        <div class="timer-clock-digits" id="timer-binance">29:49</div>
                     </div>
                     <div class="timer-progress-bar-bg">
                         <div class="timer-progress-bar-fill" id="progress-binance"></div>
                     </div>
                 </div>
 
-                <div class="qr-card-box">
-                    <div class="qr-card-title">CÓDIGO QR DE PAGO</div>
-                    <div class="qr-card-subtitle">ESCANEA ESTE CÓDIGO DESDE LA APP DE BINANCE</div>
+                <!-- Desplegable Detalles de tu Compra -->
+                <div class="summary-dropdown-card" onclick="toggleAccordion()">
+                    <div class="summary-drop-left">
+                        <span class="summary-drop-icon">🛒</span>
+                        <div>
+                            <div class="summary-drop-title">RESUMEN</div>
+                            <div class="summary-drop-sub">DETALLES DE TU COMPRA</div>
+                        </div>
+                    </div>
+                    <span style="color: #9ca3af; font-size: 0.8rem;">▼</span>
+                </div>
 
-                    <div class="amount-highlight-box">
-                        <div class="amount-highlight-label">TOTAL A PAGAR</div>
-                        <div class="amount-highlight-val">$ <span id="gateway-binance-amount">4.00</span> USDT</div>
+                <!-- Tarjeta Central de Pago con QR -->
+                <div class="binance-main-card">
+                    <div class="binance-qr-title">CÓDIGO QR DE PAGO</div>
+                    <div class="binance-qr-sub">ESCANEA ESTE CÓDIGO DESDE LA APP DE BINANCE</div>
+
+                    <div class="binance-amount-badge">
+                        <div class="binance-amount-label">TOTAL A PAGAR</div>
+                        <div class="binance-amount-val">$ <span id="gateway-binance-amount">4.00</span> <span>USDT</span></div>
                     </div>
 
-                    <div class="qr-image-container">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=binancepay://pay?amount=4.00" alt="QR Binance Pay">
+                    <div>
+                        <div class="binance-qr-frame">
+                            <img id="binance-qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=binancepay://pay?amount=4.00" alt="QR Binance Pay">
+                        </div>
                     </div>
 
-                    <div class="status-wait-text">
+                    <div class="binance-wait-status">
                         <span>⟳</span> ESPERANDO DETECCIÓN DEL PAGO...
                     </div>
 
-                    <a href="https://binance.com" target="_blank" class="btn-binance-app">
+                    <a href="https://binance.com" target="_blank" class="btn-binance-gold-huge">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
                         PAGAR EN LA APP DE BINANCE
                     </a>
 
-                    <button class="btn-confirm-paid" onclick="enviarPagoWhatsApp('Binance Pay')">
+                    <button class="btn-paid-green-huge" onclick="enviarPagoWhatsApp('Binance Pay')">
                         YA REALICÉ EL PAGO
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- ==================== VISTA 6: PASARELA PAGO MÓVIL (IMAGEN 5 EXACTA) ==================== -->
+        <!-- ==================== VISTA 6: PASARELA PAGO MÓVIL ==================== -->
         <div id="vista-pagomovil-gateway" class="view-section">
             <div class="gateway-container">
-                <!-- Insignia Superior -->
-                <div class="top-badge-row">
+                <!-- Botón Volver -->
+                <div class="gateway-header-bar">
+                    <button class="btn-volver-checkout" onclick="volverACheckout()">
+                        &lt; VOLVER
+                    </button>
                     <div class="badge-pm-pill"><span class="check">✓</span> Pago Móvil</div>
                 </div>
 
@@ -1319,6 +1370,10 @@
             }
         }
 
+        function volverACheckout() {
+            mostrarVista('producto');
+        }
+
         function validarYProcesarPedido() {
             if (!validarCampoObligatorio()) return;
 
@@ -1336,9 +1391,9 @@
 
                 if (metodoPagoSeleccionado === 'binance') {
                     document.getElementById('gateway-binance-amount').innerText = totalUSD;
+                    document.getElementById('binance-qr-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=binancepay://pay?amount=${totalUSD}`;
                     mostrarVista('binance-gateway');
                 } else {
-                    // Actualizar dinámicamente la cuarta tarjeta de Pago Móvil con la etiqueta y el nombre/ID verificado
                     document.getElementById('pm-card4-label').innerText = productoActualData.idLabel;
                     document.getElementById('pm-card4-val').innerText = valorIngresado;
                     document.getElementById('gateway-pm-amount').innerText = totalVES;
@@ -1350,7 +1405,7 @@
 
         function iniciarTemporizador() {
             if (timerInterval) clearInterval(timerInterval);
-            let tiempoTotal = 1790; // ~29:50
+            let tiempoTotal = 1790;
             let tiempoRestante = tiempoTotal;
 
             timerInterval = setInterval(() => {
