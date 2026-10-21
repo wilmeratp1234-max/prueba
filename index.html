@@ -22,6 +22,34 @@
             background-repeat: repeat;
             background-size: auto, auto, 400px 400px;
         }
+		
+		/* ESTILOS PARA TARJETAS Y PAQUETES AGOTADOS */
+.service-card.agotado, .package-card.sold-out {
+    opacity: 0.35;
+    filter: grayscale(0.8);
+    pointer-events: none; /* Evita que el cliente haga clic */
+    position: relative;
+    cursor: not-allowed;
+}
+
+/* Sello diagonal de AGOTADO idéntico a la imagen */
+.package-card.sold-out::after, .service-card.agotado::after {
+    content: "AGOTADO";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-12deg);
+    background: rgba(20, 20, 20, 0.85);
+    color: #9ca3af;
+    border: 2px solid #6b7280;
+    padding: 6px 18px;
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+    z-index: 10;
+}
 
         /* Elementos flotantes decorativos de Halloween */
         .halloween-decorations {
@@ -1989,46 +2017,56 @@
         }
 
         function renderizarPaquetes() {
-            const grid = document.getElementById('packages-grid-container');
-            grid.innerHTML = '';
+    const grid = document.getElementById('packages-grid-container');
+    grid.innerHTML = '';
 
-            const lista = tabActivaIndex === 0 ? productoActualData.paquetesTab1 : productoActualData.paquetesTab2;
+    const lista = tabActivaIndex === 0 ? productoActualData.paquetesTab1 : productoActualData.paquetesTab2;
 
-            lista.forEach((item, idx) => {
-                let esActivo = item.active || (idx === 0 && !lista.some(p => p.active));
-                if(esActivo) {
-                    precioUSDActual = item.precioUSD;
-                    document.getElementById('summary-pkg-text').innerText = `${item.monto} ${item.extra ? '(' + item.extra + ')' : ''}`;
-                    actualizarTotal();
-                }
+    lista.forEach((item, idx) => {
+        // Obtenemos el stock configurado en la lista (si no está definido, por defecto es 1)
+        const claveProducto = productoNombreActual.toLowerCase().replace(' (vip mayorista)', '').trim();
+        const stockDisponible = (CONTROL_DE_STOCK[claveProducto] !== undefined) ? CONTROL_DE_STOCK[claveProducto] : 1;
+        const estaAgotado = stockDisponible <= 0;
 
-                const card = document.createElement('div');
-                card.className = `package-card ${esActivo ? 'active' : ''}`;
-                card.onclick = function() {
-                    document.querySelectorAll('.package-card').forEach(el => el.classList.remove('active'));
-                    card.classList.add('active');
-                    precioUSDActual = item.precioUSD;
-                    document.getElementById('summary-pkg-text').innerText = `${item.monto} ${item.extra ? '(' + item.extra + ')' : ''}`;
-                    actualizarTotal();
-                };
-
-                let precioMostrado = monedaActual === 'VES' 
-                    ? `Bs. ${(item.precioUSD * tasaVES).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
-                    : `$${item.precioUSD.toFixed(2)}`;
-
-                card.innerHTML = `
-                    <div class="package-card-top">
-                        <div>
-                            <span class="package-amount">${item.monto}</span>
-                            <span class="package-extra"> ${item.extra ? '/ ' + item.extra : ''}</span>
-                        </div>
-                        <div class="info-small-circle">i</div>
-                    </div>
-                    <div class="package-price-badge">${precioMostrado}</div>
-                `;
-                grid.appendChild(card);
-            });
+        let esActivo = !estaAgotado && (item.active || (idx === 0 && !lista.some(p => p.active)));
+        
+        if (esActivo) {
+            precioUSDActual = item.precioUSD;
+            document.getElementById('summary-pkg-text').innerText = `${item.monto} ${item.extra ? '(' + item.extra + ')' : ''}`;
+            actualizarTotal();
         }
+
+        const card = document.createElement('div');
+        // Si el stock es 0, se le asigna la clase 'sold-out'
+        card.className = `package-card ${esActivo ? 'active' : ''} ${estaAgotado ? 'sold-out' : ''}`;
+        
+        if (!estaAgotado) {
+            card.onclick = function() {
+                document.querySelectorAll('.package-card').forEach(el => el.classList.remove('active'));
+                card.classList.add('active');
+                precioUSDActual = item.precioUSD;
+                document.getElementById('summary-pkg-text').innerText = `${item.monto} ${item.extra ? '(' + item.extra + ')' : ''}`;
+                actualizarTotal();
+            };
+        }
+
+        let precioMostrado = monedaActual === 'VES' 
+            ? `Bs. ${(item.precioUSD * tasaVES).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+            : `$${item.precioUSD.toFixed(2)}`;
+
+        card.innerHTML = `
+            <div class="package-card-top">
+                <div>
+                    <span class="package-amount">${item.monto}</span>
+                    <span class="package-extra"> ${item.extra ? '/ ' + item.extra : ''}</span>
+                </div>
+                <div class="info-small-circle">i</div>
+            </div>
+            <div class="package-price-badge">${precioMostrado}</div>
+        `;
+        grid.appendChild(card);
+    });
+}
 
         function cambiarCantidad(delta) {
             if (cantidad + delta >= 1) {
@@ -2071,6 +2109,18 @@
             limpiarErrorInput();
             return true;
         }
+		
+		// ==================== CONTROL DE STOCK / INVENTARIO ====================
+// Cambia a 0 para mostrar la tarjeta como AGOTADO, o coloca la cantidad disponible.
+const CONTROL_DE_STOCK = {
+    "netflix": 5,
+    "disney+ premium": 0,    // <- Al estar en 0 aparecerá AGOTADO
+    "prime video": 10,
+    "hbo max standar": 0,   // <- Al estar en 0 aparecerá AGOTADO
+    "crunchyroll": 3,
+    "free fire": 100,
+    "roblox": 0
+};
 
         function seleccionarMetodoMetodo(metodo) {
             metodoPagoSeleccionado = metodo;
