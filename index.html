@@ -371,7 +371,7 @@
         <nav class="nav-bar">
             <button class="mobile-menu-btn" onclick="toggleDrawer()">☰</button>
 
-            <!-- Logo con STREAM en blanco y MIX en turquesa #40E0D0 -->
+            <!-- Logo STREAMIX con MIX en turquesa -->
             <div class="logo-nav" onclick="mostrarVista('servicios')">
                 STREAM<span>MIX</span>
             </div>
@@ -390,7 +390,7 @@
                 </button>
 
                 <button class="btn-region btn-region-desktop" onclick="abrirModalRegion()">
-                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/></svg>
                     <span id="label-moneda">VES</span>
                 </button>
             </div>
@@ -585,6 +585,29 @@
                     <div class="service-content"><span class="service-tag">Edición de Video</span><div class="service-name">Capcut</div></div>
                 </div>
             </div>
+
+            <!-- NUEVA CATEGORÍA: OTROS SERVICIOS -->
+            <div class="section-header">
+                <h2 class="section-title">Otros <span>Servicios</span></h2>
+                <a href="#" class="btn-ver-todos">Ver todos</a>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card" onclick="abrirProducto('Google One', 'Almacenamiento y Más', 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=500&auto=format&fit=crop" alt="Google One"></div>
+                    <div class="service-content"><span class="service-tag">☁️ Almacenamiento</span><div class="service-name">Google One</div></div>
+                </div>
+
+                <div class="service-card" onclick="abrirProducto('Monedas TikTok', 'Moneda Virtual', 'https://images.unsplash.com/photo-1611605698335-8b1569810432?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?q=80&w=500&auto=format&fit=crop" alt="Monedas TikTok"></div>
+                    <div class="service-content"><span class="service-tag">💰 Recargas TikTok</span><div class="service-name">Monedas TikTok</div></div>
+                </div>
+
+                <div class="service-card" onclick="abrirProducto('Estrellas Telegram', 'Telegram Premium & Stars', 'https://images.unsplash.com/photo-1614680376408-81e91ffe3db7?q=80&w=500&auto=format&fit=crop')">
+                    <div class="service-image-box"><img src="https://images.unsplash.com/photo-1614680376408-81e91ffe3db7?q=80&w=500&auto=format&fit=crop" alt="Estrellas Telegram"></div>
+                    <div class="service-content"><span class="service-tag">⭐ Telegram</span><div class="service-name">Estrellas Telegram</div></div>
+                </div>
+            </div>
         </div>
 
         <!-- ==================== VISTA DISTRIBUIDORES (ÁREA VIP) ==================== -->
@@ -631,7 +654,6 @@
                 </div>
             </div>
 
-            <!-- TV en Vivo & IPTV (Mayorista) -->
             <div class="section-header">
                 <h2 class="section-title">TV en Vivo & <span>IPTV (Mayorista)</span></h2>
             </div>
@@ -647,7 +669,6 @@
                 </div>
             </div>
 
-            <!-- Música sin Anuncios (Mayorista) -->
             <div class="section-header">
                 <h2 class="section-title">Música <span>sin Anuncios (Mayorista)</span></h2>
             </div>
@@ -663,7 +684,6 @@
                 </div>
             </div>
 
-            <!-- IA & Diseño (Mayorista) -->
             <div class="section-header">
                 <h2 class="section-title">IA & <span>Diseño (Mayorista)</span></h2>
             </div>
@@ -1081,6 +1101,54 @@
         let distribuidorAutorizado = false;
 
         const baseDeDatosPrecios = {
+            "google one": {
+                categoria: "otros",
+                tab1Nombre: "Planes Almacenamiento",
+                tab2Nombre: "Cuentas",
+                idLabel: "CORREO DE TU CUENTA GOOGLE",
+                idPlaceholder: "Ingresa el correo de tu cuenta Google",
+                paquetesTab1: [
+                    { monto: "30 GB", extra: "1 Mes", precioUSD: 2.00, active: true },
+                    { monto: "100 GB", extra: "1 Mes", precioUSD: 3.50 },
+                    { monto: "200 GB", extra: "1 Mes", precioUSD: 5.00 },
+                    { monto: "2 TB", extra: "1 Mes", precioUSD: 14.99 }
+                ],
+                paquetesTab2: [
+                    { monto: "2 TB", extra: "1 Mes", precioUSD: 14.99 }
+                ]
+            },
+            "monedas tiktok": {
+                categoria: "otros",
+                tab1Nombre: "Paquetes de Monedas",
+                tab2Nombre: "Recargas Directas",
+                idLabel: "USUARIO O ID DE TIKTOK",
+                idPlaceholder: "Ingresa tu usuario (@ejemplo)",
+                paquetesTab1: [
+                    { monto: "70 Monedas", extra: "Directas", precioUSD: 1.00, active: true },
+                    { monto: "210 Monedas", extra: "Directas", precioUSD: 2.90 },
+                    { monto: "630 Monedas", extra: "Directas", precioUSD: 8.50 },
+                    { monto: "1190 Monedas", extra: "Directas", precioUSD: 15.99 }
+                ],
+                paquetesTab2: [
+                    { monto: "1190 Monedas", extra: "Directas", precioUSD: 15.99 }
+                ]
+            },
+            "estrellas telegram": {
+                categoria: "otros",
+                tab1Nombre: "Estrellas & Premium",
+                tab2Nombre: "Suscripción",
+                idLabel: "USUARIO DE TELEGRAM",
+                idPlaceholder: "Ingresa tu usuario (@ejemplo)",
+                paquetesTab1: [
+                    { monto: "100 Estrellas", extra: "Telegram", precioUSD: 2.60, active: true },
+                    { monto: "250 Estrellas", extra: "Telegram", precioUSD: 6.25 },
+                    { monto: "500 Estrellas", extra: "Telegram", precioUSD: 12.40 },
+                    { monto: "Telegram Premium", extra: "Suscripción", precioUSD: 7.50 }
+                ],
+                paquetesTab2: [
+                    { monto: "Telegram Premium", extra: "Suscripción", precioUSD: 7.50 }
+                ]
+            },
             "netflix": {
                 categoria: "streaming",
                 tab1Nombre: "Planes Principales",
