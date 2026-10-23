@@ -65,7 +65,63 @@
             0%, 100% { transform: translateY(0) rotate(-5deg); }
             50% { transform: translateY(-8px) rotate(5deg); }
         }
-        
+		
+		/* DISEÑO DE DETALLE EN RECTÁNGULOS ESTILO PASARELA */
+.detail-account-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+    margin-top: 15px;
+}
+.detail-card-field {
+    background: #0b0f19;
+    border: 1px solid #1f2937;
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.detail-field-label {
+    font-size: 0.68rem;
+    color: #6b7280;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+.detail-field-val {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #ffffff;
+    word-break: break-all;
+}
+.btn-copy-detail {
+    background: transparent;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 6px;
+    transition: color 0.2s;
+    flex-shrink: 0;
+}
+.btn-copy-detail:hover { color: #ff6600; }
+.btn-copy-detail svg { width: 16px; height: 16px; fill: currentColor; }
+
+.service-header-badge {
+    background: #1a100c;
+    border: 1px solid #ff6600;
+    color: #ff6600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+		
         /* NAVEGACIÓN DESKTOP CON TOQUE HALLOWEEN */
         header.main-header { position: sticky; top: 0; z-index: 1000; background: #0b0f19; border-bottom: 1px solid #ff660044; box-shadow: 0 4px 20px rgba(255, 102, 0, 0.15); }
         .top-subbar-mobile { display: none; justify-content: space-between; align-items: center; padding: 8px 16px; background: #070a12; border-bottom: 1px solid #151c2c; font-size: 0.78rem; color: #9ca3af; }
@@ -1955,49 +2011,137 @@
             window.open(url, '_blank');
         }
 
-        /* LÓGICA DE BÚSQUEDA DE DATOS */
-        function limpiarErroresBusqueda() {
-            document.getElementById('search-phone-input').style.borderColor = '#1f2937';
-        }
+        // Coloca aquí la URL que te dio Google Apps Script al implementar
+const URL_GOOGLE_APPS_SCRIPT = "TU_URL_DE_GOOGLE_APPS_SCRIPT_AQUI";
 
-        function ejecutarBusquedaDatos() {
-            const num = document.getElementById('search-phone-input').value.trim();
-            if(!num) {
-                document.getElementById('search-phone-input').style.borderColor = '#ff4d4d';
-                alert('Por favor, ingresa un número de teléfono válido.');
+let cuentasEncontradasCache = [];
+
+function ejecutarBusquedaDatos() {
+    const phoneInput = document.getElementById('search-phone-input');
+    const num = phoneInput.value.trim().replace(/[^0-9]/g, '');
+
+    if (!num) {
+        phoneInput.style.borderColor = '#ff4d4d';
+        alert('Por favor, ingresa un número de teléfono válido.');
+        return;
+    }
+
+    const emptyBox = document.getElementById('search-empty-box');
+    const resultsBox = document.getElementById('search-results-box');
+    const list = document.getElementById('search-accounts-list');
+
+    // Estado de Carga
+    emptyBox.style.display = 'none';
+    resultsBox.style.display = 'flex';
+    list.innerHTML = `<div style="text-align: center; color: #ff6600; padding: 40px 0; font-weight: bold;">🔍 Consultando hoja de cálculo...</div>`;
+
+    fetch(`${URL_GOOGLE_APPS_SCRIPT}?telefono=${num}`)
+        .then(res => res.json())
+        .then(data => {
+            if (!data.resultados || data.resultados.length === 0) {
+                list.innerHTML = `
+                    <div style="text-align: center; color: #9ca3af; padding: 40px 0;">
+                        ❌ No se encontraron cuentas activas asociadas al teléfono <strong>${num}</strong>.
+                    </div>`;
                 return;
             }
 
-            const emptyBox = document.getElementById('search-empty-box');
-            const resultsBox = document.getElementById('search-results-box');
-            const list = document.getElementById('search-accounts-list');
+            cuentasEncontradasCache = data.resultados;
+            let html = '<div class="search-results-header">CUENTAS ENCONTRADAS (' + data.resultados.length + ')</div>';
 
-            emptyBox.style.display = 'none';
-            resultsBox.style.display = 'flex';
+            data.resultados.forEach((item, idx) => {
+                html += `
+                    <div class="account-result-item" onclick="verDetalleCuenta(${idx})">
+                        <div class="account-item-left">
+                            <div class="account-item-icon">🎬</div>
+                            <div>
+                                <div class="account-item-mail">${item.servicio.toUpperCase()} - ${item.correo}</div>
+                                <div class="account-item-sub">Perfil: ${item.perfil || 'Principal'} · Corte: ${item.fechaCorte || 'N/A'}</div>
+                            </div>
+                        </div>
+                        <span style="color: #ff6600; font-weight: bold; font-size: 0.85rem;">Ver datos ➔</span>
+                    </div>
+                `;
+            });
 
-            list.innerHTML = `
-                <div class="account-result-item" onclick="alert('Mostrando PIN y Código para la cuenta: cliente1@streamix.com')">
-                    <div class="account-item-left">
-                        <div class="account-item-icon">🎬</div>
-                        <div>
-                            <div class="account-item-mail">cliente1@streamix.com</div>
-                            <div class="account-item-sub">Netflix · Pantalla 1 · Vence: 28/10/2026</div>
-                        </div>
-                    </div>
-                    <span style="color: #ff6600; font-weight: bold; font-size: 0.85rem;">Ver código ➔</span>
+            list.innerHTML = html;
+        })
+        .catch(err => {
+            console.error(err);
+            list.innerHTML = `<div style="text-align: center; color: #ff4d4d; padding: 30px 0;">Error de conexión con la base de datos. Intenta nuevamente.</div>`;
+        });
+}
+
+function verDetalleCuenta(index) {
+    const item = cuentasEncontradasCache[index];
+    if (!item) return;
+
+    const list = document.getElementById('search-accounts-list');
+
+    list.innerHTML = `
+        <div style="margin-bottom: 12px;">
+            <button onclick="ejecutarBusquedaDatos()" style="background: #111827; border: 1px solid #1f2937; color: #ffffff; padding: 6px 14px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; cursor: pointer;">
+                ❮ Volver a la lista
+            </button>
+        </div>
+
+        <div class="service-header-badge">
+            SERVICIO: ${item.servicio}
+        </div>
+
+        <div class="detail-account-grid">
+            <div class="detail-card-field">
+                <div>
+                    <div class="detail-field-label">CORREO / USUARIO</div>
+                    <div class="detail-field-val">${item.correo || 'N/A'}</div>
                 </div>
-                <div class="account-result-item" onclick="alert('Mostrando PIN y Código para la cuenta: cliente2@streamix.com')">
-                    <div class="account-item-left">
-                        <div class="account-item-icon">✨</div>
-                        <div>
-                            <div class="account-item-mail">cliente2@streamix.com</div>
-                            <div class="account-item-sub">Disney+ Premium · Pantalla 2 · Vence: 15/11/2026</div>
-                        </div>
-                    </div>
-                    <span style="color: #ff6600; font-weight: bold; font-size: 0.85rem;">Ver código ➔</span>
+                <button class="btn-copy-detail" onclick="copiarTexto('${item.correo}', 'Correo')">
+                    <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </button>
+            </div>
+
+            <div class="detail-card-field">
+                <div>
+                    <div class="detail-field-label">CONTRASEÑA</div>
+                    <div class="detail-field-val">${item.clave || 'N/A'}</div>
                 </div>
-            `;
-        }
+                <button class="btn-copy-detail" onclick="copiarTexto('${item.clave}', 'Contraseña')">
+                    <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </button>
+            </div>
+
+            <div class="detail-card-field">
+                <div>
+                    <div class="detail-field-label">PERFIL / CLIENTE</div>
+                    <div class="detail-field-val">${item.perfil || 'Principal'}</div>
+                </div>
+                <button class="btn-copy-detail" onclick="copiarTexto('${item.perfil}', 'Perfil')">
+                    <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </button>
+            </div>
+
+            <div class="detail-card-field">
+                <div>
+                    <div class="detail-field-label">PIN</div>
+                    <div class="detail-field-val">${item.pin || 'Sin PIN'}</div>
+                </div>
+                <button class="btn-copy-detail" onclick="copiarTexto('${item.pin}', 'PIN')">
+                    <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </button>
+            </div>
+
+            <div class="detail-card-field" style="grid-column: span 2;">
+                <div>
+                    <div class="detail-field-label">FECHA DE CORTE / VENCIMIENTO</div>
+                    <div class="detail-field-val" style="color: #ff6600;">${item.fechaCorte || 'Sin fecha'} (${item.dias} días restantes)</div>
+                </div>
+                <button class="btn-copy-detail" onclick="copiarTexto('${item.fechaCorte}', 'Fecha Corte')">
+                    <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </button>
+            </div>
+        </div>
+    `;
+}
 
         function toggleAccordion() {
             const body = document.getElementById('accordion-body');
