@@ -637,16 +637,17 @@
                 STREA<span>MIX 🎃</span>
             </div>
 
-            <!-- Menú Principal Desktop -->
+           <!-- Menú Principal Desktop -->
             <ul class="nav-links">
                 <li><a id="nav-recargas" onclick="mostrarVista('recargas')">Recargas</a></li>
                 <li><a id="nav-servicios" class="active" onclick="mostrarVista('servicios')">Servicios</a></li>
                 <li><a id="nav-distribuidores" onclick="solicitarAccesoDistribuidores()">👑 Distribuidores</a></li>
+                <li><a id="nav-buscar" onclick="mostrarVista('buscar')">🔍 Buscar datos</a></li>
                 <li><a id="nav-soporte" onclick="mostrarVista('soporte')">Soporte</a></li>
             </ul>
             
             <div class="nav-right-actions">
-                <button class="search-icon-btn" onclick="alert('Búsqueda activa')" title="Buscar">
+                <button class="search-icon-btn" onclick="mostrarVista('buscar')" title="Buscar datos">
                     <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
                 </button>
 
@@ -666,6 +667,7 @@
             <li><a onclick="mostrarVista('recargas'); toggleDrawer();">Recargas</a></li>
             <li><a onclick="mostrarVista('servicios'); toggleDrawer();">Servicios</a></li>
             <li><a onclick="solicitarAccesoDistribuidores(); toggleDrawer();">👑 Distribuidores</a></li>
+            <li><a onclick="mostrarVista('buscar'); toggleDrawer();">🔍 Buscar datos</a></li>
             <li><a onclick="mostrarVista('soporte'); toggleDrawer();">Soporte</a></li>
         </ul>
     </div>
@@ -1433,7 +1435,7 @@
                     <ul class="footer-links-list">
                         <li><a onclick="mostrarVista('servicios')">Todo el Catálogo</a></li>
                         <li><a onclick="mostrarVista('recargas')">Juegos</a></li>
-                        <li><a onclick="mostrarVista('servicios')">Gift Cards</a></li>
+                        <li><a onclick="mostrarVista('buscar')">Buscar datos</a></li>
                         <li><a onclick="mostrarVista('servicios')">Otros Servicios</a></li>
                     </ul>
                 </div>
@@ -2370,7 +2372,7 @@ function ejecutarBusquedaDatos() {
     // Estado de Carga
     emptyBox.style.display = 'none';
     resultsBox.style.display = 'flex';
-    list.innerHTML = `<div style="text-align: center; color: #ff6600; padding: 40px 0; font-weight: bold;">🔍 Consultando base de datos...</div>`;
+    list.innerHTML = `<div style="text-align: center; color: #ff6600; padding: 40px 0; font-weight: bold;">🔍 Consultando...</div>`;
 
     fetch(`${URL_GOOGLE_APPS_SCRIPT}?telefono=${num}`)
         .then(res => res.json())
