@@ -614,7 +614,7 @@
             </div>
 
             <label class="distri-input-label">CÓDIGO DE DISTRIBUIDOR</label>
-            <input type="text" class="distri-input-code" id="distri-code-input" placeholder="Ej: SXDISTRIVZ" style="text-transform: uppercase;">
+            <input type="text" class="distri-input-code" id="distri-code-input" placeholder="Escribe tu código único" style="text-transform: uppercase;">
 
             <button class="btn-distri-verify" onclick="validarCodigoDistribuidor()">VERIFICAR CÓDIGO</button>
         </div>
@@ -899,9 +899,9 @@
                 <!-- Panel Izquierdo: Formulario de búsqueda -->
                 <div class="search-panel-left">
                     <div class="search-brand-sub">
-                        <span>🔒</span> CONSULTA TU CÓDIGO SIN INICIAR SESIÓN
+                        <span>🔒</span> CONSULTA LOS DATOS DE TU CUENTA
                     </div>
-                    <h1 class="search-panel-title">Busca por teléfono<br>y elige tu correo</h1>
+                    <h1 class="search-panel-title">Busca por teléfono<br>y elige tu cuenta</h1>
                     <p class="search-panel-desc">
                         Debajo aparecerán todas las cuentas activas asociadas a tu número de teléfono. Toca una y verás el detalle a la derecha.
                     </p>
@@ -2340,7 +2340,7 @@ function ejecutarBusquedaDatos() {
     // Estado de Carga
     emptyBox.style.display = 'none';
     resultsBox.style.display = 'flex';
-    list.innerHTML = `<div style="text-align: center; color: #ff6600; padding: 40px 0; font-weight: bold;">🔍 Consultando base de datos...</div>`;
+    list.innerHTML = `<div style="text-align: center; color: #ff6600; padding: 40px 0; font-weight: bold;">🔍 Consultando...</div>`;
 
     fetch(`${URL_GOOGLE_APPS_SCRIPT}?telefono=${num}`)
         .then(res => res.json())
