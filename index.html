@@ -2355,61 +2355,145 @@ const URL_GOOGLE_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbzVZ9hzj
 
 let cuentasEncontradasCache = [];
 
-function ejecutarBusquedaDatos() {
-    const phoneInput = document.getElementById('search-phone-input');
-    const num = phoneInput.value.trim().replace(/[^0-9]/g, '');
+function limpiarErroresBusqueda() {
+            const phoneInput = document.getElementById('search-phone-input');
+            if (phoneInput) phoneInput.style.borderColor = '#1f2937';
+        }
 
-    if (!num) {
-        phoneInput.style.borderColor = '#ff4d4d';
-        alert('Por favor, ingresa un número de teléfono válido.');
-        return;
-    }
+        function verDetalleCuenta(index) {
+            const item = cuentasEncontradasCache[index];
+            if (!item) return;
 
-    const emptyBox = document.getElementById('search-empty-box');
-    const resultsBox = document.getElementById('search-results-box');
-    const list = document.getElementById('search-accounts-list');
+            const list = document.getElementById('search-accounts-list');
 
-    // Estado de Carga
-    emptyBox.style.display = 'none';
-    resultsBox.style.display = 'flex';
-    list.innerHTML = `<div style="text-align: center; color: #ff6600; padding: 40px 0; font-weight: bold;">🔍 Consultando...</div>`;
+            list.innerHTML = `
+                <div style="margin-bottom: 12px;">
+                    <button onclick="ejecutarBusquedaDatos()" style="background: #111827; border: 1px solid #1f2937; color: #ffffff; padding: 6px 14px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; cursor: pointer;">
+                        ❮ Volver a la lista
+                    </button>
+                </div>
 
-    fetch(`${URL_GOOGLE_APPS_SCRIPT}?telefono=${num}`)
-        .then(res => res.json())
-        .then(data => {
-            if (!data.resultados || data.resultados.length === 0) {
-                list.innerHTML = `
-                    <div style="text-align: center; color: #9ca3af; padding: 40px 0;">
-                        ❌ No se encontraron cuentas activas asociadas al teléfono <strong>${num}</strong>.
-                    </div>`;
+                <div style="background: #1a100c; border: 1px solid #ff6600; color: #ff6600; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; display: inline-block; margin-bottom: 12px;">
+                    SERVICIO: ${item.servicio}
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; margin-top: 15px;">
+                    <!-- CORREO -->
+                    <div style="background: #0b0f19; border: 1px solid #1f2937; border-radius: 14px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-size: 0.68rem; color: #6b7280; font-weight: 800; text-transform: uppercase; margin-bottom: 4px;">CORREO / USUARIO</div>
+                            <div style="font-size: 0.95rem; font-weight: 800; color: #ffffff; word-break: break-all;">${item.correo || 'N/A'}</div>
+                        </div>
+                        <button onclick="copiarTexto('${item.correo}', 'Correo')" style="background: transparent; border: none; color: #6b7280; cursor: pointer; padding: 6px;">
+                            <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                        </button>
+                    </div>
+
+                    <!-- CLAVE -->
+                    <div style="background: #0b0f19; border: 1px solid #1f2937; border-radius: 14px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-size: 0.68rem; color: #6b7280; font-weight: 800; text-transform: uppercase; margin-bottom: 4px;">CONTRASEÑA</div>
+                            <div style="font-size: 0.95rem; font-weight: 800; color: #ffffff; word-break: break-all;">${item.clave || 'N/A'}</div>
+                        </div>
+                        <button onclick="copiarTexto('${item.clave}', 'Contraseña')" style="background: transparent; border: none; color: #6b7280; cursor: pointer; padding: 6px;">
+                            <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                        </button>
+                    </div>
+
+                    <!-- PERFIL -->
+                    <div style="background: #0b0f19; border: 1px solid #1f2937; border-radius: 14px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-size: 0.68rem; color: #6b7280; font-weight: 800; text-transform: uppercase; margin-bottom: 4px;">PERFIL / CLIENTE</div>
+                            <div style="font-size: 0.95rem; font-weight: 800; color: #ffffff; word-break: break-all;">${item.perfil || 'Principal'}</div>
+                        </div>
+                        <button onclick="copiarTexto('${item.perfil}', 'Perfil')" style="background: transparent; border: none; color: #6b7280; cursor: pointer; padding: 6px;">
+                            <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                        </button>
+                    </div>
+
+                    <!-- PIN -->
+                    <div style="background: #0b0f19; border: 1px solid #1f2937; border-radius: 14px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-size: 0.68rem; color: #6b7280; font-weight: 800; text-transform: uppercase; margin-bottom: 4px;">PIN</div>
+                            <div style="font-size: 0.95rem; font-weight: 800; color: #ffffff; word-break: break-all;">${item.pin || 'Sin PIN'}</div>
+                        </div>
+                        <button onclick="copiarTexto('${item.pin}', 'PIN')" style="background: transparent; border: none; color: #6b7280; cursor: pointer; padding: 6px;">
+                            <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                        </button>
+                    </div>
+
+                    <!-- FECHA DE VENCIMIENTO -->
+                    <div style="background: #0b0f19; border: 1px solid #1f2937; border-radius: 14px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; grid-column: span 2;">
+                        <div>
+                            <div style="font-size: 0.68rem; color: #6b7280; font-weight: 800; text-transform: uppercase; margin-bottom: 4px;">FECHA DE CORTE / VENCIMIENTO</div>
+                            <div style="font-size: 0.95rem; font-weight: 800; color: #ff6600; word-break: break-all;">${item.fechaCorte || 'Sin fecha'} (${item.dias} días restantes)</div>
+                        </div>
+                        <button onclick="copiarTexto('${item.fechaCorte}', 'Fecha Corte')" style="background: transparent; border: none; color: #6b7280; cursor: pointer; padding: 6px;">
+                            <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        const URL_GOOGLE_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbzVZ9hzj3qw8sspc-UmY-pqmcKgV-cwtNue9GDV-ZOYlGenz8PuPHzndGr5ubOofK60ow/exec";
+
+        let cuentasEncontradasCache = [];
+
+        function ejecutarBusquedaDatos() {
+            const phoneInput = document.getElementById('search-phone-input');
+            const num = phoneInput.value.trim().replace(/[^0-9]/g, '');
+
+            if (!num) {
+                phoneInput.style.borderColor = '#ff4d4d';
+                alert('Por favor, ingresa un número de teléfono válido.');
                 return;
             }
 
-            cuentasEncontradasCache = data.resultados;
-            let html = '<div class="search-results-header">CUENTAS ENCONTRADAS (' + data.resultados.length + ')</div>';
+            const emptyBox = document.getElementById('search-empty-box');
+            const resultsBox = document.getElementById('search-results-box');
+            const list = document.getElementById('search-accounts-list');
 
-            data.resultados.forEach((item, idx) => {
-                html += `
-                    <div class="account-result-item" onclick="verDetalleCuenta(${idx})">
-                        <div class="account-item-left">
-                            <div class="account-item-icon">🎬</div>
-                            <div>
-                                <div class="account-item-mail">${item.servicio.toUpperCase()} - ${item.correo}</div>
-                                <div class="account-item-sub">Perfil: ${item.perfil || 'Principal'} · Corte: ${item.fechaCorte || 'N/A'}</div>
+            emptyBox.style.display = 'none';
+            resultsBox.style.display = 'flex';
+            list.innerHTML = `<div style="text-align: center; color: #ff6600; padding: 40px 0; font-weight: bold;">🔍 Consultando hoja de cálculo...</div>`;
+
+            fetch(`${URL_GOOGLE_APPS_SCRIPT}?telefono=${num}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (!data.resultados || data.resultados.length === 0) {
+                        list.innerHTML = `
+                            <div style="text-align: center; color: #9ca3af; padding: 40px 0;">
+                                ❌ No se encontraron cuentas activas asociadas al teléfono <strong>${num}</strong>.
+                            </div>`;
+                        return;
+                    }
+
+                    cuentasEncontradasCache = data.resultados;
+                    let html = '<div class="search-results-header">CUENTAS ENCONTRADAS (' + data.resultados.length + ')</div>';
+
+                    data.resultados.forEach((item, idx) => {
+                        html += `
+                            <div class="account-result-item" onclick="verDetalleCuenta(${idx})">
+                                <div class="account-item-left">
+                                    <div class="account-item-icon">🎬</div>
+                                    <div>
+                                        <div class="account-item-mail">${item.servicio.toUpperCase()} - ${item.correo}</div>
+                                        <div class="account-item-sub">Perfil: ${item.perfil || 'Principal'} · Corte: ${item.fechaCorte || 'N/A'}</div>
+                                    </div>
+                                </div>
+                                <span style="color: #ff6600; font-weight: bold; font-size: 0.85rem;">Ver datos ➔</span>
                             </div>
-                        </div>
-                        <span style="color: #ff6600; font-weight: bold; font-size: 0.85rem;">Ver datos ➔</span>
-                    </div>
-                `;
-            });
+                        `;
+                    });
 
-            list.innerHTML = html;
-        })
-        .catch(err => {
-            console.error(err);
-            list.innerHTML = `<div style="text-align: center; color: #ff4d4d; padding: 30px 0;">Error de conexión con la base de datos. Intenta nuevamente.</div>`;
-        });
-}
+                    list.innerHTML = html;
+                })
+                .catch(err => {
+                    console.error(err);
+                    list.innerHTML = `<div style="text-align: center; color: #ff4d4d; padding: 30px 0;">Error de conexión con la base de datos. Intenta nuevamente.</div>`;
+                });
+        }
 
         function toggleAccordion() {
             const body = document.getElementById('accordion-body');
@@ -2436,7 +2520,7 @@ function ejecutarBusquedaDatos() {
         }
 
         function mostrarVista(vista) {
-            const vistas = ['vista-servicios', 'vista-recargas', 'vista-distribuidores', 'vista-soporte', 'vista-producto', 'vista-binance-gateway', 'vista-pagomovil-gateway'];
+            const vistas = ['vista-servicios', 'vista-recargas', 'vista-distribuidores', 'vista-soporte', 'vista-producto', 'vista-binance-gateway', 'vista-pagomovil-gateway', 'vista-buscar'];
             vistas.forEach(v => {
                 const el = document.getElementById(v);
                 if(el) el.classList.remove('active');
@@ -2446,11 +2530,13 @@ function ejecutarBusquedaDatos() {
             const navRecargas = document.getElementById('nav-recargas');
             const navDistribuidores = document.getElementById('nav-distribuidores');
             const navSoporte = document.getElementById('nav-soporte');
+            const navBuscar = document.getElementById('nav-buscar');
 
             if(navServicios) navServicios.classList.remove('active');
             if(navRecargas) navRecargas.classList.remove('active');
             if(navDistribuidores) navDistribuidores.classList.remove('active');
             if(navSoporte) navSoporte.classList.remove('active');
+            if(navBuscar) navBuscar.classList.remove('active');
 
             if (vista === 'recargas') {
                 document.getElementById('vista-recargas').classList.add('active');
@@ -2461,6 +2547,9 @@ function ejecutarBusquedaDatos() {
             } else if (vista === 'soporte') {
                 document.getElementById('vista-soporte').classList.add('active');
                 if(navSoporte) navSoporte.classList.add('active');
+            } else if (vista === 'buscar') {
+                document.getElementById('vista-buscar').classList.add('active');
+                if(navBuscar) navBuscar.classList.add('active');
             } else if (vista === 'producto') {
                 document.getElementById('vista-producto').classList.add('active');
             } else if (vista === 'binance-gateway') {
