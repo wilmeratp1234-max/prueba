@@ -2414,53 +2414,57 @@ function verDetalleCuenta(index) {
             }
         }
 		
-// Función para verificar el stock del producto que está en pantalla y bloquear el botón
-function validarStockYSistematizarBoton() {
-    // 1. Buscamos el título del producto en la pantalla (ejemplo: "DISNEY+ PREMIUM")
+function actualizarVisibilidadBotonPedido() {
+    // 1. Capturamos el título del producto actual en pantalla (ej: "DISNEY+ PREMIUM")
     let tituloH1 = document.querySelector('h1');
     if (!tituloH1) return;
     
-    let nombrePantalla = tituloH1.innerText.toLowerCase().trim();
-    let estaAgotado = false;
+    let nombreProducto = tituloH1.innerText.toLowerCase().trim();
+    let stockActual = 99; // Stock por defecto si no lo encuentra en el objeto
 
-    // 2. Buscamos si la clave de tu objeto CONTROL_DE_STOCK está en el título y si es 0
+    // 2. Comparamos con tu objeto CONTROL_DE_STOCK
     for (let clave in CONTROL_DE_STOCK) {
-        if (nombrePantalla.includes(clave.toLowerCase())) {
-            if (CONTROL_DE_STOCK[clave] <= 0) {
-                estaAgotado = true;
-            }
+        if (nombreProducto.includes(clave.toLowerCase())) {
+            stockActual = CONTROL_DE_STOCK[clave];
             break;
         }
     }
 
-    // Si también la tarjeta del plan tiene la palabra "AGOTADO", lo marcamos como tal
-    const tarjetaAgotada = document.querySelector('.plan-card.active')?.innerText.includes('AGOTADO') || 
-                            document.querySelector('.plan-card')?.innerText.includes('AGOTADO');
-
-    if (estaAgotado || tarjetaAgotada) {
-        // Buscamos el botón naranja de Verificar Pedido
-        const todosLosBotones = document.querySelectorAll('button');
-        todosLosBotones.forEach(btn => {
-            if (btn.innerText.includes('VERIFICAR PEDIDO')) {
-                // Bloqueo total del botón en la interfaz
-                btn.style.background = '#374151';
-                btn.style.color = '#9ca3af';
-                btn.style.cursor = 'not-allowed';
-                btn.style.opacity = '0.6';
-                btn.innerText = 'PRODUCTO AGOTADO';
-                btn.disabled = true;
-
-                // Anulamos cualquier evento de clic que tenga asignado en HTML
-                btn.onclick = function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    alert('❌ Este producto está AGOTADO. No es posible procesar la compra.');
-                    return false;
-                };
+    // 3. Buscamos el botón de verificar pedido (asegúrate de que tenga id="btn-verificar-pedido")
+    const btnVerificar = document.getElementById('btn-verificar-pedido');
+    
+    if (btnVerificar) {
+        if (stockActual <= 0) {
+            // OCULTAR COMPLETAMENTE EL BOTÓN SI EL STOCK ES 0
+            btnVerificar.style.display = 'none';
+            
+            // Opcional: Mostrar un aviso visual donde estaba el botón si lo deseas
+            let contenedorPadre = btnVerificar.parentElement;
+            let avisoExistente = document.getElementById('aviso-stock-agotado');
+            
+            if (!avisoExistente && contenedorPadre) {
+                let aviso = document.createElement('div');
+                aviso.id = 'aviso-stock-agotado';
+                aviso.style.cssText = 'background: #1a100c; border: 1px solid #ff6600; color: #ff6600; padding: 12px; border-radius: 12px; text-align: center; font-weight: 800; font-size: 0.9rem; margin-top: 10px; text-transform: uppercase;';
+                aviso.innerHTML = '❌ Producto Agotado Temporalmente';
+                contenedorPadre.appendChild(aviso);
             }
-        });
+        } else {
+            // MOSTRAR EL BOTÓN SI HAY STOCK DISPONIBLE
+            btnVerificar.style.display = 'block'; // O 'flex' / 'inline-block' según tu diseño original
+            
+            // Eliminar el aviso si existía
+            let avisoExistente = document.getElementById('aviso-stock-agotado');
+            if (avisoExistente) {
+                avisoExistente.remove();
+            }
+        }
     }
 }
+
+// Ejecutar la revisión automáticamente
+document.addEventListener('DOMContentLoaded', actualizarVisibilidadBotonPedido);
+setInterval(actualizarVisibilidadBotonPedido, 300); // Monitorea en tiempo real por si cambias de producto
 
 // Ejecutar la comprobación automáticamente cada vez que cargue o cambie la página
 document.addEventListener('DOMContentLoaded', validarStockYSistematizarBoton);
