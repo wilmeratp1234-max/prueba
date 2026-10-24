@@ -2483,6 +2483,61 @@ function limpiarSeleccionInicial() {
     window.paqueteSeleccionadoActual = null;
 }
 
+// 1. Limpiar cualquier selección automática al cargar la página
+function limpiarInicioTienda() {
+    // Quitamos bordes activos y clases de selección de todas las tarjetas
+    const tarjetas = document.querySelectorAll('.plan-card, .paquete-card');
+    tarjetas.forEach(card => {
+        card.style.borderColor = '#1f2937'; // Color inactivo
+        card.classList.remove('active', 'selected');
+    });
+
+    // Ocultamos el botón de verificar pedido por defecto al entrar al producto
+    const btnVerificar = document.querySelector('.btn-verificar-pedido') || document.getElementById('btn-verificar-pedido');
+    if (btnVerificar) {
+        btnVerificar.style.setProperty('display', 'none', 'important');
+    }
+
+    // Limpiamos la variable de selección global
+    window.paqueteSeleccionadoActual = null;
+}
+
+// 2. Función robusta cuando el usuario hace clic en un plan
+function seleccionarPlan(elemento, precio, nombrePaquete, nombreServicio) {
+    // Validación de Stock 0 o etiqueta AGOTADO
+    let claveServicio = nombreServicio ? nombreServicio.toLowerCase().trim() : "";
+    let estaAgotadoPorStock = (window.CONTROL_DE_STOCK && window.CONTROL_DE_STOCK[claveServicio] <= 0);
+    
+    if (elemento.innerHTML.includes('AGOTADO') || elemento.classList.contains('agotado') || estaAgotadoPorStock) {
+        alert('⚠️ Este plan o producto se encuentra AGOTADO temporalmente.');
+        return; // Frena y no permite seleccionarlo
+    }
+
+    // Guardamos la selección actual
+    window.paqueteSeleccionadoActual = { nombre: nombrePaquete, precio: precio };
+
+    // Limpiamos las demás tarjetas y marcamos solo la presionada
+    document.querySelectorAll('.plan-card, .paquete-card').forEach(card => {
+        card.style.borderColor = '#1f2937';
+        card.classList.remove('active', 'selected');
+    });
+    
+    elemento.style.borderColor = '#ff6600'; // Borde naranja de seleccionado
+    elemento.classList.add('active');
+
+    // ¡HACEMOS APARECER EL BOTÓN DE VERIFICAR PEDIDO SOLAMENTE AL SELECCIONAR!
+    const btnVerificar = document.querySelector('.btn-verificar-pedido') || document.getElementById('btn-verificar-pedido');
+    if (btnVerificar) {
+        btnVerificar.style.setProperty('display', 'block', 'important'); // O 'flex' según tu diseño
+    }
+}
+
+// Ejecutar la limpieza inicial al cargar la página o cambiar de producto
+document.addEventListener('DOMContentLoaded', limpiarInicioTienda);
+
+// Por si tu tienda cambia de vista dinámicamente sin recargar la página:
+window.addEventListener('popstate', limpiarInicioTienda);
+
 // Ejecutar esto cada vez que cargue la vista de un producto
 document.addEventListener('DOMContentLoaded', limpiarSeleccionInicial);
 
