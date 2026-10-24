@@ -2414,106 +2414,66 @@ function verDetalleCuenta(index) {
             }
         }
 		
-// ==========================================================================
-// SCRIPT DE CONTROL DE STOCK Y UI - STREAMIX STORE
-// ==========================================================================
-
-// 1. Limpieza inicial solo si estamos en la vista de producto
-function limpiarInicioTienda() {
-    let btnVerificar = document.getElementById('btn-main-action');
-    if (!btnVerificar) return; // Si no estamos en la página de producto, no hace nada y no da errores
-
-    // Ocultar botón de verificar pedido al entrar
-    btnVerificar.style.setProperty('display', 'none', 'important');
-
-    // Quitar selección de tarjetas
-    const tarjetas = document.querySelectorAll('.plan-card, .paquete-card');
-    tarjetas.forEach(card => {
-        card.style.borderColor = '#1f2937';
-        card.classList.remove('active', 'selected');
-    });
-
-    // Resetear resumen
-    const resumenFila = document.querySelector('.summary-item-row');
-    if (resumenFila) {
-        resumenFila.innerHTML = `
-            <div style="color: #9ca3af; text-align: center; width: 100%; padding: 15px 0; font-size: 0.9rem; font-weight: 600;">
-                Ningún paquete seleccionado
-            </div>
-        `;
-    }
-
-    const totalVal = document.getElementById('total-val');
-    if (totalVal) totalVal.innerText = '0,00';
-
-    window.paqueteSeleccionadoActual = null;
-}
-
-// 2. Selección de Plan con validación estricta
-function seleccionarPlan(elemento, precio, nombrePaquete, nombreServicio) {
-    let claveServicio = nombreServicio ? nombreServicio.toLowerCase().trim() : "";
-    let estaAgotadoPorStock = (window.CONTROL_DE_STOCK && window.CONTROL_DE_STOCK[claveServicio] <= 0);
+// 1. Esta función se ejecuta al entrar a cualquier producto para bloquear el botón si el stock es 0
+function comprobarStockProductoActual() {
+    let tituloH1 = document.querySelector('h1');
+    if (!tituloH1) return;
     
-    if (elemento.innerHTML.includes('AGOTADO') || elemento.classList.contains('agotado') || estaAgotadoPorStock) {
-        alert('⚠️ Este plan o producto se encuentra AGOTADO temporalmente.');
-        return; 
+    let nombreProducto = tituloH1.innerText.toLowerCase().trim();
+    let stock = 99; // Valor por defecto si no lo encuentra
+
+    // Comparamos con tu objeto CONTROL_DE_STOCK
+    for (let clave in CONTROL_DE_STOCK) {
+        if (nombreProducto.includes(clave.toLowerCase())) {
+            stock = CONTROL_DE_STOCK[clave];
+            break;
+        }
     }
 
-    window.paqueteSeleccionadoActual = { nombre: nombrePaquete, precio: precio };
+    // Buscamos el botón de verificar pedido en la interfaz
+    const btnVerificar = document.querySelector('button[onclick*="verificarPedido"]') || document.querySelector('.btn-verificar-pedido');
 
-    // Marcar tarjeta activa
-    document.querySelectorAll('.plan-card, .paquete-card').forEach(card => {
-        card.style.borderColor = '#1f2937';
-        card.classList.remove('active', 'selected');
-    });
-    
-    elemento.style.borderColor = '#ff6600'; 
-    elemento.classList.add('active');
-
-    // Actualizar resumen
-    const resumenFila = document.querySelector('.summary-item-row');
-    if (resumenFila) {
-        resumenFila.innerHTML = `
-            <span class="summary-item-title">${nombrePaquete}</span>
-            <div class="quantity-control">
-                <button class="btn-qty" onclick="cambiarCantidad(-1)">-</button>
-                <span class="qty-number" id="qty-val">1</span>
-                <button class="btn-qty" onclick="cambiarCantidad(1)">+</button>
-            </div>
-        `;
-    }
-
-    const totalVal = document.getElementById('total-val');
-    if (totalVal) {
-        totalVal.innerText = precio.toLocaleString('es-VE', { minimumFractionDigits: 2 });
-    }
-
-    // Mostrar el botón de verificar pedido
-    const btnVerificar = document.getElementById('btn-main-action');
-    if (btnVerificar) {
-        btnVerificar.style.setProperty('display', 'block', 'important');
+    if (stock <= 0) {
+        if (btnVerificar) {
+            btnVerificar.style.background = '#374151'; // Gris de deshabilitado
+            btnVerificar.style.cursor = 'not-allowed';
+            btnVerificar.innerText = 'PRODUCTO AGOTADO';
+            btnVerificar.disabled = true; // Deshabilita el botón físicamente
+        }
+    } else {
+        if (btnVerificar) {
+            btnVerificar.style.background = '#ff6600'; // Naranja original
+            btnVerificar.style.cursor = 'pointer';
+            btnVerificar.innerText = 'VERIFICAR PEDIDO >';
+            btnVerificar.disabled = false;
+        }
     }
 }
 
-// Ejecutar al cargar la página de forma segura
-document.addEventListener('DOMContentLoaded', () => {
-    limpiarInicioTienda();
-});
+// 2. Función blindada al hacer clic en verificar pedido
+function verificarPedido() {
+    let tituloH1 = document.querySelector('h1');
+    let nombreProducto = tituloH1 ? tituloH1.innerText.toLowerCase().trim() : "";
+    let stock = 99;
 
-// Ejecutar la revisión constantemente en tiempo real cada 200 milisegundos
-setInterval(ocultarBotonSiAgotado, 200);
+    for (let clave in CONTROL_DE_STOCK) {
+        if (nombreProducto.includes(clave.toLowerCase())) {
+            stock = CONTROL_DE_STOCK[clave];
+            break;
+        }
+    }
 
-// Ejecutar la revisión constantemente en tiempo real
-document.addEventListener('DOMContentLoaded', ocultarBotonSiAgotado);
-setInterval(ocultarBotonSiAgotado, 200);
+    // Si el stock es 0 o menor, frena la compra por completo
+    if (stock <= 0) {
+        alert('❌ Este producto se encuentra AGOTADO. No es posible procesar la compra.');
+        return; // <--- Frena la ejecución y evita que avance a la pasarela
+    }
 
-// Ejecutar la revisión automáticamente
-document.addEventListener('DOMContentLoaded', actualizarVisibilidadBotonPedido);
-setInterval(actualizarVisibilidadBotonPedido, 300); // Monitorea en tiempo real por si cambias de producto
-
-// Ejecutar la comprobación automáticamente cada vez que cargue o cambie la página
-document.addEventListener('DOMContentLoaded', validarStockYSistematizarBoton);
-setInterval(validarStockYSistematizarBoton, 500); // Revisa en segundo plano cada medio segundo
+    // Si hay stock, avanza normalmente a la pasarela de pago móvil
+    if (typeof cambiarVista === 'function') {
+        cambiarVista('vista-pagomovil-gateway');
+    }
+}
         function mostrarVista(vista) {
             const vistas = ['vista-servicios', 'vista-recargas', 'vista-distribuidores', 'vista-soporte', 'vista-producto', 'vista-binance-gateway', 'vista-pagomovil-gateway', 'vista-buscar'];
             vistas.forEach(v => {
