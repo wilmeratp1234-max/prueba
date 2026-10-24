@@ -2415,19 +2415,33 @@ function verDetalleCuenta(index) {
         }
 		
 // ==========================================================================
-// 1. ESTADO INICIAL (Al entrar a cualquier producto: Limpio como la Imagen 2)
+// SCRIPT DE PRODUCTO (Se ejecuta únicamente dentro de la vista de compra)
 // ==========================================================================
-function inicializarVistaProductoLimpia() {
-    let btnVerificar = document.getElementById('btn-main-action');
-    if (!btnVerificar) return; // Si estamos en la página principal, no hace nada
 
-    // A. Quitar selección visual de todas las tarjetas
+document.addEventListener('DOMContentLoaded', function() {
+    // VERIFICACIÓN DE SEGURIDAD: Si no estamos en la página de producto, el script se detiene aquí
+    const orderSummaryCard = document.querySelector('.order-summary-card');
+    const step2Container = document.getElementById('step2-container');
+    if (!orderSummaryCard || !step2Container) return; 
+
+    // 1. Estado inicial limpio al entrar a un producto
+    let btnVerificar = document.getElementById('btn-main-action');
+    if (btnVerificar) {
+        btnVerificar.disabled = true;
+        btnVerificar.style.setProperty('background', '#1f2937', 'important');
+        btnVerificar.style.setProperty('color', '#6b7280', 'important');
+        btnVerificar.style.setProperty('cursor', 'not-allowed', 'important');
+        btnVerificar.style.setProperty('opacity', '0.5', 'important');
+        btnVerificar.style.setProperty('display', 'block', 'important');
+    }
+
+    // Quitar selección visual de tarjetas internas
     document.querySelectorAll('.plan-card, .paquete-card').forEach(card => {
         card.style.borderColor = '#1f2937';
         card.classList.remove('active', 'selected');
     });
 
-    // B. Mostrar el texto "Ningún paquete seleccionado" en el resumen de la derecha
+    // Mostrar mensaje de ningún paquete seleccionado en el resumen
     const summaryItemRow = document.querySelector('.summary-item-row');
     if (summaryItemRow) {
         summaryItemRow.innerHTML = `
@@ -2437,26 +2451,18 @@ function inicializarVistaProductoLimpia() {
         `;
     }
 
-    // C. Poner el total a pagar en 0,00
+    // Poner total en 0,00
     const totalVal = document.getElementById('total-val');
     if (totalVal) totalVal.innerText = '0,00';
 
-    // D. Deshabilitar el botón de verificar pedido (gris e inactivo)
-    btnVerificar.disabled = true;
-    btnVerificar.style.setProperty('background', '#1f2937', 'important');
-    btnVerificar.style.setProperty('color', '#6b7280', 'important');
-    btnVerificar.style.setProperty('cursor', 'not-allowed', 'important');
-    btnVerificar.style.setProperty('opacity', '0.5', 'important');
-
-    // Limpiar variable global de selección
+    // Limpiar variable global
     window.paqueteSeleccionadoActual = null;
-}
+});
 
 // ==========================================================================
-// 2. SELECCIÓN DE PLAN / PAQUETE (Al hacer clic en una tarjeta disponible)
+// SELECCIÓN DE PLAN / PAQUETE
 // ==========================================================================
 function seleccionarPlan(elemento, precio, nombrePaquete, nombreServicio) {
-    // Validar si el producto/plan está agotado
     let claveServicio = nombreServicio ? nombreServicio.toLowerCase().trim() : "";
     let stockCero = (window.CONTROL_DE_STOCK && window.CONTROL_DE_STOCK[claveServicio] <= 0);
     
@@ -2465,10 +2471,9 @@ function seleccionarPlan(elemento, precio, nombrePaquete, nombreServicio) {
         return; 
     }
 
-    // Guardar selección actual
     window.paqueteSeleccionadoActual = { nombre: nombrePaquete, precio: precio };
 
-    // Marcar únicamente la tarjeta presionada con borde naranja
+    // Marcar únicamente la tarjeta presionada
     document.querySelectorAll('.plan-card, .paquete-card').forEach(card => {
         card.style.borderColor = '#1f2937';
         card.classList.remove('active', 'selected');
@@ -2477,7 +2482,7 @@ function seleccionarPlan(elemento, precio, nombrePaquete, nombreServicio) {
     elemento.style.borderColor = '#ff6600'; 
     elemento.classList.add('active');
 
-    // Restaurar la estructura del resumen con los controles de cantidad y el plan elegido
+    // Actualizar el resumen con el plan elegido y controles de cantidad
     const summaryItemRow = document.querySelector('.summary-item-row');
     if (summaryItemRow) {
         summaryItemRow.innerHTML = `
@@ -2490,13 +2495,13 @@ function seleccionarPlan(elemento, precio, nombrePaquete, nombreServicio) {
         `;
     }
 
-    // Actualizar el monto total
+    // Actualizar el total
     const totalVal = document.getElementById('total-val');
     if (totalVal) {
         totalVal.innerText = precio.toLocaleString('es-VE', { minimumFractionDigits: 2 });
     }
 
-    // ¡HABILITAR EL BOTÓN DE VERIFICAR PEDIDO! (Naranja y activo)
+    // Habilitar el botón de verificar pedido (Naranja y activo)
     let btnVerificar = document.getElementById('btn-main-action');
     if (btnVerificar) {
         btnVerificar.disabled = false;
@@ -2508,7 +2513,7 @@ function seleccionarPlan(elemento, precio, nombrePaquete, nombreServicio) {
 }
 
 // ==========================================================================
-// 3. VALIDACIÓN AL INTENTAR AVANZAR
+// VALIDACIÓN AL PROCESAR PEDIDO
 // ==========================================================================
 function validarYProcesarPedido() {
     if (!window.paqueteSeleccionadoActual) {
@@ -2516,14 +2521,10 @@ function validarYProcesarPedido() {
         return;
     }
 
-    // Si ya seleccionó un plan, avanza normalmente a la pasarela de pago
     if (typeof cambiarVista === 'function') {
         cambiarVista('vista-pagomovil-gateway');
     }
 }
-
-// Ejecutar la limpieza inicial al cargar la página
-document.addEventListener('DOMContentLoaded', inicializarVistaProductoLimpia);
         function mostrarVista(vista) {
             const vistas = ['vista-servicios', 'vista-recargas', 'vista-distribuidores', 'vista-soporte', 'vista-producto', 'vista-binance-gateway', 'vista-pagomovil-gateway', 'vista-buscar'];
             vistas.forEach(v => {
