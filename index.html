@@ -22,13 +22,6 @@
             background-repeat: repeat;
             background-size: auto, auto, 400px 400px;
         }
-		
-		/* Tarjetas o paquetes agotados */
-.plan-card:has(.agotado), .paquete-card:has(.agotado), .agotado {
-    cursor: not-allowed !important;
-    pointer-events: none !important; /* Desactiva cualquier clic o interacción */
-    opacity: 0.5; /* Las atenúa visualmente */
-}
 
         /* Elementos flotantes decorativos de Halloween */
         .halloween-decorations {
@@ -2421,15 +2414,61 @@ function verDetalleCuenta(index) {
             }
         }
 		
-function seleccionarPlan(elemento, precio, nombrePaquete) {
-    // 1. Validar estrictamente si la tarjeta contiene la etiqueta o clase de AGOTADO
-    if (elemento.innerHTML.includes('AGOTADO') || elemento.classList.contains('agotado')) {
-        alert('⚠️ Este paquete se encuentra AGOTADO. No es posible seleccionarlo.');
-        return; // <--- Frena la ejecución por completo y evita que pase al resumen
+function reiniciarSeleccionPaquete() {
+    // 1. Ocultar el botón de verificar pedido al inicio
+    const btnVerificar = document.querySelector('.btn-verificar-pedido') || document.getElementById('btn-verificar-pedido');
+    if (btnVerificar) {
+        btnVerificar.style.setProperty('display', 'none', 'important');
     }
 
-    // 2. Tu código normal de selección y actualización del resumen a la derecha...
-    // (Aquí va el resto de tu lógica para actualizar el total, el botón de continuar, etc.)
+    // 2. Mostrar el texto de "Ningún paquete seleccionado" en el resumen de la derecha
+    // (Ajusta 'resumen-pedido-container' al ID o clase de tu contenedor de resumen)
+    const resumenContainer = document.getElementById('resumen-pedido-container') || document.querySelector('.summary-pedido-box');
+    if (resumenContainer) {
+        resumenContainer.innerHTML = `
+            <div style="color: #9ca3af; text-align: center; padding: 25px 0; font-size: 0.9rem; font-weight: 600;">
+                Ningún paquete seleccionado
+            </div>
+        `;
+    }
+
+    // Limpiamos la variable global de selección
+    window.paqueteSeleccionadoActual = null;
+}
+
+function seleccionarPlan(elemento, precio, nombrePaquete) {
+    // Si está agotado, bloqueamos totalmente
+    if (elemento.innerHTML.includes('AGOTADO') || elemento.classList.contains('agotado')) {
+        alert('⚠️ Este paquete se encuentra AGOTADO. No es posible seleccionarlo.');
+        return;
+    }
+
+    // Guardamos la selección actual
+    window.paqueteSeleccionadoActual = { nombre: nombrePaquete, precio: precio };
+
+    // Actualizamos el diseño de las tarjetas (quitar/poner bordes activos)
+    document.querySelectorAll('.plan-card, .paquete-card').forEach(card => {
+        card.style.borderColor = '#1f2937';
+    });
+    elemento.style.borderColor = '#ff6600'; // Borde naranja de seleccionado
+
+    // Actualizamos el resumen a la derecha con el paquete elegido
+    const resumenContainer = document.getElementById('resumen-pedido-container') || document.querySelector('.summary-pedido-box');
+    if (resumenContainer) {
+        resumenContainer.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="color: #ffffff; font-weight: 800; font-size: 0.95rem;">${nombrePaquete}</span>
+                <span style="color: #ff6600; font-weight: 800; font-size: 1rem;">Bs. ${precio}</span>
+            </div>
+            <div style="font-size: 0.8rem; color: #9ca3af; margin-bottom: 15px;">Paquete listo para procesar</div>
+        `;
+    }
+
+    // ¡HACEMOS APARECER EL BOTÓN DE VERIFICAR PEDIDO!
+    const btnVerificar = document.querySelector('.btn-verificar-pedido') || document.getElementById('btn-verificar-pedido');
+    if (btnVerificar) {
+        btnVerificar.style.setProperty('display', 'block', 'important'); // O 'flex' según tu diseño
+    }
 }
 
 // Ejecutar la revisión constantemente en tiempo real cada 200 milisegundos
