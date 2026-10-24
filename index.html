@@ -2413,6 +2413,23 @@ function verDetalleCuenta(index) {
                 overlay.style.display = 'block';
             }
         }
+		
+		function verificarPedido() {
+    // Tomamos el nombre del servicio que el usuario está intentando comprar
+    // (Asegúrate de que 'nombreServicioActual' guarde el nombre del producto seleccionado, ej: "disney+ premium")
+    let servicio = window.nombreServicioActual ? window.nombreServicioActual.toLowerCase().trim() : "";
+
+    // Verificamos si el producto existe en tu objeto y su stock es 0 o menor
+    if (CONTROL_DE_STOCK.hasOwnProperty(servicio) && CONTROL_DE_STOCK[servicio] <= 0) {
+        alert('❌ Producto AGOTADO. No es posible procesar la compra.');
+        return; // <--- Esto frena por completo la compra y no deja avanzar
+    }
+
+    // Si tiene stock mayor a 0, pasa libremente a la pasarela de pago
+    if (typeof cambiarVista === 'function') {
+        cambiarVista('vista-pagomovil-gateway');
+    }
+}
 
         function mostrarVista(vista) {
             const vistas = ['vista-servicios', 'vista-recargas', 'vista-distribuidores', 'vista-soporte', 'vista-producto', 'vista-binance-gateway', 'vista-pagomovil-gateway', 'vista-buscar'];
