@@ -2532,6 +2532,95 @@ function seleccionarPlan(elemento, precio, nombrePaquete, nombreServicio) {
     }
 }
 
+// ==========================================
+// 1. ESTADO INICIAL (Al entrar a un producto)
+// ==========================================
+function limpiarInicioTienda() {
+    // Ocultar el botón de verificar pedido usando su ID correcto: btn-main-action
+    const btnVerificar = document.getElementById('btn-main-action');
+    if (btnVerificar) {
+        btnVerificar.style.setProperty('display', 'none', 'important');
+    }
+
+    // Quitar selección visual de todas las tarjetas de planes/paquetes
+    const tarjetas = document.querySelectorAll('.plan-card, .paquete-card');
+    tarjetas.forEach(card => {
+        card.style.borderColor = '#1f2937'; // Borde inactivo
+        card.classList.remove('active', 'selected');
+    });
+
+    // Mostrar mensaje de "Ningún paquete seleccionado" en el resumen de la derecha
+    const resumenFila = document.querySelector('.summary-item-row');
+    if (resumenFila) {
+        resumenFila.innerHTML = `
+            <div style="color: #9ca3af; text-align: center; width: 100%; padding: 15px 0; font-size: 0.9rem; font-weight: 600;">
+                Ningún paquete seleccionado
+            </div>
+        `;
+    }
+
+    // Poner el total en 0 o vacío
+    const totalVal = document.getElementById('total-val');
+    if (totalVal) totalVal.innerText = '0,00';
+
+    // Limpiar variable global
+    window.paqueteSeleccionadoActual = null;
+}
+
+// ==========================================
+// 2. SELECCIÓN DE PLAN / PAQUETE
+// ==========================================
+function seleccionarPlan(elemento, precio, nombrePaquete, nombreServicio) {
+    // Validar si está agotado por etiqueta visual o por stock 0
+    let claveServicio = nombreServicio ? nombreServicio.toLowerCase().trim() : "";
+    let estaAgotadoPorStock = (window.CONTROL_DE_STOCK && window.CONTROL_DE_STOCK[claveServicio] <= 0);
+    
+    if (elemento.innerHTML.includes('AGOTADO') || elemento.classList.contains('agotado') || estaAgotadoPorStock) {
+        alert('⚠️ Este plan o producto se encuentra AGOTADO temporalmente.');
+        return; // Frena y no permite seleccionarlo
+    }
+
+    // Guardar selección actual
+    window.paqueteSeleccionadoActual = { nombre: nombrePaquete, precio: precio };
+
+    // Limpiar bordes de todas las tarjetas y marcar solo la presionada
+    document.querySelectorAll('.plan-card, .paquete-card').forEach(card => {
+        card.style.borderColor = '#1f2937';
+        card.classList.remove('active', 'selected');
+    });
+    
+    elemento.style.borderColor = '#ff6600'; // Borde naranja
+    elemento.classList.add('active');
+
+    // Actualizar el resumen del pedido a la derecha con el plan elegido
+    const resumenFila = document.querySelector('.summary-item-row');
+    if (resumenFila) {
+        resumenFila.innerHTML = `
+            <span class="summary-item-title">${nombrePaquete}</span>
+            <div class="quantity-control">
+                <button class="btn-qty" onclick="cambiarCantidad(-1)">-</button>
+                <span class="qty-number" id="qty-val">1</span>
+                <button class="btn-qty" onclick="cambiarCantidad(1)">+</button>
+            </div>
+        `;
+    }
+
+    // Actualizar el precio total
+    const totalVal = document.getElementById('total-val');
+    if (totalVal) {
+        totalVal.innerText = precio.toLocaleString('es-VE', { minimumFractionDigits: 2 });
+    }
+
+    // ¡HACER APARECER EL BOTÓN DE VERIFICAR PEDIDO INMEDIATAMENTE!
+    const btnVerificar = document.getElementById('btn-main-action');
+    if (btnVerificar) {
+        btnVerificar.style.setProperty('display', 'block', 'important'); // O 'flex' según prefieras
+    }
+}
+
+// Ejecutar limpieza al cargar la página
+document.addEventListener('DOMContentLoaded', limpiarInicioTienda);
+
 // Ejecutar la limpieza inicial al cargar la página o cambiar de producto
 document.addEventListener('DOMContentLoaded', limpiarInicioTienda);
 
