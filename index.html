@@ -2437,39 +2437,56 @@ function reiniciarSeleccionPaquete() {
 }
 
 function seleccionarPlan(elemento, precio, nombrePaquete) {
-    // Si está agotado, bloqueamos totalmente
+    // Validar si está agotado
     if (elemento.innerHTML.includes('AGOTADO') || elemento.classList.contains('agotado')) {
-        alert('⚠️ Este paquete se encuentra AGOTADO. No es posible seleccionarlo.');
+        alert('⚠️ Este plan se encuentra AGOTADO. No es posible seleccionarlo.');
         return;
     }
 
-    // Guardamos la selección actual
+    // Guardar selección
     window.paqueteSeleccionadoActual = { nombre: nombrePaquete, precio: precio };
 
-    // Actualizamos el diseño de las tarjetas (quitar/poner bordes activos)
+    // Marcar visualmente solo la tarjeta presionada
     document.querySelectorAll('.plan-card, .paquete-card').forEach(card => {
         card.style.borderColor = '#1f2937';
+        card.classList.remove('active', 'selected');
     });
-    elemento.style.borderColor = '#ff6600'; // Borde naranja de seleccionado
+    elemento.style.borderColor = '#ff6600'; // Naranja de seleccionado
+    elemento.classList.add('active');
 
-    // Actualizamos el resumen a la derecha con el paquete elegido
-    const resumenContainer = document.getElementById('resumen-pedido-container') || document.querySelector('.summary-pedido-box');
-    if (resumenContainer) {
-        resumenContainer.innerHTML = `
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <span style="color: #ffffff; font-weight: 800; font-size: 0.95rem;">${nombrePaquete}</span>
-                <span style="color: #ff6600; font-weight: 800; font-size: 1rem;">Bs. ${precio}</span>
-            </div>
-            <div style="font-size: 0.8rem; color: #9ca3af; margin-bottom: 15px;">Paquete listo para procesar</div>
-        `;
-    }
-
-    // ¡HACEMOS APARECER EL BOTÓN DE VERIFICAR PEDIDO!
-    const btnVerificar = document.querySelector('.btn-verificar-pedido') || document.getElementById('btn-verificar-pedido');
-    if (btnVerificar) {
-        btnVerificar.style.setProperty('display', 'block', 'important'); // O 'flex' según tu diseño
-    }
+    // ¡HACEMOS APARECER EL BOTÓN DE VERIFICAR PEDIDO SOLAMENTE AQUÍ!
+    const botones = document.querySelectorAll('button');
+    botones.forEach(btn => {
+        if (btn.innerText.toUpperCase().includes('VERIFICAR PEDIDO')) {
+            btn.style.setProperty('display', 'block', 'important'); // O 'flex' según tu diseño
+        }
+    });
 }
+
+function limpiarSeleccionInicial() {
+    // 1. Quitamos cualquier borde o clase activa de las tarjetas de planes
+    const tarjetas = document.querySelectorAll('.plan-card, .paquete-card');
+    tarjetas.forEach(card => {
+        card.style.borderColor = '#1f2937'; // Borde inactivo
+        card.classList.remove('active', 'selected');
+    });
+
+    // 2. Ocultamos el botón de verificar pedido por completo al cargar
+    const botones = document.querySelectorAll('button');
+    botones.forEach(btn => {
+        if (btn.innerText.toUpperCase().includes('VERIFICAR PEDIDO')) {
+            btn.style.setProperty('display', 'none', 'important');
+        }
+    });
+
+    // 3. Limpiamos la variable de control actual
+    window.paqueteSeleccionadoActual = null;
+}
+
+// Ejecutar esto cada vez que cargue la vista de un producto
+document.addEventListener('DOMContentLoaded', limpiarSeleccionInicial);
+
+
 
 // Ejecutar la revisión constantemente en tiempo real cada 200 milisegundos
 setInterval(ocultarBotonSiAgotado, 200);
