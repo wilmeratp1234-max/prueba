@@ -2414,13 +2414,13 @@ function verDetalleCuenta(index) {
             }
         }
 		
-function actualizarVisibilidadBotonPedido() {
-    // 1. Capturamos el título del producto actual en pantalla (ej: "DISNEY+ PREMIUM")
+function ocultarBotonSiAgotado() {
+    // 1. Tomamos el título grande del producto en pantalla (ej: "DISNEY+ PREMIUM")
     let tituloH1 = document.querySelector('h1');
     if (!tituloH1) return;
     
     let nombreProducto = tituloH1.innerText.toLowerCase().trim();
-    let stockActual = 99; // Stock por defecto si no lo encuentra en el objeto
+    let stockActual = 99; // Stock por defecto si no lo encuentra
 
     // 2. Comparamos con tu objeto CONTROL_DE_STOCK
     for (let clave in CONTROL_DE_STOCK) {
@@ -2430,37 +2430,38 @@ function actualizarVisibilidadBotonPedido() {
         }
     }
 
-    // 3. Buscamos el botón de verificar pedido (asegúrate de que tenga id="btn-verificar-pedido")
-    const btnVerificar = document.getElementById('btn-verificar-pedido');
-    
-    if (btnVerificar) {
-        if (stockActual <= 0) {
-            // OCULTAR COMPLETAMENTE EL BOTÓN SI EL STOCK ES 0
-            btnVerificar.style.display = 'none';
-            
-            // Opcional: Mostrar un aviso visual donde estaba el botón si lo deseas
-            let contenedorPadre = btnVerificar.parentElement;
-            let avisoExistente = document.getElementById('aviso-stock-agotado');
-            
-            if (!avisoExistente && contenedorPadre) {
-                let aviso = document.createElement('div');
-                aviso.id = 'aviso-stock-agotado';
-                aviso.style.cssText = 'background: #1a100c; border: 1px solid #ff6600; color: #ff6600; padding: 12px; border-radius: 12px; text-align: center; font-weight: 800; font-size: 0.9rem; margin-top: 10px; text-transform: uppercase;';
-                aviso.innerHTML = '❌ Producto Agotado Temporalmente';
-                contenedorPadre.appendChild(aviso);
-            }
-        } else {
-            // MOSTRAR EL BOTÓN SI HAY STOCK DISPONIBLE
-            btnVerificar.style.display = 'block'; // O 'flex' / 'inline-block' según tu diseño original
-            
-            // Eliminar el aviso si existía
-            let avisoExistente = document.getElementById('aviso-stock-agotado');
-            if (avisoExistente) {
-                avisoExistente.remove();
+    // 3. Buscamos TODOS los botones de la página y filtramos el de verificar pedido
+    const todosLosBotones = document.querySelectorAll('button');
+    todosLosBotones.forEach(btn => {
+        if (btn.innerText.toUpperCase().includes('VERIFICAR PEDIDO')) {
+            if (stockActual <= 0) {
+                // OCULTAR EL BOTÓN POR COMPLETO
+                btn.style.setProperty('display', 'none', 'important');
+                
+                // Opcional: Crear un cartel de aviso si no existe
+                let contenedorPadre = btn.parentElement;
+                if (contenedorPadre && !document.getElementById('aviso-stock-cero')) {
+                    let aviso = document.createElement('div');
+                    aviso.id = 'aviso-stock-cero';
+                    aviso.style.cssText = 'background: #1a100c; border: 1px solid #ff6600; color: #ff6600; padding: 14px; border-radius: 12px; text-align: center; font-weight: 800; font-size: 0.9rem; margin-top: 10px; text-transform: uppercase;';
+                    aviso.innerHTML = '❌ Producto Agotado Temporalmente';
+                    contenedorPadre.appendChild(aviso);
+                }
+            } else {
+                // MOSTRAR EL BOTÓN SI HAY STOCK
+                btn.style.setProperty('display', 'block', 'important');
+                
+                // Eliminar el aviso si existía
+                let aviso = document.getElementById('aviso-stock-cero');
+                if (aviso) aviso.remove();
             }
         }
-    }
+    });
 }
+
+// Ejecutar la revisión constantemente en tiempo real
+document.addEventListener('DOMContentLoaded', ocultarBotonSiAgotado);
+setInterval(ocultarBotonSiAgotado, 200);
 
 // Ejecutar la revisión automáticamente
 document.addEventListener('DOMContentLoaded', actualizarVisibilidadBotonPedido);
