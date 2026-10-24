@@ -2414,142 +2414,26 @@ function verDetalleCuenta(index) {
             }
         }
 		
-function reiniciarSeleccionPaquete() {
-    // 1. Ocultar el botón de verificar pedido al inicio
-    const btnVerificar = document.querySelector('.btn-verificar-pedido') || document.getElementById('btn-verificar-pedido');
-    if (btnVerificar) {
-        btnVerificar.style.setProperty('display', 'none', 'important');
-    }
+// ==========================================================================
+// SCRIPT DE CONTROL DE STOCK Y UI - STREAMIX STORE
+// ==========================================================================
 
-    // 2. Mostrar el texto de "Ningún paquete seleccionado" en el resumen de la derecha
-    // (Ajusta 'resumen-pedido-container' al ID o clase de tu contenedor de resumen)
-    const resumenContainer = document.getElementById('resumen-pedido-container') || document.querySelector('.summary-pedido-box');
-    if (resumenContainer) {
-        resumenContainer.innerHTML = `
-            <div style="color: #9ca3af; text-align: center; padding: 25px 0; font-size: 0.9rem; font-weight: 600;">
-                Ningún paquete seleccionado
-            </div>
-        `;
-    }
+// 1. Limpieza inicial solo si estamos en la vista de producto
+function limpiarInicioTienda() {
+    let btnVerificar = document.getElementById('btn-main-action');
+    if (!btnVerificar) return; // Si no estamos en la página de producto, no hace nada y no da errores
 
-    // Limpiamos la variable global de selección
-    window.paqueteSeleccionadoActual = null;
-}
+    // Ocultar botón de verificar pedido al entrar
+    btnVerificar.style.setProperty('display', 'none', 'important');
 
-function seleccionarPlan(elemento, precio, nombrePaquete) {
-    // Validar si está agotado
-    if (elemento.innerHTML.includes('AGOTADO') || elemento.classList.contains('agotado')) {
-        alert('⚠️ Este plan se encuentra AGOTADO. No es posible seleccionarlo.');
-        return;
-    }
-
-    // Guardar selección
-    window.paqueteSeleccionadoActual = { nombre: nombrePaquete, precio: precio };
-
-    // Marcar visualmente solo la tarjeta presionada
-    document.querySelectorAll('.plan-card, .paquete-card').forEach(card => {
+    // Quitar selección de tarjetas
+    const tarjetas = document.querySelectorAll('.plan-card, .paquete-card');
+    tarjetas.forEach(card => {
         card.style.borderColor = '#1f2937';
         card.classList.remove('active', 'selected');
     });
-    elemento.style.borderColor = '#ff6600'; // Naranja de seleccionado
-    elemento.classList.add('active');
 
-    // ¡HACEMOS APARECER EL BOTÓN DE VERIFICAR PEDIDO SOLAMENTE AQUÍ!
-    const botones = document.querySelectorAll('button');
-    botones.forEach(btn => {
-        if (btn.innerText.toUpperCase().includes('VERIFICAR PEDIDO')) {
-            btn.style.setProperty('display', 'block', 'important'); // O 'flex' según tu diseño
-        }
-    });
-}
-
-function limpiarSeleccionInicial() {
-    // 1. Quitamos cualquier borde o clase activa de las tarjetas de planes
-    const tarjetas = document.querySelectorAll('.plan-card, .paquete-card');
-    tarjetas.forEach(card => {
-        card.style.borderColor = '#1f2937'; // Borde inactivo
-        card.classList.remove('active', 'selected');
-    });
-
-    // 2. Ocultamos el botón de verificar pedido por completo al cargar
-    const botones = document.querySelectorAll('button');
-    botones.forEach(btn => {
-        if (btn.innerText.toUpperCase().includes('VERIFICAR PEDIDO')) {
-            btn.style.setProperty('display', 'none', 'important');
-        }
-    });
-
-    // 3. Limpiamos la variable de control actual
-    window.paqueteSeleccionadoActual = null;
-}
-
-// 1. Limpiar cualquier selección automática al cargar la página
-function limpiarInicioTienda() {
-    // Quitamos bordes activos y clases de selección de todas las tarjetas
-    const tarjetas = document.querySelectorAll('.plan-card, .paquete-card');
-    tarjetas.forEach(card => {
-        card.style.borderColor = '#1f2937'; // Color inactivo
-        card.classList.remove('active', 'selected');
-    });
-
-    // Ocultamos el botón de verificar pedido por defecto al entrar al producto
-    const btnVerificar = document.querySelector('.btn-verificar-pedido') || document.getElementById('btn-verificar-pedido');
-    if (btnVerificar) {
-        btnVerificar.style.setProperty('display', 'none', 'important');
-    }
-
-    // Limpiamos la variable de selección global
-    window.paqueteSeleccionadoActual = null;
-}
-
-// 2. Función robusta cuando el usuario hace clic en un plan
-function seleccionarPlan(elemento, precio, nombrePaquete, nombreServicio) {
-    // Validación de Stock 0 o etiqueta AGOTADO
-    let claveServicio = nombreServicio ? nombreServicio.toLowerCase().trim() : "";
-    let estaAgotadoPorStock = (window.CONTROL_DE_STOCK && window.CONTROL_DE_STOCK[claveServicio] <= 0);
-    
-    if (elemento.innerHTML.includes('AGOTADO') || elemento.classList.contains('agotado') || estaAgotadoPorStock) {
-        alert('⚠️ Este plan o producto se encuentra AGOTADO temporalmente.');
-        return; // Frena y no permite seleccionarlo
-    }
-
-    // Guardamos la selección actual
-    window.paqueteSeleccionadoActual = { nombre: nombrePaquete, precio: precio };
-
-    // Limpiamos las demás tarjetas y marcamos solo la presionada
-    document.querySelectorAll('.plan-card, .paquete-card').forEach(card => {
-        card.style.borderColor = '#1f2937';
-        card.classList.remove('active', 'selected');
-    });
-    
-    elemento.style.borderColor = '#ff6600'; // Borde naranja de seleccionado
-    elemento.classList.add('active');
-
-    // ¡HACEMOS APARECER EL BOTÓN DE VERIFICAR PEDIDO SOLAMENTE AL SELECCIONAR!
-    const btnVerificar = document.querySelector('.btn-verificar-pedido') || document.getElementById('btn-verificar-pedido');
-    if (btnVerificar) {
-        btnVerificar.style.setProperty('display', 'block', 'important'); // O 'flex' según tu diseño
-    }
-}
-
-// ==========================================
-// 1. ESTADO INICIAL (Al entrar a un producto)
-// ==========================================
-function limpiarInicioTienda() {
-    // Ocultar el botón de verificar pedido usando su ID correcto: btn-main-action
-    const btnVerificar = document.getElementById('btn-main-action');
-    if (btnVerificar) {
-        btnVerificar.style.setProperty('display', 'none', 'important');
-    }
-
-    // Quitar selección visual de todas las tarjetas de planes/paquetes
-    const tarjetas = document.querySelectorAll('.plan-card, .paquete-card');
-    tarjetas.forEach(card => {
-        card.style.borderColor = '#1f2937'; // Borde inactivo
-        card.classList.remove('active', 'selected');
-    });
-
-    // Mostrar mensaje de "Ningún paquete seleccionado" en el resumen de la derecha
+    // Resetear resumen
     const resumenFila = document.querySelector('.summary-item-row');
     if (resumenFila) {
         resumenFila.innerHTML = `
@@ -2559,40 +2443,34 @@ function limpiarInicioTienda() {
         `;
     }
 
-    // Poner el total en 0 o vacío
     const totalVal = document.getElementById('total-val');
     if (totalVal) totalVal.innerText = '0,00';
 
-    // Limpiar variable global
     window.paqueteSeleccionadoActual = null;
 }
 
-// ==========================================
-// 2. SELECCIÓN DE PLAN / PAQUETE
-// ==========================================
+// 2. Selección de Plan con validación estricta
 function seleccionarPlan(elemento, precio, nombrePaquete, nombreServicio) {
-    // Validar si está agotado por etiqueta visual o por stock 0
     let claveServicio = nombreServicio ? nombreServicio.toLowerCase().trim() : "";
     let estaAgotadoPorStock = (window.CONTROL_DE_STOCK && window.CONTROL_DE_STOCK[claveServicio] <= 0);
     
     if (elemento.innerHTML.includes('AGOTADO') || elemento.classList.contains('agotado') || estaAgotadoPorStock) {
         alert('⚠️ Este plan o producto se encuentra AGOTADO temporalmente.');
-        return; // Frena y no permite seleccionarlo
+        return; 
     }
 
-    // Guardar selección actual
     window.paqueteSeleccionadoActual = { nombre: nombrePaquete, precio: precio };
 
-    // Limpiar bordes de todas las tarjetas y marcar solo la presionada
+    // Marcar tarjeta activa
     document.querySelectorAll('.plan-card, .paquete-card').forEach(card => {
         card.style.borderColor = '#1f2937';
         card.classList.remove('active', 'selected');
     });
     
-    elemento.style.borderColor = '#ff6600'; // Borde naranja
+    elemento.style.borderColor = '#ff6600'; 
     elemento.classList.add('active');
 
-    // Actualizar el resumen del pedido a la derecha con el plan elegido
+    // Actualizar resumen
     const resumenFila = document.querySelector('.summary-item-row');
     if (resumenFila) {
         resumenFila.innerHTML = `
@@ -2605,35 +2483,22 @@ function seleccionarPlan(elemento, precio, nombrePaquete, nombreServicio) {
         `;
     }
 
-    // Actualizar el precio total
     const totalVal = document.getElementById('total-val');
     if (totalVal) {
         totalVal.innerText = precio.toLocaleString('es-VE', { minimumFractionDigits: 2 });
     }
 
-    // ¡HACER APARECER EL BOTÓN DE VERIFICAR PEDIDO INMEDIATAMENTE!
+    // Mostrar el botón de verificar pedido
     const btnVerificar = document.getElementById('btn-main-action');
     if (btnVerificar) {
-        btnVerificar.style.setProperty('display', 'block', 'important'); // O 'flex' según prefieras
+        btnVerificar.style.setProperty('display', 'block', 'important');
     }
 }
 
-// Ejecutar limpieza al cargar la página
-document.addEventListener('DOMContentLoaded', limpiarInicioTienda);
-
-// Ejecutar la limpieza inicial al cargar la página o cambiar de producto
-document.addEventListener('DOMContentLoaded', limpiarInicioTienda);
-
-// Por si tu tienda cambia de vista dinámicamente sin recargar la página:
-window.addEventListener('popstate', limpiarInicioTienda);
-
-// Ejecutar esto cada vez que cargue la vista de un producto
-document.addEventListener('DOMContentLoaded', limpiarSeleccionInicial);
-
-
-
-// Ejecutar la revisión constantemente en tiempo real cada 200 milisegundos
-setInterval(ocultarBotonSiAgotado, 200);
+// Ejecutar al cargar la página de forma segura
+document.addEventListener('DOMContentLoaded', () => {
+    limpiarInicioTienda();
+});
 
 // Ejecutar la revisión constantemente en tiempo real cada 200 milisegundos
 setInterval(ocultarBotonSiAgotado, 200);
