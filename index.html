@@ -2415,16 +2415,29 @@ function verDetalleCuenta(index) {
         }
 		
 		function verificarPedido() {
-    // Tomamos el nombre del servicio actual seleccionado (ej: "disney+ premium")
-    let servicio = window.nombreServicioActual ? window.nombreServicioActual.toLowerCase().trim() : "";
+    // 1. Capturamos el texto del título principal que aparece en pantalla (ej: "DISNEY+ PREMIUM")
+    // Buscamos el elemento h1 de la vista activa
+    let tituloH1 = document.querySelector('h1');
+    let nombreProducto = tituloH1 ? tituloH1.innerText.toLowerCase().trim() : "";
 
-    // Si el producto está en el objeto de stock y es 0 o menor, bloqueamos por completo
-    if (CONTROL_DE_STOCK.hasOwnProperty(servicio) && CONTROL_DE_STOCK[servicio] <= 0) {
-        alert('❌ Producto AGOTADO. No es posible procesar la compra ni avanzar al pago.');
-        return; // Frena la ejecución y evita que pase a la pasarela
+    let estaAgotadoEnStock = false;
+
+    // 2. Buscamos en tu objeto CONTROL_DE_STOCK si el producto está en 0
+    for (let clave in CONTROL_DE_STOCK) {
+        // Si el título en pantalla contiene el nombre del servicio y su stock es 0 o menos
+        if (nombreProducto.includes(clave.toLowerCase()) && CONTROL_DE_STOCK[clave] <= 0) {
+            estaAgotadoEnStock = true;
+            break;
+        }
     }
 
-    // Si tiene stock mayor a 0, pasa libremente a la pasarela de pago
+    // Si está agotado, bloqueamos el botón y mostramos la alerta
+    if (estaAgotadoEnStock) {
+        alert('❌ Producto AGOTADO. No es posible procesar la compra ni avanzar a la pasarela de pago.');
+        return; // <--- Esto frena por completo la ejecución y detiene el avance
+    }
+
+    // 3. Si tiene stock mayor a 0, pasa libremente a la pasarela de pago
     if (typeof cambiarVista === 'function') {
         cambiarVista('vista-pagomovil-gateway');
     }
