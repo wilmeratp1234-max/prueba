@@ -2415,19 +2415,42 @@ function verDetalleCuenta(index) {
         }
 		
 		function verificarPedido() {
-    // Tomamos el nombre del servicio que el usuario está intentando comprar
-    // (Asegúrate de que 'nombreServicioActual' guarde el nombre del producto seleccionado, ej: "disney+ premium")
+    // Tomamos el nombre del servicio actual seleccionado (ej: "disney+ premium")
     let servicio = window.nombreServicioActual ? window.nombreServicioActual.toLowerCase().trim() : "";
 
-    // Verificamos si el producto existe en tu objeto y su stock es 0 o menor
+    // Si el producto está en el objeto de stock y es 0 o menor, bloqueamos por completo
     if (CONTROL_DE_STOCK.hasOwnProperty(servicio) && CONTROL_DE_STOCK[servicio] <= 0) {
-        alert('❌ Producto AGOTADO. No es posible procesar la compra.');
-        return; // <--- Esto frena por completo la compra y no deja avanzar
+        alert('❌ Producto AGOTADO. No es posible procesar la compra ni avanzar al pago.');
+        return; // Frena la ejecución y evita que pase a la pasarela
     }
 
     // Si tiene stock mayor a 0, pasa libremente a la pasarela de pago
     if (typeof cambiarVista === 'function') {
         cambiarVista('vista-pagomovil-gateway');
+    }
+}
+
+function comprobarStockYBloquearBoton(nombreServicio) {
+    window.nombreServicioActual = nombreServicio; // Guardamos el servicio actual
+    let clave = nombreServicio.toLowerCase().trim();
+    
+    // Buscamos el botón de verificar pedido en tu HTML (ajusta la clase si es distinta)
+    const botonVerificar = document.querySelector('.btn-verificar-pedido') || document.querySelector('#btn-verificar');
+
+    if (CONTROL_DE_STOCK.hasOwnProperty(clave) && CONTROL_DE_STOCK[clave] <= 0) {
+        if (botonVerificar) {
+            botonVerificar.style.background = '#374151'; // Color gris de deshabilitado
+            botonVerificar.style.cursor = 'not-allowed';
+            botonVerificar.innerText = 'PRODUCTO AGOTADO';
+            botonVerificar.disabled = true;
+        }
+    } else {
+        if (botonVerificar) {
+            botonVerificar.style.background = '#ff6600'; // Tu color naranja original
+            botonVerificar.style.cursor = 'pointer';
+            botonVerificar.innerText = 'VERIFICAR PEDIDO >';
+            botonVerificar.disabled = false;
+        }
     }
 }
 
