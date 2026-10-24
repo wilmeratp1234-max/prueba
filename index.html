@@ -2415,56 +2415,48 @@ function verDetalleCuenta(index) {
         }
 		
 		function verificarPedido() {
-    // 1. Capturamos el texto del título principal que aparece en pantalla (ej: "DISNEY+ PREMIUM")
-    // Buscamos el elemento h1 de la vista activa
-    let tituloH1 = document.querySelector('h1');
-    let nombreProducto = tituloH1 ? tituloH1.innerText.toLowerCase().trim() : "";
+    // 1. Verificar si hay algún indicador de "AGOTADO" visible en las tarjetas de planes seleccionadas
+    const planAgotado = document.querySelector('.plan-card.active .etiqueta-agotado, .plan-card.selected .etiqueta-agotado, .plan-card.active:contains("AGOTADO")');
+    
+    // 2. Comprobar stock desde el objeto CONTROL_DE_STOCK usando el nombre del producto seleccionado
+    let productoActual = (window.productoNombreActual || document.querySelector('h1')?.innerText || "").toLowerCase().trim();
+    let stockActual = 1; // por defecto disponible
 
-    let estaAgotadoEnStock = false;
-
-    // 2. Buscamos en tu objeto CONTROL_DE_STOCK si el producto está en 0
-    for (let clave in CONTROL_DE_STOCK) {
-        // Si el título en pantalla contiene el nombre del servicio y su stock es 0 o menos
-        if (nombreProducto.includes(clave.toLowerCase()) && CONTROL_DE_STOCK[clave] <= 0) {
-            estaAgotadoEnStock = true;
+    for (let key in CONTROL_DE_STOCK) {
+        if (productoActual.includes(key.toLowerCase())) {
+            stockActual = CONTROL_DE_STOCK[key];
             break;
         }
     }
 
-    // Si está agotado, bloqueamos el botón y mostramos la alerta
-    if (estaAgotadoEnStock) {
-        alert('❌ Producto AGOTADO. No es posible procesar la compra ni avanzar a la pasarela de pago.');
-        return; // <--- Esto frena por completo la ejecución y detiene el avance
+    // 3. Bloqueo estricto: si el stock es 0 o si el plan activo dice AGOTADO
+    if (stockActual <= 0) {
+        alert("⚠️ Este producto está AGOTADO. No se pueden procesar compras para productos sin stock.");
+        
+        // Bloquear visualmente el botón
+        const btnVerificar = document.querySelector('.btn-verificar-pedido, button[onclick*="verificarPedido"]');
+        if (btnVerificar) {
+            btnVerificar.style.background = "#374151";
+            btnVerificar.style.cursor = "not-allowed";
+            btnVerificar.innerText = "PRODUCTO AGOTADO";
+        }
+        return false; // FRENA COMPLETAMENTE LA COMPRA
     }
 
-    // 3. Si tiene stock mayor a 0, pasa libremente a la pasarela de pago
+    // 4. Si tiene stock (> 0), permite avanzar normalmente a la pasarela de pago
     if (typeof cambiarVista === 'function') {
         cambiarVista('vista-pagomovil-gateway');
     }
 }
 
-function comprobarStockYBloquearBoton(nombreServicio) {
-    window.nombreServicioActual = nombreServicio; // Guardamos el servicio actual
-    let clave = nombreServicio.toLowerCase().trim();
-    
-    // Buscamos el botón de verificar pedido en tu HTML (ajusta la clase si es distinta)
-    const botonVerificar = document.querySelector('.btn-verificar-pedido') || document.querySelector('#btn-verificar');
-
-    if (CONTROL_DE_STOCK.hasOwnProperty(clave) && CONTROL_DE_STOCK[clave] <= 0) {
-        if (botonVerificar) {
-            botonVerificar.style.background = '#374151'; // Color gris de deshabilitado
-            botonVerificar.style.cursor = 'not-allowed';
-            botonVerificar.innerText = 'PRODUCTO AGOTADO';
-            botonVerificar.disabled = true;
-        }
-    } else {
-        if (botonVerificar) {
-            botonVerificar.style.background = '#ff6600'; // Tu color naranja original
-            botonVerificar.style.cursor = 'pointer';
-            botonVerificar.innerText = 'VERIFICAR PEDIDO >';
-            botonVerificar.disabled = false;
-        }
+function seleccionarPlan(element, precio, nombrePlan) {
+    // Si la tarjeta seleccionada contiene la marca de AGOTADO
+    if (element.innerHTML.includes("AGOTADO") || element.classList.contains("agotado")) {
+        alert("❌ Este plan está AGOTADO. Por favor selecciona otro disponible.");
+        return false;
     }
+    
+    // Lógica normal de selección...
 }
 
         function mostrarVista(vista) {
