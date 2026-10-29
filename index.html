@@ -22,6 +22,25 @@
             background-repeat: repeat;
             background-size: auto, auto, 400px 400px;
         }
+		
+		/* ==================== CORRECCIÓN DE CURSOR Y SELECCIÓN EN MENÚS ==================== */
+.nav-links a, 
+.logo-nav, 
+.btn-region, 
+.nav-bar *,
+.service-card {
+    user-select: none; /* Evita que el navegador active el cursor de texto al pasar o hacer clic */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Fuerza el cursor de mano (pointer) en todos los elementos de navegación y botones */
+.nav-links a, 
+.logo-nav, 
+.btn-region {
+    cursor: pointer !important;
+}
 
         /* Elementos flotantes decorativos de Halloween */
         .halloween-decorations {
