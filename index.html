@@ -2143,38 +2143,76 @@ const CONTROL_DE_STOCK = {
     "roblox": 10
 };
         function abrirProducto(nombre, tag, imagen) {
-            productoNombreActual = nombre;
-            document.getElementById('prod-title').innerText = nombre;
-            document.getElementById('prod-bread-title').innerText = nombre;
-            document.getElementById('prod-tag').innerText = tag;
-            document.getElementById('summary-prod-name').innerText = nombre;
-            if(imagen) document.getElementById('summary-prod-img').src = imagen;
+    productoNombreActual = nombre;
+    document.getElementById('prod-title').innerText = nombre;
+    document.getElementById('prod-bread-title').innerText = nombre;
+    document.getElementById('prod-tag').innerText = tag;
+    document.getElementById('summary-prod-name').innerText = nombre;
+    if(imagen) document.getElementById('summary-prod-img').src = imagen;
 
-            limpiarErrorInput();
-            document.getElementById('input-field-id').value = '';
+    limpiarErrorInput();
+    document.getElementById('input-field-id').value = '';
 
-            const claveNorm = nombre.toLowerCase().trim();
-            productoActualData = baseDeDatosPrecios[claveNorm] || baseDeDatosPrecios["netflix"];
+    const claveNorm = nombre.toLowerCase().trim();
+    productoActualData = baseDeDatosPrecios[claveNorm] || baseDeDatosPrecios["netflix"];
 
-            document.getElementById('label-field-text').innerText = productoActualData.idLabel;
-            document.getElementById('input-field-id').placeholder = productoActualData.idPlaceholder;
+    document.getElementById('label-field-text').innerText = productoActualData.idLabel;
+    document.getElementById('input-field-id').placeholder = productoActualData.idPlaceholder;
 
-            document.getElementById('tab-btn-1').innerText = productoActualData.tab1Nombre;
-            document.getElementById('tab-btn-2').innerText = productoActualData.tab2Nombre;
+    document.getElementById('tab-btn-1').innerText = productoActualData.tab1Nombre;
+    document.getElementById('tab-btn-2').innerText = productoActualData.tab2Nombre;
 
-            estadoCheckoutStep = 1;
-            document.getElementById('step2-title-head').innerHTML = 'SELECCIONA TU <span>PLAN / PAQUETE</span>';
-            document.getElementById('step2-packages-wrapper').style.display = 'block';
-            document.getElementById('step2-payment-wrapper').style.display = 'none';
-            document.getElementById('btn-main-action').innerText = 'VERIFICAR PEDIDO >';
+    estadoCheckoutStep = 1;
+    document.getElementById('step2-title-head').innerHTML = 'SELECCIONA TU <span>PLAN / PAQUETE</span>';
+    document.getElementById('step2-packages-wrapper').style.display = 'block';
+    document.getElementById('step2-payment-wrapper').style.display = 'none';
+    document.getElementById('btn-main-action').innerText = 'VERIFICAR PEDIDO >';
 
-            tabActivaIndex = 0;
-            document.getElementById('tab-btn-1').classList.add('active');
-            document.getElementById('tab-btn-2').classList.remove('active');
+    tabActivaIndex = 0;
+    document.getElementById('tab-btn-1').classList.add('active');
+    document.getElementById('tab-btn-2').classList.remove('active');
 
-            renderizarPaquetes();
-            mostrarVista('producto');
-        }
+    renderizarPaquetes();
+    
+    // Muestra la vista de producto de forma limpia
+    mostrarVista('producto');
+}
+
+function abrirProductoDistri(nombre, tag, imagen) {
+    productoNombreActual = nombre + " (VIP Mayorista)";
+    document.getElementById('prod-title').innerText = nombre + " VIP";
+    document.getElementById('prod-bread-title').innerText = nombre + " Mayorista";
+    document.getElementById('prod-tag').innerText = tag;
+    document.getElementById('summary-prod-name').innerText = nombre + " VIP";
+    if(imagen) document.getElementById('summary-prod-img').src = imagen;
+
+    limpiarErrorInput();
+    document.getElementById('input-field-id').value = '';
+
+    const claveNorm = nombre.toLowerCase().trim();
+    productoActualData = baseDeDatosPreciosDistri[claveNorm] || baseDeDatosPreciosDistri["netflix"];
+
+    document.getElementById('label-field-text').innerText = productoActualData.idLabel;
+    document.getElementById('input-field-id').placeholder = productoActualData.idPlaceholder;
+
+    document.getElementById('tab-btn-1').innerText = productoActualData.tab1Nombre;
+    document.getElementById('tab-btn-2').innerText = productoActualData.tab2Nombre;
+
+    estadoCheckoutStep = 1;
+    document.getElementById('step2-title-head').innerHTML = 'SELECCIONA TU <span>PLAN / PAQUETE MAYORISTA</span>';
+    document.getElementById('step2-packages-wrapper').style.display = 'block';
+    document.getElementById('step2-payment-wrapper').style.display = 'none';
+    document.getElementById('btn-main-action').innerText = 'VERIFICAR PEDIDO >';
+
+    tabActivaIndex = 0;
+    document.getElementById('tab-btn-1').classList.add('active');
+    document.getElementById('tab-btn-2').classList.remove('active');
+
+    renderizarPaquetes();
+    
+    // Muestra la vista de producto de forma limpia
+    mostrarVista('producto');
+}
 
 function renderizarPaquetes() {
     const grid = document.getElementById('packages-grid-container');
@@ -2679,48 +2717,65 @@ function verificarPedido() {
     }
 }
         function mostrarVista(vista) {
-            const vistas = ['vista-servicios', 'vista-recargas', 'vista-distribuidores', 'vista-soporte', 'vista-producto', 'vista-binance-gateway', 'vista-pagomovil-gateway', 'vista-buscar'];
-            vistas.forEach(v => {
-                const el = document.getElementById(v);
-                if(el) el.classList.remove('active');
-            });
-
-            const navServicios = document.getElementById('nav-servicios');
-            const navRecargas = document.getElementById('nav-recargas');
-            const navDistribuidores = document.getElementById('nav-distribuidores');
-            const navBuscar = document.getElementById('nav-buscar');
-            const navSoporte = document.getElementById('nav-soporte');
-
-            if(navServicios) navServicios.classList.remove('active');
-            if(navRecargas) navRecargas.classList.remove('active');
-            if(navDistribuidores) navDistribuidores.classList.remove('active');
-            if(navBuscar) navBuscar.classList.remove('active');
-            if(navSoporte) navSoporte.classList.remove('active');
-
-            if (vista === 'recargas') {
-                document.getElementById('vista-recargas').classList.add('active');
-                if(navRecargas) navRecargas.classList.add('active');
-            } else if (vista === 'distribuidores') {
-                document.getElementById('vista-distribuidores').classList.add('active');
-                if(navDistribuidores) navDistribuidores.classList.add('active');
-            } else if (vista === 'buscar') {
-                document.getElementById('vista-buscar').classList.add('active');
-                if(navBuscar) navBuscar.classList.add('active');
-            } else if (vista === 'soporte') {
-                document.getElementById('vista-soporte').classList.add('active');
-                if(navSoporte) navSoporte.classList.add('active');
-            } else if (vista === 'producto') {
-                document.getElementById('vista-producto').classList.add('active');
-            } else if (vista === 'binance-gateway') {
-                document.getElementById('vista-binance-gateway').classList.add('active');
-            } else if (vista === 'pagomovil-gateway') {
-                document.getElementById('vista-pagomovil-gateway').classList.add('active');
-            } else {
-                document.getElementById('vista-servicios').classList.add('active');
-                if(navServicios) navServicios.classList.add('active');
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+    // 1. Ocultar absolutamente todas las secciones primero
+    const vistas = [
+        'vista-servicios', 
+        'vista-recargas', 
+        'vista-distribuidores', 
+        'vista-soporte', 
+        'vista-producto', 
+        'vista-binance-gateway', 
+        'vista-pagomovil-gateway', 
+        'vista-buscar'
+    ];
+    
+    vistas.forEach(v => {
+        const el = document.getElementById(v);
+        if (el) {
+            el.classList.remove('active');
+            el.style.display = 'none'; // Asegura que quede oculta por completo
         }
+    });
+
+    // 2. Limpiar estados de botones de navegación
+    const navServicios = document.getElementById('nav-servicios');
+    const navRecargas = document.getElementById('nav-recargas');
+    const navDistribuidores = document.getElementById('nav-distribuidores');
+    const navBuscar = document.getElementById('nav-buscar');
+    const navSoporte = document.getElementById('nav-soporte');
+
+    if(navServicios) navServicios.classList.remove('active');
+    if(navRecargas) navRecargas.classList.remove('active');
+    if(navDistribuidores) navDistribuidores.classList.remove('active');
+    if(navBuscar) navBuscar.classList.remove('active');
+    if(navSoporte) navSoporte.classList.remove('active');
+
+    // 3. Activar la vista solicitada
+    let idVista = 'vista-servicios';
+    if (vista === 'recargas') idVista = 'vista-recargas';
+    else if (vista === 'distribuidores') idVista = 'vista-distribuidores';
+    else if (vista === 'buscar') idVista = 'vista-buscar';
+    else if (vista === 'soporte') idVista = 'vista-soporte';
+    else if (vista === 'producto') idVista = 'vista-producto';
+    else if (vista === 'binance-gateway') idVista = 'vista-binance-gateway';
+    else if (vista === 'pagomovil-gateway') idVista = 'vista-pagomovil-gateway';
+
+    const targetEl = document.getElementById(idVista);
+    if (targetEl) {
+        targetEl.classList.add('active');
+        targetEl.style.display = 'block'; // Muestra la vista seleccionada
+    }
+
+    // Actualizar nav activa
+    if (vista === 'recargas' && navRecargas) navRecargas.classList.add('active');
+    else if (vista === 'distribuidores' && navDistribuidores) navDistribuidores.classList.add('active');
+    else if (vista === 'buscar' && navBuscar) navBuscar.classList.add('active');
+    else if (vista === 'soporte' && navSoporte) navSoporte.classList.add('active');
+    else if (vista === 'servicios' && navServicios) navServicios.classList.add('active');
+
+    // 4. Subir la pantalla arriba del todo inmediatamente
+    window.scrollTo({ top: 0, behavior: 'instant' });
+}
 
         function abrirModalRegion() { document.getElementById('modalRegion').style.display = 'flex'; }
         function cerrarModalRegion() { document.getElementById('modalRegion').style.display = 'none'; }
