@@ -2301,16 +2301,6 @@ function renderizarPaquetes() {
             return true;
         }
 
-function enviarOfertaWhatsApp() {
-    let mensaje = "🔥 ¡Hola Streamix Store! Quiero aprovechar la Oferta del día:\n\n" +
-                  "📌 *Combo:* HBOMAX + NETFLIX + VIX\n" +
-                  "💰 *Precio Oferta:* $4.00 USD (Bs. 4.020,00)\n\n" +
-                  "Por favor indíquenme los pasos para realizar el pago.";
-                  
-    let url = `https://wa.me/584124405245?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, '_blank');
-}
-
         function seleccionarMetodoMetodo(metodo) {
             metodoPagoSeleccionado = metodo;
             const cardBinance = document.getElementById('opt-pay-binance');
