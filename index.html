@@ -1268,7 +1268,7 @@
                                 <div class="pm-box-label">BANCO</div>
                                 <div class="pm-box-val">Bancamiga 0172</div>
                             </div>
-                            <button class="btn-box-copy" onclick="copiarTexto('0102', 'Banco')">
+                            <button class="btn-box-copy" onclick="copiarTexto('0172', 'Banco')">
                                 <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
                             </button>
                         </div>
@@ -1278,7 +1278,7 @@
                                 <div class="pm-box-label">TELÉFONO</div>
                                 <div class="pm-box-val">04122818460</div>
                             </div>
-                            <button class="btn-box-copy" onclick="copiarTexto('04129490569', 'Teléfono')">
+                            <button class="btn-box-copy" onclick="copiarTexto('04122818460', 'Teléfono')">
                                 <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
                             </button>
                         </div>
@@ -1288,7 +1288,7 @@
                                 <div class="pm-box-label">CÉDULA / RIF</div>
                                 <div class="pm-box-val">V-27178466</div>
                             </div>
-                            <button class="btn-box-copy" onclick="copiarTexto('J-504978965', 'Cédula / RIF')">
+                            <button class="btn-box-copy" onclick="copiarTexto('V-27178466', 'Cédula / RIF')">
                                 <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
                             </button>
                         </div>
@@ -2322,7 +2322,7 @@ function renderizarPaquetes() {
             let labelDato = document.getElementById('pm-card4-label').innerText;
             let valDato = document.getElementById('pm-card4-val').innerText;
 
-            let textoCompleto = `DATOS DE PAGO MÓVIL:\nBanco: Venezuela 0102\nTeléfono: 04129490569\nCédula/RIF: J-504978965\n${labelDato}: ${valDato}\nMonto Exacto: Bs. ${totalVES}`;
+            let textoCompleto = `DATOS DE PAGO MÓVIL:\nBanco: Bancamiga 0172\nTeléfono: 04122818460\nCédula/RIF: V-27178466\n${labelDato}: ${valDato}\nMonto Exacto: Bs. ${totalVES}`;
             
             navigator.clipboard.writeText(textoCompleto).then(() => {
                 alert('✓ Todos los datos de Pago Móvil han sido copiados.');
