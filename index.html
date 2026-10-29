@@ -23,6 +23,18 @@
             background-size: auto, auto, 400px 400px;
         }
 		
+		.carousel-slide a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+		
 		/* ==================== CORRECCIÓN DE CURSOR Y SELECCIÓN EN MENÚS ==================== */
 .nav-links a, 
 .logo-nav, 
@@ -636,19 +648,24 @@
     <div class="container">
 
         <!-- ==================== VISTA 1: SERVICIOS ==================== -->
-        <div id="vista-servicios" class="view-section active">
-            <div class="carousel-container">
-                <div class="carousel-track" id="carouselTrack">
-                    <div class="carousel-slide"><img src="https://i.imgur.com/FUb75IE.jpeg" alt="Banner 1"></div>
-                    <div class="carousel-slide"><img src="https://i.imgur.com/FUb75IE.jpeg" alt="Banner 2"></div>
-                    <div class="carousel-slide"><img src="https://i.imgur.com/FUb75IE.jpeg" alt="Banner 3"></div>
-                </div>
-                <div class="carousel-indicators">
-                    <span class="dot active" onclick="goToSlide(0)"></span>
-                    <span class="dot" onclick="goToSlide(1)"></span>
-                    <span class="dot" onclick="goToSlide(2)"></span>
-                </div>
+<div id="vista-servicios" class="view-section active">
+    <div class="carousel-container">
+        <div class="carousel-track" id="carouselTrack">
+            <!-- Banner 1 con enlace a WhatsApp -->
+            <div class="carousel-slide">
+                <a href="javascript:enviarBannerWhatsApp('Banner Principal de Streamix')" target="_blank">
+                    <img src="https://i.imgur.com/FUb75IE.jpeg" alt="Banner 1">
+                </a>
             </div>
+            <!-- Si tienes más banners, puedes agregarlos aquí con la misma estructura de la etiqueta <a> -->
+        </div>
+        <div class="carousel-indicators">
+            <span class="dot active" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+            <span class="dot" onclick="goToSlide(2)"></span>
+        </div>
+    </div>
+</div>
 
             <div class="section-header">
                 <h2 class="section-title">Cines y <span>Series🎃</span></h2>
@@ -2508,6 +2525,13 @@ function verificarPedido() {
         cambiarVista('vista-pagomovil-gateway');
     }
 }
+
+function enviarBannerWhatsApp(nombreBanner) {
+    let mensaje = "🔥 ¡Hola Streamix Store! Vi la promoción en el banner principal y quiero más información para hacer una compra.";
+    let url = `https://wa.me/584124405245?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+}
+
         function mostrarVista(vista) {
             const vistas = ['vista-servicios', 'vista-recargas', 'vista-distribuidores', 'vista-soporte', 'vista-producto', 'vista-binance-gateway', 'vista-pagomovil-gateway', 'vista-buscar'];
             vistas.forEach(v => {
