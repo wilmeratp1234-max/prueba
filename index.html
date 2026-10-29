@@ -22,119 +22,6 @@
             background-repeat: repeat;
             background-size: auto, auto, 400px 400px;
         }
-		
-		/* ==================== CAJA DE OFERTA LIMITADA (SIN TEMPORIZADOR) ==================== */
-.oferta-banner-card {
-    background: linear-gradient(135deg, #0d0f14 0%, #161a23 100%);
-    border: 1px solid #ff3300;
-    border-radius: 16px;
-    padding: 24px;
-    margin: 0 auto 30px auto;
-    max-width: 1100px;
-    position: relative;
-    z-index: 10;
-    box-shadow: 0 8px 32px rgba(255, 51, 0, 0.15);
-}
-.oferta-badge-pill {
-    position: absolute;
-    top: -12px;
-    right: 30px;
-    background: linear-gradient(90deg, #ff3300, #ff6600);
-    color: #fff;
-    padding: 6px 16px;
-    font-size: 0.75rem;
-    font-weight: 800;
-    border-radius: 20px;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 12px rgba(255, 51, 0, 0.4);
-}
-.oferta-contenido-grid {
-    display: grid;
-    grid-template-columns: 240px 1fr 220px;
-    gap: 24px;
-    align-items: center;
-}
-.combo-img-stack {
-    display: flex;
-    overflow-x: auto;
-    padding: 5px;
-}
-.combo-img-stack img {
-    width: 70px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 2px solid #ff6600;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    margin-right: -15px;
-    transition: transform 0.3s;
-}
-.combo-img-stack img:hover {
-    transform: translateY(-5px);
-    z-index: 2;
-}
-.oferta-subtitulo {
-    color: #ffcc00;
-    font-size: 0.8rem;
-    font-weight: 700;
-    margin-bottom: 4px;
-}
-.oferta-titulo {
-    color: #ffffff;
-    font-size: 1.3rem;
-    font-weight: 900;
-    margin-bottom: 6px;
-}
-.oferta-descripcion {
-    color: #9ca3af;
-    font-size: 0.85rem;
-    line-height: 1.4;
-}
-.oferta-precio-box {
-    text-align: right;
-    border-left: 1px solid #1f2937;
-    padding-left: 20px;
-}
-.precio-tachado {
-    color: #6b7280;
-    font-size: 0.8rem;
-    text-decoration: line-through;
-}
-.precio-actual {
-    color: #00d284;
-    font-size: 1.6rem;
-    font-weight: 950;
-}
-.precio-actual small {
-    font-size: 0.8rem;
-}
-.precio-local {
-    color: #9ca3af;
-    font-size: 0.75rem;
-    margin-bottom: 12px;
-}
-.btn-aprovehar {
-    background: linear-gradient(90deg, #ff3300, #ff6600);
-    color: white;
-    border: none;
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    font-weight: 800;
-    font-size: 0.85rem;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(255, 51, 0, 0.4);
-    transition: all 0.2s ease;
-}
-.btn-aprovehar:hover {
-    filter: brightness(1.1);
-    transform: scale(1.02);
-}
-@media(max-width: 992px) {
-    .oferta-contenido-grid { grid-template-columns: 1fr; text-align: center; }
-    .combo-img-stack { justify-content: center; }
-    .oferta-precio-box { border-left: none; border-top: 1px solid #1f2937; padding-left: 0; padding-top: 15px; text-align: center; }
-}
 
         /* Elementos flotantes decorativos de Halloween */
         .halloween-decorations {
@@ -729,31 +616,20 @@
 
     <div class="container">
 
-       <div class="oferta-banner-card">
-    <div class="oferta-badge-pill">🔥 OFERTA LIMITADA</div>
-    <div class="oferta-contenido-grid">
-        <div class="oferta-imagenes-box">
-            <div class="combo-img-stack">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEkRUatyP1GHB1SqGF4-JyztKwUtyizuzIPdUi2xQrTA&s=10" alt="HBO Max">
+        <!-- ==================== VISTA 1: SERVICIOS ==================== -->
+        <div id="vista-servicios" class="view-section active">
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide"><img src="https://i.imgur.com/FUb75IE.jpeg" alt="Banner 1"></div>
+                    <div class="carousel-slide"><img src="https://i.imgur.com/FUb75IE.jpeg" alt="Banner 2"></div>
+                    <div class="carousel-slide"><img src="https://i.imgur.com/FUb75IE.jpeg" alt="Banner 3"></div>
+                </div>
+                <div class="carousel-indicators">
+                    <span class="dot active" onclick="goToSlide(0)"></span>
+                    <span class="dot" onclick="goToSlide(1)"></span>
+                    <span class="dot" onclick="goToSlide(2)"></span>
+                </div>
             </div>
-        </div>
-        <div class="oferta-info-box">
-            <div class="oferta-subtitulo">★ COMBO ESTRENOS OCTUBRE</div>
-            <h2 class="oferta-titulo">HBOMAX + NETFLIX + VIX</h2>
-            <p class="oferta-descripcion">
-                Disfruta de EL TORMENTO en HBO, ANIMALES en Netflix y SOCIAS POR ACCIDENTE en ViX+. Tres historias en un solo combo imperdible. ¡Activación inmediata!
-            </p>
-        </div>
-        <div class="oferta-precio-box">
-            <div class="precio-tachado">$6.00 USD</div>
-            <div class="precio-actual">$4.00 <small>USD</small></div>
-            <div class="precio-local">Bs. 4.020,00</div>
-            <button class="btn-aprovehar" onclick="enviarOfertaWhatsApp()">
-                ¡APROVECHAR OFERTA! &gt;
-            </button>
-        </div>
-    </div>
-</div>
 
             <div class="section-header">
                 <h2 class="section-title">Cines y <span>Series🎃</span></h2>
