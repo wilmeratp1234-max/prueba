@@ -66,158 +66,6 @@
             50% { transform: translateY(-8px) rotate(5deg); }
         }
 		
-		/* ==================== CAJA DE OFERTA LIMITADA ==================== */
-.oferta-banner-card {
-    background: linear-gradient(135deg, #0d0f14 0%, #161a23 100%);
-    border: 1px solid #ff3300;
-    border-radius: 16px;
-    padding: 24px;
-    margin: 0 auto 30px auto;
-    max-width: 1100px;
-    position: relative;
-    z-index: 10;
-    box-shadow: 0 8px 32px rgba(255, 51, 0, 0.15);
-}
-.oferta-badge-pill {
-    position: absolute;
-    top: -12px;
-    right: 30px;
-    background: linear-gradient(90deg, #ff3300, #ff6600);
-    color: #fff;
-    padding: 6px 16px;
-    font-size: 0.75rem;
-    font-weight: 800;
-    border-radius: 20px;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 12px rgba(255, 51, 0, 0.4);
-}
-.oferta-contenido-grid {
-    display: grid;
-    grid-template-columns: 240px 1fr 220px;
-    gap: 24px;
-    align-items: center;
-}
-.combo-img-stack {
-    display: flex;
-    overflow-x: auto;
-    padding: 5px;
-}
-.combo-img-stack img {
-    width: 70px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 2px solid #ff6600;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    margin-right: -15px;
-    transition: transform 0.3s;
-}
-.combo-img-stack img:hover {
-    transform: translateY(-5px);
-    z-index: 2;
-}
-.oferta-subtitulo {
-    color: #ffcc00;
-    font-size: 0.8rem;
-    font-weight: 700;
-    margin-bottom: 4px;
-}
-.oferta-titulo {
-    color: #ffffff;
-    font-size: 1.3rem;
-    font-weight: 900;
-    margin-bottom: 6px;
-}
-.oferta-descripcion {
-    color: #9ca3af;
-    font-size: 0.8rem;
-    line-height: 1.4;
-    margin-bottom: 12px;
-}
-.timer-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-.timer-label {
-    color: #ff6600;
-    font-size: 0.68rem;
-    font-weight: 800;
-}
-.timer-boxes {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-.t-box {
-    background: #090b0e;
-    border: 1px solid #1f2937;
-    padding: 4px 6px;
-    border-radius: 6px;
-    text-align: center;
-    min-width: 32px;
-}
-.t-box span {
-    display: block;
-    color: #fff;
-    font-size: 0.9rem;
-    font-weight: 800;
-}
-.t-box small {
-    display: block;
-    color: #6b7280;
-    font-size: 0.5rem;
-}
-.t-sep {
-    color: #ff6600;
-    font-weight: 800;
-}
-.oferta-precio-box {
-    text-align: right;
-    border-left: 1px solid #1f2937;
-    padding-left: 20px;
-}
-.precio-tachado {
-    color: #6b7280;
-    font-size: 0.8rem;
-    text-decoration: line-through;
-}
-.precio-actual {
-    color: #00d284;
-    font-size: 1.6rem;
-    font-weight: 950;
-}
-.precio-actual small {
-    font-size: 0.8rem;
-}
-.precio-local {
-    color: #9ca3af;
-    font-size: 0.75rem;
-    margin-bottom: 10px;
-}
-.btn-aprovehar {
-    background: linear-gradient(90deg, #ff3300, #ff6600);
-    color: white;
-    border: none;
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    font-weight: 800;
-    font-size: 0.8rem;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(255, 51, 0, 0.4);
-    transition: all 0.2s ease;
-}
-.btn-aprovehar:hover {
-    filter: brightness(1.1);
-    transform: scale(1.02);
-}
-@media(max-width: 992px) {
-    .oferta-contenido-grid { grid-template-columns: 1fr; text-align: center; }
-    .combo-img-stack { justify-content: center; }
-    .oferta-precio-box { border-left: none; border-top: 1px solid #1f2937; padding-left: 0; padding-top: 15px; text-align: center; }
-}
-		
 		/* Elementos flotantes decorativos de Halloween */
 .halloween-decorations {
     position: fixed;
@@ -768,45 +616,25 @@
 
     <div class="container">
 
-        <div class="oferta-banner-card">
-    <div class="oferta-badge-pill">🔥 OFERTA LIMITADA</div>
-    <div class="oferta-contenido-grid">
-        <div class="oferta-imagenes-box">
-            <div class="combo-img-stack">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEkRUatyP1GHB1SqGF4-JyztKwUtyizuzIPdUi2xQrTA&s=10" alt="HBO Max">
-                <img src="https://assets.nflxext.com/ffe/siteui/vlv3/9d2fc35e-57cf-432d-96f7-ebf345842881/4f808796-03c6-47a3-b2dd-ff8736d75be8/VE-es-20240930-popsignuptwoweeks-perspective_alpha_website_large.jpg" alt="Netflix">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUsaChItHlPmIGsKcinQkCKo_zwiaoIKzMVKDI8lH7PEYkYQ4CPACctsg&s=10" alt="Vix">
-            </div>
-        </div>
-        <div class="oferta-info-box">
-            <div class="oferta-subtitulo">★ COMBO ESTRENOS OCTUBRE</div>
-            <h2 class="oferta-titulo">HBOMAX + NETFLIX + VIX</h2>
-            <p class="oferta-descripcion">
-                Disfruta de EL TORMENTO en HBO, ANIMALES en Netflix y SOCIAS POR ACCIDENTE en ViX+. Tres historias imperdibles.
-            </p>
-            <div class="timer-wrapper">
-                <span class="timer-label">⏰ LA OFERTA EXPIRA EN:</span>
-                <div class="timer-boxes">
-                    <div class="t-box"><span id="days">02</span><small>DÍAS</small></div>
-                    <span class="t-sep">:</span>
-                    <div class="t-box"><span id="hours">14</span><small>HRS</small></div>
-                    <span class="t-sep">:</span>
-                    <div class="t-box"><span id="minutes">29</span><small>MIN</small></div>
-                    <span class="t-sep">:</span>
-                    <div class="t-box"><span id="seconds">52</span><small>SEG</small></div>
+        <!-- ==================== VISTA 1: SERVICIOS ==================== -->
+        <div id="vista-servicios" class="view-section active">
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide"><img src="https://i.imgur.com/FUb75IE.jpeg" alt="Banner 1"></div>
+                    <div class="carousel-slide"><img src="https://i.imgur.com/FUb75IE.jpeg" alt="Banner 2"></div>
+                    <div class="carousel-slide"><img src="https://i.imgur.com/FUb75IE.jpeg" alt="Banner 3"></div>
+                </div>
+                <div class="carousel-indicators">
+                    <span class="dot active" onclick="goToSlide(0)"></span>
+                    <span class="dot" onclick="goToSlide(1)"></span>
+                    <span class="dot" onclick="goToSlide(2)"></span>
                 </div>
             </div>
-        </div>
-        <div class="oferta-precio-box">
-            <div class="precio-tachado">$6.00 USD</div>
-            <div class="precio-actual">$4.00 <small>USD</small></div>
-            <div class="precio-local">Bs. 4.020,00</div>
-            <button class="btn-aprovehar" onclick="enviarOfertaWhatsApp()">
-                ¡APROVECHAR OFERTA! &gt;
-            </button>
-        </div>
-    </div>
-</div>
+
+            <div class="section-header">
+                <h2 class="section-title">Cines y <span>Series🎃</span></h2>
+                <a href="#" class="btn-ver-todos">Ver todos</a>
+            </div>
 
             <div class="services-grid">
     <div class="service-card" onclick="abrirProducto('Netflix', 'Streaming', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0cMo-_nUdZeTFpq-DtJpYjfxcodMcWpU1GlzFugCSGIuYH7z1bRq21V9a&s=10')">
@@ -2158,43 +1986,6 @@ const CONTROL_DE_STOCK = {
             renderizarPaquetes();
             mostrarVista('producto');
         }
-		
-		function enviarOfertaWhatsApp() {
-    let mensaje = "🔥 ¡Hola Streamix Store! Quiero aprovechar la Oferta Limitada:\n\n" +
-                  "📌 *Combo:* HBOMAX + NETFLIX + VIX\n" +
-                  "💰 *Precio Oferta:* $4.00 USD (Bs. 4.020,00)\n\n" +
-                  "Por favor indíquenme los pasos para realizar el pago.";
-                  
-    let url = `https://wa.me/584124405245?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, '_blank');
-}
-
-function iniciarContadorOferta() {
-    let tiempoRestante = 2 * 24 * 3600 + 14 * 3600 + 29 * 60 + 52;
-    setInterval(() => {
-        if (tiempoRestante <= 0) return;
-        tiempoRestante--;
-
-        let dias = Math.floor(tiempoRestante / (3600 * 24));
-        let horas = Math.floor((tiempoRestante % (3600 * 24)) / 3600);
-        let minutos = Math.floor((tiempoRestante % 3600) / 60);
-        let segundos = tiempoRestante % 60;
-
-        const elDias = document.getElementById('days');
-        const elHoras = document.getElementById('hours');
-        const elMinutos = document.getElementById('minutes');
-        const elSegundos = document.getElementById('seconds');
-
-        if (elDias) elDias.innerText = String(dias).padStart(2, '0');
-        if (elHoras) elHoras.innerText = String(horas).padStart(2, '0');
-        if (elMinutos) elMinutos.innerText = String(minutos).padStart(2, '0');
-        if (elSegundos) elSegundos.innerText = String(segundos).padStart(2, '0');
-    }, 1000);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    iniciarContadorOferta();
-});
 
 function renderizarPaquetes() {
     const grid = document.getElementById('packages-grid-container');
