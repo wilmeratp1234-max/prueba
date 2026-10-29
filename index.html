@@ -682,6 +682,16 @@
                     <div class="service-content"><span class="service-tag">Streaming</span><div class="service-name">Universal+</div></div>
                 </div>
             </div>
+			
+			<div class="service-card" onclick="abrirProducto('Viki Rakuten', 'Streaming', 'https://img.utdstc.com/screen/c4d/e10/c4de1000ebc7ca811c484501071d831b203228ea210844787a40341a0ff36e6c:600')">
+    <div class="service-image-box">
+        <img src="https://img.utdstc.com/screen/c4d/e10/c4de1000ebc7ca811c484501071d831b203228ea210844787a40341a0ff36e6c:600" alt="Viki Rakuten">
+    </div>
+    <div class="service-content">
+        <span class="service-tag">Streaming</span>
+        <div class="service-name">Viki Rakuten</div>
+    </div>
+</div>
 
             <div class="section-header">
                 <h2 class="section-title">TV en Vivo & <span>IPTV</span></h2>
@@ -1406,8 +1416,6 @@
         idPlaceholder: "Ingresa el nombre para tu pantalla",
         paquetesTab1: [
             { monto: "1 Pantalla", extra: "Con código de Viaje", precioUSD: 4.00, active: true },
-            { monto: "1 Pantalla", extra: "Personalizada", precioUSD: 5.00 },
-            { monto: "Cuenta Completa", extra: "Acceso Total", precioUSD: 14.99 }
         ],
         paquetesTab2: [
             { monto: "Cuenta Completa", extra: "Ilimitada", precioUSD: 14.99 }
@@ -1523,6 +1531,20 @@
         ],
         paquetesTab2: [
             { monto: "Cuenta Completa", extra: "Privada", precioUSD: 5.00 }
+        ]
+    },
+	"viki rakuten": {
+        categoria: "streaming",
+        tab1Nombre: "Planes",
+        tab2Nombre: "Cuentas",
+        idLabel: "NOMBRE PARA LA PANTALLA",
+        idPlaceholder: "Ingresa el nombre para tu pantalla",
+        paquetesTab1: [
+            { monto: "1 Pantalla", extra: "Rakuten Viki Pass", precioUSD: 2.50, active: true },
+            { monto: "Cuenta Completa", extra: "Acceso Total", precioUSD: 6.50 }
+        ],
+        paquetesTab2: [
+            { monto: "Cuenta Completa", extra: "Privada", precioUSD: 6.50 }
         ]
     },
     "spotify premium": {
@@ -1712,7 +1734,6 @@
                 idPlaceholder: "Ingresa el nombre para tu pantalla",
                 paquetesTab1: [
                     { monto: "1 Pantalla", extra: "Lote Mayorista", precioUSD: 3.00, active: true },
-                    { monto: "1 Pantalla", extra: "Personalizada VIP", precioUSD: 4.00 },
                 ],
                 paquetesTab2: [
                     { monto: "Cuenta Completa", extra: "Panel VIP", precioUSD: 13.50 }
@@ -1919,13 +1940,13 @@ const CONTROL_DE_STOCK = {
     "prime video": 10,
     "hbo max standar": 1,
     "crunchyroll": 3,
-    "paramount+": 5,
+    "paramount+": 0,
     "vix": 8,
     "appletv": 0,
     "universal+": 0,
     "streamix tv": 15,
     "flujotv": 12,
-    "spotify premium": 20,
+    "spotify premium": 0,
     "youtube premium": 15,
     "canva pro edu": 50,
     "capcut": 10,
