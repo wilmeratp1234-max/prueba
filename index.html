@@ -66,331 +66,48 @@
             50% { transform: translateY(-8px) rotate(5deg); }
         }
 		
-		/* ==================== ESTILOS BANNER DE OFERTA ==================== */
-        .oferta-banner-card {
-            background: linear-gradient(135deg, #0d0f14 0%, #161a23 100%);
-            border: 1px solid #ff3300;
-            border-radius: 16px;
-            padding: 24px;
-            margin: 0 auto 30px auto;
-            max-width: 1100px;
-            position: relative;
-            z-index: 20;
-            box-shadow: 0 8px 32px rgba(255, 51, 0, 0.15);
-        }
-        .oferta-badge-pill {
-            position: absolute;
-            top: -12px;
-            right: 30px;
-            background: linear-gradient(90deg, #ff3300, #ff6600);
-            color: #fff;
-            padding: 6px 16px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            border-radius: 20px;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 12px rgba(255, 51, 0, 0.4);
-        }
-        .oferta-contenido-grid {
-            display: grid;
-            grid-template-columns: 240px 1fr 220px;
-            gap: 24px;
-            align-items: center;
-        }
-        .combo-img-stack {
-            display: flex;
-            overflow-x: auto;
-            padding: 5px;
-        }
-        .combo-img-stack img {
-            width: 70px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 2px solid #ff6600;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            margin-right: -15px;
-            transition: transform 0.3s;
-        }
-        .combo-img-stack img:hover {
-            transform: translateY(-5px);
-            z-index: 2;
-        }
-        .oferta-subtitulo {
-            color: #ffcc00;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-        .oferta-titulo {
-            color: #ffffff;
-            font-size: 1.3rem;
-            font-weight: 900;
-            margin-bottom: 6px;
-        }
-        .oferta-descripcion {
-            color: #9ca3af;
-            font-size: 0.8rem;
-            line-height: 1.4;
-            margin-bottom: 12px;
-        }
-        .timer-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        .timer-label {
-            color: #ff6600;
-            font-size: 0.68rem;
-            font-weight: 800;
-        }
-        .timer-boxes {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .t-box {
-            background: #090b0e;
-            border: 1px solid #1f2937;
-            padding: 4px 6px;
-            border-radius: 6px;
-            text-align: center;
-            min-width: 32px;
-        }
-        .t-box span {
-            display: block;
-            color: #fff;
-            font-size: 0.9rem;
-            font-weight: 800;
-        }
-        .t-box small {
-            display: block;
-            color: #6b7280;
-            font-size: 0.5rem;
-        }
-        .t-sep {
-            color: #ff6600;
-            font-weight: 800;
-        }
-        .oferta-precio-box {
-            text-align: right;
-            border-left: 1px solid #1f2937;
-            padding-left: 20px;
-        }
-        .precio-tachado {
-            color: #6b7280;
-            font-size: 0.8rem;
-            text-decoration: line-through;
-        }
-        .precio-actual {
-            color: #00d284;
-            font-size: 1.6rem;
-            font-weight: 950;
-        }
-        .precio-actual small {
-            font-size: 0.8rem;
-        }
-        .precio-local {
-            color: #9ca3af;
-            font-size: 0.75rem;
-            margin-bottom: 10px;
-        }
-        .btn-aprovehar {
-            background: linear-gradient(90deg, #ff3300, #ff6600);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 10px;
-            border-radius: 10px;
-            font-weight: 800;
-            font-size: 0.8rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 51, 0, 0.4);
-            transition: all 0.2s ease;
-        }
-        .btn-aprovehar:hover {
-            filter: brightness(1.1);
-            transform: scale(1.02);
-        }
+		/* Elementos flotantes decorativos de Halloween */
+.halloween-decorations {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999;
+    overflow: hidden;
+}
 
-        /* NAVEGACIÓN CON CLICS ASEGURADOS */
-        header.main-header { 
-            position: sticky; 
-            top: 0; 
-            z-index: 99999; /* Asegura que la barra de navegación esté siempre al frente para hacer clic */
-            background: #0b0f19; 
-            border-bottom: 1px solid #ff660044; 
-            box-shadow: 0 4px 20px rgba(255, 102, 0, 0.15); 
-        }
+.floating-spider {
+    position: absolute;
+    top: -20px;
+    animation: swingSpider 4s ease-in-out infinite alternate;
+    font-size: 24px;
+    opacity: 0.8;
+}
+.spider-1 { left: 10%; animation-duration: 5s; }
+.spider-2 { left: 85%; animation-duration: 3.8s; }
 
-        /* ESTILOS DE LA CAJA DE OFERTA LIMITADA */
-        .oferta-banner-card {
-            background: linear-gradient(135deg, #0d0f14 0%, #161a23 100%);
-            border: 1px solid #ff3300;
-            border-radius: 16px;
-            padding: 24px;
-            margin: 0 auto 30px auto;
-            max-width: 1100px;
-            position: relative;
-            z-index: 10; /* Permite hacer clic perfectamente en el banner y sus botones */
-            box-shadow: 0 8px 32px rgba(255, 51, 0, 0.15);
-        }
+@keyframes swingSpider {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(60px); }
+}
 
-        .oferta-badge-pill {
-            position: absolute;
-            top: -12px;
-            right: 30px;
-            background: linear-gradient(90deg, #ff3300, #ff6600);
-            color: #fff;
-            padding: 6px 16px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            border-radius: 20px;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 12px rgba(255, 51, 0, 0.4);
-        }
+.floating-pumpkin-corner {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    font-size: 2.5rem;
+    z-index: 998;
+    pointer-events: none;
+    filter: drop-shadow(0 0 10px rgba(255, 102, 0, 0.6));
+    animation: bouncePumpkin 3s ease-in-out infinite;
+}
 
-        .oferta-contenido-grid {
-            display: grid;
-            grid-template-columns: 240px 1fr 220px;
-            gap: 24px;
-            align-items: center;
-        }
-
-        .combo-img-stack {
-            display: flex;
-            overflow-x: auto;
-            padding: 5px;
-        }
-
-        .combo-img-stack img {
-            width: 70px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 2px solid #ff6600;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            margin-right: -15px;
-            transition: transform 0.3s;
-        }
-
-        .combo-img-stack img:hover {
-            transform: translateY(-5px);
-            z-index: 2;
-        }
-
-        .oferta-subtitulo {
-            color: #ffcc00;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .oferta-titulo {
-            color: #ffffff;
-            font-size: 1.3rem;
-            font-weight: 900;
-            margin-bottom: 6px;
-        }
-
-        .oferta-descripcion {
-            color: #9ca3af;
-            font-size: 0.8rem;
-            line-height: 1.4;
-            margin-bottom: 12px;
-        }
-
-        .timer-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .timer-label {
-            color: #ff6600;
-            font-size: 0.68rem;
-            font-weight: 800;
-        }
-
-        .timer-boxes {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .t-box {
-            background: #090b0e;
-            border: 1px solid #1f2937;
-            padding: 4px 6px;
-            border-radius: 6px;
-            text-align: center;
-            min-width: 32px;
-        }
-
-        .t-box span {
-            display: block;
-            color: #fff;
-            font-size: 0.9rem;
-            font-weight: 800;
-        }
-
-        .t-box small {
-            display: block;
-            color: #6b7280;
-            font-size: 0.5rem;
-        }
-
-        .t-sep {
-            color: #ff6600;
-            font-weight: 800;
-        }
-
-        .oferta-precio-box {
-            text-align: right;
-            border-left: 1px solid #1f2937;
-            padding-left: 20px;
-        }
-
-        .precio-tachado {
-            color: #6b7280;
-            font-size: 0.8rem;
-            text-decoration: line-through;
-        }
-
-        .precio-actual {
-            color: #00d284;
-            font-size: 1.6rem;
-            font-weight: 950;
-        }
-
-        .precio-actual small {
-            font-size: 0.8rem;
-        }
-
-        .precio-local {
-            color: #9ca3af;
-            font-size: 0.75rem;
-            margin-bottom: 10px;
-        }
-
-        .btn-aprovehar {
-            background: linear-gradient(90deg, #ff3300, #ff6600);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 10px;
-            border-radius: 10px;
-            font-weight: 800;
-            font-size: 0.8rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 51, 0, 0.4);
-            transition: all 0.2s ease;
-        }
-
-        .btn-aprovehar:hover {
-            filter: brightness(1.1);
-            transform: scale(1.02);
-        }
+@keyframes bouncePumpkin {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-8px) rotate(5deg); }
+}
 		
         /* NAVEGACIÓN DESKTOP CON TOQUE HALLOWEEN */
         header.main-header { position: sticky; top: 0; z-index: 1000; background: #0b0f19; border-bottom: 1px solid #ff660044; box-shadow: 0 4px 20px rgba(255, 102, 0, 0.15); }
@@ -899,48 +616,24 @@
 
     <div class="container">
 
-        <!-- ==================== VISTA SERVICIOS / INICIO ==================== -->
+        <!-- ==================== VISTA 1: SERVICIOS ==================== -->
         <div id="vista-servicios" class="view-section active">
-            
-            <!-- BANNER DE OFERTA CON WHATSAPP DIRECTO -->
-            <div class="oferta-banner-card">
-                <div class="oferta-badge-pill">🔥 OFERTA LIMITADA</div>
-                <div class="oferta-contenido-grid">
-                    <div class="oferta-imagenes-box">
-                        <div class="combo-img-stack">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEkRUatyP1GHB1SqGF4-JyztKwUtyizuzIPdUi2xQrTA&s=10" alt="HBO Max">
-                            <img src="https://assets.nflxext.com/ffe/siteui/vlv3/9d2fc35e-57cf-432d-96f7-ebf345842881/4f808796-03c6-47a3-b2dd-ff8736d75be8/VE-es-20240930-popsignuptwoweeks-perspective_alpha_website_large.jpg" alt="Netflix">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUsaChItHlPmIGsKcinQkCKo_zwiaoIKzMVKDI8lH7PEYkYQ4CPACctsg&s=10" alt="Vix">
-                        </div>
-                    </div>
-                    <div class="oferta-info-box">
-                        <div class="oferta-subtitulo">★ COMBO ESTRENOS OCTUBRE</div>
-                        <h2 class="oferta-titulo">HBOMAX + NETFLIX + VIX</h2>
-                        <p class="oferta-descripcion">
-                            Disfruta de EL TORMENTO en HBO, ANIMALES en Netflix y SOCIAS POR ACCIDENTE en ViX+. Tres historias imperdibles.
-                        </p>
-                        <div class="timer-wrapper">
-                            <span class="timer-label">⏰ LA OFERTA EXPIRA EN:</span>
-                            <div class="timer-boxes">
-                                <div class="t-box"><span id="days">02</span><small>DÍAS</small></div>
-                                <span class="t-sep">:</span>
-                                <div class="t-box"><span id="hours">14</span><small>HRS</small></div>
-                                <span class="t-sep">:</span>
-                                <div class="t-box"><span id="minutes">29</span><small>MIN</small></div>
-                                <span class="t-sep">:</span>
-                                <div class="t-box"><span id="seconds">52</span><small>SEG</small></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="oferta-precio-box">
-                        <div class="precio-tachado">$6.00 USD</div>
-                        <div class="precio-actual">$4.00 <small>USD</small></div>
-                        <div class="precio-local">Bs. 4.020,00</div>
-                        <button class="btn-aprovehar" onclick="enviarOfertaWhatsApp()">
-                            ¡APROVECHAR OFERTA! &gt;
-                        </button>
-                    </div>
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide"><img src="https://i.imgur.com/FUb75IE.jpeg" alt="Banner 1"></div>
+                    <div class="carousel-slide"><img src="https://i.imgur.com/FUb75IE.jpeg" alt="Banner 2"></div>
+                    <div class="carousel-slide"><img src="https://i.imgur.com/FUb75IE.jpeg" alt="Banner 3"></div>
                 </div>
+                <div class="carousel-indicators">
+                    <span class="dot active" onclick="goToSlide(0)"></span>
+                    <span class="dot" onclick="goToSlide(1)"></span>
+                    <span class="dot" onclick="goToSlide(2)"></span>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2 class="section-title">Cines y <span>Series🎃</span></h2>
+                <a href="#" class="btn-ver-todos">Ver todos</a>
             </div>
 
             <div class="services-grid">
@@ -2261,76 +1954,38 @@ const CONTROL_DE_STOCK = {
     "roblox": 10
 };
         function abrirProducto(nombre, tag, imagen) {
-    productoNombreActual = nombre;
-    document.getElementById('prod-title').innerText = nombre;
-    document.getElementById('prod-bread-title').innerText = nombre;
-    document.getElementById('prod-tag').innerText = tag;
-    document.getElementById('summary-prod-name').innerText = nombre;
-    if(imagen) document.getElementById('summary-prod-img').src = imagen;
+            productoNombreActual = nombre;
+            document.getElementById('prod-title').innerText = nombre;
+            document.getElementById('prod-bread-title').innerText = nombre;
+            document.getElementById('prod-tag').innerText = tag;
+            document.getElementById('summary-prod-name').innerText = nombre;
+            if(imagen) document.getElementById('summary-prod-img').src = imagen;
 
-    limpiarErrorInput();
-    document.getElementById('input-field-id').value = '';
+            limpiarErrorInput();
+            document.getElementById('input-field-id').value = '';
 
-    const claveNorm = nombre.toLowerCase().trim();
-    productoActualData = baseDeDatosPrecios[claveNorm] || baseDeDatosPrecios["netflix"];
+            const claveNorm = nombre.toLowerCase().trim();
+            productoActualData = baseDeDatosPrecios[claveNorm] || baseDeDatosPrecios["netflix"];
 
-    document.getElementById('label-field-text').innerText = productoActualData.idLabel;
-    document.getElementById('input-field-id').placeholder = productoActualData.idPlaceholder;
+            document.getElementById('label-field-text').innerText = productoActualData.idLabel;
+            document.getElementById('input-field-id').placeholder = productoActualData.idPlaceholder;
 
-    document.getElementById('tab-btn-1').innerText = productoActualData.tab1Nombre;
-    document.getElementById('tab-btn-2').innerText = productoActualData.tab2Nombre;
+            document.getElementById('tab-btn-1').innerText = productoActualData.tab1Nombre;
+            document.getElementById('tab-btn-2').innerText = productoActualData.tab2Nombre;
 
-    estadoCheckoutStep = 1;
-    document.getElementById('step2-title-head').innerHTML = 'SELECCIONA TU <span>PLAN / PAQUETE</span>';
-    document.getElementById('step2-packages-wrapper').style.display = 'block';
-    document.getElementById('step2-payment-wrapper').style.display = 'none';
-    document.getElementById('btn-main-action').innerText = 'VERIFICAR PEDIDO >';
+            estadoCheckoutStep = 1;
+            document.getElementById('step2-title-head').innerHTML = 'SELECCIONA TU <span>PLAN / PAQUETE</span>';
+            document.getElementById('step2-packages-wrapper').style.display = 'block';
+            document.getElementById('step2-payment-wrapper').style.display = 'none';
+            document.getElementById('btn-main-action').innerText = 'VERIFICAR PEDIDO >';
 
-    tabActivaIndex = 0;
-    document.getElementById('tab-btn-1').classList.add('active');
-    document.getElementById('tab-btn-2').classList.remove('active');
+            tabActivaIndex = 0;
+            document.getElementById('tab-btn-1').classList.add('active');
+            document.getElementById('tab-btn-2').classList.remove('active');
 
-    renderizarPaquetes();
-    
-    // Muestra la vista de producto de forma limpia
-    mostrarVista('producto');
-}
-
-function abrirProductoDistri(nombre, tag, imagen) {
-    productoNombreActual = nombre + " (VIP Mayorista)";
-    document.getElementById('prod-title').innerText = nombre + " VIP";
-    document.getElementById('prod-bread-title').innerText = nombre + " Mayorista";
-    document.getElementById('prod-tag').innerText = tag;
-    document.getElementById('summary-prod-name').innerText = nombre + " VIP";
-    if(imagen) document.getElementById('summary-prod-img').src = imagen;
-
-    limpiarErrorInput();
-    document.getElementById('input-field-id').value = '';
-
-    const claveNorm = nombre.toLowerCase().trim();
-    productoActualData = baseDeDatosPreciosDistri[claveNorm] || baseDeDatosPreciosDistri["netflix"];
-
-    document.getElementById('label-field-text').innerText = productoActualData.idLabel;
-    document.getElementById('input-field-id').placeholder = productoActualData.idPlaceholder;
-
-    document.getElementById('tab-btn-1').innerText = productoActualData.tab1Nombre;
-    document.getElementById('tab-btn-2').innerText = productoActualData.tab2Nombre;
-
-    estadoCheckoutStep = 1;
-    document.getElementById('step2-title-head').innerHTML = 'SELECCIONA TU <span>PLAN / PAQUETE MAYORISTA</span>';
-    document.getElementById('step2-packages-wrapper').style.display = 'block';
-    document.getElementById('step2-payment-wrapper').style.display = 'none';
-    document.getElementById('btn-main-action').innerText = 'VERIFICAR PEDIDO >';
-
-    tabActivaIndex = 0;
-    document.getElementById('tab-btn-1').classList.add('active');
-    document.getElementById('tab-btn-2').classList.remove('active');
-
-    renderizarPaquetes();
-    
-    // Muestra la vista de producto de forma limpia
-    mostrarVista('producto');
-}
+            renderizarPaquetes();
+            mostrarVista('producto');
+        }
 
 function renderizarPaquetes() {
     const grid = document.getElementById('packages-grid-container');
@@ -2834,63 +2489,49 @@ function verificarPedido() {
         cambiarVista('vista-pagomovil-gateway');
     }
 }
-       function mostrarVista(vista) {
-    // 1. Ocultar de forma tajante todas las vistas de la tienda
-    const vistas = [
-        'vista-servicios', 
-        'vista-recargas', 
-        'vista-distribuidores', 
-        'vista-soporte', 
-        'vista-producto', 
-        'vista-binance-gateway', 
-        'vista-pagomovil-gateway', 
-        'vista-buscar'
-    ];
-    
-    vistas.forEach(v => {
-        const el = document.getElementById(v);
-        if (el) {
-            el.classList.remove('active');
-            el.style.display = 'none';
+        function mostrarVista(vista) {
+            const vistas = ['vista-servicios', 'vista-recargas', 'vista-distribuidores', 'vista-soporte', 'vista-producto', 'vista-binance-gateway', 'vista-pagomovil-gateway', 'vista-buscar'];
+            vistas.forEach(v => {
+                const el = document.getElementById(v);
+                if(el) el.classList.remove('active');
+            });
+
+            const navServicios = document.getElementById('nav-servicios');
+            const navRecargas = document.getElementById('nav-recargas');
+            const navDistribuidores = document.getElementById('nav-distribuidores');
+            const navBuscar = document.getElementById('nav-buscar');
+            const navSoporte = document.getElementById('nav-soporte');
+
+            if(navServicios) navServicios.classList.remove('active');
+            if(navRecargas) navRecargas.classList.remove('active');
+            if(navDistribuidores) navDistribuidores.classList.remove('active');
+            if(navBuscar) navBuscar.classList.remove('active');
+            if(navSoporte) navSoporte.classList.remove('active');
+
+            if (vista === 'recargas') {
+                document.getElementById('vista-recargas').classList.add('active');
+                if(navRecargas) navRecargas.classList.add('active');
+            } else if (vista === 'distribuidores') {
+                document.getElementById('vista-distribuidores').classList.add('active');
+                if(navDistribuidores) navDistribuidores.classList.add('active');
+            } else if (vista === 'buscar') {
+                document.getElementById('vista-buscar').classList.add('active');
+                if(navBuscar) navBuscar.classList.add('active');
+            } else if (vista === 'soporte') {
+                document.getElementById('vista-soporte').classList.add('active');
+                if(navSoporte) navSoporte.classList.add('active');
+            } else if (vista === 'producto') {
+                document.getElementById('vista-producto').classList.add('active');
+            } else if (vista === 'binance-gateway') {
+                document.getElementById('vista-binance-gateway').classList.add('active');
+            } else if (vista === 'pagomovil-gateway') {
+                document.getElementById('vista-pagomovil-gateway').classList.add('active');
+            } else {
+                document.getElementById('vista-servicios').classList.add('active');
+                if(navServicios) navServicios.classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-    });
-
-    // 2. Apagar clases activas del menú superior
-    const navs = ['nav-servicios', 'nav-recargas', 'nav-distribuidores', 'nav-buscar', 'nav-soporte'];
-    navs.forEach(id => {
-        const n = document.getElementById(id);
-        if(n) n.classList.remove('active');
-    });
-
-    // 3. Determinar qué vista se va a mostrar
-    let idVistaSeleccionada = 'vista-servicios';
-    if (vista === 'recargas') idVistaSeleccionada = 'vista-recargas';
-    else if (vista === 'distribuidores') idVistaSeleccionada = 'vista-distribuidores';
-    else if (vista === 'buscar') idVistaSeleccionada = 'vista-buscar';
-    else if (vista === 'soporte') idVistaSeleccionada = 'vista-soporte';
-    else if (vista === 'producto') idVistaSeleccionada = 'vista-producto';
-    else if (vista === 'binance-gateway') idVistaSeleccionada = 'vista-binance-gateway';
-    else if (vista === 'pagomovil-gateway') idVistaSeleccionada = 'vista-pagomovil-gateway';
-
-    // 4. Mostrar únicamente la vista seleccionada
-    const targetEl = document.getElementById(idVistaSeleccionada);
-    if (targetEl) {
-        targetEl.classList.add('active');
-        targetEl.style.display = 'block';
-    }
-
-    // Activar enlace del menú correspondiente
-    if (vista === 'recargas') document.getElementById('nav-recargas')?.classList.add('active');
-    else if (vista === 'distribuidores') document.getElementById('nav-distribuidores')?.classList.add('active');
-    else if (vista === 'buscar') document.getElementById('nav-buscar')?.classList.add('active');
-    else if (vista === 'soporte') document.getElementById('nav-soporte')?.classList.add('active');
-    else if (vista === 'servicios') document.getElementById('nav-servicios')?.classList.add('active');
-
-    // 5. FORZAR EL SALTO ABSOLUTO AL INICIO DE LA PANTALLA
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0; // Para navegadores antiguos
-    document.documentElement.scrollTop = 0; // Para Chrome, Firefox, Edge y Safari
-}
 
         function abrirModalRegion() { document.getElementById('modalRegion').style.display = 'flex'; }
         function cerrarModalRegion() { document.getElementById('modalRegion').style.display = 'none'; }
@@ -2934,69 +2575,6 @@ function verificarPedido() {
             if(productoActualData) renderizarPaquetes();
             cerrarModalRegion();
         }
-		
-		// Función para enviar la oferta directamente a WhatsApp
-        function enviarOfertaWhatsApp() {
-            let mensaje = "🔥 ¡Hola Streamix Store! Quiero aprovechar la Oferta Limitada:\n\n" +
-                          "📌 *Combo:* HBOMAX + NETFLIX + VIX\n" +
-                          "💰 *Precio Oferta:* $4.00 USD (Bs. 4.020,00)\n\n" +
-                          "Por favor indíquenme los pasos para realizar el pago.";
-                          
-            let url = `https://wa.me/584124405245?text=${encodeURIComponent(mensaje)}`;
-            window.open(url, '_blank');
-        }
-
-        // Temporizador de la oferta
-        function iniciarContadorOferta() {
-            let tiempoRestante = 2 * 24 * 3600 + 14 * 3600 + 29 * 60 + 52;
-
-            setInterval(() => {
-                if (tiempoRestante <= 0) return;
-                tiempoRestante--;
-
-                let dias = Math.floor(tiempoRestante / (3600 * 24));
-                let horas = Math.floor((tiempoRestante % (3600 * 24)) / 3600);
-                let minutos = Math.floor((tiempoRestante % 3600) / 60);
-                let segundos = tiempoRestante % 60;
-
-                const elDias = document.getElementById('days');
-                const elHoras = document.getElementById('hours');
-                const elMinutos = document.getElementById('minutes');
-                const elSegundos = document.getElementById('seconds');
-
-                if (elDias) elDias.innerText = String(dias).padStart(2, '0');
-                if (elHoras) elHoras.innerText = String(horas).padStart(2, '0');
-                if (elMinutos) elMinutos.innerText = String(minutos).padStart(2, '0');
-                if (elSegundos) elSegundos.innerText = String(segundos).padStart(2, '0');
-            }, 1000);
-        }
-
-        // Navegación limpia de vistas sin errores de scroll
-        function mostrarVista(vista) {
-            document.getElementById('vista-servicios').classList.remove('active');
-            document.getElementById('vista-servicios').style.display = 'none';
-            document.getElementById('vista-producto').classList.remove('active');
-            document.getElementById('vista-producto').style.display = 'none';
-
-            if (vista === 'producto') {
-                document.getElementById('vista-producto').classList.add('active');
-                document.getElementById('vista-producto').style.display = 'block';
-            } else {
-                document.getElementById('vista-servicios').classList.add('active');
-                document.getElementById('vista-servicios').style.display = 'block';
-            }
-            window.scrollTo(0, 0);
-        }
-
-        function abrirProducto(nombre, tag, imagen) {
-            document.getElementById('prod-title').innerText = nombre;
-            document.getElementById('summary-prod-name').innerText = nombre;
-            mostrarVista('producto');
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            iniciarContadorOferta();
-        });
 
         let currentSlide = 0;
         function goToSlide(index) {
