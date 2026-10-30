@@ -40,24 +40,43 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
+
 .badge-estado-tienda.abierto {
     background: rgba(37, 211, 102, 0.12);
     color: #25d366;
     border-color: rgba(37, 211, 102, 0.3);
 }
+
 .badge-estado-tienda.cerrado {
     background: rgba(255, 77, 77, 0.12);
     color: #ff4d4d;
     border-color: rgba(255, 77, 77, 0.3);
 }
+
+/* Animación de parpadeo (prender y apagar) */
+@keyframes parpadeoPunto {
+    0% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0.2; transform: scale(0.8); }
+}
+
 .punto-estado {
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
     display: inline-block;
+    animation: parpadeoPunto 1.5s infinite ease-in-out;
 }
-.abierto .punto-estado { background-color: #25d366; box-shadow: 0 0 8px #25d366; }
-.cerrado .punto-estado { background-color: #ff4d4d; box-shadow: 0 0 8px #ff4d4d; }
+
+.abierto .punto-estado { 
+    background-color: #25d366; 
+    box-shadow: 0 0 10px #25d366; 
+}
+
+.cerrado .punto-estado { 
+    background-color: #ff4d4d; 
+    box-shadow: 0 0 10px #ff4d4d; 
+}
 
 /* ==================== CORRECCIÓN DE CURSOR Y SELECCIÓN EN MENÚS ==================== */
 .nav-links a, 
