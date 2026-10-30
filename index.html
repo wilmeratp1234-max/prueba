@@ -23,8 +23,7 @@
             background-size: auto, auto, 400px 400px;
         }
 		
-		/* Agrega este bloque para que las tarjetas principales muestren el sello de AGOTADO */
-.service-card.agotado {
+		.service-card.agotado {
     opacity: 0.35;
     filter: grayscale(0.8);
     pointer-events: none;
@@ -2612,6 +2611,26 @@ function verDetalleCuenta(index) {
             if(productoActualData) renderizarPaquetes();
             cerrarModalRegion();
         }
+		
+		document.addEventListener("DOMContentLoaded", function() {
+    // Busca todas las tarjetas de servicio en la ventana principal
+    const tarjetas = document.querySelectorAll('.view-section .service-card');
+    
+    tarjetas.forEach(card => {
+        // Extrae el nombre del producto desde la función onclick
+        const onclickAttr = card.getAttribute('onclick');
+        if (onclickAttr && onclickAttr.includes('abrirProducto')) {
+            const match = onclickAttr.match(/abrirProducto\(['"]([^'"]+)['"]/);
+            if (match && match[1]) {
+                const nombreProducto = match[1].toLowerCase().trim();
+                // Revisa si el producto tiene stock 0 en tu objeto CONTROL_DE_STOCK
+                if (CONTROL_DE_STOCK[nombreProducto] !== undefined && CONTROL_DE_STOCK[nombreProducto] <= 0) {
+                    card.classList.add('agotado');
+                }
+            }
+        }
+    });
+});
 
         let currentSlide = 0;
         function goToSlide(index) {
