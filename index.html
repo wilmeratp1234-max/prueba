@@ -23,11 +23,17 @@
             background-size: auto, auto, 400px 400px;
         }
 		
-		.badge-estado-tienda {
+		.badge-estado-wrapper {
+    text-align: center;
+    width: 100%;
+    margin: 15px 0 20px 0;
+}
+
+.badge-estado-tienda {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 16px;
+    padding: 6px 18px;
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: bold;
@@ -52,31 +58,6 @@
 }
 .abierto .punto-estado { background-color: #25d366; box-shadow: 0 0 8px #25d366; }
 .cerrado .punto-estado { background-color: #ff4d4d; box-shadow: 0 0 8px #ff4d4d; }
-		
-		.service-card.agotado {
-    opacity: 0.35;
-    filter: grayscale(0.8);
-    pointer-events: none;
-    position: relative;
-    cursor: not-allowed;
-}
-.service-card.agotado::after {
-    content: "AGOTADO";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-12deg);
-    background: rgba(20, 20, 20, 0.85);
-    color: #9ca3af;
-    border: 2px solid #6b7280;
-    padding: 6px 18px;
-    font-size: 0.8rem;
-    font-weight: 900;
-    letter-spacing: 1.5px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.8);
-    z-index: 10;
-}
 
 /* ==================== CORRECCIÓN DE CURSOR Y SELECCIÓN EN MENÚS ==================== */
 .nav-links a, 
@@ -690,9 +671,11 @@
 
     <div class="container">
 	
-	<div id="estado-tienda-container" class="badge-estado-tienda cerrado">
-    <span class="punto-estado"></span>
-    <span id="texto-estado-tienda">Verificando horario...</span>
+	<div class="badge-estado-wrapper">
+    <div id="estado-tienda-container" class="badge-estado-tienda cerrado">
+        <span class="punto-estado"></span>
+        <span id="texto-estado-tienda">Verificando horario...</span>
+    </div>
 </div>
 
         <!-- ==================== VISTA 1: SERVICIOS ==================== -->
@@ -2732,7 +2715,7 @@ function actualizarEstadoTienda() {
     // El horario de apertura es de 9:00 AM (9) a 10:00 PM (22)
     const horaActualMinutos = (horaVzla * 60) + minutoVzla;
     const aperturaMinutos = 9 * 60;   // 09:00 AM
-    const cierreMinutos = 23 * 60;     // 10:00 PM
+    const cierreMinutos = 22 * 60;     // 10:00 PM
 
     const contenedor = document.getElementById('estado-tienda-container');
     const texto = document.getElementById('texto-estado-tienda');
