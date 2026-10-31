@@ -701,9 +701,7 @@
         <div id="vista-servicios" class="view-section active">
             <div class="carousel-container">
                 <div class="carousel-track" id="carouselTrack">
-                    <div class="carousel-slide"><img src="https://i.imgur.com/1VAUi6X.jpeg" alt="Banner 1"></div>
-                    <div class="carousel-slide"><img src="https://i.imgur.com/1VAUi6X.jpeg alt="Banner 2"></div>
-                    <div class="carousel-slide"><img src="https://i.imgur.com/1VAUi6X.jpeg" alt="Banner 3"></div>
+                    <div class="carousel-slide"><img src="https://i.imgur.com/CZ2d0Yw.jpeg" alt="Banner 1"></div>
                 </div>
                 <div class="carousel-indicators">
                     <span class="dot active" onclick="goToSlide(0)"></span>
@@ -721,6 +719,12 @@
     <div class="service-card" onclick="abrirProducto('Netflix', 'Streaming', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0cMo-_nUdZeTFpq-DtJpYjfxcodMcWpU1GlzFugCSGIuYH7z1bRq21V9a&s=10')">
         <div class="service-image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0cMo-_nUdZeTFpq-DtJpYjfxcodMcWpU1GlzFugCSGIuYH7z1bRq21V9a&s=10" alt="Netflix"></div>
         <div class="service-content"><span class="service-tag">Streaming</span><div class="service-name">Netflix</div></div>
+    </div>
+	
+	<div class="services-grid">
+    <div class="service-card" onclick="abrirProducto('Netflix Personal', 'Streaming', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0cMo-_nUdZeTFpq-DtJpYjfxcodMcWpU1GlzFugCSGIuYH7z1bRq21V9a&s=10')">
+        <div class="service-image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0cMo-_nUdZeTFpq-DtJpYjfxcodMcWpU1GlzFugCSGIuYH7z1bRq21V9a&s=10" alt="Netflix"></div>
+        <div class="service-content"><span class="service-tag">Streaming</span><div class="service-name">Netflix Personal</div></div>
     </div>
 
     <div class="service-card" onclick="abrirProducto('Disney+ Premium', 'Streaming', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqq1cMuB1cYRHSa6tNkK7nf_DRk8drwjF1lvYHPltlUiwl1Pwzthbiu3E-&s=10')">
@@ -855,6 +859,12 @@
                 <div class="service-card" onclick="abrirProductoDistri('Netflix', 'Streaming Mayorista', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0cMo-_nUdZeTFpq-DtJpYjfxcodMcWpU1GlzFugCSGIuYH7z1bRq21V9a&s=10')">
                     <div class="service-image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0cMo-_nUdZeTFpq-DtJpYjfxcodMcWpU1GlzFugCSGIuYH7z1bRq21V9a&s=10" alt="Netflix"></div>
                     <div class="service-content"><span class="service-tag">PRECIO MAYORISTA</span><div class="service-name">Netflix VIP</div></div>
+                </div>
+				
+				<div class="services-grid">
+                <div class="service-card" onclick="abrirProductoDistri('Netflix Personal', 'Streaming Mayorista', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0cMo-_nUdZeTFpq-DtJpYjfxcodMcWpU1GlzFugCSGIuYH7z1bRq21V9a&s=10')">
+                    <div class="service-image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0cMo-_nUdZeTFpq-DtJpYjfxcodMcWpU1GlzFugCSGIuYH7z1bRq21V9a&s=10" alt="Netflix"></div>
+                    <div class="service-content"><span class="service-tag">PRECIO MAYORISTA</span><div class="service-name">Netflix Personal VIP</div></div>
                 </div>
 
                 <div class="service-card" onclick="abrirProductoDistri('Disney+ Premium', 'Streaming Mayorista', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqq1cMuB1cYRHSa6tNkK7nf_DRk8drwjF1lvYHPltlUiwl1Pwzthbiu3E-&s=10')">
@@ -1429,7 +1439,7 @@
 
      <!-- SCRIPTS CON LA MISMA LÓGICA ORIGINAL DE TU TIENDA -->
     <script>
-        let tasaVES = 1010.00;
+        let tasaVES = 1000.00;
         let monedaActual = 'VES';
         let estadoCheckoutStep = 1;
         let metodoPagoSeleccionado = 'pago_movil';
@@ -1495,6 +1505,19 @@
         ],
         paquetesTab2: [
             { monto: "Cuenta Completa", extra: "Ilimitada", precioUSD: 14.99 }
+        ]
+    },
+	"netflix Personal": {
+        categoria: "streaming",
+        tab1Nombre: "Planes Principales",
+        tab2Nombre: "Cuentas",
+        idLabel: "NOMBRE PARA LA PANTALLA",
+        idPlaceholder: "Ingresa el nombre para tu pantalla",
+        paquetesTab1: [
+            { monto: "1 Pantalla", extra: "Con tu correo", precioUSD: 5.50, active: true },
+        ],
+        paquetesTab2: [
+            { monto: "6 meses", extra: "Ilimitada", precioUSD: 30.00 }
         ]
     },
     "disney+ premium": {
@@ -1808,12 +1831,25 @@
                 idLabel: "NOMBRE PARA LA PANTALLA",
                 idPlaceholder: "Ingresa el nombre para tu pantalla",
                 paquetesTab1: [
-                    { monto: "1 Pantalla", extra: "Lote Mayorista", precioUSD: 3.00, active: true },
+                    { monto: "1 Pantalla", extra: "Lote Mayorista", precioUSD: 3.30, active: true },
                 ],
                 paquetesTab2: [
-                    { monto: "Cuenta Completa", extra: "Panel VIP", precioUSD: 13.50 }
+                    { monto: "Cuenta Completa", extra: "Panel VIP", precioUSD: 14.50 }
                 ]
             },
+			"netflix Personal": {
+        categoria: "streaming",
+        tab1Nombre: "Planes Principales",
+        tab2Nombre: "Cuentas",
+        idLabel: "NOMBRE PARA LA PANTALLA",
+        idPlaceholder: "Ingresa el nombre para tu pantalla",
+        paquetesTab1: [
+            { monto: "1 Pantalla", extra: "Con tu correo", precioUSD: 5.20, active: true },
+        ],
+        paquetesTab2: [
+            { monto: "6 meses", extra: "Ilimitada", precioUSD: 30.00 }
+        ]
+    },
             "disney+ premium": {
                 categoria: "distribuidores",
                 tab1Nombre: "Pantallas Mayoristas",
@@ -2011,19 +2047,19 @@
 // (0 = Agotado / >0 = Stock disponible)
 const CONTROL_DE_STOCK = {
     // --- CLIENTES FINALES (Catálogo Normal) ---
-    "netflix": 0,
+    "netflix": 1,
     "disney+ premium": 0,
     "prime video": 10,
     "hbo max standar": 1,
     "crunchyroll": 3,
-    "paramount+": 5,
+    "paramount+": 0,
     "vix": 8,
     "appletv": 0,
     "universal+": 0,
     "viki rakuten": 5,
     "streamix tv": 15,
     "flujotv": 12,
-    "spotify premium": 20,
+    "spotify premium": 0,
     "youtube premium": 15,
     "canva pro edu": 50,
     "capcut": 10,
@@ -2037,7 +2073,7 @@ const CONTROL_DE_STOCK = {
     "roblox": 10,
 
     // --- MAYORISTAS (Área de Distribuidores con sufijo -vip) ---
-    "netflix-vip": 0,
+    "netflix-vip": 1,
     "disney+ premium-vip": 0,
     "prime video-vip": 5,
     "hbo max standar-vip": 2,
@@ -2046,7 +2082,7 @@ const CONTROL_DE_STOCK = {
     "vix-vip": 5,
     "streamix tv-vip": 10,
     "flujotv-vip": 10,
-    "spotify premium-vip": 10,
+    "spotify premium-vip": 0,
     "youtube premium-vip": 10,
     "canva pro edu-vip": 20,
     "capcut-vip": 5
@@ -2760,7 +2796,7 @@ function actualizarEstadoTienda() {
             contenedor.className = "badge-estado-tienda cerrado";
         }
         if (texto) {
-            texto.innerHTML = "Cerrado ahora (Horario: 9 AM - 10 PM)";
+            texto.innerHTML = "Cerrado ahora Horario: 9 AM - 10 PM";
         }
         // Bloquea las compras y cambia el texto del botón
         if (btnCheckout) {
