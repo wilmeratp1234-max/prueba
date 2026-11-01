@@ -8,20 +8,20 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         
+       * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        /* ==================== FONDO Y LUZ AMBIENTAL TURQUESA ==================== */
         body { 
             background-color: #04060b; 
             color: #ffffff; 
             padding: 0; 
             overflow-x: hidden; 
             position: relative; 
-            background-image: 
-                radial-gradient(circle at 15% 20%, rgba(255, 102, 0, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 85% 70%, rgba(138, 43, 226, 0.06) 0%, transparent 45%);
+            background-image: radial-gradient(circle at 50% -20%, rgba(0, 255, 239, 0.15) 0%, transparent 60%);
             background-repeat: no-repeat;
-            background-size: cover;
             background-attachment: fixed;
         }
-
+		
         .badge-estado-wrapper {
             text-align: center;
             width: 100%;
@@ -55,6 +55,7 @@
             border-color: rgba(255, 77, 77, 0.3);
         }
 
+        /* Animación de parpadeo */
         @keyframes parpadeoPunto {
             0% { opacity: 0.2; transform: scale(0.8); }
             50% { opacity: 1; transform: scale(1.2); }
@@ -78,37 +79,126 @@
             background-color: #ff4d4d; 
             box-shadow: 0 0 10px #ff4d4d; 
         }
+
+        /* ==================== CORRECCIÓN DE CURSOR Y SELECCIÓN ==================== */
+        .nav-links a, 
+        .logo-nav, 
+        .btn-region, 
+        .nav-bar *,
+        .service-card {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+
+        .nav-links a, 
+        .logo-nav, 
+        .btn-region {
+            cursor: pointer !important;
+        }
 		
-		/* Cabecera y bordes generales */
-        header.main-header { position: sticky; top: 0; z-index: 1000; background: #0b0f19; border-bottom: 1px solid #1f2937; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); }
+        /* ==================== NAVEGACIÓN TRANSLÚCIDA Y MINIMALISTA ==================== */
+        header.main-header { 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            background: rgba(11, 15, 25, 0.85); 
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 239, 0.08); 
+            box-shadow: 0 10px 30px rgba(0, 255, 239, 0.05); 
+        }
 
-        /* Botón de región */
-        .btn-region { background: #111827; border: 1px solid #1f2937; color: #ffffff; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: border-color 0.2s, background 0.2s; }
+        .top-subbar-mobile { display: none; justify-content: space-between; align-items: center; padding: 8px 16px; background: #070a12; border-bottom: 1px solid #151c2c; font-size: 0.78rem; color: #9ca3af; }
+        nav.nav-bar { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; }
+        
+        .logo-nav { font-weight: 900; font-size: 1.6rem; letter-spacing: 1px; color: #fff; display: flex; align-items: center; text-transform: uppercase; cursor: pointer; text-shadow: 0 0 10px rgba(0, 255, 239, 0.4); }
+        .logo-nav span { color: #00FFEF; }
+        
+        .nav-links { display: flex; gap: 22px; align-items: center; list-style: none; font-size: 0.9rem; }
+        .nav-links a { color: #d1d5db; text-decoration: none; transition: color 0.2s; cursor: pointer; display: flex; align-items: center; gap: 4px; font-weight: 500; white-space: nowrap; }
+        .nav-links a:hover, .nav-links a.active { color: #00FFEF; text-shadow: 0 0 8px rgba(0, 255, 239, 0.6); }
+        
+        .nav-right-actions { display: flex; align-items: center; gap: 15px; }
+        .search-icon-btn { background: transparent; border: none; color: #9ca3af; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 8px; transition: color 0.2s; }
+        .search-icon-btn:hover { color: #00FFEF; }
+        .search-icon-btn svg { width: 18px; height: 18px; fill: currentColor; }
+        
+        .btn-region { background: #111827; border: 1px solid rgba(0, 255, 239, 0.3); color: #ffffff; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: border-color 0.2s, background 0.2s; }
         .btn-region:hover { border-color: #00FFEF; background: #0e1320; }
+        .globe-icon { color: #00FFEF; width: 16px; height: 16px; }
+        .mobile-menu-btn { display: none; background: transparent; border: none; color: #ffffff; font-size: 1.4rem; cursor: pointer; }
 
-        /* Tarjetas de servicios y hover */
-        .service-card:hover { transform: translateY(-4px); border-color: #00FFEF; box-shadow: 0 8px 25px rgba(0, 255, 239, 0.1); }
+        /* MENÚ LATERAL MÓVIL */
+        .mobile-drawer-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.8); z-index: 99999; display: none; }
+        .mobile-drawer { position: fixed; top: 0; left: -280px; width: 280px; height: 100vh; background: #0b0f19; border-right: 1px solid rgba(0, 255, 239, 0.3); z-index: 100000; transition: left 0.3s ease; padding: 25px; display: flex; flex-direction: column; gap: 20px; }
+        .mobile-drawer.open { left: 0; }
+        .drawer-close { align-self: flex-end; background: transparent; border: none; color: #9ca3af; font-size: 1.5rem; cursor: pointer; }
+        .drawer-links { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+        .drawer-links a { color: #ffffff; text-decoration: none; font-size: 1.1rem; font-weight: bold; display: block; cursor: pointer; }
+        .drawer-links a:hover { color: #00FFEF; }
 
-        /* Selección de paquetes activos (Elimina el fondo naranja oscuro #2a160e) */
-        .package-card.active { border: 1.5px solid #00FFEF; background: #0e1320; box-shadow: 0 0 15px rgba(0, 255, 239, 0.15); }
-        .package-card.active .package-price-badge { background: #131b2e; border-color: #00FFEF; color: #00FFEF; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 40px 30px; position: relative; z-index: 1; }
+        .view-section { display: none; }
+        .view-section.active { display: block; }
 
-        /* Pestañas de paquetes */
+        /* MODALES */
+        .region-modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(6px); display: none; justify-content: center; align-items: center; z-index: 999999; }
+        .region-modal-card { background: #0e1320; border: 1px solid #00FFEF; width: 90%; max-width: 440px; border-radius: 20px; padding: 25px; position: relative; box-shadow: 0 20px 50px rgba(0, 255, 239, 0.2); }
+        .region-modal-close { position: absolute; top: 20px; right: 20px; background: #1a2234; border: none; color: #9ca3af; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+        .region-modal-title { font-size: 1.2rem; font-weight: bold; color: white; margin-bottom: 4px; }
+        .region-modal-subtitle { font-size: 0.85rem; color: #9ca3af; margin-bottom: 20px; }
+        .region-option { background: #161d2e; border: 1px solid #2b3548; border-radius: 14px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+        .region-option:hover { border-color: #00FFEF; background: #0e1320; }
+        .region-option.active { border-color: #00FFEF; background: #0e1320; }
+
+        .distri-modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(6px); display: none; justify-content: center; align-items: center; z-index: 999999; }
+        .distri-modal-card { background: #0d111d; border: 1px solid #00FFEF; width: 90%; max-width: 460px; border-radius: 20px; padding: 30px; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.8), 0 0 25px rgba(0, 255, 239, 0.2); }
+        .distri-alert-box { background: #0e1320; border: 1px solid #00FFEF; border-radius: 12px; padding: 14px 16px; margin-bottom: 22px; font-size: 0.85rem; color: #d1d5db; line-height: 1.4; display: flex; align-items: flex-start; gap: 10px; }
+        
+        .btn-distri-verify { width: 100%; background: #00FFEF; border: none; color: #050811; padding: 16px; border-radius: 12px; font-weight: 800; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; cursor: pointer; transition: opacity 0.2s, transform 0.1s; box-shadow: 0 4px 15px rgba(0, 255, 239, 0.3); }
+        .btn-distri-verify:hover { opacity: 0.95; transform: translateY(-1px); }
+
+        /* TARJETAS Y COMPONENTES */
+        .carousel-container { position: relative; width: 100%; max-width: 1100px; margin: 0 auto 30px auto; overflow: hidden; border-radius: 16px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); background-color: #0d0d11; border: 1px solid rgba(0, 255, 239, 0.2); }
+        
+        .section-title span { color: #00FFEF; text-shadow: 0 0 10px rgba(0, 255, 239, 0.3); }
+
+        .service-card:hover { transform: translateY(-4px); border-color: #00FFEF; box-shadow: 0 8px 25px rgba(0, 255, 239, 0.2); }
+        
+        .step-number { width: 28px; height: 28px; border-radius: 50%; background: #00FFEF; color: #050811; font-weight: 900; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 10px rgba(0, 255, 239, 0.4); }
+        
         .package-tab-btn.active { background: #0e1320; border: 1px solid #00FFEF; color: #00FFEF; }
 
-        /* Métodos de pago activos */
+        .package-card.active { border: 1.5px solid #00FFEF; background: #0e1320; box-shadow: 0 0 15px rgba(0, 255, 239, 0.2); }
+        .package-extra { color: #00FFEF; font-weight: 800; font-size: 0.8rem; }
+        .package-card.active .package-price-badge { background: #0e1320; border-color: #00FFEF; color: #00FFEF; }
+
+        .btn-checkout { width: 100%; background: #00FFEF; color: #050811; border: none; padding: 16px; border-radius: 14px; font-weight: 900; font-size: 0.95rem; letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background 0.2s, box-shadow 0.2s; box-shadow: 0 4px 15px rgba(0, 255, 239, 0.3); }
+        .btn-checkout:hover { background: #00e6d6; box-shadow: 0 6px 20px rgba(0, 255, 239, 0.5); }
+
         .payment-card-opt:hover { border-color: #00FFEF; background: #0e1320; }
         .payment-card-opt.active { border: 2px solid #00FFEF; background: #0e1320; }
 
-        /* Alertas o cajas institucionales (como el área mayorista) */
-        .distri-alert-box { background: #0e1320; border: 1px solid #1f2937; border-radius: 12px; padding: 14px 16px; margin-bottom: 22px; font-size: 0.85rem; color: #d1d5db; line-height: 1.4; display: flex; align-items: flex-start; gap: 10px; }
-        
-        /* Botones principales de verificación y pasarelas */
-        .btn-distri-verify, .btn-search-data { background: #00FFEF; border: none; color: #050811; box-shadow: 0 4px 15px rgba(0, 255, 239, 0.2); }
-        .btn-distri-verify:hover, .btn-search-data:hover { opacity: 0.95; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0, 255, 239, 0.4); }
+        .btn-paid-green-huge { width: 100%; background: #00FFEF; color: #050811; border: none; padding: 18px; border-radius: 14px; font-weight: 900; font-size: 1rem; text-transform: uppercase; cursor: pointer; transition: background 0.2s, box-shadow 0.2s; box-shadow: 0 4px 15px rgba(0, 255, 239, 0.3); }
+        .btn-paid-green-huge:hover { background: #00e6d6; box-shadow: 0 6px 20px rgba(0, 255, 239, 0.5); }
 
-        /* Píldora de estado superior y otros detalles */
         .badge-pm-pill { background: #0e1320; border: 1px solid #00FFEF; color: #ffffff; padding: 6px 16px; border-radius: 20px; font-size: 0.82rem; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; }
+        .pm-header-icon-circle { width: 26px; height: 26px; border-radius: 50%; background: #0e1320; border: 1px solid #00FFEF; color: #00FFEF; font-size: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+
+        .btn-search-data { width: 100%; background: #00FFEF; border: none; color: #050811; padding: 16px; border-radius: 12px; font-weight: 900; font-size: 0.92rem; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.2s; box-shadow: 0 4px 15px rgba(0, 255, 239, 0.3); margin-top: 5px; }
+        .btn-search-data:hover { opacity: 0.95; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0, 255, 239, 0.5); }
+
+        .search-empty-icon { width: 70px; height: 70px; border-radius: 50%; background: #111827; border: 1px solid rgba(0, 255, 239, 0.3); color: #00FFEF; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 0 20px rgba(0, 255, 239, 0.15); }
+        
+        .support-tag { font-size: 0.7rem; font-weight: 800; color: #00FFEF; background: rgba(0, 255, 239, 0.08); padding: 4px 12px; border-radius: 12px; border: 1px solid rgba(0, 255, 239, 0.2); text-transform: uppercase; margin-bottom: 12px; }
+
+        /* FOOTER */
+        footer.main-footer { background-color: #070a12; border-top: 1px solid rgba(0, 255, 239, 0.2); padding: 50px 30px 30px 30px; margin-top: 60px; color: #9ca3af; font-size: 0.85rem; }
+        .social-btn:hover { border-color: #00FFEF; color: #00FFEF; background: #0e1320; }
+        
+        .whatsapp-float-btn:hover { transform: scale(1.08); box-shadow: 0 6px 25px rgba(0, 255, 239, 0.6); }
+		
 
 /* ==================== CORRECCIÓN DE CURSOR Y SELECCIÓN EN MENÚS ==================== */
 .nav-links a, 
