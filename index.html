@@ -80,6 +80,37 @@
             background-color: #ff4d4d; 
             box-shadow: 0 0 10px #ff4d4d; 
         }
+		
+		/* Cabecera y bordes generales */
+        header.main-header { position: sticky; top: 0; z-index: 1000; background: #0b0f19; border-bottom: 1px solid #1f2937; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); }
+
+        /* Botón de región */
+        .btn-region { background: #111827; border: 1px solid #1f2937; color: #ffffff; padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: border-color 0.2s, background 0.2s; }
+        .btn-region:hover { border-color: #00FFEF; background: #0e1320; }
+
+        /* Tarjetas de servicios y hover */
+        .service-card:hover { transform: translateY(-4px); border-color: #00FFEF; box-shadow: 0 8px 25px rgba(0, 255, 239, 0.1); }
+
+        /* Selección de paquetes activos (Elimina el fondo naranja oscuro #2a160e) */
+        .package-card.active { border: 1.5px solid #00FFEF; background: #0e1320; box-shadow: 0 0 15px rgba(0, 255, 239, 0.15); }
+        .package-card.active .package-price-badge { background: #131b2e; border-color: #00FFEF; color: #00FFEF; }
+
+        /* Pestañas de paquetes */
+        .package-tab-btn.active { background: #0e1320; border: 1px solid #00FFEF; color: #00FFEF; }
+
+        /* Métodos de pago activos */
+        .payment-card-opt:hover { border-color: #00FFEF; background: #0e1320; }
+        .payment-card-opt.active { border: 2px solid #00FFEF; background: #0e1320; }
+
+        /* Alertas o cajas institucionales (como el área mayorista) */
+        .distri-alert-box { background: #0e1320; border: 1px solid #1f2937; border-radius: 12px; padding: 14px 16px; margin-bottom: 22px; font-size: 0.85rem; color: #d1d5db; line-height: 1.4; display: flex; align-items: flex-start; gap: 10px; }
+        
+        /* Botones principales de verificación y pasarelas */
+        .btn-distri-verify, .btn-search-data { background: #00FFEF; border: none; color: #050811; box-shadow: 0 4px 15px rgba(0, 255, 239, 0.2); }
+        .btn-distri-verify:hover, .btn-search-data:hover { opacity: 0.95; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0, 255, 239, 0.4); }
+
+        /* Píldora de estado superior y otros detalles */
+        .badge-pm-pill { background: #0e1320; border: 1px solid #00FFEF; color: #ffffff; padding: 6px 16px; border-radius: 20px; font-size: 0.82rem; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; }
 
 /* ==================== CORRECCIÓN DE CURSOR Y SELECCIÓN EN MENÚS ==================== */
 .nav-links a, 
