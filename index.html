@@ -635,6 +635,7 @@
                 <li><a id="nav-servicios" class="active" onclick="mostrarVista('servicios')">Servicios</a></li>
                 <li><a id="nav-distribuidores" onclick="solicitarAccesoDistribuidores()">👑 Distribuidores</a></li>
                 <li><a id="nav-buscar" onclick="mostrarVista('buscar')">🔍 Buscar datos</a></li>
+				<li><a id="nav-resenas" onclick="mostrarVista('resenas')">Reseñas</a></li>
                 <li><a id="nav-soporte" onclick="mostrarVista('soporte')">Soporte</a></li>
             </ul>
             
@@ -660,6 +661,7 @@
             <li><a onclick="mostrarVista('servicios'); toggleDrawer();">Servicios</a></li>
             <li><a onclick="solicitarAccesoDistribuidores(); toggleDrawer();">👑 Distribuidores</a></li>
             <li><a onclick="mostrarVista('buscar'); toggleDrawer();">🔍 Buscar datos</a></li>
+			<li><a id="nav-resenas" onclick="mostrarVista('resenas')">Reseñas</a></li>
             <li><a onclick="mostrarVista('soporte'); toggleDrawer();">Soporte</a></li>
         </ul>
     </div>
@@ -1010,6 +1012,113 @@
                 <div class="service-card" onclick="abrirProducto('Roblox', 'GLOBAL', 'https://i0.wp.com/mnn.mv/wp-content/uploads/2025/09/roblox.webp?fit=1920%2C1080&ssl=1')">
                     <div class="service-image-box"><img src="https://i0.wp.com/mnn.mv/wp-content/uploads/2025/09/roblox.webp?fit=1920%2C1080&ssl=1" alt="Roblox"></div>
                     <div class="service-content"><span class="service-tag">GLOBAL</span><div class="service-name">Roblox</div></div>
+                </div>
+            </div>
+        </div>
+		
+		<!-- ==================== VISTA: RESEÑAS ==================== -->
+        <div id="vista-resenas" class="view-section">
+            <div class="support-header-box" style="margin-bottom: 25px;">
+                <h1 class="support-title">Opiniones de la <span>comunidad</span></h1>
+                <p class="support-subtitle">Valoraciones reales y transparentes de clientes con compras verificadas en la tienda.</p>
+                <div style="margin-top: 20px;">
+                    <button class="btn-distri-verify" style="max-width: 220px; margin: 0 auto; display: inline-flex; align-items: center; justify-content: center; gap: 8px;" onclick="abrirModalResena()">
+                        ⭐ ESCRIBIR UNA RESEÑA
+                    </button>
+                </div>
+            </div>
+
+            <!-- Resumen de Calificación -->
+            <div style="background: #0b0f19; border: 1px solid #1f2937; border-radius: 20px; padding: 30px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 30px; align-items: center; margin-bottom: 30px;" id="resenas-stats-box">
+                <div style="text-align: center; border-right: 1px solid #1f2937; padding-right: 20px;">
+                    <div style="font-size: 0.8rem; font-weight: 800; color: #9ca3af; text-transform: uppercase; margin-bottom: 5px;">Calificación Promedio</div>
+                    <div style="font-size: 3.5rem; font-weight: 900; color: #ffffff; line-height: 1;">4.8 <span style="font-size: 1.2rem; color: #9ca3af; font-weight: normal;">de 5</span></div>
+                    <div style="color: #00FFEF; font-size: 1.2rem; margin: 8px 0;">★★★★★</div>
+                    <div style="font-size: 0.8rem; color: #9ca3af;">Basado en <strong style="color: #fff;">856</strong> compras valoradas</div>
+                    <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(0, 255, 239, 0.08); border: 1px solid rgba(0, 255, 239, 0.3); color: #00FFEF; padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; margin-top: 12px;">
+                        ✓ 100% transacciones verificadas
+                    </div>
+                </div>
+                <div>
+                    <div style="font-size: 0.8rem; font-weight: 800; color: #9ca3af; text-transform: uppercase; margin-bottom: 15px;">Distribución por estrellas</div>
+                    <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: #9ca3af;">
+                        <div style="display: flex; align-items: center; gap: 10px;"><span>5 estrellas</span><div style="flex:1; height:8px; background:#111827; border-radius:4px; overflow:hidden;"><div style="width:93%; height:100%; background:#00FFEF;"></div></div><span style="color:#fff; font-weight:bold;">798 (93%)</span></div>
+                        <div style="display: flex; align-items: center; gap: 10px;"><span>4 estrellas</span><div style="flex:1; height:8px; background:#111827; border-radius:4px; overflow:hidden;"><div style="width:4%; height:100%; background:#00FFEF;"></div></div><span style="color:#fff; font-weight:bold;">16 (2%)</span></div>
+                        <div style="display: flex; align-items: center; gap: 10px;"><span>3 estrellas</span><div style="flex:1; height:8px; background:#111827; border-radius:4px; overflow:hidden;"><div style="width:1%; height:100%; background:#00FFEF;"></div></div><span style="color:#fff; font-weight:bold;">5 (1%)</span></div>
+                        <div style="display: flex; align-items: center; gap: 10px;"><span>2 estrellas</span><div style="flex:1; height:8px; background:#111827; border-radius:4px; overflow:hidden;"><div style="width:1%; height:100%; background:#00FFEF;"></div></div><span style="color:#fff; font-weight:bold;">9 (1%)</span></div>
+                        <div style="display: flex; align-items: center; gap: 10px;"><span>1 estrella</span><div style="flex:1; height:8px; background:#111827; border-radius:4px; overflow:hidden;"><div style="width:3%; height:100%; background:#00FFEF;"></div></div><span style="color:#fff; font-weight:bold;">28 (3%)</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Listado de Reseñas -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;" id="contenedor-tarjetas-resenas">
+                <div style="background: #0b0f19; border: 1px solid #1f2937; border-radius: 16px; padding: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 38px; height: 38px; border-radius: 50%; background: #192233; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #00FFEF;">C</div>
+                            <div>
+                                <div style="font-weight: bold; color: #fff; font-size: 0.95rem; display: flex; align-items: center; gap: 6px;">
+                                    Carlos Daniel Muñoz <span style="background: rgba(37,211,102,0.15); color: #25d366; font-size: 0.65rem; padding: 2px 6px; border-radius: 6px; border: 1px solid rgba(37,211,102,0.3);">✓ Verificado</span>
+                                </div>
+                                <div style="font-size: 0.75rem; color: #9ca3af;">02 nov 2026</div>
+                            </div>
+                        </div>
+                        <div style="color: #00FFEF; font-size: 0.9rem;">★★★★★</div>
+                    </div>
+                    <div style="font-size: 0.78rem; color: #00FFEF; background: rgba(0,255,239,0.08); padding: 4px 10px; border-radius: 8px; display: inline-block; margin-bottom: 10px; font-weight: bold;">
+                        Free fire • Pase Nivel 20
+                    </div>
+                    <p style="font-size: 0.88rem; color: #d1d5db; line-height: 1.4;">Excelente servicio, muy rápido y confiable. Los diamantes llegaron a mi cuenta en menos de 5 minutos. Recomendado 100%.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL: ESCRIBIR RESEÑA -->
+        <div class="region-modal-overlay" id="modalEscribirResena">
+            <div class="region-modal-card" style="max-width: 480px;">
+                <button class="region-modal-close" onclick="cerrarModalResena()">✕</button>
+                <div class="region-modal-title">Escribe tu Reseña</div>
+                <div class="region-modal-subtitle">Comparte tu experiencia con la comunidad de Streamix Store</div>
+
+                <div style="display: flex; flex-direction: column; gap: 14px;">
+                    <div>
+                        <label class="distri-input-label">TU NOMBRE</label>
+                        <input type="text" class="distri-input-code" id="resena-nombre" placeholder="Ej: Juan Pérez" style="margin-bottom: 0;">
+                    </div>
+
+                    <div>
+                        <label class="distri-input-label">SELECCIONA LA PLATAFORMA O JUEGO</label>
+                        <select id="resena-plataforma" class="distri-input-code" style="margin-bottom: 0; cursor: pointer;">
+                            <option value="Netflix">Netflix</option>
+                            <option value="Disney+ Premium">Disney+ Premium</option>
+                            <option value="Prime Video">Prime Video</option>
+                            <option value="Free Fire">Free Fire</option>
+                            <option value="Call of Duty Mobile">Call of Duty Mobile</option>
+                            <option value="Spotify Premium">Spotify Premium</option>
+                            <option value="Streamix TV">Streamix TV</option>
+                            <option value="Roblox">Roblox</option>
+                            <option value="Otro servicio">Otro servicio</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="distri-input-label">CALIFICACIÓN EN ESTRELLAS</label>
+                        <div style="display: flex; gap: 8px; font-size: 1.8rem; cursor: pointer; color: #4b5563;" id="estrellas-selector">
+                            <span onclick="seleccionarEstrellas(1)" style="color: #00FFEF;" data-val="1">★</span>
+                            <span onclick="seleccionarEstrellas(2)" style="color: #00FFEF;" data-val="2">★</span>
+                            <span onclick="seleccionarEstrellas(3)" style="color: #00FFEF;" data-val="3">★</span>
+                            <span onclick="seleccionarEstrellas(4)" style="color: #00FFEF;" data-val="4">★</span>
+                            <span onclick="seleccionarEstrellas(5)" style="color: #00FFEF;" data-val="5">★</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="distri-input-label">TU OPINIÓN</label>
+                        <textarea id="resena-comentario" class="distri-input-code" rows="3" placeholder="¿Qué te pareció el servicio?" style="resize: none; margin-bottom: 0;"></textarea>
+                    </div>
+
+                    <button class="btn-distri-verify" onclick="enviarResenaUsuario()" style="margin-top: 10px;">PUBLICAR RESEÑA</button>
                 </div>
             </div>
         </div>
@@ -2088,14 +2197,14 @@ const CONTROL_DE_STOCK = {
     "prime video": 10,
     "hbo max standar": 1,
     "crunchyroll": 3,
-    "paramount+": 0,
+    "paramount+": 1,
     "vix": 8,
     "appletv": 0,
     "universal+": 0,
     "viki rakuten": 5,
     "streamix tv": 15,
     "flujotv": 12,
-    "spotify premium": 0,
+    "spotify premium": 1,
     "youtube premium": 15,
     "canva pro edu": 50,
     "capcut": 10,
@@ -2109,7 +2218,7 @@ const CONTROL_DE_STOCK = {
     "roblox": 10,
 
     // --- MAYORISTAS (Área de Distribuidores con sufijo -vip) ---
-    "netflix-vip": 1,
+    "netflix-vip": 0,
     "netflix personal-vip": 1,
     "disney+ premium-vip": 0,
     "prime video-vip": 5,
@@ -2850,6 +2959,122 @@ document.addEventListener("DOMContentLoaded", function() {
     actualizarEstadoTienda();
     setInterval(actualizarEstadoTienda, 30000);
 });
+
+let estrellasSeleccionadas = 5;
+
+        function mostrarVista(vista) {
+            const vistas = ['vista-servicios', 'vista-recargas', 'vista-distribuidores', 'vista-soporte', 'vista-producto', 'vista-binance-gateway', 'vista-pagomovil-gateway', 'vista-buscar', 'vista-resenas'];
+            vistas.forEach(v => {
+                const el = document.getElementById(v);
+                if(el) el.classList.remove('active');
+            });
+
+            const navServicios = document.getElementById('nav-servicios');
+            const navRecargas = document.getElementById('nav-recargas');
+            const navDistribuidores = document.getElementById('nav-distribuidores');
+            const navBuscar = document.getElementById('nav-buscar');
+            const navSoporte = document.getElementById('nav-soporte');
+            const navResenas = document.getElementById('nav-resenas');
+
+            if(navServicios) navServicios.classList.remove('active');
+            if(navRecargas) navRecargas.classList.remove('active');
+            if(navDistribuidores) navDistribuidores.classList.remove('active');
+            if(navBuscar) navBuscar.classList.remove('active');
+            if(navSoporte) navSoporte.classList.remove('active');
+            if(navResenas) navResenas.classList.remove('active');
+
+            if (vista === 'recargas') {
+                document.getElementById('vista-recargas').classList.add('active');
+                if(navRecargas) navRecargas.classList.add('active');
+            } else if (vista === 'distribuidores') {
+                document.getElementById('vista-distribuidores').classList.add('active');
+                if(navDistribuidores) navDistribuidores.classList.add('active');
+            } else if (vista === 'buscar') {
+                document.getElementById('vista-buscar').classList.add('active');
+                if(navBuscar) navBuscar.classList.add('active');
+            } else if (vista === 'soporte') {
+                document.getElementById('vista-soporte').classList.add('active');
+                if(navSoporte) navSoporte.classList.add('active');
+            } else if (vista === 'resenas') {
+                document.getElementById('vista-resenas').classList.add('active');
+                if(navResenas) navResenas.classList.add('active');
+            } else if (vista === 'producto') {
+                document.getElementById('vista-producto').classList.add('active');
+            } else if (vista === 'binance-gateway') {
+                document.getElementById('vista-binance-gateway').classList.add('active');
+            } else if (vista === 'pagomovil-gateway') {
+                document.getElementById('vista-pagomovil-gateway').classList.add('active');
+            } else {
+                document.getElementById('vista-servicios').classList.add('active');
+                if(navServicios) navServicios.classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function abrirModalResena() {
+            document.getElementById('modalEscribirResena').style.display = 'flex';
+        }
+
+        function cerrarModalResena() {
+            document.getElementById('modalEscribirResena').style.display = 'none';
+        }
+
+        function seleccionarEstrellas(cantidad) {
+            estrellasSeleccionadas = cantidad;
+            const spans = document.querySelectorAll('#estrellas-selector span');
+            spans.forEach((span, idx) => {
+                if (idx < cantidad) {
+                    span.style.color = '#00FFEF';
+                } else {
+                    span.style.color = '#4b5563';
+                }
+            });
+        }
+
+        function enviarResenaUsuario() {
+            const nombre = document.getElementById('resena-nombre').value.trim();
+            const plataforma = document.getElementById('resena-plataforma').value;
+            const comentario = document.getElementById('resena-comentario').value.trim();
+
+            if (!nombre || !comentario) {
+                alert('Por favor completa tu nombre y comentario.');
+                return;
+            }
+
+            let estrellasHtml = '★'.repeat(estrellasSeleccionadas);
+            let fechaHoy = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
+
+            const contenedor = document.getElementById('contenedor-tarjetas-resenas');
+            const nuevaTarjeta = document.createElement('div');
+            nuevaTarjeta.style.cssText = "background: #0b0f19; border: 1px solid #1f2937; border-radius: 16px; padding: 20px;";
+            
+            nuevaTarjeta.innerHTML = `
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 38px; height: 38px; border-radius: 50%; background: #192233; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #00FFEF;">${nombre.charAt(0).toUpperCase()}</div>
+                        <div>
+                            <div style="font-weight: bold; color: #fff; font-size: 0.95rem; display: flex; align-items: center; gap: 6px;">
+                                ${nombre} <span style="background: rgba(37,211,102,0.15); color: #25d366; font-size: 0.65rem; padding: 2px 6px; border-radius: 6px; border: 1px solid rgba(37,211,102,0.3);">✓ Verificado</span>
+                            </div>
+                            <div style="font-size: 0.75rem; color: #9ca3af;">${fechaHoy}</div>
+                        </div>
+                    </div>
+                    <div style="color: #00FFEF; font-size: 0.9rem;">${estrellasHtml}</div>
+                </div>
+                <div style="font-size: 0.78rem; color: #00FFEF; background: rgba(0,255,239,0.08); padding: 4px 10px; border-radius: 8px; display: inline-block; margin-bottom: 10px; font-weight: bold;">
+                    ${plataforma}
+                </div>
+                <p style="font-size: 0.88rem; color: #d1d5db; line-height: 1.4;">${comentario}</p>
+            `;
+
+            contenedor.prepend(nuevaTarjeta);
+            cerrarModalResena();
+            
+            // Limpiar campos
+            document.getElementById('resena-nombre').value = '';
+            document.getElementById('resena-comentario').value = '';
+            alert('¡Gracias por tu reseña! Ha sido publicada con éxito.');
+        }
 
         let currentSlide = 0;
         function goToSlide(index) {
