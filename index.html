@@ -825,16 +825,28 @@
         </button>
     </div>
 	
-	<!-- Agrega esto dentro de tu menú móvil (en el mobile-drawer) -->
-    <li><a onclick="filtrarSeccion('cines', this); toggleDrawer();">🎬 Cines y Series</a></li>
-    <li><a onclick="filtrarSeccion('iptv', this); toggleDrawer();">📺 TV en Vivo & IPTV</a></li>
-    <li><a onclick="filtrarSeccion('musica', this); toggleDrawer();">🎵 Música</a></li>
-    <li><a onclick="filtrarSeccion('ia', this); toggleDrawer();">✨ IA & Diseño</a></li>
-    <li><a onclick="filtrarSeccion('giftcards', this); toggleDrawer();">🎁 Gift Cards</a></li>
-    <li><a onclick="filtrarSeccion('otros', this); toggleDrawer();">⚡ Otros Servicios</a></li>
-```[cite: 1]
-
-Con esto, la barra funcionará de forma táctil debajo de los banners en pantallas pequeñas y también estará integrada en el menú desplegable del teléfono[cite: 1].
+	<!-- Menú Lateral Móvil -->
+    <div class="mobile-drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <button class="drawer-close" onclick="toggleDrawer()">✕</button>
+        <ul class="drawer-links">
+            <li><a onclick="mostrarVista('recargas'); toggleDrawer();">Recargas</a></li>
+            <li><a onclick="mostrarVista('servicios'); toggleDrawer();">Servicios</a></li>
+            <li><a onclick="solicitarAccesoDistribuidores(); toggleDrawer();">👑 Distribuidores</a></li>
+            <li><a onclick="mostrarVista('buscar'); toggleDrawer();">🔍 Buscar datos</a></li>
+            <li><a href="#reseñas" onclick="mostrarVista('resenas', true); toggleDrawer();">Reseñas</a></li>
+            <li><a onclick="mostrarVista('soporte'); toggleDrawer();">Soporte</a></li>
+            
+            <!-- Separador visual y categorías -->
+            <hr style="border-color: #1f2937; margin: 5px 0;">
+            <li><a onclick="mostrarVista('servicios'); filtrarSeccion('cines', this); toggleDrawer();">🎬 Cines y Series</a></li>
+            <li><a onclick="mostrarVista('servicios'); filtrarSeccion('iptv', this); toggleDrawer();">📺 TV en Vivo & IPTV</a></li>
+            <li><a onclick="mostrarVista('servicios'); filtrarSeccion('musica', this); toggleDrawer();">🎵 Música</a></li>
+            <li><a onclick="mostrarVista('servicios'); filtrarSeccion('ia', this); toggleDrawer();">✨ IA & Diseño</a></li>
+            <li><a onclick="mostrarVista('servicios'); filtrarSeccion('giftcards', this); toggleDrawer();">🎁 Gift Cards</a></li>
+            <li><a onclick="mostrarVista('servicios'); filtrarSeccion('otros', this); toggleDrawer();">⚡ Otros Servicios</a></li>
+        </ul>
+    </div>
 
             <div class="section-header">
                 <h2 class="section-title">Cines y <span>Series</span></h2>
