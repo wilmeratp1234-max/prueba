@@ -803,27 +803,51 @@
                 </div>
             </div>
 			
-			<!-- ==================== BARRA DE CATEGORÍAS RÁPIDAS ==================== -->
-    <div class="category-pills-bar">
-        <button class="pill-btn active" onclick="filtrarSeccion('cines', this)">
-            <span class="pill-icon">🎬</span> Cines y Series
-        </button>
-        <button class="pill-btn" onclick="filtrarSeccion('iptv', this)">
-            <span class="pill-icon">📺</span> TV en Vivo & IPTV
-        </button>
-        <button class="pill-btn" onclick="filtrarSeccion('musica', this)">
-            <span class="pill-icon">🎵</span> Música
-        </button>
-        <button class="pill-btn" onclick="filtrarSeccion('ia', this)">
-            <span class="pill-icon">✨</span> IA & Diseño
-        </button>
-        <button class="pill-btn" onclick="filtrarSeccion('giftcards', this)">
-            <span class="pill-icon">🎁</span> Gift Cards
-        </button>
-        <button class="pill-btn" onclick="filtrarSeccion('otros', this)">
-            <span class="pill-icon">⚡</span> Otros Servicios
-        </button>
-    </div>
+			<!-- Cines y Series -->
+            <div class="section-header" id="cat-cines">
+                <h2 class="section-title">Cines y <span>Series</span></h2>
+                <a href="#" class="btn-ver-todos">Ver todos</a>
+            </div>
+
+            <!-- ... tus tarjetas de cines ... -->
+
+            <!-- TV en Vivo & IPTV -->
+            <div class="section-header" id="cat-iptv">
+                <h2 class="section-title">TV en Vivo & <span>IPTV</span></h2>
+                <a href="#" class="btn-ver-todos">Ver todos</a>
+            </div>
+
+            <!-- ... tus tarjetas de iptv ... -->
+
+            <!-- Música sin Anuncios -->
+            <div class="section-header" id="cat-musica">
+                <h2 class="section-title">Música <span>sin Anuncios</span></h2>
+                <a href="#" class="btn-ver-todos">Ver todos</a>
+            </div>
+
+            <!-- ... tus tarjetas de musica ... -->
+
+            <!-- IA & Diseño -->
+            <div class="section-header" id="cat-ia">
+                <h2 class="section-title">IA & <span>Diseño</span></h2>
+                <a href="#" class="btn-ver-todos">Ver todos</a>
+            </div>
+
+            <!-- ... tus tarjetas de IA ... -->
+
+            <!-- GIFT CARDS -->
+            <div class="section-header" id="cat-giftcards">
+                <h2 class="section-title">GIFT <span>CARDS</span></h2>
+                <a href="#" class="btn-ver-todos">Ver todos</a>
+            </div>
+
+            <!-- ... tus tarjetas de gift cards ... -->
+
+            <!-- Otros Servicios -->
+            <div class="section-header" id="cat-otros">
+                <h2 class="section-title">Otros <span>Servicios</span></h2>
+                <a href="#" class="btn-ver-todos">Ver todos</a>
+            </div>
 	
 	<!-- Menú Lateral Móvil -->
     <div class="mobile-drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
@@ -3612,26 +3636,14 @@ function filtrarSeccion(categoria, botonElemento) {
         document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
         botonElemento.classList.add('active');
 
-        // Mapeo directo por ID o palabra clave en el texto de la sección
-        let elementos = document.querySelectorAll('.section-header, h2, h3');
-        let objetivo = null;
+        // Selecciona la sección exacta mediante su ID
+        let objetivo = document.getElementById('cat-' + categoria);
 
-        elementos.forEach(header => {
-            let texto = header.innerText.toLowerCase();
-            
-            if (categoria === 'cines' && (texto.includes('cines') || texto.includes('series'))) objetivo = header;
-            if (categoria === 'iptv' && (texto.includes('tv') || texto.includes('vivo') || texto.includes('iptv'))) objetivo = header;
-            if (categoria === 'musica' && texto.includes('música')) objetivo = header;
-            if (categoria === 'ia' && (texto.includes('ia') || texto.includes('diseño'))) objetivo = header;
-            if (categoria === 'giftcards' && (texto.includes('gift') || texto.includes('card'))) objetivo = header;
-            if (categoria === 'otros' && texto.includes('otros')) objetivo = header;
-        });
-
-        // Si encuentra la sección, hace scroll suave hacia ella
+        // Si encuentra el elemento, hace scroll suave hacia él centrándolo en pantalla
         if (objetivo) {
-            objetivo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            objetivo.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else {
-            console.warn("No se encontró la sección para la categoría:", categoria);
+            console.warn("No se encontró la sección con ID: cat-" + categoria);
         }
     }
 
