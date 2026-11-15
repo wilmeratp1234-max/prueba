@@ -3612,22 +3612,26 @@ function filtrarSeccion(categoria, botonElemento) {
         document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
         botonElemento.classList.add('active');
 
-        // Mapeo de categorías con los títulos o secciones de tu tienda
-        let elementos = document.querySelectorAll('.section-header');
+        // Mapeo directo por ID o palabra clave en el texto de la sección
+        let elementos = document.querySelectorAll('.section-header, h2, h3');
         let objetivo = null;
 
         elementos.forEach(header => {
             let texto = header.innerText.toLowerCase();
-            if (categoria === 'cines' && texto.includes('cines')) objetivo = header;
-            if (categoria === 'iptv' && texto.includes('tv en vivo')) objetivo = header;
+            
+            if (categoria === 'cines' && (texto.includes('cines') || texto.includes('series'))) objetivo = header;
+            if (categoria === 'iptv' && (texto.includes('tv') || texto.includes('vivo') || texto.includes('iptv'))) objetivo = header;
             if (categoria === 'musica' && texto.includes('música')) objetivo = header;
-            if (categoria === 'ia' && texto.includes('ia &')) objetivo = header;
-            if (categoria === 'giftcards' && texto.includes('gift')) objetivo = header;
+            if (categoria === 'ia' && (texto.includes('ia') || texto.includes('diseño'))) objetivo = header;
+            if (categoria === 'giftcards' && (texto.includes('gift') || texto.includes('card'))) objetivo = header;
             if (categoria === 'otros' && texto.includes('otros')) objetivo = header;
         });
 
+        // Si encuentra la sección, hace scroll suave hacia ella
         if (objetivo) {
             objetivo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+            console.warn("No se encontró la sección para la categoría:", categoria);
         }
     }
 
