@@ -804,26 +804,26 @@
             </div>
 			
 			<!-- ==================== BARRA DE CATEGORÍAS RÁPIDAS ==================== -->
-<div class="category-pills-bar">
-    <button class="pill-btn active" onclick="irACategoria('cines', this)">
-        <span class="pill-icon">🎬</span> Cines y Series
-    </button>
-    <button class="pill-btn" onclick="irACategoria('iptv', this)">
-        <span class="pill-icon">📺</span> TV en Vivo & IPTV
-    </button>
-    <button class="pill-btn" onclick="irACategoria('musica', this)">
-        <span class="pill-icon">🎵</span> Música
-    </button>
-    <button class="pill-btn" onclick="irACategoria('ia', this)">
-        <span class="pill-icon">✨</span> IA & Diseño
-    </button>
-    <button class="pill-btn" onclick="irACategoria('giftcards', this)">
-        <span class="pill-icon">🎁</span> Gift Cards
-    </button>
-    <button class="pill-btn" onclick="irACategoria('otros', this)">
-        <span class="pill-icon">⚡</span> Otros Servicios
-    </button>
-</div>
+    <div class="category-pills-bar">
+        <button class="pill-btn active" onclick="filtrarSeccion('cines', this)">
+            <span class="pill-icon">🎬</span> Cines y Series
+        </button>
+        <button class="pill-btn" onclick="filtrarSeccion('iptv', this)">
+            <span class="pill-icon">📺</span> TV en Vivo & IPTV
+        </button>
+        <button class="pill-btn" onclick="filtrarSeccion('musica', this)">
+            <span class="pill-icon">🎵</span> Música
+        </button>
+        <button class="pill-btn" onclick="filtrarSeccion('ia', this)">
+            <span class="pill-icon">✨</span> IA & Diseño
+        </button>
+        <button class="pill-btn" onclick="filtrarSeccion('giftcards', this)">
+            <span class="pill-icon">🎁</span> Gift Cards
+        </button>
+        <button class="pill-btn" onclick="filtrarSeccion('otros', this)">
+            <span class="pill-icon">⚡</span> Otros Servicios
+        </button>
+    </div>
 	
 	<!-- Menú Lateral Móvil -->
     <div class="mobile-drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
@@ -3607,40 +3607,29 @@ document.addEventListener("DOMContentLoaded", () => {
   cargarResenas();
 });
 
-<script>
-function irACategoria(categoria, boton) {
-    // 1. Marcar botón activo
-    document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
-    if (boton) boton.classList.add('active');
+function filtrarSeccion(categoria, botonElemento) {
+        // Remueve la clase active de todos los botones y la coloca en el presionado
+        document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
+        botonElemento.classList.add('active');
 
-    // 2. Palabras clave para detectar cada sección real
-    const palabrasClave = {
-        'cines': 'cines',
-        'iptv': 'iptv',
-        'musica': 'música',
-        'ia': 'diseño',
-        'giftcards': 'gift',
-        'otros': 'otros'
-    };
+        // Mapeo de categorías con los títulos o secciones de tu tienda
+        let elementos = document.querySelectorAll('.section-header');
+        let objetivo = null;
 
-    const clave = palabrasClave[categoria];
-    const encabezados = Array.from(document.querySelectorAll('.section-header, h2.section-title'));
-    
-    // Filtramos los que coincidan con la palabra clave y estén visibles en pantalla
-    const coincidencias = encabezados.filter(el => {
-        const texto = el.innerText.toLowerCase();
-        return texto.includes(clave) && el.offsetParent !== null;
-    });
+        elementos.forEach(header => {
+            let texto = header.innerText.toLowerCase();
+            if (categoria === 'cines' && texto.includes('cines')) objetivo = header;
+            if (categoria === 'iptv' && texto.includes('tv en vivo')) objetivo = header;
+            if (categoria === 'musica' && texto.includes('música')) objetivo = header;
+            if (categoria === 'ia' && texto.includes('ia &')) objetivo = header;
+            if (categoria === 'giftcards' && texto.includes('gift')) objetivo = header;
+            if (categoria === 'otros' && texto.includes('otros')) objetivo = header;
+        });
 
-    // Si hay títulos duplicados arriba como en la captura, tomamos el último (el que tiene las tarjetas debajo)
-    const destino = coincidencias.length > 0 ? coincidencias[coincidencias.length - 1] : null;
-
-    if (destino) {
-        const posicion = destino.getBoundingClientRect().top + window.pageYOffset - 90;
-        window.scrollTo({ top: posicion, behavior: 'smooth' });
+        if (objetivo) {
+            objetivo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
     }
-}
-</script>
 
         let currentSlide = 0;
         function goToSlide(index) {
