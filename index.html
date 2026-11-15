@@ -803,51 +803,27 @@
                 </div>
             </div>
 			
-			<!-- Cines y Series -->
-            <div class="section-header" id="cat-cines">
-                <h2 class="section-title">Cines y <span>Series</span></h2>
-                <a href="#" class="btn-ver-todos">Ver todos</a>
-            </div>
-
-            <!-- ... tus tarjetas de cines ... -->
-
-            <!-- TV en Vivo & IPTV -->
-            <div class="section-header" id="cat-iptv">
-                <h2 class="section-title">TV en Vivo & <span>IPTV</span></h2>
-                <a href="#" class="btn-ver-todos">Ver todos</a>
-            </div>
-
-            <!-- ... tus tarjetas de iptv ... -->
-
-            <!-- Música sin Anuncios -->
-            <div class="section-header" id="cat-musica">
-                <h2 class="section-title">Música <span>sin Anuncios</span></h2>
-                <a href="#" class="btn-ver-todos">Ver todos</a>
-            </div>
-
-            <!-- ... tus tarjetas de musica ... -->
-
-            <!-- IA & Diseño -->
-            <div class="section-header" id="cat-ia">
-                <h2 class="section-title">IA & <span>Diseño</span></h2>
-                <a href="#" class="btn-ver-todos">Ver todos</a>
-            </div>
-
-            <!-- ... tus tarjetas de IA ... -->
-
-            <!-- GIFT CARDS -->
-            <div class="section-header" id="cat-giftcards">
-                <h2 class="section-title">GIFT <span>CARDS</span></h2>
-                <a href="#" class="btn-ver-todos">Ver todos</a>
-            </div>
-
-            <!-- ... tus tarjetas de gift cards ... -->
-
-            <!-- Otros Servicios -->
-            <div class="section-header" id="cat-otros">
-                <h2 class="section-title">Otros <span>Servicios</span></h2>
-                <a href="#" class="btn-ver-todos">Ver todos</a>
-            </div>
+			<!-- ==================== BARRA DE CATEGORÍAS RÁPIDAS ==================== -->
+<div class="category-pills-bar">
+    <button class="pill-btn active" onclick="irACategoria('cines', this)">
+        <span class="pill-icon">🎬</span> Cines y Series
+    </button>
+    <button class="pill-btn" onclick="irACategoria('iptv', this)">
+        <span class="pill-icon">📺</span> TV en Vivo & IPTV
+    </button>
+    <button class="pill-btn" onclick="irACategoria('musica', this)">
+        <span class="pill-icon">🎵</span> Música
+    </button>
+    <button class="pill-btn" onclick="irACategoria('ia', this)">
+        <span class="pill-icon">✨</span> IA & Diseño
+    </button>
+    <button class="pill-btn" onclick="irACategoria('giftcards', this)">
+        <span class="pill-icon">🎁</span> Gift Cards
+    </button>
+    <button class="pill-btn" onclick="irACategoria('otros', this)">
+        <span class="pill-icon">⚡</span> Otros Servicios
+    </button>
+</div>
 	
 	<!-- Menú Lateral Móvil -->
     <div class="mobile-drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
@@ -3631,21 +3607,40 @@ document.addEventListener("DOMContentLoaded", () => {
   cargarResenas();
 });
 
-function filtrarSeccion(categoria, botonElemento) {
-        // Remueve la clase active de todos los botones y la coloca en el presionado
-        document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
-        botonElemento.classList.add('active');
+<script>
+function irACategoria(categoria, boton) {
+    // 1. Marcar botón activo
+    document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
+    if (boton) boton.classList.add('active');
 
-        // Selecciona la sección exacta mediante su ID
-        let objetivo = document.getElementById('cat-' + categoria);
+    // 2. Palabras clave para detectar cada sección real
+    const palabrasClave = {
+        'cines': 'cines',
+        'iptv': 'iptv',
+        'musica': 'música',
+        'ia': 'diseño',
+        'giftcards': 'gift',
+        'otros': 'otros'
+    };
 
-        // Si encuentra el elemento, hace scroll suave hacia él centrándolo en pantalla
-        if (objetivo) {
-            objetivo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-            console.warn("No se encontró la sección con ID: cat-" + categoria);
-        }
+    const clave = palabrasClave[categoria];
+    const encabezados = Array.from(document.querySelectorAll('.section-header, h2.section-title'));
+    
+    // Filtramos los que coincidan con la palabra clave y estén visibles en pantalla
+    const coincidencias = encabezados.filter(el => {
+        const texto = el.innerText.toLowerCase();
+        return texto.includes(clave) && el.offsetParent !== null;
+    });
+
+    // Si hay títulos duplicados arriba como en la captura, tomamos el último (el que tiene las tarjetas debajo)
+    const destino = coincidencias.length > 0 ? coincidencias[coincidencias.length - 1] : null;
+
+    if (destino) {
+        const posicion = destino.getBoundingClientRect().top + window.pageYOffset - 90;
+        window.scrollTo({ top: posicion, behavior: 'smooth' });
     }
+}
+</script>
 
         let currentSlide = 0;
         function goToSlide(index) {
