@@ -98,6 +98,62 @@
             cursor: pointer !important;
         }
 		
+		/* ==================== ESTILOS DE LA BARRA DE CATEGORÍAS ==================== */
+    .category-pills-bar {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        padding: 5px 0 20px 0;
+        margin-bottom: 20px;
+        scrollbar-width: none; /* Oculta barra en Firefox */
+    }
+    .category-pills-bar::-webkit-scrollbar {
+        display: none; /* Oculta barra en Chrome/Safari */
+    }
+    .pill-btn {
+        background: #0b0f19;
+        border: 1px solid #1f2937;
+        color: #9ca3af;
+        padding: 10px 18px;
+        border-radius: 30px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        white-space: nowrap;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        user-select: none;
+    }
+    .pill-btn:hover {
+        border-color: #00FFEF;
+        color: #ffffff;
+        background: #0e1320;
+    }
+    .pill-btn.active {
+        background: #0e1320;
+        border: 1.5px solid #00FFEF;
+        color: #00FFEF;
+        box-shadow: 0 0 15px rgba(0, 255, 239, 0.25);
+    }
+    .pill-icon {
+        font-size: 1rem;
+    }
+	
+	.category-pills-bar {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto; /* Permite deslizar con el dedo de forma fluida horizontalmente */
+        padding: 5px 0 20px 0;
+        margin-bottom: 20px;
+        scrollbar-width: none; /* Oculta la barra scroll fea en Firefox */
+    }
+    .category-pills-bar::-webkit-scrollbar {
+        display: none; /* Oculta la barra scroll fea en Chrome y Safari */
+    }
+		
         /* ==================== NAVEGACIÓN TRANSLÚCIDA Y MINIMALISTA ==================== */
         header.main-header { 
             position: sticky; 
@@ -746,6 +802,39 @@
                     <span class="dot" onclick="goToSlide(2)"></span>
                 </div>
             </div>
+			
+			<!-- ==================== BARRA DE CATEGORÍAS RÁPIDAS ==================== -->
+    <div class="category-pills-bar">
+        <button class="pill-btn active" onclick="filtrarSeccion('cines', this)">
+            <span class="pill-icon">🎬</span> Cines y Series
+        </button>
+        <button class="pill-btn" onclick="filtrarSeccion('iptv', this)">
+            <span class="pill-icon">📺</span> TV en Vivo & IPTV
+        </button>
+        <button class="pill-btn" onclick="filtrarSeccion('musica', this)">
+            <span class="pill-icon">🎵</span> Música
+        </button>
+        <button class="pill-btn" onclick="filtrarSeccion('ia', this)">
+            <span class="pill-icon">✨</span> IA & Diseño
+        </button>
+        <button class="pill-btn" onclick="filtrarSeccion('giftcards', this)">
+            <span class="pill-icon">🎁</span> Gift Cards
+        </button>
+        <button class="pill-btn" onclick="filtrarSeccion('otros', this)">
+            <span class="pill-icon">⚡</span> Otros Servicios
+        </button>
+    </div>
+	
+	<!-- Agrega esto dentro de tu menú móvil (en el mobile-drawer) -->
+    <li><a onclick="filtrarSeccion('cines', this); toggleDrawer();">🎬 Cines y Series</a></li>
+    <li><a onclick="filtrarSeccion('iptv', this); toggleDrawer();">📺 TV en Vivo & IPTV</a></li>
+    <li><a onclick="filtrarSeccion('musica', this); toggleDrawer();">🎵 Música</a></li>
+    <li><a onclick="filtrarSeccion('ia', this); toggleDrawer();">✨ IA & Diseño</a></li>
+    <li><a onclick="filtrarSeccion('giftcards', this); toggleDrawer();">🎁 Gift Cards</a></li>
+    <li><a onclick="filtrarSeccion('otros', this); toggleDrawer();">⚡ Otros Servicios</a></li>
+```[cite: 1]
+
+Con esto, la barra funcionará de forma táctil debajo de los banners en pantallas pequeñas y también estará integrada en el menú desplegable del teléfono[cite: 1].
 
             <div class="section-header">
                 <h2 class="section-title">Cines y <span>Series</span></h2>
@@ -3505,6 +3594,30 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   cargarResenas();
 });
+
+function filtrarSeccion(categoria, botonElemento) {
+        // Remueve la clase active de todos los botones y la coloca en el presionado
+        document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
+        botonElemento.classList.add('active');
+
+        // Mapeo de categorías con los títulos o secciones de tu tienda
+        let elementos = document.querySelectorAll('.section-header');
+        let objetivo = null;
+
+        elementos.forEach(header => {
+            let texto = header.innerText.toLowerCase();
+            if (categoria === 'cines' && texto.includes('cines')) objetivo = header;
+            if (categoria === 'iptv' && texto.includes('tv en vivo')) objetivo = header;
+            if (categoria === 'musica' && texto.includes('música')) objetivo = header;
+            if (categoria === 'ia' && texto.includes('ia &')) objetivo = header;
+            if (categoria === 'giftcards' && texto.includes('gift')) objetivo = header;
+            if (categoria === 'otros' && texto.includes('otros')) objetivo = header;
+        });
+
+        if (objetivo) {
+            objetivo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
 
         let currentSlide = 0;
         function goToSlide(index) {
