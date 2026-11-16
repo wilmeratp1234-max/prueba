@@ -81,90 +81,130 @@
         }
 		
 		.promo-card-gold {
-        background: linear-gradient(145deg, #0b0f19, #05080e);
-        border: 2px solid #ffcc00;
-        border-radius: 20px;
-        padding: 30px 25px;
+        background: radial-gradient(circle at center, #111827 0%, #060910 100%);
+        border: 1.5px solid #ffcc00;
+        border-radius: 24px;
+        padding: 35px 25px;
         text-align: center;
-        max-width: 400px;
+        max-width: 420px;
         margin: 30px auto;
-        box-shadow: 0 0 25px rgba(255, 204, 0, 0.25), inset 0 0 15px rgba(255, 204, 0, 0.08);
-        position: relative;
+        box-shadow: 0 0 30px rgba(255, 204, 0, 0.2), inset 0 0 20px rgba(255, 204, 0, 0.05);
         font-family: inherit;
+        box-sizing: border-box;
+    }
+
+    /* Contenedor de logotipos superiores */
+    .promo-logos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        background: #080b13;
+        border: 1px solid #1f2937;
+        padding: 10px 12px;
+        border-radius: 16px;
+        margin-bottom: 25px;
+        flex-wrap: wrap;
+    }
+
+    .p-logo {
+        font-size: 0.65rem;
+        font-weight: 800;
+        padding: 4px 8px;
+        border-radius: 6px;
+        background: #111827;
+        color: #9ca3af;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+
+    .p-logo.netflix {
+        color: #e50914;
+        border: 1px solid rgba(229, 9, 20, 0.3);
     }
 
     .promo-badge {
-        background: rgba(255, 204, 0, 0.12);
-        border: 1px solid rgba(255, 204, 0, 0.4);
+        background: rgba(255, 204, 0, 0.1);
+        border: 1px solid rgba(255, 204, 0, 0.35);
         color: #ffcc00;
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         font-weight: 700;
-        padding: 6px 14px;
+        padding: 6px 16px;
         border-radius: 20px;
         display: inline-block;
-        margin-bottom: 18px;
+        margin-bottom: 20px;
         letter-spacing: 1.5px;
     }
 
     .promo-title {
-        color: #ffffff;
-        font-size: 1.85rem;
+        font-size: 2.2rem;
         font-weight: 900;
-        line-height: 1.2;
-        margin-bottom: 12px;
+        font-style: italic;
+        line-height: 1.1;
+        margin-bottom: 20px;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
     }
 
-    .promo-subtitle {
-        color: #e5e7eb;
-        font-size: 1.1rem;
-        margin-bottom: 25px;
+    .title-white {
+        color: #ffffff;
+        display: block;
     }
 
-    .promo-subtitle strong {
+    .title-gold {
         color: #ffcc00;
+        display: block;
+        margin-top: 4px;
+    }
+
+    /* Caja interna de descuento */
+    .promo-discount-box {
+        background: #0b0f19;
+        border: 1px solid #ffcc00;
+        border-radius: 40px;
+        padding: 12px 20px;
+        margin-bottom: 25px;
+        box-shadow: 0 0 15px rgba(255, 204, 0, 0.15);
+    }
+
+    .disc-text {
+        color: #e5e7eb;
+        font-size: 0.95rem;
+        font-style: italic;
+    }
+
+    .disc-highlight {
+        color: #ffcc00;
+        font-size: 0.95rem;
         font-weight: 800;
+        font-style: italic;
     }
 
     .promo-btn {
-        background: linear-gradient(135deg, #ffcc00, #ff9900);
+        background: linear-gradient(135deg, #ffdd33, #f59e0b);
         color: #0b0f19;
         border: none;
         width: 100%;
-        padding: 14px 20px;
-        border-radius: 12px;
-        font-size: 0.95rem;
+        padding: 15px 20px;
+        border-radius: 14px;
+        font-size: 0.9rem;
         font-weight: 800;
         cursor: pointer;
         text-decoration: none;
         display: inline-block;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(255, 204, 0, 0.4);
+        box-shadow: 0 4px 20px rgba(255, 204, 0, 0.4);
         text-transform: uppercase;
         letter-spacing: 0.5px;
+        box-sizing: border-box;
     }
 
     .promo-btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 22px rgba(255, 204, 0, 0.6);
-        background: linear-gradient(135deg, #ffdd33, #ffaa00);
-    }
-	
-	/* Opcional: Si quieres que flote fija a un lado al hacer scroll */
-    .tarjeta-flotante {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 9999;
-        max-width: 320px;
-        box-shadow: 0 10px 35px rgba(0,0,0,0.8), 0 0 25px rgba(255, 204, 0, 0.3);
+        box-shadow: 0 6px 25px rgba(255, 204, 0, 0.6);
+        background: linear-gradient(135deg, #ffee55, #fbbf24);
     }
 		
-		<!-- ==================== EFECTO DE COPOS DE NIEVE / PARTÍCULAS DE FONDO ==================== -->
-<div id="snow-container"></div>
 
-<style>
     #snow-container {
         position: fixed;
         top: 0;
@@ -801,6 +841,9 @@
 
         <nav class="nav-bar">
             <button class="mobile-menu-btn" onclick="toggleDrawer()">☰</button>
+			
+					<!-- ==================== EFECTO DE COPOS DE NIEVE / PARTÍCULAS DE FONDO ==================== -->
+<div id="snow-container"></div>
 
             <!-- Logo STREAMIX -->
             <div class="logo-nav" onclick="mostrarVista('servicios')">
@@ -909,12 +952,6 @@
         <span id="texto-estado-tienda">Verificando horario...</span>
     </div>
 </div>
-
-<!-- ==================== TARJETA DE PROMOCIÓN DORADA ==================== -->
-<div class="promo-card-gold">
-    <div class="promo-badge">✦ BENEFICIO ESPECIAL ✦</div>
-    <h3 class="promo-title">RENUEVA 2 MESES</h3>
-    <p class="promo-subtitle">y recibe <strong>10% de descuento</strong></p>
     
     <!-- Botón con enlace directo a WhatsApp -->
     <a href="https://wa.me/584247245026?text=Hola,%20quiero%20renovar%20por%202%20meses%20con%20el%2010%25%20de%20descuento" target="_blank" class="promo-btn">
@@ -936,6 +973,37 @@
                     <span class="dot" onclick="goToSlide(2)"></span>
                 </div>
             </div>
+			
+			<!-- ==================== TARJETA DORADA EXACTA ==================== -->
+<div class="promo-card-gold">
+    <!-- Fila de logotipos superiores -->
+    <div class="promo-logos">
+        <span class="p-logo netflix">NETFLIX</span>
+        <span class="p-logo disney">Disney+</span>
+        <span class="p-logo max">max</span>
+        <span class="p-logo prime">prime video</span>
+        <span class="p-logo tv">tv+</span>
+    </div>
+
+    <!-- Insignia -->
+    <div class="promo-badge">✦ BENEFICIO ESPECIAL ✦</div>
+
+    <!-- Título Principal -->
+    <h3 class="promo-title">
+        <span class="title-white">RENUEVA 2</span>
+        <span class="title-gold">MESES</span>
+    </h3>
+
+    <!-- Caja interna de beneficio -->
+    <div class="promo-discount-box">
+        <span class="disc-text">y recibe</span> <strong class="disc-highlight">10% de descuento</strong>
+    </div>
+
+    <!-- Botón de WhatsApp -->
+    <a href="https://wa.me/584247245026?text=Hola,%20quiero%20renovar%20por%202%20meses%20con%20el%2010%25%20de%20descuento" target="_blank" class="promo-btn">
+        RENOVAR CON DESCUENTO
+    </a>
+</div>
 			
 			<!-- ==================== BARRA DE CATEGORÍAS RÁPIDAS ==================== -->
     <div class="category-pills-bar">
