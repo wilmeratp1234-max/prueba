@@ -123,39 +123,41 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(4, 6, 11, 0.9);
+    background: rgba(4, 6, 11, 0.92);
     backdrop-filter: blur(8px);
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 9999999;
+    z-index: 99999999 !important; /* Por encima del header y de WhatsApp */
     padding: 15px;
+    box-sizing: border-box;
 }
 
 .terms-modal-card {
     background: #0b0f19;
     border: 1.5px solid #00FFEF;
     width: 100%;
-    max-width: 540px;
-    border-radius: 20px;
-    padding: 25px;
+    max-width: 500px;
+    border-radius: 18px;
+    padding: 20px;
     box-shadow: 0 20px 50px rgba(0, 255, 239, 0.25);
     display: flex;
     flex-direction: column;
-    max-height: 85vh;
+    max-height: 80vh;
+    position: relative;
 }
 
 .terms-modal-header {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
+    gap: 8px;
+    margin-bottom: 12px;
     border-bottom: 1px solid #1f2937;
-    padding-bottom: 12px;
+    padding-bottom: 10px;
 }
 
 .terms-modal-title {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 900;
     color: #ffffff;
     text-transform: uppercase;
@@ -167,18 +169,18 @@
 
 .terms-modal-body {
     overflow-y: auto;
-    padding-right: 10px;
+    padding-right: 8px;
     color: #d1d5db;
-    font-size: 0.88rem;
-    line-height: 1.55;
-    margin-bottom: 20px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
 }
 
 .terms-modal-body h4 {
     color: #00FFEF;
-    margin-top: 15px;
-    margin-bottom: 5px;
-    font-size: 0.95rem;
+    margin-top: 12px;
+    margin-bottom: 4px;
+    font-size: 0.9rem;
 }
 
 .terms-modal-body p, .terms-modal-body ul {
@@ -186,12 +188,11 @@
 }
 
 .terms-modal-body ul {
-    padding-left: 18px;
+    padding-left: 16px;
 }
 
-/* Barra de desplazamiento personalizada para los términos */
 .terms-modal-body::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
 }
 .terms-modal-body::-webkit-scrollbar-track {
     background: #070a12;
@@ -207,10 +208,10 @@
     background: #00FFEF;
     color: #050811;
     border: none;
-    padding: 15px;
+    padding: 13px;
     border-radius: 12px;
     font-weight: 900;
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.2s;
@@ -219,7 +220,31 @@
 
 .btn-accept-terms:hover {
     background: #00e6d6;
-    transform: translateY(-1px);
+}
+
+/* ==================== AJUSTE COMPACTO PARA CELULARES ==================== */
+@media (max-width: 768px) {
+    .terms-modal-card {
+        max-width: 92%;
+        max-height: 75vh;
+        padding: 16px;
+    }
+    .terms-modal-title {
+        font-size: 1rem;
+    }
+    .terms-modal-body {
+        font-size: 0.78rem;
+        line-height: 1.42;
+        margin-bottom: 12px;
+    }
+    .terms-modal-body h4 {
+        font-size: 0.82rem;
+        margin-top: 10px;
+    }
+    .btn-accept-terms {
+        padding: 11px;
+        font-size: 0.8rem;
+    }
 }
 
 /* ==================== CHECKBOX EN RESUMEN DE PEDIDO ==================== */
@@ -228,7 +253,7 @@
     border: 1px solid #1f2937;
     border-radius: 12px;
     padding: 12px 14px;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -237,7 +262,7 @@
 
 .checkout-terms-box.error-terms {
     border-color: #ff4d4d;
-    box-shadow: 0 0 10px rgba(255, 77, 77, 0.2);
+    box-shadow: 0 0 10px rgba(255, 77, 77, 0.25);
 }
 
 .checkout-terms-box input[type="checkbox"] {
@@ -2849,7 +2874,7 @@ const CONTROL_DE_STOCK = {
     "canva pro edu-vip": 20,
     "capcut-vip": 5
 };
-        function abrirProducto(nombre, tag, imagen) {
+       function abrirProducto(nombre, tag, imagen) {
             productoNombreActual = nombre;
             document.getElementById('prod-title').innerText = nombre;
             document.getElementById('prod-bread-title').innerText = nombre;
@@ -2859,6 +2884,11 @@ const CONTROL_DE_STOCK = {
 
             limpiarErrorInput();
             document.getElementById('input-field-id').value = '';
+
+            // Resetea y desmarca la casilla de términos al abrir un producto
+            const checkTerm = document.getElementById('check-terminos-pedido');
+            if (checkTerm) checkTerm.checked = false;
+            limpiarErrorTerminos();
 
             const claveNorm = nombre.toLowerCase().trim();
             productoActualData = baseDeDatosPrecios[claveNorm] || baseDeDatosPrecios["netflix"];
@@ -2871,6 +2901,45 @@ const CONTROL_DE_STOCK = {
 
             estadoCheckoutStep = 1;
             document.getElementById('step2-title-head').innerHTML = 'SELECCIONA TU <span>PLAN / PAQUETE</span>';
+            document.getElementById('step2-packages-wrapper').style.display = 'block';
+            document.getElementById('step2-payment-wrapper').style.display = 'none';
+            document.getElementById('btn-main-action').innerText = 'VERIFICAR PEDIDO >';
+
+            tabActivaIndex = 0;
+            document.getElementById('tab-btn-1').classList.add('active');
+            document.getElementById('tab-btn-2').classList.remove('active');
+
+            renderizarPaquetes();
+            mostrarVista('producto');
+        }
+
+        function abrirProductoDistri(nombre, tag, imagen) {
+            productoNombreActual = nombre + " (VIP Mayorista)";
+            document.getElementById('prod-title').innerText = nombre + " VIP";
+            document.getElementById('prod-bread-title').innerText = nombre + " Mayorista";
+            document.getElementById('prod-tag').innerText = tag;
+            document.getElementById('summary-prod-name').innerText = nombre + " VIP";
+            if(imagen) document.getElementById('summary-prod-img').src = imagen;
+
+            limpiarErrorInput();
+            document.getElementById('input-field-id').value = '';
+
+            // Resetea y desmarca la casilla de términos al abrir un producto mayorista
+            const checkTerm = document.getElementById('check-terminos-pedido');
+            if (checkTerm) checkTerm.checked = false;
+            limpiarErrorTerminos();
+
+            const claveNorm = nombre.toLowerCase().trim();
+            productoActualData = baseDeDatosPreciosDistri[claveNorm] || baseDeDatosPreciosDistri["netflix"];
+
+            document.getElementById('label-field-text').innerText = productoActualData.idLabel;
+            document.getElementById('input-field-id').placeholder = productoActualData.idPlaceholder;
+
+            document.getElementById('tab-btn-1').innerText = productoActualData.tab1Nombre;
+            document.getElementById('tab-btn-2').innerText = productoActualData.tab2Nombre;
+
+            estadoCheckoutStep = 1;
+            document.getElementById('step2-title-head').innerHTML = 'SELECCIONA TU <span>PLAN / PAQUETE MAYORISTA</span>';
             document.getElementById('step2-packages-wrapper').style.display = 'block';
             document.getElementById('step2-payment-wrapper').style.display = 'none';
             document.getElementById('btn-main-action').innerText = 'VERIFICAR PEDIDO >';
@@ -3098,17 +3167,21 @@ function renderizarPaquetes() {
         }
 
         function validarYProcesarPedido() {
+    // 1. Validar que escribió el nombre/correo/ID
     if (!validarCampoObligatorio()) return;
 
-    // Validar que la casilla de términos y condiciones esté marcada
+    // 2. Validar que marcó "Acepto los términos y condiciones"
     const checkTerminos = document.getElementById('check-terminos-pedido');
-    if (checkTerminos && !checkTerminos.checked) {
-        document.getElementById('box-check-terminos').classList.add('error-terms');
-        document.getElementById('error-terminos-msg').style.display = 'block';
-        checkTerminos.focus();
+    if (!checkTerminos || !checkTerminos.checked) {
+        const box = document.getElementById('box-check-terminos');
+        const msg = document.getElementById('error-terminos-msg');
+        if (box) box.classList.add('error-terms');
+        if (msg) msg.style.display = 'block';
+        if (checkTerminos) checkTerminos.focus();
         return;
     }
 
+    // 3. Avanzar al método de pago o pasarela
     if (estadoCheckoutStep === 1) {
         estadoCheckoutStep = 2;
         document.getElementById('step2-title-head').innerHTML = 'SELECCIONA TU <span>MÉTODO DE PAGO</span>';
