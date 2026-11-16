@@ -223,7 +223,8 @@
         background: linear-gradient(135deg, #ffee55, #fbbf24);
     }
 	
-	#snow-container {
+	/* Estilos para asegurar que la nieve cubra toda la pantalla sin bloquear clics */
+    #snow-container {
         position: fixed !important;
         top: 0 !important;
         left: 0 !important;
@@ -990,7 +991,7 @@
         <span class="p-logo disney">Disney+</span>
         <span class="p-logo max">max</span>
         <span class="p-logo prime">prime video</span>
-        <span class="p-logo tv">tv+</span>
+        <span class="p-logo crunchy">crunchyroll</span>
     </div>
 
     <!-- Insignia -->
@@ -3842,22 +3843,72 @@ function filtrarSeccion(categoria, botonElemento) {
     }
 	
 	document.addEventListener("DOMContentLoaded", function() {
-        const snowContainer = document.getElementById('snow-container');
-        const numSnowflakes = 40; // Cantidad de copos en pantalla
+    // 1. VERIFICACIÓN DE HORARIO CON TUS ID ORIGINALES
+    function verificarHorarioTienda() {
+        const container = document.getElementById('estado-tienda-container');
+        const textEl = document.getElementById('texto-estado-tienda');
+        if (!container || !textEl) return;
 
+        try {
+            const options = { timeZone: 'America/Caracas', hour: 'numeric', minute: 'numeric', hour12: false };
+            const formatter = new Intl.DateTimeFormat('en-US', options);
+            const parts = formatter.formatToParts(new Date());
+            
+            let hora = 0;
+            let minuto = 0;
+            for (let p of parts) {
+                if (p.type === 'hour') hora = parseInt(p.value, 10);
+                if (p.type === 'minute') minuto = parseInt(p.value, 10);
+            }
+
+            const horaDecimal = hora + (minuto / 60);
+            const abierto = horaDecimal >= 9 && horaDecimal < 22; // De 9:00 AM a 10:00 PM
+
+            if (abierto) {
+                container.className = "badge-estado-tienda abierto";
+                textEl.innerText = "Abierto ahora: 9:00 AM - 10:00 PM";
+            } else {
+                container.className = "badge-estado-tienda cerrado";
+                textEl.innerText = "Cerrado (Abre mañana a las 9:00 AM)";
+            }
+        } catch (e) {
+            // Fallback por seguridad
+            container.className = "badge-estado-tienda abierto";
+            textEl.innerText = "Abierto ahora: 9:00 AM - 10:00 PM";
+        }
+    }
+    verificarHorarioTienda();
+
+    // 2. EFECTO DE COPOS DE NIEVE GLOBAL
+    const snowContainer = document.getElementById('snow-container');
+    if (snowContainer) {
+        const numSnowflakes = 40;
         for (let i = 0; i < numSnowflakes; i++) {
             createSnowflake();
         }
 
-       document.addEventListener("DOMContentLoaded", function() {
-        const snowContainer = document.getElementById('snow-container');
-        if (!snowContainer) return;
-        
-        const numSnowflakes = 45; // Cantidad de copos en toda la página
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerHTML = Math.random() > 0.4 ? '❄' : '•';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            
+            const duration = Math.random() * 7 + 5;
+            snowflake.style.animationDuration = duration + 's';
+            snowflake.style.animationDelay = (Math.random() * 10) + 's';
+            
+            const size = Math.random() * 0.8 + 0.4;
+            snowflake.style.fontSize = size + 'rem';
+            
+            snowContainer.appendChild(snowflake);
 
-        for (let i = 0; i < numSnowflakes; i++) {
-            createSnowflake();
+            snowflake.addEventListener('animationiteration', () => {
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.animationDuration = (Math.random() * 7 + 5) + 's';
+            });
         }
+    }
+});
 		
 
         let currentSlide = 0;
