@@ -115,6 +115,25 @@
         letter-spacing: 0.5px;
         text-transform: uppercase;
     }
+	
+	/* ==================== GORRO DE NAVIDAD EN EL LOGO ==================== */
+.logo-s-wrapper {
+    position: relative;
+    display: inline-block;
+    color: #ffffff !important; /* Mantiene la 'S' blanca */
+}
+
+.santa-hat-svg {
+    position: absolute;
+    top: -13px;      /* Ajusta la altura sobre la S */
+    left: -9px;      /* Ajusta la posición horizontal */
+    width: 27px;     /* Tamaño del gorro */
+    height: auto;
+    transform: rotate(-18deg); /* Inclinación natural hacia la izquierda */
+    pointer-events: none;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+    z-index: 2;
+}
 
     /* Colores oficiales de cada plataforma */
     .p-logo.netflix {
@@ -864,6 +883,24 @@
             <div class="logo-nav" onclick="mostrarVista('servicios')">
                 STREA<span>MIX</span>
             </div>
+			
+			<!-- Logo STREAMIX con Gorro de Navidad -->
+<div class="logo-nav" onclick="mostrarVista('servicios')">
+    <span class="logo-s-wrapper">
+        S
+        <!-- SVG Gorro de Navidad -->
+        <svg class="santa-hat-svg" viewBox="0 0 64 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Cuerpo rojo del gorro -->
+            <path d="M12 36C12 20 24 8 40 8C48 8 54 13 56 18C52 16 46 17 43 21C41 25 43 32 45 36H12Z" fill="#E61919"/>
+            <!-- Sombra sutil del gorro -->
+            <path d="M36 8C45 8 53 13 56 18C52 16 46 17 43 21C42 23 42 26 43 29C39 22 36 14 36 8Z" fill="#B81010"/>
+            <!-- Pompón blanco -->
+            <circle cx="56" cy="19" r="6.5" fill="#FFFFFF"/>
+            <!-- Borde de felpa blanco -->
+            <rect x="8" y="33" width="40" height="10" rx="5" fill="#FFFFFF"/>
+        </svg>
+    </span>TREA<span>MIX</span>
+</div>
 
             <!-- Menú Principal Desktop -->
             <ul class="nav-links">
