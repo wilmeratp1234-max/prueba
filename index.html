@@ -3858,33 +3858,7 @@ function filtrarSeccion(categoria, botonElemento) {
         for (let i = 0; i < numSnowflakes; i++) {
             createSnowflake();
         }
-
-        function createSnowflake() {
-            const snowflake = document.createElement('div');
-            snowflake.classList.add('snowflake');
-            snowflake.innerHTML = Math.random() > 0.4 ? '❄' : '•';
-            
-            // Cubre todo el ancho de la ventana
-            snowflake.style.left = Math.random() * 100 + 'vw';
-            
-            // Duración y retraso aleatorios para fluidez
-            const duration = Math.random() * 7 + 5;
-            snowflake.style.animationDuration = duration + 's';
-            snowflake.style.animationDelay = (Math.random() * 10) + 's';
-            
-            // Tamaño de los copos
-            const size = Math.random() * 0.8 + 0.4;
-            snowflake.style.fontSize = size + 'rem';
-            
-            snowContainer.appendChild(snowflake);
-
-            // Reinicia la animación al llegar abajo
-            snowflake.addEventListener('animationiteration', () => {
-                snowflake.style.left = Math.random() * 100 + 'vw';
-                snowflake.style.animationDuration = (Math.random() * 7 + 5) + 's';
-            });
-        }
-    });
+		
 
         let currentSlide = 0;
         function goToSlide(index) {
