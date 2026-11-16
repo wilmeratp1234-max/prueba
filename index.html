@@ -79,6 +79,127 @@
             background-color: #ff4d4d; 
             box-shadow: 0 0 10px #ff4d4d; 
         }
+		
+		.promo-card-gold {
+        background: linear-gradient(145deg, #0b0f19, #05080e);
+        border: 2px solid #ffcc00;
+        border-radius: 20px;
+        padding: 30px 25px;
+        text-align: center;
+        max-width: 400px;
+        margin: 30px auto;
+        box-shadow: 0 0 25px rgba(255, 204, 0, 0.25), inset 0 0 15px rgba(255, 204, 0, 0.08);
+        position: relative;
+        font-family: inherit;
+    }
+
+    .promo-badge {
+        background: rgba(255, 204, 0, 0.12);
+        border: 1px solid rgba(255, 204, 0, 0.4);
+        color: #ffcc00;
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 6px 14px;
+        border-radius: 20px;
+        display: inline-block;
+        margin-bottom: 18px;
+        letter-spacing: 1.5px;
+    }
+
+    .promo-title {
+        color: #ffffff;
+        font-size: 1.85rem;
+        font-weight: 900;
+        line-height: 1.2;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .promo-subtitle {
+        color: #e5e7eb;
+        font-size: 1.1rem;
+        margin-bottom: 25px;
+    }
+
+    .promo-subtitle strong {
+        color: #ffcc00;
+        font-weight: 800;
+    }
+
+    .promo-btn {
+        background: linear-gradient(135deg, #ffcc00, #ff9900);
+        color: #0b0f19;
+        border: none;
+        width: 100%;
+        padding: 14px 20px;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        font-weight: 800;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 204, 0, 0.4);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .promo-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 22px rgba(255, 204, 0, 0.6);
+        background: linear-gradient(135deg, #ffdd33, #ffaa00);
+    }
+	
+	/* Opcional: Si quieres que flote fija a un lado al hacer scroll */
+    .tarjeta-flotante {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
+        max-width: 320px;
+        box-shadow: 0 10px 35px rgba(0,0,0,0.8), 0 0 25px rgba(255, 204, 0, 0.3);
+    }
+		
+		<!-- ==================== EFECTO DE COPOS DE NIEVE / PARTÍCULAS DE FONDO ==================== -->
+<div id="snow-container"></div>
+
+<style>
+    #snow-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Permite hacer clic en toda la web sin interferir */
+        z-index: 1; /* Se sitúa detrás del contenido principal pero sobre el fondo oscuro */
+        overflow: hidden;
+    }
+
+    .snowflake {
+        position: absolute;
+        top: -20px;
+        color: rgba(255, 255, 255, 0.65);
+        user-select: none;
+        z-index: 1;
+        animation: fall linear infinite;
+        text-shadow: 0 0 8px rgba(0, 255, 239, 0.4); /* Brillo sutil acorde a tu tema turquesa */
+    }
+
+    @keyframes fall {
+        0% {
+            transform: translateY(-20px) translateX(0deg);
+            opacity: 0.9;
+        }
+        50% {
+            transform: translateY(50vh) translateX(15px);
+            opacity: 0.6;
+        }
+        100% {
+            transform: translateY(105vh) translateX(-15px);
+            opacity: 0;
+        }
+    }
 
         /* ==================== CORRECCIÓN DE CURSOR Y SELECCIÓN ==================== */
         .nav-links a, 
@@ -787,6 +908,18 @@
         <span class="punto-estado"></span>
         <span id="texto-estado-tienda">Verificando horario...</span>
     </div>
+</div>
+
+<!-- ==================== TARJETA DE PROMOCIÓN DORADA ==================== -->
+<div class="promo-card-gold">
+    <div class="promo-badge">✦ BENEFICIO ESPECIAL ✦</div>
+    <h3 class="promo-title">RENUEVA 2 MESES</h3>
+    <p class="promo-subtitle">y recibe <strong>10% de descuento</strong></p>
+    
+    <!-- Botón con enlace directo a WhatsApp -->
+    <a href="https://wa.me/584247245026?text=Hola,%20quiero%20renovar%20por%202%20meses%20con%20el%2010%25%20de%20descuento" target="_blank" class="promo-btn">
+        RENOVAR CON DESCUENTO
+    </a>
 </div>
 
         <!-- ==================== VISTA 1: SERVICIOS ==================== -->
@@ -3631,6 +3764,49 @@ function filtrarSeccion(categoria, botonElemento) {
             objetivo.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     }
+	
+	document.addEventListener("DOMContentLoaded", function() {
+        const snowContainer = document.getElementById('snow-container');
+        const numSnowflakes = 40; // Cantidad de copos en pantalla
+
+        for (let i = 0; i < numSnowflakes; i++) {
+            createSnowflake();
+        }
+
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            
+            // Alterna entre copos de nieve y destellos suaves
+            snowflake.innerHTML = Math.random() > 0.4 ? '❄' : '•';
+            
+            // Posición horizontal aleatoria en toda la pantalla
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            
+            // Velocidad de caída variable (entre 6 y 14 segundos)
+            const duration = Math.random() * 8 + 6;
+            snowflake.style.animationDuration = duration + 's';
+            
+            // Retraso inicial aleatorio para que no caigan todos al mismo tiempo
+            const delay = Math.random() * 10;
+            snowflake.style.animationDelay = delay + 's';
+            
+            // Tamaño variable para dar profundidad
+            const size = Math.random() * 0.9 + 0.4;
+            snowflake.style.fontSize = size + 'rem';
+            
+            // Opacidad independiente
+            snowflake.style.opacity = Math.random() * 0.7 + 0.3;
+
+            snowContainer.appendChild(snowflake);
+
+            // Bucle infinito fluido reiniciando la posición arriba al terminar
+            snowflake.addEventListener('animationiteration', () => {
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.animationDuration = (Math.random() * 8 + 6) + 's';
+            });
+        }
+    });
 
         let currentSlide = 0;
         function goToSlide(index) {
