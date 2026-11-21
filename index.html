@@ -116,6 +116,80 @@
         text-transform: uppercase;
     }
 	
+	/* ==================== BANNER BLACK FRIDAY ==================== */
+.bf-banner-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: -6px 0 22px 0;
+    padding: 0 12px;
+}
+
+.bf-banner-card {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    background: linear-gradient(135deg, #0b0f19 0%, #071318 100%);
+    border: 1px solid rgba(0, 255, 239, 0.35);
+    border-radius: 16px;
+    padding: 9px 18px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45), 0 0 16px rgba(0, 255, 239, 0.12);
+}
+
+.bf-title {
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.bf-title span {
+    color: #00FFEF;
+    text-shadow: 0 0 10px rgba(0, 255, 239, 0.45);
+}
+
+.bf-countdown {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: #00FFEF;
+    background: rgba(4, 6, 11, 0.85);
+    border: 1px solid rgba(0, 255, 239, 0.22);
+    padding: 4px 11px;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+}
+
+.bf-clock-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    stroke: #00FFEF;
+}
+
+@media (max-width: 768px) {
+    .bf-banner-card {
+        padding: 8px 14px;
+        gap: 6px 10px;
+    }
+    .bf-title {
+        font-size: 0.78rem;
+    }
+    .bf-countdown {
+        font-size: 0.8rem;
+        padding: 3px 9px;
+    }
+	
 	/* ==================== MODAL DE TÉRMINOS Y CONDICIONES ==================== */
 .terms-modal-overlay {
     position: fixed;
@@ -1168,6 +1242,20 @@
     <div id="estado-tienda-container" class="badge-estado-tienda cerrado">
         <span class="punto-estado"></span>
         <span id="texto-estado-tienda">Verificando horario...</span>
+    </div>
+</div>
+
+<!-- ==================== BANNER BLACK FRIDAY (7 DÍAS) ==================== -->
+<div class="bf-banner-wrapper">
+    <div class="bf-banner-card">
+        <div class="bf-title">⚡ <span>BLACK FRIDAY</span></div>
+        <div class="bf-countdown" id="bf-countdown-clock">
+            <svg class="bf-clock-icon" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span id="bf-timer-text">7D 00H 00M 00S</span>
+        </div>
     </div>
 </div>
 
@@ -2832,8 +2920,8 @@ const baseDeDatosPreciosDistri = {
 // (0 = Agotado / >0 = Stock disponible)
 const CONTROL_DE_STOCK = {
     // --- CLIENTES FINALES (Catálogo Normal) ---
-    "netflix": 0,
-    "netflix personal": 1,
+    "netflix": 1,
+    "netflix personal": 0,
     "disney+ premium": 0,
     "prime video": 10,
     "hbo max standar": 1,
@@ -2845,8 +2933,8 @@ const CONTROL_DE_STOCK = {
     "viki rakuten": 5,
     "streamix tv": 15,
     "flujotv": 12,
-    "spotify premium": 0,
-    "youtube premium": 15,
+    "spotify premium": 1,
+    "youtube premium": 0,
     "canva pro edu": 50,
     "capcut": 10,
     "google one": 8,
@@ -4233,6 +4321,45 @@ function limpiarErrorTerminos() {
     document.getElementById('box-check-terminos').classList.remove('error-terms');
     document.getElementById('error-terminos-msg').style.display = 'none';
 }
+
+<script>
+(function() {
+    const STORAGE_KEY = 'streamix_bf_7d_end_v1';
+    const SIETE_DIAS_MS = 7 * 24 * 60 * 60 * 1000;
+
+    let fechaFin = parseInt(localStorage.getItem(STORAGE_KEY), 10);
+    if (!fechaFin || isNaN(fechaFin) || fechaFin <= Date.now()) {
+        fechaFin = Date.now() + SIETE_DIAS_MS;
+        localStorage.setItem(STORAGE_KEY, String(fechaFin));
+    }
+
+    function actualizarCuentaBlackFriday() {
+        const el = document.getElementById('bf-timer-text');
+        if (!el) return;
+
+        const restante = fechaFin - Date.now();
+        if (restante <= 0) {
+            el.textContent = '0D 00H 00M 00S';
+            return;
+        }
+
+        const totalSegundos = Math.floor(restante / 1000);
+        const dias = Math.floor(totalSegundos / 86400);
+        const horas = Math.floor((totalSegundos % 86400) / 3600);
+        const minutos = Math.floor((totalSegundos % 3600) / 60);
+        const segundos = totalSegundos % 60;
+
+        const h = String(horas).padStart(2, '0');
+        const m = String(minutos).padStart(2, '0');
+        const s = String(segundos).padStart(2, '0');
+
+        el.textContent = `${dias}D ${h}H ${m}M ${s}S`;
+    }
+
+    actualizarCuentaBlackFriday();
+    setInterval(actualizarCuentaBlackFriday, 1000);
+})();
+</script>
 		
 
         let currentSlide = 0;
