@@ -2124,730 +2124,845 @@
         let estadoCheckoutStep = 1;
         let metodoPagoSeleccionado = 'pago_movil';
         let distribuidorAutorizado = false;
-
-        const baseDeDatosPrecios = {
-    "google one": {
-        categoria: "otros",
-        tab1Nombre: "Planes Almacenamiento",
-        tab2Nombre: "Cuentas",
-        idLabel: "CORREO DE TU CUENTA GOOGLE",
-        idPlaceholder: "Ingresa el correo de tu cuenta Google",
-        paquetesTab1: [
-            { monto: "30 GB", extra: "1 Mes", precioUSD: 2.00, active: true },
-            { monto: "100 GB", extra: "1 Mes", precioUSD: 3.50 },
-            { monto: "200 GB", extra: "1 Mes", precioUSD: 5.00 },
-            { monto: "2 TB", extra: "1 Mes", precioUSD: 14.99 }
-        ],
-        paquetesTab2: [
-            { monto: "2 TB", extra: "1 Mes", precioUSD: 14.99 }
-        ]
-    },
-    "monedas tiktok": {
-        categoria: "otros",
-        tab1Nombre: "Paquetes de Monedas",
-        tab2Nombre: "Recargas Directas",
-        idLabel: "USUARIO O ID DE TIKTOK",
-        idPlaceholder: "Ingresa tu usuario (@ejemplo)",
-        paquetesTab1: [
-            { monto: "70 Monedas", extra: "Directas", precioUSD: 1.00, active: true },
-            { monto: "210 Monedas", extra: "Directas", precioUSD: 2.90 },
-            { monto: "630 Monedas", extra: "Directas", precioUSD: 8.50 },
-            { monto: "1190 Monedas", extra: "Directas", precioUSD: 15.99 }
-        ],
-        paquetesTab2: [
-            { monto: "1190 Monedas", extra: "Directas", precioUSD: 15.99 }
-        ]
-    },
-    "estrellas telegram": {
-        categoria: "otros",
-        tab1Nombre: "Estrellas & Premium",
-        tab2Nombre: "Suscripción",
-        idLabel: "USUARIO DE TELEGRAM",
-        idPlaceholder: "Ingresa tu usuario (@ejemplo)",
-        paquetesTab1: [
-            { monto: "100 Estrellas", extra: "Telegram", precioUSD: 2.60, active: true },
-            { monto: "250 Estrellas", extra: "Telegram", precioUSD: 6.25 },
-            { monto: "500 Estrellas", extra: "Telegram", precioUSD: 12.40 },
-            { monto: "Telegram Premium", extra: "Suscripción", precioUSD: 7.50 }
-        ],
-        paquetesTab2: [
-            { monto: "Telegram Premium", extra: "Suscripción", precioUSD: 7.50 }
-        ]
-    },
-    "netflix": {
-        categoria: "streaming",
-        tab1Nombre: "Planes Principales",
-        tab2Nombre: "Cuentas",
-        idLabel: "NOMBRE PARA LA PANTALLA",
-        idPlaceholder: "Ingresa el nombre para tu pantalla",
-        paquetesTab1: [
-            { monto: "1 Pantalla", extra: "Con código de Viaje", precioUSD: 4.00, active: true },
-        ],
-        paquetesTab2: [
-            { monto: "Cuenta Completa", extra: "Ilimitada", precioUSD: 14.99 }
-        ]
-    },
-    "netflix personal": {
-        categoria: "streaming",
-        tab1Nombre: "Planes Personales",
-        tab2Nombre: "Cuentas",
-        idLabel: "CORREO O USUARIO",
-        idPlaceholder: "Ingresa los datos para tu cuenta personal",
-        paquetesTab1: [
-            { monto: "1 Mes", extra: "Netflix Personal", precioUSD: 5.50, active: true }
-        ],
-        paquetesTab2: [
-            { monto: "1 Mes", extra: "Netflix Personal", precioUSD: 5.50 }
-        ]
-    },
-    "disney+ premium": {
-        categoria: "streaming",
-        tab1Nombre: "Planes Pantallas",
-        tab2Nombre: "Cuentas Completa",
-        idLabel: "NOMBRE PARA LA PANTALLA",
-        idPlaceholder: "Ingresa el nombre para tu pantalla",
-        paquetesTab1: [
-            { monto: "1 Pantalla", extra: "ESPN Incluido", precioUSD: 3.50, active: true },
-            { monto: "Cuenta Completa", extra: "Multipantalla", precioUSD: 15.00 }
-        ],
-        paquetesTab2: [
-            { monto: "Cuenta Completa", extra: "4K UHD", precioUSD: 15.00 }
-        ]
-    },
-    "prime video": {
-        categoria: "streaming",
-        tab1Nombre: "Opciones de Pantalla",
-        tab2Nombre: "Cuenta Completa",
-        idLabel: "NOMBRE PARA LA PANTALLA",
-        idPlaceholder: "Ingresa el nombre para tu pantalla",
-        paquetesTab1: [
-            { monto: "1 Pantalla", extra: "Full HD", precioUSD: 1.40, active: true },
-            { monto: "Cuenta Completa", extra: "3 Dispositivos", precioUSD: 5.00 }
-        ],
-        paquetesTab2: [
-            { monto: "Cuenta Completa", extra: "Privada", precioUSD: 5.00 }
-        ]
-    },
-    "hbo max standar": {
-        categoria: "streaming",
-        tab1Nombre: "Pantallas",
-        tab2Nombre: "Cuentas",
-        idLabel: "NOMBRE PARA LA PANTALLA",
-        idPlaceholder: "Ingresa el nombre para tu pantalla",
-        paquetesTab1: [
-            { monto: "1 Pantalla", extra: "Standar", precioUSD: 2.00, active: true },
-            { monto: "Cuenta Completa", extra: "4K Standar", precioUSD: 5.50 }
-        ],
-        paquetesTab2: [
-            { monto: "Cuenta Completa", extra: "Privada", precioUSD: 5.50 }
-        ]
-    },
-    "crunchyroll": {
-        categoria: "streaming",
-        tab1Nombre: "Mega Fan",
-        tab2Nombre: "Cuenta Completa",
-        idLabel: "NOMBRE PARA LA PANTALLA",
-        idPlaceholder: "Ingresa el nombre para tu pantalla",
-        paquetesTab1: [
-            { monto: "1 Pantalla", extra: "Mega Fan", precioUSD: 1.20, active: true },
-            { monto: "Cuenta Completa", extra: "4 Pantallas", precioUSD: 5.00 }
-        ],
-        paquetesTab2: [
-            { monto: "Cuenta Completa", extra: "Anual / Mensual", precioUSD: 5.00 }
-        ]
-    },
-    "paramount+": {
-        categoria: "streaming",
-        tab1Nombre: "Planes",
-        tab2Nombre: "Cuentas",
-        idLabel: "NOMBRE PARA LA PANTALLA",
-        idPlaceholder: "Ingresa el nombre para tu pantalla",
-        paquetesTab1: [
-            { monto: "1 Pantalla", extra: "Full HD", precioUSD: 2.00, active: true },
-            { monto: "Cuenta Completa", extra: "Privada", precioUSD: 5.50 }
-        ],
-        paquetesTab2: [
-            { monto: "Cuenta Completa", extra: "VIP", precioUSD: 5.50 }
-        ]
-    },
-    "vix": {
-        categoria: "streaming",
-        tab1Nombre: "Planes Premium",
-        tab2Nombre: "Cuentas",
-        idLabel: "NOMBRE PARA LA PANTALLA",
-        idPlaceholder: "Ingresa el nombre para tu pantalla",
-        paquetesTab1: [
-            { monto: "1 Pantalla", extra: "Deportes & Novelas", precioUSD: 1.20, active: true },
-            { monto: "Cuenta Completa", extra: "Full Pass", precioUSD: 4.50 }
-        ],
-        paquetesTab2: [
-            { monto: "Cuenta Completa", extra: "Privada", precioUSD: 4.50 }
-        ]
-    },
-    "appletv": {
-        categoria: "streaming",
-        tab1Nombre: "Opciones de Servicio",
-        tab2Nombre: "Cuentas",
-        idLabel: "NOMBRE PARA LA PANTALLA",
-        idPlaceholder: "Ingresa el nombre para tu pantalla",
-        paquetesTab1: [
-            { monto: "1 Pantalla", extra: "Apple Originals", precioUSD: 1.50, active: true },
-            { monto: "Cuenta Completa", extra: "Acceso Total", precioUSD: 4.50 }
-        ],
-        paquetesTab2: [
-            { monto: "Cuenta Completa", extra: "Original", precioUSD: 4.50 }
-        ]
-    },
-    "universal+": {
-        categoria: "streaming",
-        tab1Nombre: "Planes",
-        tab2Nombre: "Cuentas",
-        idLabel: "NOMBRE PARA LA PANTALLA",
-        idPlaceholder: "Ingresa el nombre para tu pantalla",
-        paquetesTab1: [
-            { monto: "1 Pantalla", extra: "Universal Channels", precioUSD: 1.50, active: true },
-            { monto: "Cuenta Completa", extra: "HD", precioUSD: 5.00 }
-        ],
-        paquetesTab2: [
-            { monto: "Cuenta Completa", extra: "Privada", precioUSD: 5.00 }
-        ]
-    },
-    "viki rakuten": {
-        categoria: "streaming",
-        tab1Nombre: "Planes Pantallas",
-        tab2Nombre: "Cuentas Completa",
-        idLabel: "NOMBRE PARA LA PANTALLA",
-        idPlaceholder: "Ingresa el nombre para tu pantalla",
-        paquetesTab1: [
-            { monto: "1 Pantalla", extra: "Doramas & K-Dramas HD", precioUSD: 2.50 }
-        ],
-        paquetesTab2: [
-            { monto: "Cuenta Completa", extra: "Pass Plus Privada", precioUSD: 6.50 }
-        ]
-    },
-    "spotify premium": {
-        categoria: "musica",
-        tab1Nombre: "Suscripción a tu correo",
-        tab2Nombre: "Planes Largos",
-        idLabel: "CORREO DE TU CUENTA SPOTIFY",
-        idPlaceholder: "Ingresa el correo de tu cuenta Spotify",
-        paquetesTab1: [
-            { monto: "A tu correo", extra: "1 Mes", precioUSD: 5.00, active: true },
-            { monto: "A tu correo", extra: "3 Meses", precioUSD: 15.00 }
-        ],
-        paquetesTab2: [
-            { monto: "A tu correo", extra: "3 Meses", precioUSD: 15.00 }
-        ]
-    },
-    "youtube premium": {
-        categoria: "musica",
-        tab1Nombre: "Individual",
-        tab2Nombre: "Renovable",
-        idLabel: "CORREO DE TU CUENTA YOUTUBE",
-        idPlaceholder: "Tu correo para invitarte al plan",
-        paquetesTab1: [
-            { monto: "1 Mes", extra: "Renovable", precioUSD: 4.00, active: true }
-        ],
-        paquetesTab2: [
-            { monto: "1 Mes", extra: "Renovable", precioUSD: 4.00 }
-        ]
-    },
-    "capcut": {
-        categoria: "herramientas",
-        tab1Nombre: "Planes Pro",
-        tab2Nombre: "Suscripción",
-        idLabel: "CORREO DE CONTACTO",
-        idPlaceholder: "Tu correo electrónico",
-        paquetesTab1: [
-            { monto: "1 Mes", extra: "No Renovable", precioUSD: 6.50, active: true }
-        ],
-        paquetesTab2: [
-            { monto: "1 Mes", extra: "No Renovable", precioUSD: 6.50 }
-        ]
-    },
-    "streamix tv": {
-        categoria: "iptv",
-        tab1Nombre: "Suscripciones IPTV",
-        tab2Nombre: "Ofertas Especiales",
-        idLabel: "NOMBRE O DISPOSITIVO",
-        idPlaceholder: "Ej: Smart TV / Mi Nombre",
-        paquetesTab1: [
-            { monto: "1 Mes de Servicio", extra: "1800+ Canales", precioUSD: 2.50, active: true },
-            { monto: "3 Meses", extra: "Oferta", precioUSD: 6.00 },
-            { monto: "6 Meses", extra: "Ahorro", precioUSD: 9.50 },
-            { monto: "12 Meses", extra: "Anual VIP", precioUSD: 14.50 }
-        ],
-        paquetesTab2: [
-            { monto: "3 Meses", extra: "Oferta", precioUSD: 6.00 },
-            { monto: "12 Meses", extra: "VIP", precioUSD: 14.50 }
-        ]
-    },
-    "flujotv": {
-        categoria: "iptv",
-        tab1Nombre: "Planes FlujoTV",
-        tab2Nombre: "Promociones Extra",
-        idLabel: "NOMBRE O DISPOSITIVO",
-        idPlaceholder: "Ej: Firestick / Mi Nombre",
-        paquetesTab1: [
-            { monto: "1 Mes de Servicio", extra: "Estándar", precioUSD: 3.00, active: true },
-            { monto: "3 Meses", extra: "Pack", precioUSD: 8.00 },
-            { monto: "6 Meses + 1", extra: "Bonus +1 Mes", precioUSD: 17.00 },
-            { monto: "12 Meses + 2", extra: "Bonus +2 Meses", precioUSD: 36.00 }
-        ],
-        paquetesTab2: [
-            { monto: "6 Meses + 1", extra: "Combo", precioUSD: 17.00 },
-            { monto: "12 Meses + 2", extra: "Anual Mega", precioUSD: 36.00 }
-        ]
-    },
-    "canva pro edu": {
-        categoria: "herramientas",
-        tab1Nombre: "Planes a tu Correo",
-        tab2Nombre: "Suscripciones Anuales",
-        idLabel: "CORREO DE TU CUENTA CANVA",
-        idPlaceholder: "Correo donde recibirás la invitación Pro",
-        paquetesTab1: [
-            { monto: "Cuenta Pro", extra: "1 Mes A tu correo", precioUSD: 1.50, active: true },
-            { monto: "Cuenta Pro", extra: "3 Meses A tu correo", precioUSD: 3.00 },
-            { monto: "Cuenta Pro", extra: "6 Meses A tu correo", precioUSD: 5.50 },
-            { monto: "Cuenta Pro", extra: "12 Meses A tu correo", precioUSD: 10.00 }
-        ],
-        paquetesTab2: [
-            { monto: "Cuenta Pro", extra: "12 Meses A tu correo", precioUSD: 10.00 }
-        ]
-    },
-    "free fire": {
-        categoria: "juegos",
-        tab1Nombre: "Diamantes",
-        tab2Nombre: "Paquetes",
-        idLabel: "ID DEL JUGADOR / CORREO DE LA CUENTA",
-        idPlaceholder: "Ingresa tu ID o Correo",
-        paquetesTab1: [
-            { monto: "100", extra: "+ 10 Extra", precioUSD: 1.04, active: true },
-            { monto: "310", extra: "+ 31 Extra", precioUSD: 3.40 },
-            { monto: "520", extra: "+ 52 Extra", precioUSD: 5.30 },
-            { monto: "1060", extra: "+ 106 Extra", precioUSD: 10.30 },
-            { monto: "2180", extra: "+ 218 Extra", precioUSD: 19.90 },
-            { monto: "5600", extra: "+ 560 Extra", precioUSD: 39.99 }
-        ],
-        paquetesTab2: [
-            { monto: "Pase Semanal", extra: "VIP", precioUSD: 2.20 },
-            { monto: "Pase Mensual", extra: "Top", precioUSD: 10.50 }
-        ]
-    },
-    "blood strike": {
-        categoria: "juegos",
-        tab1Nombre: "Oro / Pases",
-        tab2Nombre: "Paquetes",
-        idLabel: "ID DEL JUGADOR / CORREO DE LA CUENTA",
-        idPlaceholder: "Ingresa tu ID o Correo",
-        paquetesTab1: [
-            { monto: "100 Oro", extra: "Básico", precioUSD: 1.20, active: true },
-            { monto: "500 Oro", extra: "Extra", precioUSD: 5.50 }
-        ],
-        paquetesTab2: [
-            { monto: "Pase de Batalla", extra: "Pro", precioUSD: 6.00 }
-        ]
-    },
-    "mobile legends": {
-        categoria: "juegos",
-        tab1Nombre: "Diamantes",
-        tab2Nombre: "Pases",
-        idLabel: "ID DEL JUGADOR / CORREO DE LA CUENTA",
-        idPlaceholder: "Ingresa tu ID o Correo",
-        paquetesTab1: [
-            { monto: "86 Diamantes", extra: "Fast", precioUSD: 1.50, active: true },
-            { monto: "257 Diamantes", extra: "Pack", precioUSD: 4.20 }
-        ],
-        paquetesTab2: [
-            { monto: "Pase Semanal", extra: "Bonus", precioUSD: 2.20 }
-        ]
-    },
-    "call of duty mobile": {
-        categoria: "juegos",
-        tab1Nombre: "CP Points",
-        tab2Nombre: "Pases",
-        idLabel: "ID DEL JUGADOR / CORREO DE LA CUENTA",
-        idPlaceholder: "Ingresa tu ID o Correo",
-        paquetesTab1: [
-            { monto: "80 CP", extra: "Normal", precioUSD: 1.20, active: true },
-            { monto: "160 CP", extra: "Mega", precioUSD: 2.40 },
-            { monto: "240 CP", extra: "Popular", precioUSD: 3.60 },
-            { monto: "320 CP", extra: "Pro", precioUSD: 4.80 },
-            { monto: "420 CP", extra: "Elite", precioUSD: 6.03 },
-            { monto: "880 CP", extra: "Master", precioUSD: 12.06 },
-            { monto: "2400 CP", extra: "Legendario", precioUSD: 30.20 },
-        ],
-        paquetesTab2: [
-            { monto: "Pase Premium", extra: "Pase", precioUSD: 3.60 },
-            { monto: "Pase Premium Plus", extra: "Lote", precioUSD: 0 }
-        ]
-    },
-    "roblox": {
-        categoria: "juegos",
-        tab1Nombre: "Robux",
-        tab2Nombre: "Tarjetas",
-        idLabel: "ID DEL JUGADOR / CORREO DE LA CUENTA",
-        idPlaceholder: "Ingresa tu ID o Correo",
-        paquetesTab1: [
-            { monto: "80 Robux", extra: "Directo", precioUSD: 1.20, active: true },
-            { monto: "270 Robux", extra: "Pack", precioUSD: 3.99 },
-            { monto: "500 Robux", extra: "Popular", precioUSD: 6.10 },
-            { monto: "1000 Robux", extra: "Pro", precioUSD: 12.00 },
-            { monto: "2000 Robux", extra: "Elite", precioUSD: 23.90 },
-            { monto: "5250 Robux", extra: "Master", precioUSD: 59.99 }
-        ],
-        paquetesTab2: [
-            { monto: "Gift Card $10", extra: "Código", precioUSD: 0 },
-            { monto: "Gift Card $25", extra: "Código", precioUSD: 0 }
-        ]
-    },
-    "gift card psn": {
-        categoria: "giftcards",
-        tab1Nombre: "Tarjetas USA",
-        tab2Nombre: "Más Vendidas",
-        idLabel: "CORREO PARA ENTREGA DEL CÓDIGO",
-        idPlaceholder: "Ingresa tu correo electrónico",
-        paquetesTab1: [
-            { monto: "$10 USD", extra: "Región USA", precioUSD: 11.50, active: true },
-            { monto: "$20 USD", extra: "Región USA", precioUSD: 22.00 },
-            { monto: "$25 USD", extra: "Región USA", precioUSD: 27.50 },
-            { monto: "$50 USD", extra: "Región USA", precioUSD: 53.50 },
-            { monto: "$100 USD", extra: "Región USA", precioUSD: 105.00 }
-        ],
-        paquetesTab2: [
-            { monto: "$10 USD", extra: "Región USA", precioUSD: 11.50 },
-            { monto: "$50 USD", extra: "Región USA", precioUSD: 53.50 }
-        ]
-    },
-    "gift card netflix": {
-        categoria: "giftcards",
-        tab1Nombre: "Tarjetas Digitales",
-        tab2Nombre: "Destacadas",
-        idLabel: "CORREO PARA ENTREGA DEL CÓDIGO",
-        idPlaceholder: "Ingresa tu correo electrónico",
-        paquetesTab1: [
-            { monto: "$15 USD", extra: "Código Digital", precioUSD: 17.00, active: true },
-            { monto: "$25 USD", extra: "Código Digital", precioUSD: 27.50 },
-            { monto: "$50 USD", extra: "Código Digital", precioUSD: 54.00 }
-        ],
-        paquetesTab2: [
-            { monto: "$25 USD", extra: "Código Digital", precioUSD: 27.50 }
-        ]
-    },
-    "gift card apple": {
-        categoria: "giftcards",
-        tab1Nombre: "App Store & iTunes",
-        tab2Nombre: "Más Vendidas",
-        idLabel: "CORREO PARA ENTREGA DEL CÓDIGO",
-        idPlaceholder: "Ingresa tu correo electrónico",
-        paquetesTab1: [
-            { monto: "$2 USD", extra: "Región USA", precioUSD: 3.50, active: true },
-            { monto: "$5 USD", extra: "Región USA", precioUSD: 7.50 },
-            { monto: "$10 USD", extra: "Región USA", precioUSD: 12.70 },
-            { monto: "$20 USD", extra: "Región USA", precioUSD: 23.50 },
-            { monto: "$25 USD", extra: "Región USA", precioUSD: 28.00 },
-            { monto: "$50 USD", extra: "Región USA", precioUSD: 54.50 },
-            { monto: "$100 USD", extra: "Región USA", precioUSD: 105.00 }
-        ],
-        paquetesTab2: [
-            { monto: "$10 USD", extra: "Región USA", precioUSD: 12.70 },
-            { monto: "$25 USD", extra: "Región USA", precioUSD: 28.00 }
-        ]
-    }
-};
-const baseDeDatosPreciosDistri = {
-    "netflix": {
-        categoria: "distribuidores",
-        tab1Nombre: "Planes Mayoristas",
-        tab2Nombre: "Cuentas Mayoristas",
-        idLabel: "NOMBRE PARA LA PANTALLA",
-        idPlaceholder: "Ingresa el nombre para tu pantalla",
-        paquetesTab1: [
-            { monto: "1 Pantalla", extra: "Lote Mayorista", precioUSD: 3.30, active: true },
-        ],
-        paquetesTab2: [
-            { monto: "Cuenta Completa", extra: "Panel VIP", precioUSD: 14.50 }
-        ]
-    },
-    "netflix personal": {
-        categoria: "distribuidores",
-        tab1Nombre: "Planes Mayoristas",
-        tab2Nombre: "Cuentas Mayoristas",
-        idLabel: "CORREO O USUARIO",
-        idPlaceholder: "Ingresa los datos para tu cuenta personal",
-        paquetesTab1: [
-            { monto: "1 Mes", extra: "Personal VIP", precioUSD: 5.20, active: true }
-        ],
-        paquetesTab2: [
-            { monto: "1 Mes", extra: "Personal VIP", precioUSD: 5.20 }
-        ]
-    },
-    "disney+ premium": {
-        categoria: "distribuidores",
-        tab1Nombre: "Pantallas Mayoristas",
-        tab2Nombre: "Cuentas Mayoristas",
-        idLabel: "NOMBRE PARA LA PANTALLA",
-        idPlaceholder: "Ingresa el nombre para tu pantalla",
-        paquetesTab1: [
-            { monto: "1 Pantalla", extra: "Precio Revendedor", precioUSD: 3.00, active: true },
-        ],
-        paquetesTab2: [
-            { monto: "Cuenta Completa", extra: "Pack Mayorista", precioUSD: 17.00 }
-        ]
-    },
-    "prime video": {
-        categoria: "distribuidores",
-        tab1Nombre: "Opciones Mayoristas",
-        tab2Nombre: "Cuenta Mayorista",
-        idLabel: "NOMBRE PARA LA PANTALLA",
-        idPlaceholder: "Ingresa el nombre para tu pantalla",
-        paquetesTab1: [
-            { monto: "1 Pantalla", extra: "Revendedor", precioUSD: 1.20, active: true },
-        ],
-        paquetesTab2: [
-            { monto: "Cuenta Completa", extra: "Pack VIP", precioUSD: 4.00 }
-        ]
-    },
-    "hbo max standar": {
-        categoria: "distribuidores",
-        tab1Nombre: "Pantallas Mayoristas",
-        tab2Nombre: "Cuentas Mayoristas",
-        idLabel: "NOMBRE PARA LA PANTALLA",
-        idPlaceholder: "Ingresa el nombre para tu pantalla",
-        paquetesTab1: [
-            { monto: "1 Pantalla", extra: "Revendedor", precioUSD: 1.00, active: true },
-        ],
-        paquetesTab2: [
-            { monto: "Cuenta Completa", extra: "Privada VIP", precioUSD: 4.00 }
-        ]
-    },
-    "crunchyroll": {
-        categoria: "distribuidores",
-        tab1Nombre: "Mega Fan Revendedor",
-        tab2Nombre: "Cuenta Completa VIP",
-        idLabel: "NOMBRE PARA LA PANTALLA",
-        idPlaceholder: "Ingresa el nombre para tu pantalla",
-        paquetesTab1: [
-            { monto: "1 Pantalla", extra: "Mayorista", precioUSD: 1.00, active: true },
-        ],
-        paquetesTab2: [
-            { monto: "Cuenta Completa", extra: "Lote Revendedores", precioUSD: 4.00 }
-        ]
-    },
-    "paramount+": {
-        categoria: "distribuidores",
-        tab1Nombre: "Planes VIP",
-        tab2Nombre: "Cuentas VIP",
-        idLabel: "NOMBRE PARA LA PANTALLA",
-        idPlaceholder: "Ingresa el nombre para tu pantalla",
-        paquetesTab1: [
-            { monto: "1 Pantalla", extra: "Precio Mayorista", precioUSD: 1.50, active: true },
-        ],
-        paquetesTab2: [
-            { monto: "Cuenta Completa", extra: "Lote Mayorista", precioUSD: 5.00 }
-        ]
-    },
-    "vix": {
-        categoria: "distribuidores",
-        tab1Nombre: "Planes Mayoristas",
-        tab2Nombre: "Cuentas Mayoristas",
-        idLabel: "NOMBRE PARA LA PANTALLA",
-        idPlaceholder: "Ingresa el nombre para tu pantalla",
-        paquetesTab1: [
-            { monto: "1 Pantalla", extra: "Revendedor", precioUSD: 1.00, active: true },
-        ],
-        paquetesTab2: [
-            { monto: "Cuenta Completa", extra: "Lote Mayorista", precioUSD: 3.00 }
-        ]
-    },
-    "streamix tv": {
-        categoria: "distribuidores",
-        tab1Nombre: "IPTV Mayorista",
-        tab2Nombre: "Pack Anual VIP",
-        idLabel: "NOMBRE O DISPOSITIVO",
-        idPlaceholder: "Ej: Smart TV / Mi Nombre",
-        paquetesTab1: [
-            { monto: "1 Mes VIP", extra: "Revendedor", precioUSD: 2.00, active: true },
-            { monto: "3 Meses", extra: "Mayorista", precioUSD: 5.00 }
-        ],
-        paquetesTab2: [
-            { monto: "12 Meses", extra: "Anual VIP", precioUSD: 15.00 }
-        ]
-    },
-    "flujotv": {
-        categoria: "distribuidores",
-        tab1Nombre: "IPTV Mayorista",
-        tab2Nombre: "Pack Anual VIP",
-        idLabel: "NOMBRE O DISPOSITIVO",
-        idPlaceholder: "Ej: Firestick / Mi Nombre",
-        paquetesTab1: [
-            { monto: "1 Mes VIP", extra: "Revendedor", precioUSD: 2.00, active: true },
-            { monto: "3 Meses", extra: "Mayorista", precioUSD: 6.00 }
-        ],
-        paquetesTab2: [
-            { monto: "12 Meses", extra: "Anual VIP", precioUSD: 22.00 }
-        ]
-    },
-    "spotify premium": {
-        categoria: "distribuidores",
-        tab1Nombre: "Mayorista Correo",
-        tab2Nombre: "Lote",
-        idLabel: "CORREO DE TU CUENTA SPOTIFY",
-        idPlaceholder: "Ingresa el correo",
-        paquetesTab1: [
-            { monto: "1 Mes", extra: "Revendedor", precioUSD: 4.00, active: true },
-        ],
-        paquetesTab2: [
-            { monto: "3 Meses", extra: "Mayorista", precioUSD: 12.00 }
-        ]
-    },
-    "youtube premium": {
-        categoria: "distribuidores",
-        tab1Nombre: "Individual Mayorista",
-        tab2Nombre: "Renovable VIP",
-        idLabel: "CORREO DE TU CUENTA YOUTUBE",
-        idPlaceholder: "Tu correo para invitarte",
-        paquetesTab1: [
-            { monto: "1 Mes", extra: "Revendedor", precioUSD: 4.00, active: true }
-        ],
-        paquetesTab2: [
-            { monto: "12 Mes", extra: "Revendedor", precioUSD: 22.00 }
-        ]
-    },
-    "canva pro edu": {
-        categoria: "distribuidores",
-        tab1Nombre: "Canva Pro Mayorista",
-        tab2Nombre: "Anual",
-        idLabel: "CORREO DE TU CUENTA CANVA",
-        idPlaceholder: "Correo para invitación Pro",
-        paquetesTab1: [
-            { monto: "1 Mes Pro", extra: "Revendedor", precioUSD: 0.50, active: true },
-        ],
-        paquetesTab2: [
-            { monto: "12 Meses Pro", extra: "Mayorista", precioUSD: 8.00 }
-        ]
-    },
-    "capcut": {
-        categoria: "distribuidores",
-        tab1Nombre: "CapCut Pro Mayorista",
-        tab2Nombre: "Suscripción",
-        idLabel: "CORREO DE CONTACTO",
-        idPlaceholder: "Tu correo electrónico",
-        paquetesTab1: [
-            { monto: "1 Mes Pro", extra: "Revendedor", precioUSD: 6.50, active: true }
-        ],
-        paquetesTab2: [
-            { monto: "1 Mes Pro", extra: "Revendedor", precioUSD: 0.00 }
-        ]
-    }
-};
-
+        let estrellasSeleccionadas = 5;
         let productoNombreActual = "Netflix";
         let productoActualData = null;
         let tabActivaIndex = 0;
         let precioUSDActual = 4.00;
         let cantidad = 1;
         let timerInterval = null;
+        let currentSlide = 0;
+        window.cuentasEncontradasCache = [];
+
+        const URL_GOOGLE_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbyoYeBjA8F4gBBAdNREsB0Ac_xaoTv_4c-fsX3wlSF4Tr5IlQDOCMv7vEhDWro4Ox_uKw/exec";
+        const TOKEN_SECRETO = "S482146POJEHSTY125WUEHWAS";
+
+        const baseDeDatosPrecios = {
+            "google one": {
+                categoria: "otros",
+                tab1Nombre: "Planes Almacenamiento",
+                tab2Nombre: "Cuentas",
+                idLabel: "CORREO DE TU CUENTA GOOGLE",
+                idPlaceholder: "Ingresa el correo de tu cuenta Google",
+                paquetesTab1: [
+                    { monto: "30 GB", extra: "1 Mes", precioUSD: 2.00, active: true },
+                    { monto: "100 GB", extra: "1 Mes", precioUSD: 3.50 },
+                    { monto: "200 GB", extra: "1 Mes", precioUSD: 5.00 },
+                    { monto: "2 TB", extra: "1 Mes", precioUSD: 14.99 }
+                ],
+                paquetesTab2: [{ monto: "2 TB", extra: "1 Mes", precioUSD: 14.99 }]
+            },
+            "monedas tiktok": {
+                categoria: "otros",
+                tab1Nombre: "Paquetes de Monedas",
+                tab2Nombre: "Recargas Directas",
+                idLabel: "USUARIO O ID DE TIKTOK",
+                idPlaceholder: "Ingresa tu usuario (@ejemplo)",
+                paquetesTab1: [
+                    { monto: "70 Monedas", extra: "Directas", precioUSD: 1.00, active: true },
+                    { monto: "210 Monedas", extra: "Directas", precioUSD: 2.90 },
+                    { monto: "630 Monedas", extra: "Directas", precioUSD: 8.50 },
+                    { monto: "1190 Monedas", extra: "Directas", precioUSD: 15.99 }
+                ],
+                paquetesTab2: [{ monto: "1190 Monedas", extra: "Directas", precioUSD: 15.99 }]
+            },
+            "estrellas telegram": {
+                categoria: "otros",
+                tab1Nombre: "Estrellas & Premium",
+                tab2Nombre: "Suscripción",
+                idLabel: "USUARIO DE TELEGRAM",
+                idPlaceholder: "Ingresa tu usuario (@ejemplo)",
+                paquetesTab1: [
+                    { monto: "100 Estrellas", extra: "Telegram", precioUSD: 2.60, active: true },
+                    { monto: "250 Estrellas", extra: "Telegram", precioUSD: 6.25 },
+                    { monto: "500 Estrellas", extra: "Telegram", precioUSD: 12.40 },
+                    { monto: "Telegram Premium", extra: "Suscripción", precioUSD: 7.50 }
+                ],
+                paquetesTab2: [{ monto: "Telegram Premium", extra: "Suscripción", precioUSD: 7.50 }]
+            },
+            "netflix": {
+                categoria: "streaming",
+                tab1Nombre: "Planes Principales",
+                tab2Nombre: "Cuentas",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Con código de Viaje", precioUSD: 4.00, active: true }
+                ],
+                paquetesTab2: [{ monto: "Cuenta Completa", extra: "Ilimitada", precioUSD: 14.99 }]
+            },
+            "netflix personal": {
+                categoria: "streaming",
+                tab1Nombre: "Planes Personales",
+                tab2Nombre: "Cuentas",
+                idLabel: "CORREO O USUARIO",
+                idPlaceholder: "Ingresa los datos para tu cuenta personal",
+                paquetesTab1: [{ monto: "1 Mes", extra: "Netflix Personal", precioUSD: 5.50, active: true }],
+                paquetesTab2: [{ monto: "1 Mes", extra: "Netflix Personal", precioUSD: 5.50 }]
+            },
+            "disney+ premium": {
+                categoria: "streaming",
+                tab1Nombre: "Planes Pantallas",
+                tab2Nombre: "Cuentas Completa",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "ESPN Incluido", precioUSD: 3.50, active: true },
+                    { monto: "Cuenta Completa", extra: "Multipantalla", precioUSD: 15.00 }
+                ],
+                paquetesTab2: [{ monto: "Cuenta Completa", extra: "4K UHD", precioUSD: 15.00 }]
+            },
+            "prime video": {
+                categoria: "streaming",
+                tab1Nombre: "Opciones de Pantalla",
+                tab2Nombre: "Cuenta Completa",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Full HD", precioUSD: 1.40, active: true },
+                    { monto: "Cuenta Completa", extra: "3 Dispositivos", precioUSD: 5.00 }
+                ],
+                paquetesTab2: [{ monto: "Cuenta Completa", extra: "Privada", precioUSD: 5.00 }]
+            },
+            "hbo max standar": {
+                categoria: "streaming",
+                tab1Nombre: "Pantallas",
+                tab2Nombre: "Cuentas",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Standar", precioUSD: 2.00, active: true },
+                    { monto: "Cuenta Completa", extra: "4K Standar", precioUSD: 5.50 }
+                ],
+                paquetesTab2: [{ monto: "Cuenta Completa", extra: "Privada", precioUSD: 5.50 }]
+            },
+            "crunchyroll": {
+                categoria: "streaming",
+                tab1Nombre: "Mega Fan",
+                tab2Nombre: "Cuenta Completa",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Mega Fan", precioUSD: 1.20, active: true },
+                    { monto: "Cuenta Completa", extra: "4 Pantallas", precioUSD: 5.00 }
+                ],
+                paquetesTab2: [{ monto: "Cuenta Completa", extra: "Anual / Mensual", precioUSD: 5.00 }]
+            },
+            "paramount+": {
+                categoria: "streaming",
+                tab1Nombre: "Planes",
+                tab2Nombre: "Cuentas",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Full HD", precioUSD: 2.00, active: true },
+                    { monto: "Cuenta Completa", extra: "Privada", precioUSD: 5.50 }
+                ],
+                paquetesTab2: [{ monto: "Cuenta Completa", extra: "VIP", precioUSD: 5.50 }]
+            },
+            "vix": {
+                categoria: "streaming",
+                tab1Nombre: "Planes Premium",
+                tab2Nombre: "Cuentas",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Deportes & Novelas", precioUSD: 1.20, active: true },
+                    { monto: "Cuenta Completa", extra: "Full Pass", precioUSD: 4.50 }
+                ],
+                paquetesTab2: [{ monto: "Cuenta Completa", extra: "Privada", precioUSD: 4.50 }]
+            },
+            "appletv": {
+                categoria: "streaming",
+                tab1Nombre: "Opciones de Servicio",
+                tab2Nombre: "Cuentas",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Apple Originals", precioUSD: 1.50, active: true },
+                    { monto: "Cuenta Completa", extra: "Acceso Total", precioUSD: 4.50 }
+                ],
+                paquetesTab2: [{ monto: "Cuenta Completa", extra: "Original", precioUSD: 4.50 }]
+            },
+            "universal+": {
+                categoria: "streaming",
+                tab1Nombre: "Planes",
+                tab2Nombre: "Cuentas",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [
+                    { monto: "1 Pantalla", extra: "Universal Channels", precioUSD: 1.50, active: true },
+                    { monto: "Cuenta Completa", extra: "HD", precioUSD: 5.00 }
+                ],
+                paquetesTab2: [{ monto: "Cuenta Completa", extra: "Privada", precioUSD: 5.00 }]
+            },
+            "viki rakuten": {
+                categoria: "streaming",
+                tab1Nombre: "Planes Pantallas",
+                tab2Nombre: "Cuentas Completa",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [{ monto: "1 Pantalla", extra: "Doramas & K-Dramas HD", precioUSD: 2.50, active: true }],
+                paquetesTab2: [{ monto: "Cuenta Completa", extra: "Pass Plus Privada", precioUSD: 6.50 }]
+            },
+            "spotify premium": {
+                categoria: "musica",
+                tab1Nombre: "Suscripción a tu correo",
+                tab2Nombre: "Planes Largos",
+                idLabel: "CORREO DE TU CUENTA SPOTIFY",
+                idPlaceholder: "Ingresa el correo de tu cuenta Spotify",
+                paquetesTab1: [
+                    { monto: "A tu correo", extra: "1 Mes", precioUSD: 5.00, active: true },
+                    { monto: "A tu correo", extra: "3 Meses", precioUSD: 15.00 }
+                ],
+                paquetesTab2: [{ monto: "A tu correo", extra: "3 Meses", precioUSD: 15.00 }]
+            },
+            "youtube premium": {
+                categoria: "musica",
+                tab1Nombre: "Individual",
+                tab2Nombre: "Renovable",
+                idLabel: "CORREO DE TU CUENTA YOUTUBE",
+                idPlaceholder: "Tu correo para invitarte al plan",
+                paquetesTab1: [{ monto: "1 Mes", extra: "Renovable", precioUSD: 4.00, active: true }],
+                paquetesTab2: [{ monto: "1 Mes", extra: "Renovable", precioUSD: 4.00 }]
+            },
+            "capcut": {
+                categoria: "herramientas",
+                tab1Nombre: "Planes Pro",
+                tab2Nombre: "Suscripción",
+                idLabel: "CORREO DE CONTACTO",
+                idPlaceholder: "Tu correo electrónico",
+                paquetesTab1: [{ monto: "1 Mes", extra: "No Renovable", precioUSD: 6.50, active: true }],
+                paquetesTab2: [{ monto: "1 Mes", extra: "No Renovable", precioUSD: 6.50 }]
+            },
+            "streamix tv": {
+                categoria: "iptv",
+                tab1Nombre: "Suscripciones IPTV",
+                tab2Nombre: "Ofertas Especiales",
+                idLabel: "NOMBRE O DISPOSITIVO",
+                idPlaceholder: "Ej: Smart TV / Mi Nombre",
+                paquetesTab1: [
+                    { monto: "1 Mes de Servicio", extra: "1800+ Canales", precioUSD: 2.50, active: true },
+                    { monto: "3 Meses", extra: "Oferta", precioUSD: 6.00 },
+                    { monto: "6 Meses", extra: "Ahorro", precioUSD: 9.50 },
+                    { monto: "12 Meses", extra: "Anual VIP", precioUSD: 14.50 }
+                ],
+                paquetesTab2: [
+                    { monto: "3 Meses", extra: "Oferta", precioUSD: 6.00 },
+                    { monto: "12 Meses", extra: "VIP", precioUSD: 14.50 }
+                ]
+            },
+            "flujotv": {
+                categoria: "iptv",
+                tab1Nombre: "Planes FlujoTV",
+                tab2Nombre: "Promociones Extra",
+                idLabel: "NOMBRE O DISPOSITIVO",
+                idPlaceholder: "Ej: Firestick / Mi Nombre",
+                paquetesTab1: [
+                    { monto: "1 Mes de Servicio", extra: "Estándar", precioUSD: 3.00, active: true },
+                    { monto: "3 Meses", extra: "Pack", precioUSD: 8.00 },
+                    { monto: "6 Meses + 1", extra: "Bonus +1 Mes", precioUSD: 17.00 },
+                    { monto: "12 Meses + 2", extra: "Bonus +2 Meses", precioUSD: 36.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "6 Meses + 1", extra: "Combo", precioUSD: 17.00 },
+                    { monto: "12 Meses + 2", extra: "Anual Mega", precioUSD: 36.00 }
+                ]
+            },
+            "canva pro edu": {
+                categoria: "herramientas",
+                tab1Nombre: "Planes a tu Correo",
+                tab2Nombre: "Suscripciones Anuales",
+                idLabel: "CORREO DE TU CUENTA CANVA",
+                idPlaceholder: "Correo donde recibirás la invitación Pro",
+                paquetesTab1: [
+                    { monto: "Cuenta Pro", extra: "1 Mes A tu correo", precioUSD: 1.50, active: true },
+                    { monto: "Cuenta Pro", extra: "3 Meses A tu correo", precioUSD: 3.00 },
+                    { monto: "Cuenta Pro", extra: "6 Meses A tu correo", precioUSD: 5.50 },
+                    { monto: "Cuenta Pro", extra: "12 Meses A tu correo", precioUSD: 10.00 }
+                ],
+                paquetesTab2: [{ monto: "Cuenta Pro", extra: "12 Meses A tu correo", precioUSD: 10.00 }]
+            },
+            "free fire": {
+                categoria: "juegos",
+                tab1Nombre: "Diamantes",
+                tab2Nombre: "Paquetes",
+                idLabel: "ID DEL JUGADOR / CORREO DE LA CUENTA",
+                idPlaceholder: "Ingresa tu ID o Correo",
+                paquetesTab1: [
+                    { monto: "100", extra: "+ 10 Extra", precioUSD: 1.04, active: true },
+                    { monto: "310", extra: "+ 31 Extra", precioUSD: 3.40 },
+                    { monto: "520", extra: "+ 52 Extra", precioUSD: 5.30 },
+                    { monto: "1060", extra: "+ 106 Extra", precioUSD: 10.30 },
+                    { monto: "2180", extra: "+ 218 Extra", precioUSD: 19.90 },
+                    { monto: "5600", extra: "+ 560 Extra", precioUSD: 39.99 }
+                ],
+                paquetesTab2: [
+                    { monto: "Pase Semanal", extra: "VIP", precioUSD: 2.20 },
+                    { monto: "Pase Mensual", extra: "Top", precioUSD: 10.50 }
+                ]
+            },
+            "blood strike": {
+                categoria: "juegos",
+                tab1Nombre: "Oro / Pases",
+                tab2Nombre: "Paquetes",
+                idLabel: "ID DEL JUGADOR / CORREO DE LA CUENTA",
+                idPlaceholder: "Ingresa tu ID o Correo",
+                paquetesTab1: [
+                    { monto: "100 Oro", extra: "Básico", precioUSD: 1.20, active: true },
+                    { monto: "500 Oro", extra: "Extra", precioUSD: 5.50 }
+                ],
+                paquetesTab2: [{ monto: "Pase de Batalla", extra: "Pro", precioUSD: 6.00 }]
+            },
+            "mobile legends": {
+                categoria: "juegos",
+                tab1Nombre: "Diamantes",
+                tab2Nombre: "Pases",
+                idLabel: "ID DEL JUGADOR / CORREO DE LA CUENTA",
+                idPlaceholder: "Ingresa tu ID o Correo",
+                paquetesTab1: [
+                    { monto: "86 Diamantes", extra: "Fast", precioUSD: 1.50, active: true },
+                    { monto: "257 Diamantes", extra: "Pack", precioUSD: 4.20 }
+                ],
+                paquetesTab2: [{ monto: "Pase Semanal", extra: "Bonus", precioUSD: 2.20 }]
+            },
+            "call of duty mobile": {
+                categoria: "juegos",
+                tab1Nombre: "CP Points",
+                tab2Nombre: "Pases",
+                idLabel: "ID DEL JUGADOR / CORREO DE LA CUENTA",
+                idPlaceholder: "Ingresa tu ID o Correo",
+                paquetesTab1: [
+                    { monto: "80 CP", extra: "Normal", precioUSD: 1.20, active: true },
+                    { monto: "160 CP", extra: "Mega", precioUSD: 2.40 },
+                    { monto: "240 CP", extra: "Popular", precioUSD: 3.60 },
+                    { monto: "320 CP", extra: "Pro", precioUSD: 4.80 },
+                    { monto: "420 CP", extra: "Elite", precioUSD: 6.03 },
+                    { monto: "880 CP", extra: "Master", precioUSD: 12.06 },
+                    { monto: "2400 CP", extra: "Legendario", precioUSD: 30.20 }
+                ],
+                paquetesTab2: [
+                    { monto: "Pase Premium", extra: "Pase", precioUSD: 3.60 },
+                    { monto: "Pase Premium Plus", extra: "Lote", precioUSD: 0 }
+                ]
+            },
+            "roblox": {
+                categoria: "juegos",
+                tab1Nombre: "Robux",
+                tab2Nombre: "Tarjetas",
+                idLabel: "ID DEL JUGADOR / CORREO DE LA CUENTA",
+                idPlaceholder: "Ingresa tu ID o Correo",
+                paquetesTab1: [
+                    { monto: "80 Robux", extra: "Directo", precioUSD: 1.20, active: true },
+                    { monto: "270 Robux", extra: "Pack", precioUSD: 3.99 },
+                    { monto: "500 Robux", extra: "Popular", precioUSD: 6.10 },
+                    { monto: "1000 Robux", extra: "Pro", precioUSD: 12.00 },
+                    { monto: "2000 Robux", extra: "Elite", precioUSD: 23.90 },
+                    { monto: "5250 Robux", extra: "Master", precioUSD: 59.99 }
+                ],
+                paquetesTab2: [
+                    { monto: "Gift Card $10", extra: "Código", precioUSD: 0 },
+                    { monto: "Gift Card $25", extra: "Código", precioUSD: 0 }
+                ]
+            },
+            "gift card psn": {
+                categoria: "giftcards",
+                tab1Nombre: "Tarjetas USA",
+                tab2Nombre: "Más Vendidas",
+                idLabel: "CORREO PARA ENTREGA DEL CÓDIGO",
+                idPlaceholder: "Ingresa tu correo electrónico",
+                paquetesTab1: [
+                    { monto: "$10 USD", extra: "Región USA", precioUSD: 11.50, active: true },
+                    { monto: "$20 USD", extra: "Región USA", precioUSD: 22.00 },
+                    { monto: "$25 USD", extra: "Región USA", precioUSD: 27.50 },
+                    { monto: "$50 USD", extra: "Región USA", precioUSD: 53.50 },
+                    { monto: "$100 USD", extra: "Región USA", precioUSD: 105.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "$10 USD", extra: "Región USA", precioUSD: 11.50 },
+                    { monto: "$50 USD", extra: "Región USA", precioUSD: 53.50 }
+                ]
+            },
+            "gift card netflix": {
+                categoria: "giftcards",
+                tab1Nombre: "Tarjetas Digitales",
+                tab2Nombre: "Destacadas",
+                idLabel: "CORREO PARA ENTREGA DEL CÓDIGO",
+                idPlaceholder: "Ingresa tu correo electrónico",
+                paquetesTab1: [
+                    { monto: "$15 USD", extra: "Código Digital", precioUSD: 17.00, active: true },
+                    { monto: "$25 USD", extra: "Código Digital", precioUSD: 27.50 },
+                    { monto: "$50 USD", extra: "Código Digital", precioUSD: 54.00 }
+                ],
+                paquetesTab2: [{ monto: "$25 USD", extra: "Código Digital", precioUSD: 27.50 }]
+            },
+            "gift card apple": {
+                categoria: "giftcards",
+                tab1Nombre: "App Store & iTunes",
+                tab2Nombre: "Más Vendidas",
+                idLabel: "CORREO PARA ENTREGA DEL CÓDIGO",
+                idPlaceholder: "Ingresa tu correo electrónico",
+                paquetesTab1: [
+                    { monto: "$2 USD", extra: "Región USA", precioUSD: 3.50, active: true },
+                    { monto: "$5 USD", extra: "Región USA", precioUSD: 7.50 },
+                    { monto: "$10 USD", extra: "Región USA", precioUSD: 12.70 },
+                    { monto: "$20 USD", extra: "Región USA", precioUSD: 23.50 },
+                    { monto: "$25 USD", extra: "Región USA", precioUSD: 28.00 },
+                    { monto: "$50 USD", extra: "Región USA", precioUSD: 54.50 },
+                    { monto: "$100 USD", extra: "Región USA", precioUSD: 105.00 }
+                ],
+                paquetesTab2: [
+                    { monto: "$10 USD", extra: "Región USA", precioUSD: 12.70 },
+                    { monto: "$25 USD", extra: "Región USA", precioUSD: 28.00 }
+                ]
+            }
+        };
+
+        const baseDeDatosPreciosDistri = {
+            "netflix": {
+                categoria: "distribuidores",
+                tab1Nombre: "Planes Mayoristas",
+                tab2Nombre: "Cuentas Mayoristas",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [{ monto: "1 Pantalla", extra: "Lote Mayorista", precioUSD: 3.30, active: true }],
+                paquetesTab2: [{ monto: "Cuenta Completa", extra: "Panel VIP", precioUSD: 14.50 }]
+            },
+            "netflix personal": {
+                categoria: "distribuidores",
+                tab1Nombre: "Planes Mayoristas",
+                tab2Nombre: "Cuentas Mayoristas",
+                idLabel: "CORREO O USUARIO",
+                idPlaceholder: "Ingresa los datos para tu cuenta personal",
+                paquetesTab1: [{ monto: "1 Mes", extra: "Personal VIP", precioUSD: 5.20, active: true }],
+                paquetesTab2: [{ monto: "1 Mes", extra: "Personal VIP", precioUSD: 5.20 }]
+            },
+            "disney+ premium": {
+                categoria: "distribuidores",
+                tab1Nombre: "Pantallas Mayoristas",
+                tab2Nombre: "Cuentas Mayoristas",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [{ monto: "1 Pantalla", extra: "Precio Revendedor", precioUSD: 3.00, active: true }],
+                paquetesTab2: [{ monto: "Cuenta Completa", extra: "Pack Mayorista", precioUSD: 17.00 }]
+            },
+            "prime video": {
+                categoria: "distribuidores",
+                tab1Nombre: "Opciones Mayoristas",
+                tab2Nombre: "Cuenta Mayorista",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [{ monto: "1 Pantalla", extra: "Revendedor", precioUSD: 1.20, active: true }],
+                paquetesTab2: [{ monto: "Cuenta Completa", extra: "Pack VIP", precioUSD: 4.00 }]
+            },
+            "hbo max standar": {
+                categoria: "distribuidores",
+                tab1Nombre: "Pantallas Mayoristas",
+                tab2Nombre: "Cuentas Mayoristas",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [{ monto: "1 Pantalla", extra: "Revendedor", precioUSD: 1.00, active: true }],
+                paquetesTab2: [{ monto: "Cuenta Completa", extra: "Privada VIP", precioUSD: 4.00 }]
+            },
+            "crunchyroll": {
+                categoria: "distribuidores",
+                tab1Nombre: "Mega Fan Revendedor",
+                tab2Nombre: "Cuenta Completa VIP",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [{ monto: "1 Pantalla", extra: "Mayorista", precioUSD: 1.00, active: true }],
+                paquetesTab2: [{ monto: "Cuenta Completa", extra: "Lote Revendedores", precioUSD: 4.00 }]
+            },
+            "paramount+": {
+                categoria: "distribuidores",
+                tab1Nombre: "Planes VIP",
+                tab2Nombre: "Cuentas VIP",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [{ monto: "1 Pantalla", extra: "Precio Mayorista", precioUSD: 1.50, active: true }],
+                paquetesTab2: [{ monto: "Cuenta Completa", extra: "Lote Mayorista", precioUSD: 5.00 }]
+            },
+            "vix": {
+                categoria: "distribuidores",
+                tab1Nombre: "Planes Mayoristas",
+                tab2Nombre: "Cuentas Mayoristas",
+                idLabel: "NOMBRE PARA LA PANTALLA",
+                idPlaceholder: "Ingresa el nombre para tu pantalla",
+                paquetesTab1: [{ monto: "1 Pantalla", extra: "Revendedor", precioUSD: 1.00, active: true }],
+                paquetesTab2: [{ monto: "Cuenta Completa", extra: "Lote Mayorista", precioUSD: 3.00 }]
+            },
+            "streamix tv": {
+                categoria: "distribuidores",
+                tab1Nombre: "IPTV Mayorista",
+                tab2Nombre: "Pack Anual VIP",
+                idLabel: "NOMBRE O DISPOSITIVO",
+                idPlaceholder: "Ej: Smart TV / Mi Nombre",
+                paquetesTab1: [
+                    { monto: "1 Mes VIP", extra: "Revendedor", precioUSD: 2.00, active: true },
+                    { monto: "3 Meses", extra: "Mayorista", precioUSD: 5.00 }
+                ],
+                paquetesTab2: [{ monto: "12 Meses", extra: "Anual VIP", precioUSD: 15.00 }]
+            },
+            "flujotv": {
+                categoria: "distribuidores",
+                tab1Nombre: "IPTV Mayorista",
+                tab2Nombre: "Pack Anual VIP",
+                idLabel: "NOMBRE O DISPOSITIVO",
+                idPlaceholder: "Ej: Firestick / Mi Nombre",
+                paquetesTab1: [
+                    { monto: "1 Mes VIP", extra: "Revendedor", precioUSD: 2.00, active: true },
+                    { monto: "3 Meses", extra: "Mayorista", precioUSD: 6.00 }
+                ],
+                paquetesTab2: [{ monto: "12 Meses", extra: "Anual VIP", precioUSD: 22.00 }]
+            },
+            "spotify premium": {
+                categoria: "distribuidores",
+                tab1Nombre: "Mayorista Correo",
+                tab2Nombre: "Lote",
+                idLabel: "CORREO DE TU CUENTA SPOTIFY",
+                idPlaceholder: "Ingresa el correo",
+                paquetesTab1: [{ monto: "1 Mes", extra: "Revendedor", precioUSD: 4.00, active: true }],
+                paquetesTab2: [{ monto: "3 Meses", extra: "Mayorista", precioUSD: 12.00 }]
+            },
+            "youtube premium": {
+                categoria: "distribuidores",
+                tab1Nombre: "Individual Mayorista",
+                tab2Nombre: "Renovable VIP",
+                idLabel: "CORREO DE TU CUENTA YOUTUBE",
+                idPlaceholder: "Tu correo para invitarte",
+                paquetesTab1: [{ monto: "1 Mes", extra: "Revendedor", precioUSD: 4.00, active: true }],
+                paquetesTab2: [{ monto: "12 Mes", extra: "Revendedor", precioUSD: 22.00 }]
+            },
+            "canva pro edu": {
+                categoria: "distribuidores",
+                tab1Nombre: "Canva Pro Mayorista",
+                tab2Nombre: "Anual",
+                idLabel: "CORREO DE TU CUENTA CANVA",
+                idPlaceholder: "Correo para invitación Pro",
+                paquetesTab1: [{ monto: "1 Mes Pro", extra: "Revendedor", precioUSD: 0.50, active: true }],
+                paquetesTab2: [{ monto: "12 Meses Pro", extra: "Mayorista", precioUSD: 8.00 }]
+            },
+            "capcut": {
+                categoria: "distribuidores",
+                tab1Nombre: "CapCut Pro Mayorista",
+                tab2Nombre: "Suscripción",
+                idLabel: "CORREO DE CONTACTO",
+                idPlaceholder: "Tu correo electrónico",
+                paquetesTab1: [{ monto: "1 Mes Pro", extra: "Revendedor", precioUSD: 6.50, active: true }],
+                paquetesTab2: [{ monto: "1 Mes Pro", extra: "Revendedor", precioUSD: 0.00 }]
+            }
+        };
+
+        const CONTROL_DE_STOCK = {
+            "netflix": 1,
+            "netflix personal": 0,
+            "disney+ premium": 0,
+            "prime video": 10,
+            "hbo max standar": 1,
+            "crunchyroll": 3,
+            "paramount+": 1,
+            "vix": 8,
+            "appletv": 0,
+            "universal+": 0,
+            "viki rakuten": 5,
+            "streamix tv": 15,
+            "flujotv": 12,
+            "spotify premium": 1,
+            "youtube premium": 0,
+            "canva pro edu": 50,
+            "capcut": 10,
+            "google one": 8,
+            "monedas tiktok": 100,
+            "estrellas telegram": 50,
+            "free fire": 100,
+            "blood strike": 0,
+            "mobile legends": 0,
+            "call of duty mobile": 30,
+            "roblox": 10,
+            "netflix-vip": 0,
+            "netflix personal-vip": 1,
+            "disney+ premium-vip": 0,
+            "prime video-vip": 5,
+            "hbo max standar-vip": 2,
+            "crunchyroll-vip": 4,
+            "paramount+-vip": 5,
+            "vix-vip": 5,
+            "streamix tv-vip": 10,
+            "flujotv-vip": 10,
+            "spotify premium-vip": 0,
+            "youtube premium-vip": 10,
+            "canva pro edu-vip": 20,
+            "capcut-vip": 5
+        };
+
+        // ==================== CUENTA REGRESIVA BLACK FRIDAY (7 DÍAS) ====================
+        function iniciarContadorBlackFriday() {
+            const STORAGE_KEY = 'streamix_bf_7d_end_v1';
+            const SIETE_DIAS_MS = 7 * 24 * 60 * 60 * 1000;
+
+            let fechaFin = parseInt(localStorage.getItem(STORAGE_KEY), 10);
+            if (!fechaFin || isNaN(fechaFin) || fechaFin <= Date.now()) {
+                fechaFin = Date.now() + SIETE_DIAS_MS;
+                localStorage.setItem(STORAGE_KEY, String(fechaFin));
+            }
+
+            function tick() {
+                const el = document.getElementById('bf-timer-text');
+                if (!el) return;
+
+                const restante = fechaFin - Date.now();
+                if (restante <= 0) {
+                    el.textContent = '0D 00H 00M 00S';
+                    return;
+                }
+
+                const totalSegundos = Math.floor(restante / 1000);
+                const dias = Math.floor(totalSegundos / 86400);
+                const horas = Math.floor((totalSegundos % 86400) / 3600);
+                const minutos = Math.floor((totalSegundos % 3600) / 60);
+                const segundos = totalSegundos % 60;
+
+                el.textContent = `${dias}D ${String(horas).padStart(2, '0')}H ${String(minutos).padStart(2, '0')}M ${String(segundos).padStart(2, '0')}S`;
+            }
+
+            tick();
+            setInterval(tick, 1000);
+        }
+
+        // ==================== HORARIO DE TIENDA VENEZUELA ====================
+        function actualizarEstadoTienda() {
+            const container = document.getElementById('estado-tienda-container');
+            const texto = document.getElementById('texto-estado-tienda');
+            const btnCheckout = document.getElementById('btn-main-action');
+
+            let horaVzla = 12;
+            let minutoVzla = 0;
+
+            try {
+                const opciones = { timeZone: 'America/Caracas', hour12: false, hour: 'numeric', minute: 'numeric' };
+                const partesHora = new Intl.DateTimeFormat('en-US', opciones).formatToParts(new Date());
+                partesHora.forEach(part => {
+                    if (part.type === 'hour') horaVzla = parseInt(part.value, 10);
+                    if (part.type === 'minute') minutoVzla = parseInt(part.value, 10);
+                });
+            } catch (e) {
+                const ahora = new Date();
+                horaVzla = ahora.getHours();
+                minutoVzla = ahora.getMinutes();
+            }
+
+            const horaActualMinutos = (horaVzla * 60) + minutoVzla;
+            const aperturaMinutos = 9 * 60;
+            const cierreMinutos = 22 * 60;
+            const estaAbierto = horaActualMinutos >= aperturaMinutos && horaActualMinutos < cierreMinutos;
+
+            if (estaAbierto) {
+                if (container) container.className = "badge-estado-tienda abierto";
+                if (texto) texto.innerText = "Abierto ahora: 9:00 AM - 10:00 PM";
+                if (btnCheckout) {
+                    btnCheckout.disabled = false;
+                    btnCheckout.style.opacity = "1";
+                    btnCheckout.style.cursor = "pointer";
+                    if (btnCheckout.innerText.includes("CERRADA")) {
+                        btnCheckout.innerText = estadoCheckoutStep === 1 ? "VERIFICAR PEDIDO >" : "REALIZAR PAGO >";
+                    }
+                }
+            } else {
+                if (container) container.className = "badge-estado-tienda cerrado";
+                if (texto) texto.innerText = "Cerrado ahora · Horario: 9:00 AM - 10:00 PM";
+                if (btnCheckout) {
+                    btnCheckout.disabled = true;
+                    btnCheckout.style.opacity = "0.5";
+                    btnCheckout.style.cursor = "not-allowed";
+                    btnCheckout.innerText = "TIENDA CERRADA HASTA LAS 9 AM";
+                }
+            }
+        }
+
+        // ==================== NAVEGACIÓN Y VISTAS ====================
+        function mostrarVista(vista, actualizarUrl = true) {
+            const vistas = [
+                'vista-servicios', 'vista-recargas', 'vista-distribuidores',
+                'vista-soporte', 'vista-producto', 'vista-binance-gateway',
+                'vista-pagomovil-gateway', 'vista-buscar', 'vista-resenas'
+            ];
+            vistas.forEach(v => {
+                const el = document.getElementById(v);
+                if (el) el.classList.remove('active');
+            });
+
+            const navs = ['nav-servicios', 'nav-recargas', 'nav-distribuidores', 'nav-buscar', 'nav-soporte', 'nav-resenas'];
+            navs.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.remove('active');
+            });
+
+            const mapaVistas = {
+                recargas: { sec: 'vista-recargas', nav: 'nav-recargas', hash: '#recargas' },
+                distribuidores: { sec: 'vista-distribuidores', nav: 'nav-distribuidores', hash: '#distribuidores' },
+                buscar: { sec: 'vista-buscar', nav: 'nav-buscar', hash: '#buscar' },
+                soporte: { sec: 'vista-soporte', nav: 'nav-soporte', hash: '#soporte' },
+                resenas: { sec: 'vista-resenas', nav: 'nav-resenas', hash: '#reseñas' },
+                producto: { sec: 'vista-producto', nav: null, hash: null },
+                'binance-gateway': { sec: 'vista-binance-gateway', nav: null, hash: null },
+                'pagomovil-gateway': { sec: 'vista-pagomovil-gateway', nav: null, hash: null },
+                servicios: { sec: 'vista-servicios', nav: 'nav-servicios', hash: ' ' }
+            };
+
+            const cfg = mapaVistas[vista] || mapaVistas.servicios;
+            const secEl = document.getElementById(cfg.sec);
+            if (secEl) secEl.classList.add('active');
+            if (cfg.nav) {
+                const navEl = document.getElementById(cfg.nav);
+                if (navEl) navEl.classList.add('active');
+            }
+            if (actualizarUrl && cfg.hash) {
+                history.pushState(null, null, cfg.hash);
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleDrawer() {
+            const drawer = document.getElementById('mobileDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+            if (!drawer || !overlay) return;
+            if (drawer.classList.contains('open')) {
+                drawer.classList.remove('open');
+                overlay.style.display = 'none';
+            } else {
+                drawer.classList.add('open');
+                overlay.style.display = 'block';
+            }
+        }
+
+        function goToSlide(index) {
+            const track = document.getElementById('carouselTrack');
+            if (!track) return;
+            currentSlide = index;
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            const dots = document.querySelectorAll('.carousel-indicators .dot');
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
+        }
+
+        function filtrarSeccion(categoria, botonElemento) {
+            document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
+            if (botonElemento && botonElemento.classList) botonElemento.classList.add('active');
+
+            const headers = document.querySelectorAll('.section-header');
+            let objetivo = null;
+            headers.forEach(header => {
+                const texto = header.innerText.toLowerCase();
+                if (categoria === 'cines' && texto.includes('cines')) objetivo = header;
+                if (categoria === 'iptv' && texto.includes('tv en vivo')) objetivo = header;
+                if (categoria === 'musica' && texto.includes('música')) objetivo = header;
+                if (categoria === 'ia' && texto.includes('ia &')) objetivo = header;
+                if (categoria === 'giftcards' && texto.includes('gift')) objetivo = header;
+                if (categoria === 'otros' && texto.includes('otros')) objetivo = header;
+            });
+
+            if (objetivo) objetivo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // ==================== REGIÓN Y DISTRIBUIDORES ====================
+        function abrirModalRegion() {
+            const el = document.getElementById('modalRegion');
+            if (el) el.style.display = 'flex';
+        }
+        function cerrarModalRegion() {
+            const el = document.getElementById('modalRegion');
+            if (el) el.style.display = 'none';
+        }
+        function seleccionarMoneda(moneda) {
+            monedaActual = moneda;
+            const labelDesk = document.getElementById('label-moneda');
+            const labelMob = document.getElementById('label-moneda-mob');
+            if (labelDesk) labelDesk.innerText = moneda;
+            if (labelMob) labelMob.innerText = moneda;
+
+            const optGlobal = document.getElementById('optGlobal');
+            const optVES = document.getElementById('optVES');
+            const radioGlobal = document.getElementById('radioGlobal');
+            const radioVES = document.getElementById('radioVES');
+            const arrowGlobal = document.getElementById('arrowGlobal');
+
+            if (moneda === 'VES') {
+                optVES.classList.add('active');
+                optGlobal.classList.remove('active');
+                radioVES.style.display = 'flex';
+                radioVES.innerText = '✓';
+                radioGlobal.style.display = 'none';
+                arrowGlobal.style.display = 'block';
+            } else {
+                optGlobal.classList.add('active');
+                optVES.classList.remove('active');
+                radioGlobal.style.display = 'flex';
+                radioGlobal.innerText = '✓';
+                arrowGlobal.style.display = 'none';
+                radioVES.style.display = 'none';
+            }
+
+            if (productoActualData) renderizarPaquetes();
+            cerrarModalRegion();
+        }
 
         function solicitarAccesoDistribuidores() {
             if (distribuidorAutorizado) {
                 mostrarVista('distribuidores');
             } else {
-                let modalDist = document.getElementById('modal-distribuidores');
+                const modalDist = document.getElementById('modal-distribuidores');
                 if (modalDist) modalDist.style.display = 'flex';
             }
         }
-
         function cerrarModalDistribuidores() {
-            let modalDist = document.getElementById('modal-distribuidores');
+            const modalDist = document.getElementById('modal-distribuidores');
             if (modalDist) modalDist.style.display = 'none';
         }
-
         function validarCodigoDistribuidor() {
-            const inputCode = document.getElementById('distri-code-input').value.trim().toUpperCase();
-            if (inputCode === "SXDISTRIVZ" || inputCode === "SXDISTRVE") {
+            const inputCode = document.getElementById('distri-code-input');
+            if (!inputCode) return;
+            const code = inputCode.value.trim().toUpperCase();
+            if (code === "SXDISTRIVZ" || code === "SXDISTRVE") {
                 distribuidorAutorizado = true;
                 cerrarModalDistribuidores();
-                document.getElementById('distri-code-input').value = "";
+                inputCode.value = "";
                 mostrarVista('distribuidores');
             } else {
                 alert("Código de distribuidor incorrecto. Solicita tu código a soporte.");
             }
         }
 
-// ==================== CONTROL DE STOCK / INVENTARIO ====================
-// (0 = Agotado / >0 = Stock disponible)
-const CONTROL_DE_STOCK = {
-    // --- CLIENTES FINALES (Catálogo Normal) ---
-    "netflix": 1,
-    "netflix personal": 0,
-    "disney+ premium": 0,
-    "prime video": 10,
-    "hbo max standar": 1,
-    "crunchyroll": 3,
-    "paramount+": 1,
-    "vix": 8,
-    "appletv": 0,
-    "universal+": 0,
-    "viki rakuten": 5,
-    "streamix tv": 15,
-    "flujotv": 12,
-    "spotify premium": 1,
-    "youtube premium": 0,
-    "canva pro edu": 50,
-    "capcut": 10,
-    "google one": 8,
-    "monedas tiktok": 100,
-    "estrellas telegram": 50,
-    "free fire": 100,
-    "blood strike": 0,
-    "mobile legends": 0,
-    "call of duty mobile": 30,
-    "roblox": 10,
-
-    // --- MAYORISTAS (Área de Distribuidores con sufijo -vip) ---
-    "netflix-vip": 0,
-    "netflix personal-vip": 1,
-    "disney+ premium-vip": 0,
-    "prime video-vip": 5,
-    "hbo max standar-vip": 2,
-    "crunchyroll-vip": 4,
-    "paramount+-vip": 5,
-    "vix-vip": 5,
-    "streamix tv-vip": 10,
-    "flujotv-vip": 10,
-    "spotify premium-vip": 0,
-    "youtube premium-vip": 10,
-    "canva pro edu-vip": 20,
-    "capcut-vip": 5
-};
-       function abrirProducto(nombre, tag, imagen) {
-            productoNombreActual = nombre;
-            document.getElementById('prod-title').innerText = nombre;
-            document.getElementById('prod-bread-title').innerText = nombre;
+        // ==================== PRODUCTO Y CHECKOUT ====================
+        function configurarVistaProducto(nombre, tag, imagen, esDistri) {
+            productoNombreActual = esDistri ? `${nombre} (VIP Mayorista)` : nombre;
+            document.getElementById('prod-title').innerText = esDistri ? `${nombre} VIP` : nombre;
+            document.getElementById('prod-bread-title').innerText = esDistri ? `${nombre} Mayorista` : nombre;
             document.getElementById('prod-tag').innerText = tag;
-            document.getElementById('summary-prod-name').innerText = nombre;
-            if(imagen) document.getElementById('summary-prod-img').src = imagen;
+            document.getElementById('summary-prod-name').innerText = esDistri ? `${nombre} VIP` : nombre;
+            if (imagen) document.getElementById('summary-prod-img').src = imagen;
 
+            cantidad = 1;
+            document.getElementById('qty-val').innerText = '1';
             limpiarErrorInput();
             document.getElementById('input-field-id').value = '';
 
-            // Resetea y desmarca la casilla de términos al abrir un producto
             const checkTerm = document.getElementById('check-terminos-pedido');
             if (checkTerm) checkTerm.checked = false;
             limpiarErrorTerminos();
 
             const claveNorm = nombre.toLowerCase().trim();
-            productoActualData = baseDeDatosPrecios[claveNorm] || baseDeDatosPrecios["netflix"];
+            const fuente = esDistri ? baseDeDatosPreciosDistri : baseDeDatosPrecios;
+            productoActualData = fuente[claveNorm] || fuente["netflix"];
 
             document.getElementById('label-field-text').innerText = productoActualData.idLabel;
             document.getElementById('input-field-id').placeholder = productoActualData.idPlaceholder;
-
             document.getElementById('tab-btn-1').innerText = productoActualData.tab1Nombre;
             document.getElementById('tab-btn-2').innerText = productoActualData.tab2Nombre;
 
             estadoCheckoutStep = 1;
-            document.getElementById('step2-title-head').innerHTML = 'SELECCIONA TU <span>PLAN / PAQUETE</span>';
+            document.getElementById('step2-title-head').innerHTML = esDistri
+                ? 'SELECCIONA TU <span>PLAN / PAQUETE MAYORISTA</span>'
+                : 'SELECCIONA TU <span>PLAN / PAQUETE</span>';
             document.getElementById('step2-packages-wrapper').style.display = 'block';
             document.getElementById('step2-payment-wrapper').style.display = 'none';
             document.getElementById('btn-main-action').innerText = 'VERIFICAR PEDIDO >';
@@ -2857,137 +2972,21 @@ const CONTROL_DE_STOCK = {
             document.getElementById('tab-btn-2').classList.remove('active');
 
             renderizarPaquetes();
+            actualizarEstadoTienda();
             mostrarVista('producto');
+        }
+
+        function abrirProducto(nombre, tag, imagen) {
+            configurarVistaProducto(nombre, tag, imagen, false);
         }
 
         function abrirProductoDistri(nombre, tag, imagen) {
-            productoNombreActual = nombre + " (VIP Mayorista)";
-            document.getElementById('prod-title').innerText = nombre + " VIP";
-            document.getElementById('prod-bread-title').innerText = nombre + " Mayorista";
-            document.getElementById('prod-tag').innerText = tag;
-            document.getElementById('summary-prod-name').innerText = nombre + " VIP";
-            if(imagen) document.getElementById('summary-prod-img').src = imagen;
-
-            limpiarErrorInput();
-            document.getElementById('input-field-id').value = '';
-
-            // Resetea y desmarca la casilla de términos al abrir un producto mayorista
-            const checkTerm = document.getElementById('check-terminos-pedido');
-            if (checkTerm) checkTerm.checked = false;
-            limpiarErrorTerminos();
-
-            const claveNorm = nombre.toLowerCase().trim();
-            productoActualData = baseDeDatosPreciosDistri[claveNorm] || baseDeDatosPreciosDistri["netflix"];
-
-            document.getElementById('label-field-text').innerText = productoActualData.idLabel;
-            document.getElementById('input-field-id').placeholder = productoActualData.idPlaceholder;
-
-            document.getElementById('tab-btn-1').innerText = productoActualData.tab1Nombre;
-            document.getElementById('tab-btn-2').innerText = productoActualData.tab2Nombre;
-
-            estadoCheckoutStep = 1;
-            document.getElementById('step2-title-head').innerHTML = 'SELECCIONA TU <span>PLAN / PAQUETE MAYORISTA</span>';
-            document.getElementById('step2-packages-wrapper').style.display = 'block';
-            document.getElementById('step2-payment-wrapper').style.display = 'none';
-            document.getElementById('btn-main-action').innerText = 'VERIFICAR PEDIDO >';
-
-            tabActivaIndex = 0;
-            document.getElementById('tab-btn-1').classList.add('active');
-            document.getElementById('tab-btn-2').classList.remove('active');
-
-            renderizarPaquetes();
-            mostrarVista('producto');
-        }
-
-function renderizarPaquetes() {
-    const grid = document.getElementById('packages-grid-container');
-    grid.innerHTML = '';
-
-    const lista = tabActivaIndex === 0 ? productoActualData.paquetesTab1 : productoActualData.paquetesTab2;
-
-    lista.forEach((item, idx) => {
-        // Obtenemos el stock configurado en la lista (si no está definido, por defecto es 1)
-        const claveProducto = productoNombreActual.toLowerCase().replace(' (vip mayorista)', '').trim();
-        const stockDisponible = (CONTROL_DE_STOCK[claveProducto] !== undefined) ? CONTROL_DE_STOCK[claveProducto] : 1;
-        const estaAgotado = stockDisponible <= 0;
-
-        let esActivo = !estaAgotado && (item.active || (idx === 0 && !lista.some(p => p.active)));
-        
-        if (esActivo) {
-            precioUSDActual = item.precioUSD;
-            document.getElementById('summary-pkg-text').innerText = `${item.monto} ${item.extra ? '(' + item.extra + ')' : ''}`;
-            actualizarTotal();
-        }
-
-        const card = document.createElement('div');
-        // Si el stock es 0, se le asigna la clase 'sold-out'
-        card.className = `package-card ${esActivo ? 'active' : ''} ${estaAgotado ? 'sold-out' : ''}`;
-        
-        if (!estaAgotado) {
-            card.onclick = function() {
-                document.querySelectorAll('.package-card').forEach(el => el.classList.remove('active'));
-                card.classList.add('active');
-                precioUSDActual = item.precioUSD;
-                document.getElementById('summary-pkg-text').innerText = `${item.monto} ${item.extra ? '(' + item.extra + ')' : ''}`;
-                actualizarTotal();
-            };
-        }
-
-        let precioMostrado = monedaActual === 'VES' 
-            ? `Bs. ${(item.precioUSD * tasaVES).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
-            : `$${item.precioUSD.toFixed(2)}`;
-
-        card.innerHTML = `
-            <div class="package-card-top">
-                <div>
-                    <span class="package-amount">${item.monto}</span>
-                    <span class="package-extra"> ${item.extra ? '/ ' + item.extra : ''}</span>
-                </div>
-                <div class="info-small-circle">i</div>
-            </div>
-            <div class="package-price-badge">${precioMostrado}</div>
-        `;
-        grid.appendChild(card);
-    });
-}
-
-        function abrirProductoDistri(nombre, tag, imagen) {
-            productoNombreActual = nombre + " (VIP Mayorista)";
-            document.getElementById('prod-title').innerText = nombre + " VIP";
-            document.getElementById('prod-bread-title').innerText = nombre + " Mayorista";
-            document.getElementById('prod-tag').innerText = tag;
-            document.getElementById('summary-prod-name').innerText = nombre + " VIP";
-            if(imagen) document.getElementById('summary-prod-img').src = imagen;
-
-            limpiarErrorInput();
-            document.getElementById('input-field-id').value = '';
-
-            const claveNorm = nombre.toLowerCase().trim();
-            productoActualData = baseDeDatosPreciosDistri[claveNorm] || baseDeDatosPreciosDistri["netflix"];
-
-            document.getElementById('label-field-text').innerText = productoActualData.idLabel;
-            document.getElementById('input-field-id').placeholder = productoActualData.idPlaceholder;
-
-            document.getElementById('tab-btn-1').innerText = productoActualData.tab1Nombre;
-            document.getElementById('tab-btn-2').innerText = productoActualData.tab2Nombre;
-
-            estadoCheckoutStep = 1;
-            document.getElementById('step2-title-head').innerHTML = 'SELECCIONA TU <span>PLAN / PAQUETE MAYORISTA</span>';
-            document.getElementById('step2-packages-wrapper').style.display = 'block';
-            document.getElementById('step2-payment-wrapper').style.display = 'none';
-            document.getElementById('btn-main-action').innerText = 'VERIFICAR PEDIDO >';
-
-            tabActivaIndex = 0;
-            document.getElementById('tab-btn-1').classList.add('active');
-            document.getElementById('tab-btn-2').classList.remove('active');
-
-            renderizarPaquetes();
-            mostrarVista('producto');
+            configurarVistaProducto(nombre, tag, imagen, true);
         }
 
         function cambiarTab(index) {
             tabActivaIndex = index;
-            if(index === 0) {
+            if (index === 0) {
                 document.getElementById('tab-btn-1').classList.add('active');
                 document.getElementById('tab-btn-2').classList.remove('active');
             } else {
@@ -2999,17 +2998,18 @@ function renderizarPaquetes() {
 
         function renderizarPaquetes() {
             const grid = document.getElementById('packages-grid-container');
+            if (!grid || !productoActualData) return;
             grid.innerHTML = '';
 
             const lista = tabActivaIndex === 0 ? productoActualData.paquetesTab1 : productoActualData.paquetesTab2;
+            const esDistri = productoNombreActual.toLowerCase().includes('(vip mayorista)');
+            const claveBase = productoNombreActual.toLowerCase().replace(' (vip mayorista)', '').trim();
+            const claveStock = esDistri ? `${claveBase}-vip` : claveBase;
+            const stockDisponible = (CONTROL_DE_STOCK[claveStock] !== undefined) ? CONTROL_DE_STOCK[claveStock] : 1;
+            const estaAgotado = stockDisponible <= 0;
 
             lista.forEach((item, idx) => {
-                const claveProducto = productoNombreActual.toLowerCase().replace(' (vip mayorista)', '').trim();
-                const stockDisponible = (CONTROL_DE_STOCK[claveProducto] !== undefined) ? CONTROL_DE_STOCK[claveProducto] : 1;
-                const estaAgotado = stockDisponible <= 0;
-
-                let esActivo = !estaAgotado && (item.active || (idx === 0 && !lista.some(p => p.active)));
-
+                const esActivo = !estaAgotado && (item.active || (idx === 0 && !lista.some(p => p.active)));
                 if (esActivo) {
                     precioUSDActual = item.precioUSD;
                     document.getElementById('summary-pkg-text').innerText = `${item.monto} ${item.extra ? '(' + item.extra + ')' : ''}`;
@@ -3029,7 +3029,7 @@ function renderizarPaquetes() {
                     };
                 }
 
-                let precioMostrado = monedaActual === 'VES' 
+                const precioMostrado = monedaActual === 'VES'
                     ? `Bs. ${(item.precioUSD * tasaVES).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
                     : `$${item.precioUSD.toFixed(2)}`;
 
@@ -3056,9 +3056,9 @@ function renderizarPaquetes() {
         }
 
         function actualizarTotal() {
-            let totalUSD = precioUSDActual * cantidad;
+            const totalUSD = precioUSDActual * cantidad;
             if (monedaActual === 'VES') {
-                let totalVES = totalUSD * tasaVES;
+                const totalVES = totalUSD * tasaVES;
                 document.getElementById('curr-symbol').innerText = 'Bs.';
                 document.getElementById('total-val').innerText = totalVES.toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             } else {
@@ -3070,19 +3070,20 @@ function renderizarPaquetes() {
         function limpiarErrorInput() {
             const input = document.getElementById('input-field-id');
             const errorMsg = document.getElementById('error-msg');
-            input.classList.remove('error-input');
-            errorMsg.style.display = 'none';
+            if (input) input.classList.remove('error-input');
+            if (errorMsg) errorMsg.style.display = 'none';
         }
 
         function validarCampoObligatorio() {
             const input = document.getElementById('input-field-id');
             const errorMsg = document.getElementById('error-msg');
-            const val = input.value.trim();
-
-            if (val === '') {
-                input.classList.add('error-input');
-                errorMsg.style.display = 'block';
-                input.focus();
+            const val = input ? input.value.trim() : '';
+            if (!val) {
+                if (input) {
+                    input.classList.add('error-input');
+                    input.focus();
+                }
+                if (errorMsg) errorMsg.style.display = 'block';
                 return false;
             }
             limpiarErrorInput();
@@ -3114,92 +3115,64 @@ function renderizarPaquetes() {
         }
 
         function validarYProcesarPedido() {
-    // 1. Validar que escribió el nombre/correo/ID
-    if (!validarCampoObligatorio()) return;
+            if (!validarCampoObligatorio()) return;
 
-    // 2. Validar que marcó "Acepto los términos y condiciones"
-    const checkTerminos = document.getElementById('check-terminos-pedido');
-    if (!checkTerminos || !checkTerminos.checked) {
-        const box = document.getElementById('box-check-terminos');
-        const msg = document.getElementById('error-terminos-msg');
-        if (box) box.classList.add('error-terms');
-        if (msg) msg.style.display = 'block';
-        if (checkTerminos) checkTerminos.focus();
-        return;
-    }
-
-    // 3. Avanzar al método de pago o pasarela
-    if (estadoCheckoutStep === 1) {
-        estadoCheckoutStep = 2;
-        document.getElementById('step2-title-head').innerHTML = 'SELECCIONA TU <span>MÉTODO DE PAGO</span>';
-        document.getElementById('step2-packages-wrapper').style.display = 'none';
-        document.getElementById('step2-payment-wrapper').style.display = 'block';
-        document.getElementById('btn-main-action').innerText = 'REALIZAR PAGO >';
-        window.scrollTo({ top: 300, behavior: 'smooth' });
-    } else {
-        let totalUSD = (precioUSDActual * cantidad).toFixed(2);
-        let totalVES = (precioUSDActual * cantidad * tasaVES).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        let valorIngresado = document.getElementById('input-field-id').value.trim();
-
-        if (metodoPagoSeleccionado === 'binance') {
-            document.getElementById('gateway-binance-amount').innerText = totalUSD;
-            document.getElementById('binance-qr-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=binancepay://pay?amount=${totalUSD}`;
-            mostrarVista('binance-gateway');
-        } else {
-            document.getElementById('pm-card4-label').innerText = productoActualData.idLabel;
-            document.getElementById('pm-card4-val').innerText = valorIngresado;
-            document.getElementById('gateway-pm-amount').innerText = totalVES;
-            mostrarVista('pagomovil-gateway');
-        }
-        iniciarTemporizador();
-    }
-}
-
-        function toggleGatewayDropdown() {
-            let esBinance = document.getElementById('vista-binance-gateway').classList.contains('active');
-            let content = esBinance ? document.getElementById('gateway-dropdown-content-binance') : document.getElementById('gateway-dropdown-content-pm');
-            let arrow = esBinance ? document.getElementById('gateway-arrow-binance') : document.getElementById('gateway-arrow-pm');
-
-            let prodVals = document.querySelectorAll('.gw-prod-name-val');
-            let pkgVals = document.querySelectorAll('.gw-pkg-name-val');
-            let qtyVals = document.querySelectorAll('.gw-qty-val');
-            let playerVals = document.querySelectorAll('.gw-player-val');
-            let labelVals = document.querySelectorAll('.gw-label-tag-val');
-
-            prodVals.forEach(e => e.innerText = productoNombreActual);
-            pkgVals.forEach(e => e.innerText = document.getElementById('summary-pkg-text').innerText);
-            qtyVals.forEach(e => e.innerText = document.getElementById('qty-val').innerText);
-            playerVals.forEach(e => e.innerText = document.getElementById('input-field-id').value || 'No ingresado');
-            
-            if(productoActualData && productoActualData.idLabel) {
-                labelVals.forEach(e => e.innerText = productoActualData.idLabel + ':');
+            const checkTerminos = document.getElementById('check-terminos-pedido');
+            if (!checkTerminos || !checkTerminos.checked) {
+                const box = document.getElementById('box-check-terminos');
+                const msg = document.getElementById('error-terminos-msg');
+                if (box) box.classList.add('error-terms');
+                if (msg) msg.style.display = 'block';
+                if (checkTerminos) checkTerminos.focus();
+                return;
             }
 
-            if (content.classList.contains('open')) {
-                content.classList.remove('open');
-                if(arrow) arrow.innerText = '▼';
+            if (estadoCheckoutStep === 1) {
+                estadoCheckoutStep = 2;
+                document.getElementById('step2-title-head').innerHTML = 'SELECCIONA TU <span>MÉTODO DE PAGO</span>';
+                document.getElementById('step2-packages-wrapper').style.display = 'none';
+                document.getElementById('step2-payment-wrapper').style.display = 'block';
+                document.getElementById('btn-main-action').innerText = 'REALIZAR PAGO >';
+                window.scrollTo({ top: 300, behavior: 'smooth' });
             } else {
-                content.classList.add('open');
-                if(arrow) arrow.innerText = '▲';
+                const totalUSD = (precioUSDActual * cantidad).toFixed(2);
+                const totalVES = (precioUSDActual * cantidad * tasaVES).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                const valorIngresado = document.getElementById('input-field-id').value.trim();
+
+                if (metodoPagoSeleccionado === 'binance') {
+                    document.getElementById('gateway-binance-amount').innerText = totalUSD;
+                    document.getElementById('binance-qr-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=binancepay://pay?amount=${totalUSD}`;
+                    mostrarVista('binance-gateway');
+                } else {
+                    document.getElementById('pm-card4-label').innerText = productoActualData.idLabel;
+                    document.getElementById('pm-card4-val').innerText = valorIngresado;
+                    document.getElementById('gateway-pm-amount').innerText = totalVES;
+                    mostrarVista('pagomovil-gateway');
+                }
+                iniciarTemporizador();
             }
         }
 
         function iniciarTemporizador() {
             if (timerInterval) clearInterval(timerInterval);
-            let tiempoTotal = 1790;
+            const tiempoTotal = 1790;
             let tiempoRestante = tiempoTotal;
 
             timerInterval = setInterval(() => {
-                let minutos = Math.floor(tiempoRestante / 60);
-                let segundos = tiempoRestante % 60;
-                let texto = `${minutos < 10 ? '0' : ''}${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
-                
-                document.getElementById('timer-binance').innerText = texto;
-                document.getElementById('timer-pm').innerText = texto;
+                const minutos = Math.floor(tiempoRestante / 60);
+                const segundos = tiempoRestante % 60;
+                const texto = `${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
 
-                let porcentaje = (tiempoRestante / tiempoTotal) * 100;
-                document.getElementById('progress-binance').style.width = porcentaje + '%';
-                document.getElementById('progress-pm').style.width = porcentaje + '%';
+                const tb = document.getElementById('timer-binance');
+                const tp = document.getElementById('timer-pm');
+                if (tb) tb.innerText = texto;
+                if (tp) tp.innerText = texto;
+
+                const porcentaje = (tiempoRestante / tiempoTotal) * 100;
+                const pb = document.getElementById('progress-binance');
+                const pp = document.getElementById('progress-pm');
+                if (pb) pb.style.width = porcentaje + '%';
+                if (pp) pp.style.width = porcentaje + '%';
 
                 if (tiempoRestante <= 0) {
                     clearInterval(timerInterval);
@@ -3216,1019 +3189,310 @@ function renderizarPaquetes() {
         }
 
         function copiarDatoPantalla() {
-            let label = document.getElementById('pm-card4-label').innerText;
-            let val = document.getElementById('pm-card4-val').innerText;
+            const label = document.getElementById('pm-card4-label').innerText;
+            const val = document.getElementById('pm-card4-val').innerText;
             navigator.clipboard.writeText(val).then(() => {
                 alert(`✓ ${label} copiado: ${val}`);
             });
         }
 
         function copiarTodoPagoMovil() {
-            let totalVES = (precioUSDActual * cantidad * tasaVES).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            let labelDato = document.getElementById('pm-card4-label').innerText;
-            let valDato = document.getElementById('pm-card4-val').innerText;
+            const totalVES = (precioUSDActual * cantidad * tasaVES).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            const labelDato = document.getElementById('pm-card4-label').innerText;
+            const valDato = document.getElementById('pm-card4-val').innerText;
 
-            let textoCompleto = `DATOS DE PAGO MÓVIL:\nBanco: Bancamiga 0172\nTeléfono: 04122818460\nCédula/RIF: V-27178466\n${labelDato}: ${valDato}\nMonto Exacto: Bs. ${totalVES}`;
-            
+            const textoCompleto = `DATOS DE PAGO MÓVIL:\nBanco: Bancamiga 0172\nTeléfono: 04122818460\nCédula/RIF: V-27178466\n${labelDato}: ${valDato}\nMonto Exacto: Bs. ${totalVES}`;
             navigator.clipboard.writeText(textoCompleto).then(() => {
                 alert('✓ Todos los datos de Pago Móvil han sido copiados.');
             });
         }
 
         function enviarPagoWhatsApp(metodo) {
-            let idCuenta = document.getElementById('input-field-id').value.trim();
-            let paquete = document.getElementById('summary-pkg-text').innerText;
-            let totalUSD = (precioUSDActual * cantidad).toFixed(2);
-            let totalVES = (precioUSDActual * cantidad * tasaVES).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            const idCuenta = document.getElementById('input-field-id').value.trim();
+            const paquete = document.getElementById('summary-pkg-text').innerText;
+            const totalUSD = (precioUSDActual * cantidad).toFixed(2);
+            const totalVES = (precioUSDActual * cantidad * tasaVES).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-            let msg = `🎅🏻 Hola STREAMIX STORE, ya realicé mi pago por ${metodo}.\n\n` +
-                      `📌 *Producto:* ${productoNombreActual}\n` +
-                      `📦 *Plan:* ${paquete} (x${cantidad})\n` +
-                      `👤 *${productoActualData.idLabel}:* ${idCuenta}\n` +
-                      `💰 *Monto:* ${metodo === 'Binance Pay' ? totalUSD + ' USDT' : 'Bs. ' + totalVES}\n\n` +
-                      `Adjunto comprobante de pago:`;
+            const msg = `🎅🏻 Hola STREAMIX STORE, ya realicé mi pago por ${metodo}.\n\n` +
+                `📌 *Producto:* ${productoNombreActual}\n` +
+                `📦 *Plan:* ${paquete} (x${cantidad})\n` +
+                `👤 *${productoActualData.idLabel}:* ${idCuenta}\n` +
+                `💰 *Monto:* ${metodo === 'Binance Pay' ? totalUSD + ' USDT' : 'Bs. ' + totalVES}\n\n` +
+                `Adjunto comprobante de pago:`;
 
-            let url = `https://wa.me/584124405245?text=${encodeURIComponent(msg)}`;
-            window.open(url, '_blank');
+            window.open(`https://wa.me/584124405245?text=${encodeURIComponent(msg)}`, '_blank');
         }
-
-       var _0xf139aa = (769611 ^ 769608) + (123265 ^ 123267);
-const URL_GOOGLE_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbyoYeBjA8F4gBBAdNREsB0Ac_xaoTv_4c-fsX3wlSF4Tr5IlQDOCMv7vEhDWro4Ox_uKw/exec";
-_0xf139aa = (496150 ^ 496144) + (445075 ^ 445083);
-var _0xefbca = (805896 ^ 805896) + (607454 ^ 607455);
-const TOKEN_SECRETO = "S482146POJEHSTY125WUEHWAS";
-_0xefbca = (731755 ^ 731759) + (770080 ^ 770086);
-
-// ==================== 1. BUSCADOR DE DATOS POR TELÉFONO ====================
-function ejecutarBusquedaDatos() {
-  const inputTelefono = document.getElementById("search-phone-input");
-  if (!inputTelefono) return;
-
-  const telefonoLimpio = inputTelefono.value.trim().replace(new RegExp("[^0-9]", 'g'), '');
-  
-  if (!telefonoLimpio) {
-    inputTelefono.style.borderColor = '#ff4d4d';
-    alert("Por favor, ingresa un número de teléfono válido.");
-    return;
-  }
-  
-  const emptyBox = document.getElementById("search-empty-box");
-  const resultsBox = document.getElementById('search-results-box');
-  const accountsList = document.getElementById("search-accounts-list");
-  
-  if (emptyBox) emptyBox.style.display = "none";
-  if (resultsBox) resultsBox.style.display = "flex";
-  if (accountsList) accountsList.innerHTML = `<div style="text-align: center; color: #00FFEF; padding: 40px 0; font-weight: bold;">🔍 Consultando</div>`;
-  
-  fetch(`${URL_GOOGLE_APPS_SCRIPT}?telefono=${telefonoLimpio}&token=${TOKEN_SECRETO}`)
-    .then(res => res.json())
-    .then(data => {
-      if (data.error) {
-        if (accountsList) accountsList.innerHTML = `<div style="text-align: center; color: #ff4d4d; padding: 30px 0;">❌ Error de seguridad: ${data.error}</div>`;
-        return;
-      }
-      if (!data.resultados || data.resultados.length === 0) {
-        if (accountsList) {
-          accountsList.innerHTML = `
-            <div style="text-align: center; color: #9ca3af; padding: 40px 0;">
-                ❌ No se encontraron cuentas activas asociadas al teléfono <strong>${telefonoLimpio}</strong>.
-            </div>`;
-        }
-        return;
-      }
-      
-      window.cuentasEncontradasCache = data.resultados;
-      let htmlResultados = `<div class="search-results-header">CUENTAS ENCONTRADAS PARA TU NÚMERO (${data.resultados.length})</div>`;
-      
-      data.resultados.forEach((item, idx) => {
-        htmlResultados += `
-            <div class="account-result-item" onclick="verDetalleCuenta(${idx})">
-                <div class="account-item-left">
-                    <div class="account-item-icon">🎬</div>
-                    <div>
-                        <div class="account-item-mail">${item.servicio ? item.servicio.toUpperCase() : ''} - ${item.correo || ''}</div>
-                        <div class="account-item-sub">Perfil: ${item.perfil || "Principal"} · Corte: ${item.fechaCorte || 'N/A'}</div>
-                    </div>
-                </div>
-                <span style="color: #00FFEF; font-weight: bold; font-size: 0.85rem;">Ver datos ➔</span>
-            </div>
-        `;
-      });
-      if (accountsList) accountsList.innerHTML = htmlResultados;
-    })
-    .catch(err => {
-      console.error(err);
-      if (accountsList) accountsList.innerHTML = `<div style="text-align: center; color: #ff4d4d; padding: 30px 0;">Error de conexión con la base de datos. Intenta nuevamente.</div>`;
-    });
-}
-
-// ==================== 2. GESTIÓN Y ENVÍO DE RESEÑAS ====================
-function enviarResena(event) {
-  if (event) event.preventDefault();
-
-  const inputNombre = document.querySelector("#nombre-resena, input[name='nombre'], #nombre");
-  const selectPlataforma = document.querySelector("#plataforma-resena, select[name='plataforma'], #plataforma");
-  const inputComentario = document.querySelector("#comentario-resena, textarea[name='comentario'], #comentario, textarea");
-  const inputEstrellas = document.querySelector("input[name='estrellas']:checked") || { value: "5" };
-
-  const nombre = inputNombre ? inputNombre.value.trim() : "Anónimo";
-  const plataforma = selectPlataforma ? selectPlataforma.value : "General";
-  const estrellas = inputEstrellas ? inputEstrellas.value : "5";
-  const comentario = inputComentario ? inputComentario.value.trim() : "";
-
-  if (!comentario) {
-    alert("Por favor, escribe tu opinión antes de publicar.");
-    return;
-  }
-
-  const btnPublicar = document.querySelector(".modal-resena button, form button[type='submit'], #btn-publicar-resena");
-  if (btnPublicar) btnPublicar.innerText = "Publicando...";
-
-  const urlEnvio = `${URL_GOOGLE_APPS_SCRIPT}?accion=guardarResena&token=${TOKEN_SECRETO}&nombre=${encodeURIComponent(nombre)}&plataforma=${encodeURIComponent(plataforma)}&estrellas=${encodeURIComponent(estrellas)}&comentario=${encodeURIComponent(comentario)}`;
-
-  fetch(urlEnvio)
-    .then(res => res.json())
-    .then(data => {
-      if (data.estado === "success") {
-        alert("¡Gracias por tu reseña! Ha sido publicada con éxito.");
-        if (inputComentario) inputComentario.value = "";
-        
-        const modal = document.querySelector(".modal-resena, #modal-resena, .modal");
-        if (modal) modal.style.display = "none";
-
-        cargarResenas();
-      } else {
-        alert("Hubo un error al guardar la reseña en la base de datos.");
-      }
-    })
-    .catch(err => {
-      console.error(err);
-      alert("Error de conexión al intentar publicar la reseña.");
-    })
-    .finally(() => {
-      if (btnPublicar) btnPublicar.innerText = "PUBLICAR RESEÑA";
-    });
-}
-
-function cargarResenas() {
-  const contenedorResenas = document.getElementById("lista-resenas-container");
-  if (!contenedorResenas) return;
-
-  contenedorResenas.innerHTML = `<div style="text-align: center; color: #00FFEF; padding: 30px 0; font-weight: bold;">Cargando reseñas...</div>`;
-
-  fetch(`${URL_GOOGLE_APPS_SCRIPT}?accion=obtenerResenas&token=${TOKEN_SECRETO}`)
-    .then(res => res.json())
-    .then(data => {
-      if (!Array.isArray(data) || data.length === 0) {
-        contenedorResenas.innerHTML = `<div style="text-align: center; color: #9ca3af; padding: 30px 0;">Aún no hay reseñas registradas. ¡Sé el primero en dejar una!</div>`;
-        return;
-      }
-
-      let html = "";
-      data.forEach(item => {
-        let estrellasHTML = "";
-        const numEstrellas = parseInt(item.estrellas) || 5;
-        for (let i = 0; i < numEstrellas; i++) {
-          estrellasHTML += "★";
-        }
-
-        html += `
-          <div style="background: #121824; border: 1px solid #1f293d; border-radius: 12px; padding: 20px; margin-bottom: 15px; color: #fff;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-              <div>
-                <strong style="font-size: 1.05rem; color: #00FFEF;">${item.nombre || "Anónimo"}</strong>
-                <span style="background: #1a2332; color: #00FFEF; font-size: 0.75rem; padding: 2px 8px; border-radius: 6px; margin-left: 8px;">${item.plataforma || "General"}</span>
-              </div>
-              <span style="color: #9ca3af; font-size: 0.85rem;">${item.fecha || ""}</span>
-            </div>
-            <div style="color: #fbbf24; font-size: 1rem; margin-bottom: 8px;">${estrellasHTML}</div>
-            <p style="color: #d1d5db; font-size: 0.95rem; margin: 0; line-height: 1.4;">${item.comentario || ""}</p>
-          </div>
-        `;
-      });
-
-      contenedorResenas.innerHTML = html;
-    })
-    .catch(err => {
-      console.error(err);
-      contenedorResenas.innerHTML = `<div style="text-align: center; color: #ff4d4d; padding: 30px 0;">Error al cargar las reseñas.</div>`;
-    });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  cargarResenas();
-});
-
-function formatDate(dateObj) {
-  if (dateObj instanceof Date) {
-    return Utilities.formatDate(dateObj, Session.getScriptTimeZone(), "yyyy-MM-dd");
-  }
-  return dateObj.toString();
-}
-
-function verDetalleCuenta(index) {
-    const item = cuentasEncontradasCache[index];
-    if (!item) return;
-
-    const list = document.getElementById('search-accounts-list');
-
-    list.innerHTML = `
-        <div style="margin-bottom: 12px;">
-            <button onclick="ejecutarBusquedaDatos()" style="background: #111827; border: 1px solid #1f2937; color: #ffffff; padding: 6px 14px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; cursor: pointer;">
-                ❮ Volver a la lista
-            </button>
-        </div>
-
-        <div class="service-header-badge">
-            SERVICIO: ${item.servicio}
-        </div>
-
-        <div class="detail-account-grid">
-            <div class="detail-card-field">
-                <div>
-                    <div class="detail-field-label">CORREO / USUARIO</div>
-                    <div class="detail-field-val">${item.correo || 'N/A'}</div>
-                </div>
-                <button class="btn-copy-detail" onclick="copiarTexto('${item.correo}', 'Correo')">
-                    <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-                </button>
-            </div>
-
-            <div class="detail-card-field">
-                <div>
-                    <div class="detail-field-label">CONTRASEÑA</div>
-                    <div class="detail-field-val">${item.clave || 'N/A'}</div>
-                </div>
-                <button class="btn-copy-detail" onclick="copiarTexto('${item.clave}', 'Contraseña')">
-                    <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-                </button>
-            </div>
-
-            <div class="detail-card-field">
-                <div>
-                    <div class="detail-field-label">PERFIL / CLIENTE</div>
-                    <div class="detail-field-val">${item.perfil || 'Principal'}</div>
-                </div>
-                <button class="btn-copy-detail" onclick="copiarTexto('${item.perfil}', 'Perfil')">
-                    <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-                </button>
-            </div>
-
-            <div class="detail-card-field">
-                <div>
-                    <div class="detail-field-label">PIN</div>
-                    <div class="detail-field-val">${item.pin || 'Sin PIN'}</div>
-                </div>
-                <button class="btn-copy-detail" onclick="copiarTexto('${item.pin}', 'PIN')">
-                    <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-                </button>
-            </div>
-
-            <div class="detail-card-field" style="grid-column: span 2;">
-                <div>
-                    <div class="detail-field-label">FECHA DE CORTE / VENCIMIENTO</div>
-                    <div class="detail-field-val" style="color: #00FFEF;">${item.fechaCorte || 'Sin fecha'} (${item.dias} días restantes)</div>
-                </div>
-                <button class="btn-copy-detail" onclick="copiarTexto('${item.fechaCorte}', 'Fecha Corte')">
-                    <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-                </button>
-            </div>
-        </div>
-    `;
-}
 
         function toggleAccordion() {
             const body = document.getElementById('accordion-body');
             const arrow = document.getElementById('accordion-arrow');
-            if (body && body.classList.contains('open')) {
+            if (!body) return;
+            if (body.classList.contains('open')) {
                 body.classList.remove('open');
-                if(arrow) arrow.innerText = '▼';
-            } else if(body) {
+                if (arrow) arrow.innerText = '▼';
+            } else {
                 body.classList.add('open');
-                if(arrow) arrow.innerText = '▲';
+                if (arrow) arrow.innerText = '▲';
             }
         }
 
-        function toggleDrawer() {
-            const drawer = document.getElementById('mobileDrawer');
-            const overlay = document.getElementById('drawerOverlay');
-            if (drawer.classList.contains('open')) {
-                drawer.classList.remove('open');
-                overlay.style.display = 'none';
-            } else {
-                drawer.classList.add('open');
-                overlay.style.display = 'block';
-            }
+        // ==================== BUSCAR DATOS ====================
+        function limpiarErroresBusqueda() {
+            const inp = document.getElementById("search-phone-input");
+            if (inp) inp.style.borderColor = '#1f2937';
         }
 
-        function mostrarVista(vista) {
-            const vistas = ['vista-servicios', 'vista-recargas', 'vista-distribuidores', 'vista-soporte', 'vista-producto', 'vista-binance-gateway', 'vista-pagomovil-gateway', 'vista-buscar'];
-            vistas.forEach(v => {
-                const el = document.getElementById(v);
-                if(el) el.classList.remove('active');
+        function ejecutarBusquedaDatos() {
+            const inputTelefono = document.getElementById("search-phone-input");
+            if (!inputTelefono) return;
+
+            const telefonoLimpio = inputTelefono.value.trim().replace(/[^0-9]/g, '');
+            if (!telefonoLimpio) {
+                inputTelefono.style.borderColor = '#ff4d4d';
+                alert("Por favor, ingresa un número de teléfono válido.");
+                return;
+            }
+
+            const emptyBox = document.getElementById("search-empty-box");
+            const resultsBox = document.getElementById('search-results-box');
+            const accountsList = document.getElementById("search-accounts-list");
+
+            if (emptyBox) emptyBox.style.display = "none";
+            if (resultsBox) resultsBox.style.display = "flex";
+            if (accountsList) accountsList.innerHTML = `<div style="text-align: center; color: #00FFEF; padding: 40px 0; font-weight: bold;">🔍 Consultando...</div>`;
+
+            fetch(`${URL_GOOGLE_APPS_SCRIPT}?telefono=${telefonoLimpio}&token=${TOKEN_SECRETO}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.error) {
+                        if (accountsList) accountsList.innerHTML = `<div style="text-align: center; color: #ff4d4d; padding: 30px 0;">❌ Error de seguridad: ${data.error}</div>`;
+                        return;
+                    }
+                    if (!data.resultados || data.resultados.length === 0) {
+                        if (accountsList) {
+                            accountsList.innerHTML = `<div style="text-align: center; color: #9ca3af; padding: 40px 0;">❌ No se encontraron cuentas activas asociadas al teléfono <strong>${telefonoLimpio}</strong>.</div>`;
+                        }
+                        return;
+                    }
+
+                    window.cuentasEncontradasCache = data.resultados;
+                    let htmlResultados = `<div class="search-results-header">CUENTAS ENCONTRADAS PARA TU NÚMERO (${data.resultados.length})</div>`;
+                    data.resultados.forEach((item, idx) => {
+                        htmlResultados += `
+                            <div class="account-result-item" onclick="verDetalleCuenta(${idx})">
+                                <div class="account-item-left">
+                                    <div class="account-item-icon">🎬</div>
+                                    <div>
+                                        <div class="account-item-mail">${item.servicio ? item.servicio.toUpperCase() : ''} - ${item.correo || ''}</div>
+                                        <div class="account-item-sub">Perfil: ${item.perfil || "Principal"} · Corte: ${item.fechaCorte || 'N/A'}</div>
+                                    </div>
+                                </div>
+                                <span style="color: #00FFEF; font-weight: bold; font-size: 0.85rem;">Ver datos ➔</span>
+                            </div>
+                        `;
+                    });
+                    if (accountsList) accountsList.innerHTML = htmlResultados;
+                })
+                .catch(err => {
+                    console.error(err);
+                    if (accountsList) accountsList.innerHTML = `<div style="text-align: center; color: #ff4d4d; padding: 30px 0;">Error de conexión con la base de datos. Intenta nuevamente.</div>`;
+                });
+        }
+
+        function verDetalleCuenta(index) {
+            const item = window.cuentasEncontradasCache[index];
+            if (!item) return;
+            const list = document.getElementById('search-accounts-list');
+            if (!list) return;
+
+            list.innerHTML = `
+                <div style="margin-bottom: 12px;">
+                    <button onclick="ejecutarBusquedaDatos()" style="background: #111827; border: 1px solid #1f2937; color: #ffffff; padding: 6px 14px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; cursor: pointer;">
+                        ❮ Volver a la lista
+                    </button>
+                </div>
+                <div style="font-weight: 800; color: #00FFEF; margin-bottom: 12px;">SERVICIO: ${item.servicio || ''}</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div class="pm-box-field"><div><div class="pm-box-label">CORREO / USUARIO</div><div class="pm-box-val">${item.correo || 'N/A'}</div></div></div>
+                    <div class="pm-box-field"><div><div class="pm-box-label">CONTRASEÑA</div><div class="pm-box-val">${item.clave || 'N/A'}</div></div></div>
+                    <div class="pm-box-field"><div><div class="pm-box-label">PERFIL</div><div class="pm-box-val">${item.perfil || 'Principal'}</div></div></div>
+                    <div class="pm-box-field"><div><div class="pm-box-label">PIN</div><div class="pm-box-val">${item.pin || 'Sin PIN'}</div></div></div>
+                    <div class="pm-box-field" style="grid-column: span 2;"><div><div class="pm-box-label">FECHA DE CORTE</div><div class="pm-box-val" style="color:#00FFEF;">${item.fechaCorte || 'Sin fecha'} (${item.dias || 0} días restantes)</div></div></div>
+                </div>
+            `;
+        }
+
+        // ==================== RESEÑAS ====================
+        function abrirModalResena() {
+            const el = document.getElementById('modalEscribirResena');
+            if (el) el.style.display = 'flex';
+        }
+        function cerrarModalResena() {
+            const el = document.getElementById('modalEscribirResena');
+            if (el) el.style.display = 'none';
+        }
+        function seleccionarEstrellas(cant) {
+            estrellasSeleccionadas = cant;
+            const spans = document.querySelectorAll('#estrellas-selector span');
+            spans.forEach((span, idx) => {
+                span.style.color = idx < cant ? '#00FFEF' : '#4b5563';
             });
-
-            const navServicios = document.getElementById('nav-servicios');
-            const navRecargas = document.getElementById('nav-recargas');
-            const navDistribuidores = document.getElementById('nav-distribuidores');
-            const navBuscar = document.getElementById('nav-buscar');
-            const navSoporte = document.getElementById('nav-soporte');
-
-            if(navServicios) navServicios.classList.remove('active');
-            if(navRecargas) navRecargas.classList.remove('active');
-            if(navDistribuidores) navDistribuidores.classList.remove('active');
-            if(navBuscar) navBuscar.classList.remove('active');
-            if(navSoporte) navSoporte.classList.remove('active');
-
-            if (vista === 'recargas') {
-                document.getElementById('vista-recargas').classList.add('active');
-                if(navRecargas) navRecargas.classList.add('active');
-            } else if (vista === 'distribuidores') {
-                document.getElementById('vista-distribuidores').classList.add('active');
-                if(navDistribuidores) navDistribuidores.classList.add('active');
-            } else if (vista === 'buscar') {
-                document.getElementById('vista-buscar').classList.add('active');
-                if(navBuscar) navBuscar.classList.add('active');
-            } else if (vista === 'soporte') {
-                document.getElementById('vista-soporte').classList.add('active');
-                if(navSoporte) navSoporte.classList.add('active');
-            } else if (vista === 'producto') {
-                document.getElementById('vista-producto').classList.add('active');
-            } else if (vista === 'binance-gateway') {
-                document.getElementById('vista-binance-gateway').classList.add('active');
-            } else if (vista === 'pagomovil-gateway') {
-                document.getElementById('vista-pagomovil-gateway').classList.add('active');
-            } else {
-                document.getElementById('vista-servicios').classList.add('active');
-                if(navServicios) navServicios.classList.add('active');
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function abrirModalRegion() { document.getElementById('modalRegion').style.display = 'flex'; }
-        function cerrarModalRegion() { document.getElementById('modalRegion').style.display = 'none'; }
+        function cargarResenas() {
+            const contenedorResenas = document.getElementById("contenedor-tarjetas-resenas");
+            if (!contenedorResenas) return;
+
+            fetch(`${URL_GOOGLE_APPS_SCRIPT}?accion=obtenerResenas&token=${TOKEN_SECRETO}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (!Array.isArray(data) || data.length === 0) return;
+                    let html = "";
+                    data.forEach(item => {
+                        const letraInicial = item.nombre ? item.nombre.charAt(0).toUpperCase() : "A";
+                        const numEstrellas = parseInt(item.estrellas, 10) || 5;
+                        const estrellasTexto = "★".repeat(Math.min(5, Math.max(1, numEstrellas))) + "☆".repeat(Math.max(0, 5 - numEstrellas));
+                        html += `
+                            <div style="background: #0b0f19; border: 1px solid #1f2937; border-radius: 16px; padding: 20px;">
+                                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div style="width: 38px; height: 38px; border-radius: 50%; background: #192233; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #00FFEF;">${letraInicial}</div>
+                                        <div>
+                                            <div style="font-weight: bold; color: #fff; font-size: 0.95rem; display: flex; align-items: center; gap: 6px;">
+                                                ${item.nombre || "Anónimo"} <span style="background: rgba(37,211,102,0.15); color: #25d366; font-size: 0.65rem; padding: 2px 6px; border-radius: 6px; border: 1px solid rgba(37,211,102,0.3);">✓ Verificado</span>
+                                            </div>
+                                            <div style="font-size: 0.75rem; color: #9ca3af;">${item.fecha || ""}</div>
+                                        </div>
+                                    </div>
+                                    <div style="color: #00FFEF; font-size: 0.9rem;">${estrellasTexto}</div>
+                                </div>
+                                <div style="font-size: 0.78rem; color: #00FFEF; background: rgba(0,255,239,0.08); padding: 4px 10px; border-radius: 8px; display: inline-block; margin-bottom: 10px; font-weight: bold;">
+                                    ${item.plataforma || "General"}
+                                </div>
+                                <p style="font-size: 0.88rem; color: #d1d5db; line-height: 1.4; margin: 0;">${item.comentario || ""}</p>
+                            </div>
+                        `;
+                    });
+                    contenedorResenas.innerHTML = html;
+                })
+                .catch(err => console.error("Error al cargar reseñas:", err));
+        }
+
+        function enviarResenaUsuario() {
+            const nombre = document.getElementById('resena-nombre').value.trim();
+            const plataforma = document.getElementById('resena-plataforma').value;
+            const comentario = document.getElementById('resena-comentario').value.trim();
+
+            if (!nombre || !comentario) {
+                alert('Por favor completa tu nombre y comentario.');
+                return;
+            }
+
+            const urlEnvio = `${URL_GOOGLE_APPS_SCRIPT}?accion=guardarResena&nombre=${encodeURIComponent(nombre)}&plataforma=${encodeURIComponent(plataforma)}&estrellas=${estrellasSeleccionadas}&comentario=${encodeURIComponent(comentario)}&token=${TOKEN_SECRETO}`;
+            fetch(urlEnvio)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.estado === "success") {
+                        cerrarModalResena();
+                        document.getElementById('resena-nombre').value = '';
+                        document.getElementById('resena-comentario').value = '';
+                        alert('¡Gracias por tu reseña! Ha sido publicada con éxito.');
+                        cargarResenas();
+                    } else {
+                        alert('Hubo un error al guardar la reseña.');
+                    }
+                })
+                .catch(() => alert('Error de conexión al guardar la reseña.'));
+        }
+
+        // ==================== TÉRMINOS, STOCK Y NIEVE ====================
+        function abrirModalTerminos() {
+            const el = document.getElementById('modalTerminos');
+            if (el) el.style.display = 'flex';
+        }
+        function aceptarTerminosIniciales() {
+            sessionStorage.setItem('streamix_terminos_aceptados', 'true');
+            const el = document.getElementById('modalTerminos');
+            if (el) el.style.display = 'none';
+            const checkPedido = document.getElementById('check-terminos-pedido');
+            if (checkPedido) {
+                checkPedido.checked = true;
+                limpiarErrorTerminos();
+            }
+        }
+        function limpiarErrorTerminos() {
+            const box = document.getElementById('box-check-terminos');
+            const msg = document.getElementById('error-terminos-msg');
+            if (box) box.classList.remove('error-terms');
+            if (msg) msg.style.display = 'none';
+        }
+
+        function aplicarStockTarjetas() {
+            document.querySelectorAll('.service-card').forEach(card => {
+                const onclickAttr = card.getAttribute('onclick') || '';
+                let nombreProducto = "";
+                if (onclickAttr.includes('abrirProductoDistri')) {
+                    const match = onclickAttr.match(/abrirProductoDistri\(['"]([^'"]+)['"]/);
+                    if (match && match[1]) nombreProducto = match[1].toLowerCase().trim() + "-vip";
+                } else if (onclickAttr.includes('abrirProducto')) {
+                    const match = onclickAttr.match(/abrirProducto\(['"]([^'"]+)['"]/);
+                    if (match && match[1]) nombreProducto = match[1].toLowerCase().trim();
+                }
+                if (nombreProducto && CONTROL_DE_STOCK[nombreProducto] !== undefined && CONTROL_DE_STOCK[nombreProducto] <= 0) {
+                    card.classList.add('agotado');
+                }
+            });
+        }
+
+        function iniciarNieve() {
+            const snowContainer = document.getElementById('snow-container');
+            if (!snowContainer) return;
+            for (let i = 0; i < 35; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.innerHTML = Math.random() > 0.4 ? '❄' : '•';
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.animationDuration = (Math.random() * 7 + 5) + 's';
+                snowflake.style.animationDelay = (Math.random() * 10) + 's';
+                snowflake.style.fontSize = (Math.random() * 0.8 + 0.4) + 'rem';
+                snowContainer.appendChild(snowflake);
+            }
+        }
+
+        function verificarHashUrl() {
+            const hash = window.location.hash.toLowerCase();
+            if (hash === '#reseñas' || hash === '#resenas') mostrarVista('resenas', false);
+            else if (hash === '#recargas') mostrarVista('recargas', false);
+            else if (hash === '#buscar') mostrarVista('buscar', false);
+            else if (hash === '#soporte') mostrarVista('soporte', false);
+            else if (hash === '#distribuidores') solicitarAccesoDistribuidores();
+        }
 
         window.onclick = function(event) {
             const modalRegion = document.getElementById('modalRegion');
             const modalDist = document.getElementById('modal-distribuidores');
+            const modalRes = document.getElementById('modalEscribirResena');
             if (event.target === modalRegion) cerrarModalRegion();
             if (event.target === modalDist) cerrarModalDistribuidores();
+            if (event.target === modalRes) cerrarModalResena();
         };
 
-        function seleccionarMoneda(moneda) {
-            monedaActual = moneda;
-            const labelDesk = document.getElementById('label-moneda');
-            const labelMob = document.getElementById('label-moneda-mob');
-            if(labelDesk) labelDesk.innerText = moneda;
-            if(labelMob) labelMob.innerText = moneda;
+        window.addEventListener('popstate', verificarHashUrl);
 
-            const optGlobal = document.getElementById('optGlobal');
-            const optVES = document.getElementById('optVES');
-            const radioGlobal = document.getElementById('radioGlobal');
-            const radioVES = document.getElementById('radioVES');
-            const arrowGlobal = document.getElementById('arrowGlobal');
+        document.addEventListener("DOMContentLoaded", function() {
+            actualizarEstadoTienda();
+            setInterval(actualizarEstadoTienda, 30000);
+            iniciarContadorBlackFriday();
+            aplicarStockTarjetas();
+            iniciarNieve();
+            cargarResenas();
+            verificarHashUrl();
 
-            if (moneda === 'VES') {
-                optVES.classList.add('active');
-                optGlobal.classList.remove('active');
-                radioVES.style.display = 'flex';
-                radioVES.innerText = '✓';
-                radioGlobal.style.display = 'none';
-                arrowGlobal.style.display = 'block';
-            } else {
-                optGlobal.classList.add('active');
-                optVES.classList.remove('active');
-                radioGlobal.style.display = 'flex';
-                radioGlobal.innerText = '✓';
-                arrowGlobal.style.display = 'none';
-                radioVES.style.display = 'none';
+            if (!sessionStorage.getItem('streamix_terminos_aceptados')) {
+                const modalTerm = document.getElementById('modalTerminos');
+                if (modalTerm) modalTerm.style.display = 'flex';
             }
-
-            if(productoActualData) renderizarPaquetes();
-            cerrarModalRegion();
-        }
-		
-		document.addEventListener("DOMContentLoaded", function() {
-    // Busca todas las tarjetas de servicio en la ventana principal
-    const tarjetas = document.querySelectorAll('.view-section .service-card');
-    
-    tarjetas.forEach(card => {
-        // Extrae el nombre del producto desde la función onclick
-        const onclickAttr = card.getAttribute('onclick');
-        if (onclickAttr && onclickAttr.includes('abrirProducto')) {
-            const match = onclickAttr.match(/abrirProducto\(['"]([^'"]+)['"]/);
-            if (match && match[1]) {
-                const nombreProducto = match[1].toLowerCase().trim();
-                // Revisa si el producto tiene stock 0 en tu objeto CONTROL_DE_STOCK
-                if (CONTROL_DE_STOCK[nombreProducto] !== undefined && CONTROL_DE_STOCK[nombreProducto] <= 0) {
-                    card.classList.add('agotado');
-                }
-            }
-        }
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    const tarjetas = document.querySelectorAll('.service-card');
-    
-    tarjetas.forEach(card => {
-        const onclickAttr = card.getAttribute('onclick');
-        if (onclickAttr) {
-            let nombreProducto = "";
-            let esMayorista = onclickAttr.includes('abrirProductoDistri');
-
-            if (esMayorista) {
-                const match = onclickAttr.match(/abrirProductoDistri\(['"]([^'"]+)['"]\)/);
-                if (match && match[1]) {
-                    // Si es mayorista, busca la clave con el sufijo -vip
-                    nombreProducto = match[1].toLowerCase().trim() + "-vip";
-                }
-            } else if (onclickAttr.includes('abrirProducto')) {
-                const match = onclickAttr.match(/abrirProducto\(['"]([^'"]+)['"]\)/);
-                if (match && match[1]) {
-                    nombreProducto = match[1].toLowerCase().trim();
-                }
-            }
-
-            if (nombreProducto && CONTROL_DE_STOCK[nombreProducto] !== undefined) {
-                if (CONTROL_DE_STOCK[nombreProducto] <= 0) {
-                    card.classList.add('agotado');
-                }
-            }
-        }
-    });
-});
-
-function actualizarEstadoTienda() {
-    // Obtiene la hora actual ajustada estrictamente a la zona horaria de Venezuela (America/Caracas)
-    const opciones = { timeZone: 'America/Caracas', hour12: false, hour: 'numeric', minute: 'numeric' };
-    const formatter = new Intl.DateTimeFormat([], opciones);
-    const partesHora = formatter.formatToParts(new Date());
-    
-    let horaVzla = 0;
-    let minutoVzla = 0;
-
-    partesHora.forEach(part => {
-        if (part.type === 'hour') horaVzla = parseInt(part.value);
-        if (part.type === 'minute') minutoVzla = parseInt(part.value);
-    });
-
-    // El horario de apertura es de 9:00 AM (9) a 10:00 PM (22)
-    const horaActualMinutos = (horaVzla * 60) + minutoVzla;
-    const aperturaMinutos = 9 * 60;   // 09:00 AM
-    const cierreMinutos = 22 * 60;     // 10:00 PM
-
-    const contenedor = document.getElementById('estado-tienda-container');
-    const texto = document.getElementById('texto-estado-tienda');
-    const btnCheckout = document.getElementById('btn-main-action'); // El botón principal de compra/verificar pedido
-
-    const estaAbierto = horaActualMinutos >= aperturaMinutos && horaActualMinutos < cierreMinutos;
-
-    if (estaAbierto) {
-        if (contenedor) {
-            contenedor.className = "badge-estado-tienda abierto";
-        }
-        if (texto) {
-            texto.innerHTML = "Abierto ahora: 9:00 AM - 10:00 PM";
-        }
-        // Habilita el botón de compra si existe
-        if (btnCheckout) {
-            btnCheckout.disabled = false;
-            btnCheckout.style.opacity = "1";
-            btnCheckout.style.cursor = "pointer";
-        }
-    } else {
-        if (contenedor) {
-            contenedor.className = "badge-estado-tienda cerrado";
-        }
-        if (texto) {
-            texto.innerHTML = "Cerrado ahora Horario: 9 AM - 10 PM";
-        }
-        // Bloquea las compras y cambia el texto del botón
-        if (btnCheckout) {
-            btnCheckout.disabled = true;
-            btnCheckout.style.opacity = "0.5";
-            btnCheckout.style.cursor = "not-allowed";
-            btnCheckout.innerText = "TIENDA CERRADA HASTA LAS 9 AM";
-        }
-    }
-}
-
-// Ejecutar al cargar la página y actualizar cada 30 segundos
-document.addEventListener("DOMContentLoaded", function() {
-    actualizarEstadoTienda();
-    setInterval(actualizarEstadoTienda, 30000);
-});
-
-let estrellasSeleccionadas = 5;
-
-        function mostrarVista(vista, actualizarUrl = true) {
-    const vistas = ['vista-servicios', 'vista-recargas', 'vista-distribuidores', 'vista-soporte', 'vista-producto', 'vista-binance-gateway', 'vista-pagomovil-gateway', 'vista-buscar', 'vista-resenas'];
-    
-    vistas.forEach(v => {
-        const el = document.getElementById(v);
-        if(el) el.classList.remove('active');
-    });
-
-    const navServicios = document.getElementById('nav-servicios');
-    const navRecargas = document.getElementById('nav-recargas');
-    const navDistribuidores = document.getElementById('nav-distribuidores');
-    const navBuscar = document.getElementById('nav-buscar');
-    const navSoporte = document.getElementById('nav-soporte');
-    const navResenas = document.getElementById('nav-resenas');
-
-    if(navServicios) navServicios.classList.remove('active');
-    if(navRecargas) navRecargas.classList.remove('active');
-    if(navDistribuidores) navDistribuidores.classList.remove('active');
-    if(navBuscar) navBuscar.classList.remove('active');
-    if(navSoporte) navSoporte.classList.remove('active');
-    if(navResenas) navResenas.classList.remove('active');
-
-    if (vista === 'recargas') {
-        document.getElementById('vista-recargas').classList.add('active');
-        if(navRecargas) navRecargas.classList.add('active');
-        if (actualizarUrl) history.pushState(null, null, '#recargas');
-    } else if (vista === 'distribuidores') {
-        document.getElementById('vista-distribuidores').classList.add('active');
-        if(navDistribuidores) navDistribuidores.classList.add('active');
-        if (actualizarUrl) history.pushState(null, null, '#distribuidores');
-    } else if (vista === 'buscar') {
-        document.getElementById('vista-buscar').classList.add('active');
-        if(navBuscar) navBuscar.classList.add('active');
-        if (actualizarUrl) history.pushState(null, null, '#buscar');
-    } else if (vista === 'soporte') {
-        document.getElementById('vista-soporte').classList.add('active');
-        if(navSoporte) navSoporte.classList.add('active');
-        if (actualizarUrl) history.pushState(null, null, '#soporte');
-    } else if (vista === 'resenas') {
-        document.getElementById('vista-resenas').classList.add('active');
-        if(navResenas) navResenas.classList.add('active');
-        // Esto cambia la URL en el navegador a https://streamixve.com/#reseñas
-        if (actualizarUrl) history.pushState(null, null, '#reseñas');
-    } else if (vista === 'producto') {
-        document.getElementById('vista-producto').classList.add('active');
-    } else if (vista === 'binance-gateway') {
-        document.getElementById('vista-binance-gateway').classList.add('active');
-    } else if (vista === 'pagomovil-gateway') {
-        document.getElementById('vista-pagomovil-gateway').classList.add('active');
-    } else {
-        document.getElementById('vista-servicios').classList.add('active');
-        if(navServicios) navServicios.classList.add('active');
-        if (actualizarUrl) history.pushState(null, null, ' ');
-    }
-    
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-        function abrirModalResena() {
-            document.getElementById('modalEscribirResena').style.display = 'flex';
-        }
-
-        function cerrarModalResena() {
-            document.getElementById('modalEscribirResena').style.display = 'none';
-        }
-
-        function seleccionarEstrellas(cantidad) {
-            estrellasSeleccionadas = cantidad;
-            const spans = document.querySelectorAll('#estrellas-selector span');
-            spans.forEach((span, idx) => {
-                if (idx < cantidad) {
-                    span.style.color = '#00FFEF';
-                } else {
-                    span.style.color = '#4b5563';
-                }
-            });
-        }
-
-        // 1. Cargar las reseñas al entrar a la sección o al iniciar la web
-function cargarResenasDesdeNube() {
-    fetch(`${URL_GOOGLE_APPS_SCRIPT}?accion=obtenerResenas&token=${TOKEN_SECRETO}`)
-    .then(res => res.json())
-    .then(data => {
-        if (Array.isArray(data) && data.length > 0) {
-            const contenedor = document.getElementById('contenedor-tarjetas-resenas');
-            contenedor.innerHTML = ''; // Limpia las de ejemplo
-
-            data.forEach(item => {
-                let estrellasHtml = '★'.repeat(item.estrellas);
-                const nuevaTarjeta = document.createElement('div');
-                nuevaTarjeta.style.cssText = "background: #0b0f19; border: 1.5px solid #1f2937; border-radius: 16px; padding: 20px;";
-                
-                nuevaTarjeta.innerHTML = `
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <div style="width: 38px; height: 38px; border-radius: 50%; background: #192233; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #00FFEF;">${item.nombre.charAt(0).toUpperCase()}</div>
-                            <div>
-                                <div style="font-weight: bold; color: #fff; font-size: 0.95rem; display: flex; align-items: center; gap: 6px;">
-                                    ${item.nombre} <span style="background: rgba(37,211,102,0.15); color: #25d366; font-size: 0.65rem; padding: 2px 6px; border-radius: 6px; border: 1px solid rgba(37,211,102,0.3);">✓ Verificado</span>
-                                </div>
-                                <div style="font-size: 0.75rem; color: #9ca3af;">${item.fecha}</div>
-                            </div>
-                        </div>
-                        <div style="color: #00FFEF; font-size: 0.9rem;">${estrellasHtml}</div>
-                    </div>
-                    <div style="font-size: 0.78rem; color: #00FFEF; background: rgba(0,255,239,0.08); padding: 4px 10px; border-radius: 8px; display: inline-block; margin-bottom: 10px; font-weight: bold;">
-                        ${item.plataforma}
-                    </div>
-                    <p style="font-size: 0.88rem; color: #d1d5db; line-height: 1.4;">${item.comentario}</p>
-                `;
-                contenedor.appendChild(nuevaTarjeta);
-            });
-        }
-    }).catch(err => console.log("Error cargando reseñas:", err));
-}
-
-// 2. Modificar tu función de enviar para que mande los datos a Google Sheets
-function enviarResenaUsuario() {
-    const nombre = document.getElementById('resena-nombre').value.trim();
-    const plataforma = document.getElementById('resena-plataforma').value;
-    const comentario = document.getElementById('resena-comentario').value.trim();
-
-    if (!nombre || !comentario) {
-        alert('Por favor completa tu nombre y comentario.');
-        return;
-    }
-
-    const urlEnvio = `${URL_GOOGLE_APPS_SCRIPT}?accion=guardarResena&nombre=${encodeURIComponent(nombre)}&plataforma=${encodeURIComponent(plataforma)}&estrellas=${estrellasSeleccionadas}&comentario=${encodeURIComponent(comentario)}&token=${TOKEN_SECRETO}`;
-
-    fetch(urlEnvio)
-    .then(res => res.json())
-    .then(data => {
-        if(data.estado === "success") {
-            cerrarModalResena();
-            document.getElementById('resena-nombre').value = '';
-            document.getElementById('resena-comentario').value = '';
-            alert('¡Gracias por tu reseña! Ha sido publicada con éxito.');
-            cargarResenasDesdeNube(); // Recarga las reseñas para mostrar la nueva
-        } else {
-            alert('Hubo un error al guardar la reseña.');
-        }
-    }).catch(() => {
-        alert('Error de conexión al guardar la reseña.');
-    });
-}
-		
-		// Detecta la URL cuando el usuario entra o comparte el enlace directo https://streamixve.com/#reseñas
-function verificarHashUrl() {
-    const hash = window.location.hash.toLowerCase();
-    if (hash === '#reseñas' || hash === '#resenas') {
-        mostrarVista('resenas', false);
-    } else if (hash === '#recargas') {
-        mostrarVista('recargas', false);
-    } else if (hash === '#buscar') {
-        mostrarVista('buscar', false);
-    } else if (hash === '#soporte') {
-        mostrarVista('soporte', false);
-    } else if (hash === '#distribuidores') {
-        solicitarAccesoDistribuidores();
-    }
-}
-
-// Ejecutar al cargar la página
-document.addEventListener("DOMContentLoaded", function() {
-    verificarHashUrl();
-});
-
-// Detectar cuando el usuario usa los botones Atrás / Adelante del navegador
-window.addEventListener('popstate', function() {
-    verificarHashUrl();
-});
-
-// ==================== GESTIÓN Y CARGA DE RESEÑAS ====================
-function enviarResena(event) {
-  if (event) event.preventDefault();
-
-  const inputNombre = document.querySelector("#nombre-resena, input[name='nombre'], #nombre");
-  const selectPlataforma = document.querySelector("#plataforma-resena, select[name='plataforma'], #plataforma");
-  const inputComentario = document.querySelector("#comentario-resena, textarea[name='comentario'], #comentario, textarea");
-  const inputEstrellas = document.querySelector("input[name='estrellas']:checked") || { value: "5" };
-
-  const nombre = inputNombre ? inputNombre.value.trim() : "Anónimo";
-  const plataforma = selectPlataforma ? selectPlataforma.value : "General";
-  const estrellas = inputEstrellas ? inputEstrellas.value : "5";
-  const comentario = inputComentario ? inputComentario.value.trim() : "";
-
-  if (!comentario) {
-    alert("Por favor, escribe tu opinión antes de publicar.");
-    return;
-  }
-
-  const btnPublicar = document.querySelector(".modal-resena button, form button[type='submit'], #btn-publicar-resena");
-  if (btnPublicar) btnPublicar.innerText = "Publicando...";
-
-  const urlEnvio = `${URL_GOOGLE_APPS_SCRIPT}?accion=guardarResena&token=${TOKEN_SECRETO}&nombre=${encodeURIComponent(nombre)}&plataforma=${encodeURIComponent(plataforma)}&estrellas=${encodeURIComponent(estrellas)}&comentario=${encodeURIComponent(comentario)}`;
-
-  fetch(urlEnvio)
-    .then(res => res.json())
-    .then(data => {
-      if (data.estado === "success") {
-        alert("¡Gracias por tu reseña! Ha sido publicada con éxito.");
-        if (inputComentario) inputComentario.value = "";
-        
-        const modal = document.querySelector(".modal-resena, #modal-resena, .modal");
-        if (modal) modal.style.display = "none";
-
-        cargarResenas();
-      } else {
-        alert("Hubo un error al guardar la reseña en la base de datos.");
-      }
-    })
-    .catch(err => {
-      console.error(err);
-      alert("Error de conexión al intentar publicar la reseña.");
-    })
-    .finally(() => {
-      if (btnPublicar) btnPublicar.innerText = "PUBLICAR RESEÑA";
-    });
-}
-
-function cargarResenas() {
-  const contenedorResenas = document.getElementById("contenedor-tarjetas-resenas");
-  if (!contenedorResenas) {
-    console.warn("No se encontró el contenedor #contenedor-tarjetas-resenas en el HTML.");
-    return;
-  }
-
-  contenedorResenas.innerHTML = `<div style="text-align: center; color: #00FFEF; padding: 30px 0; grid-column: 1 / -1;">Cargando reseñas...</div>`;
-
-  fetch(`${URL_GOOGLE_APPS_SCRIPT}?accion=obtenerResenas&token=${TOKEN_SECRETO}`)
-    .then(res => res.json())
-    .then(data => {
-      console.log("Reseñas recibidas desde Apps Script:", data); // Revisa esto en F12
-
-      if (!Array.isArray(data) || data.length === 0) {
-        contenedorResenas.innerHTML = `<div style="text-align: center; color: #9ca3af; padding: 30px 0; grid-column: 1 / -1;">Aún no hay reseñas registradas.</div>`;
-        return;
-      }
-
-      let html = "";
-      data.forEach(item => {
-        const letraInicial = item.nombre ? item.nombre.charAt(0).toUpperCase() : "A";
-        const numEstrellas = parseInt(item.estrellas) || 5;
-        let estrellasTexto = "★★★★★";
-        if (numEstrellas === 4) estrellasTexto = "★★★★☆";
-        else if (numEstrellas === 3) estrellasTexto = "★★★☆☆";
-        else if (numEstrellas === 2) estrellasTexto = "★★☆☆☆";
-        else if (numEstrellas === 1) estrellasTexto = "★☆☆☆☆";
-
-        html += `
-          <div style="background: #0b0f19; border: 1px solid #1f2937; border-radius: 16px; padding: 20px;">
-              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
-                  <div style="display: flex; align-items: center; gap: 10px;">
-                      <div style="width: 38px; height: 38px; border-radius: 50%; background: #192233; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #00FFEF;">${letraInicial}</div>
-                      <div>
-                          <div style="font-weight: bold; color: #fff; font-size: 0.95rem; display: flex; align-items: center; gap: 6px;">
-                              ${item.nombre || "Anónimo"} <span style="background: rgba(37,211,102,0.15); color: #25d366; font-size: 0.65rem; padding: 2px 6px; border-radius: 6px; border: 1px solid rgba(37,211,102,0.3);">✓ Verificado</span>
-                          </div>
-                          <div style="font-size: 0.75rem; color: #9ca3af;">${item.fecha || ""}</div>
-                      </div>
-                  </div>
-                  <div style="color: #00FFEF; font-size: 0.9rem;">${estrellasTexto}</div>
-              </div>
-              <div style="font-size: 0.78rem; color: #00FFEF; background: rgba(0,255,239,0.08); padding: 4px 10px; border-radius: 8px; display: inline-block; margin-bottom: 10px; font-weight: bold;">
-                  ${item.plataforma || "General"}
-              </div>
-              <p style="font-size: 0.88rem; color: #d1d5db; line-height: 1.4; margin: 0;">${item.comentario || ""}</p>
-          </div>
-        `;
-      });
-
-      contenedorResenas.innerHTML = html;
-    })
-    .catch(err => {
-      console.error("Error al cargar reseñas:", err);
-      contenedorResenas.innerHTML = `<div style="text-align: center; color: #ff4d4d; padding: 30px 0; grid-column: 1 / -1;">Error al conectar con la base de datos.</div>`;
-    });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  cargarResenas();
-});
-
-// Función para cargar y pintar las reseñas en la web
-function cargarResenas() {
-  const contenedorResenas = document.getElementById("lista-resenas-container");
-  if (!contenedorResenas) return;
-
-  contenedorResenas.innerHTML = `<div style="text-align: center; color: #00FFEF; padding: 30px 0; font-weight: bold;">Cargando reseñas...</div>`;
-
-  fetch(`${URL_GOOGLE_APPS_SCRIPT}?accion=obtenerResenas&token=${TOKEN_SECRETO}`)
-    .then(res => res.json())
-    .then(data => {
-      if (!Array.isArray(data) || data.length === 0) {
-        contenedorResenas.innerHTML = `<div style="text-align: center; color: #9ca3af; padding: 30px 0;">Aún no hay reseñas registradas. ¡Sé el primero en dejar una!</div>`;
-        return;
-      }
-
-      let html = "";
-      data.forEach(item => {
-        let estrellasHTML = "";
-        const numEstrellas = parseInt(item.estrellas) || 5;
-        for (let i = 0; i < numEstrellas; i++) {
-          estrellasHTML += "★";
-        }
-
-        html += `
-          <div style="background: #121824; border: 1px solid #1f293d; border-radius: 12px; padding: 20px; margin-bottom: 15px; color: #fff;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-              <div>
-                <strong style="font-size: 1.05rem; color: #00FFEF;">${item.nombre || "Anónimo"}</strong>
-                <span style="background: #1a2332; color: #00FFEF; font-size: 0.75rem; padding: 2px 8px; border-radius: 6px; margin-left: 8px;">${item.plataforma || "General"}</span>
-              </div>
-              <span style="color: #9ca3af; font-size: 0.85rem;">${item.fecha || ""}</span>
-            </div>
-            <div style="color: #fbbf24; font-size: 1rem; margin-bottom: 8px;">${estrellasHTML}</div>
-            <p style="color: #d1d5db; font-size: 0.95rem; margin: 0; line-height: 1.4;">${item.comentario || ""}</p>
-          </div>
-        `;
-      });
-
-      contenedorResenas.innerHTML = html;
-    })
-    .catch(err => {
-      console.error(err);
-      contenedorResenas.innerHTML = `<div style="text-align: center; color: #ff4d4d; padding: 30px 0;">Error al cargar las reseñas.</div>`;
-    });
-}
-
-// Cargar automáticamente al abrir la página
-document.addEventListener("DOMContentLoaded", () => {
-  cargarResenas();
-});
-
-// Cargar las reseñas automáticamente al abrir la sección
-document.addEventListener("DOMContentLoaded", () => {
-  cargarResenas();
-});
-
-function filtrarSeccion(categoria, botonElemento) {
-        // Remueve la clase active de todos los botones y la coloca en el presionado
-        document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
-        botonElemento.classList.add('active');
-
-        // Mapeo de categorías con los títulos o secciones de tu tienda
-        let elementos = document.querySelectorAll('.section-header');
-        let objetivo = null;
-
-        elementos.forEach(header => {
-            let texto = header.innerText.toLowerCase();
-            if (categoria === 'cines' && texto.includes('cines')) objetivo = header;
-            if (categoria === 'iptv' && texto.includes('tv en vivo')) objetivo = header;
-            if (categoria === 'musica' && texto.includes('música')) objetivo = header;
-            if (categoria === 'ia' && texto.includes('ia &')) objetivo = header;
-            if (categoria === 'giftcards' && texto.includes('gift')) objetivo = header;
-            if (categoria === 'otros' && texto.includes('otros')) objetivo = header;
         });
-
-        if (objetivo) {
-            objetivo.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-    }
-	
-	document.addEventListener("DOMContentLoaded", function() {
-    // 1. VERIFICACIÓN DE HORARIO CON TUS ID ORIGINALES
-    function verificarHorarioTienda() {
-        const container = document.getElementById('estado-tienda-container');
-        const textEl = document.getElementById('texto-estado-tienda');
-        if (!container || !textEl) return;
-
-        try {
-            const options = { timeZone: 'America/Caracas', hour: 'numeric', minute: 'numeric', hour12: false };
-            const formatter = new Intl.DateTimeFormat('en-US', options);
-            const parts = formatter.formatToParts(new Date());
-            
-            let hora = 0;
-            let minuto = 0;
-            for (let p of parts) {
-                if (p.type === 'hour') hora = parseInt(p.value, 10);
-                if (p.type === 'minute') minuto = parseInt(p.value, 10);
-            }
-
-            const horaDecimal = hora + (minuto / 60);
-            const abierto = horaDecimal >= 9 && horaDecimal < 22; // De 9:00 AM a 10:00 PM
-
-            if (abierto) {
-                container.className = "badge-estado-tienda abierto";
-                textEl.innerText = "Abierto ahora: 9:00 AM - 10:00 PM";
-            } else {
-                container.className = "badge-estado-tienda cerrado";
-                textEl.innerText = "Cerrado (Abre mañana a las 9:00 AM)";
-            }
-        } catch (e) {
-            // Fallback por seguridad
-            container.className = "badge-estado-tienda abierto";
-            textEl.innerText = "Abierto ahora: 9:00 AM - 10:00 PM";
-        }
-    }
-    verificarHorarioTienda();
-
-    // 2. EFECTO DE COPOS DE NIEVE GLOBAL
-    const snowContainer = document.getElementById('snow-container');
-    if (snowContainer) {
-        const numSnowflakes = 40;
-        for (let i = 0; i < numSnowflakes; i++) {
-            createSnowflake();
-        }
-
-        function createSnowflake() {
-            const snowflake = document.createElement('div');
-            snowflake.classList.add('snowflake');
-            snowflake.innerHTML = Math.random() > 0.4 ? '❄' : '•';
-            snowflake.style.left = Math.random() * 100 + 'vw';
-            
-            const duration = Math.random() * 7 + 5;
-            snowflake.style.animationDuration = duration + 's';
-            snowflake.style.animationDelay = (Math.random() * 10) + 's';
-            
-            const size = Math.random() * 0.8 + 0.4;
-            snowflake.style.fontSize = size + 'rem';
-            
-            snowContainer.appendChild(snowflake);
-
-            snowflake.addEventListener('animationiteration', () => {
-                snowflake.style.left = Math.random() * 100 + 'vw';
-                snowflake.style.animationDuration = (Math.random() * 7 + 5) + 's';
-            });
-        }
-    }
-});
-
-// ==================== CONTROL DE TÉRMINOS Y CONDICIONES ====================
-document.addEventListener("DOMContentLoaded", function() {
-    // Verifica si el usuario ya aceptó los términos en esta sesión
-    if (!sessionStorage.getItem('streamix_terminos_aceptados')) {
-        document.getElementById('modalTerminos').style.display = 'flex';
-    }
-});
-
-function abrirModalTerminos() {
-    document.getElementById('modalTerminos').style.display = 'flex';
-}
-
-function aceptarTerminosIniciales() {
-    sessionStorage.setItem('streamix_terminos_aceptados', 'true');
-    document.getElementById('modalTerminos').style.display = 'none';
-    
-    // Marca automáticamente la casilla del pedido si está en pantalla
-    const checkPedido = document.getElementById('check-terminos-pedido');
-    if (checkPedido) {
-        checkPedido.checked = true;
-        limpiarErrorTerminos();
-    }
-}
-
-function limpiarErrorTerminos() {
-    document.getElementById('box-check-terminos').classList.remove('error-terms');
-    document.getElementById('error-terminos-msg').style.display = 'none';
-}
-
-<script>
-(function() {
-    const STORAGE_KEY = 'streamix_bf_7d_end_v1';
-    const SIETE_DIAS_MS = 7 * 24 * 60 * 60 * 1000;
-
-    let fechaFin = parseInt(localStorage.getItem(STORAGE_KEY), 10);
-    if (!fechaFin || isNaN(fechaFin) || fechaFin <= Date.now()) {
-        fechaFin = Date.now() + SIETE_DIAS_MS;
-        localStorage.setItem(STORAGE_KEY, String(fechaFin));
-    }
-
-    function actualizarCuentaBlackFriday() {
-        const el = document.getElementById('bf-timer-text');
-        if (!el) return;
-
-        const restante = fechaFin - Date.now();
-        if (restante <= 0) {
-            el.textContent = '0D 00H 00M 00S';
-            return;
-        }
-
-        const totalSegundos = Math.floor(restante / 1000);
-        const dias = Math.floor(totalSegundos / 86400);
-        const horas = Math.floor((totalSegundos % 86400) / 3600);
-        const minutos = Math.floor((totalSegundos % 3600) / 60);
-        const segundos = totalSegundos % 60;
-
-        const h = String(horas).padStart(2, '0');
-        const m = String(minutos).padStart(2, '0');
-        const s = String(segundos).padStart(2, '0');
-
-        el.textContent = `${dias}D ${h}H ${m}M ${s}S`;
-    }
-
-    actualizarCuentaBlackFriday();
-    setInterval(actualizarCuentaBlackFriday, 1000);
-})();
-</script>
-		
-
-        let currentSlide = 0;
-        function goToSlide(index) {
-            currentSlide = index;
-            document.getElementById('carouselTrack').style.transform = `translateX(-${currentSlide * 100}%)`;
-            const dots = document.querySelectorAll('.carousel-indicators .dot');
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentSlide);
-            });
         }
     </script>
 </body>
