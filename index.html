@@ -397,24 +397,6 @@
             font-weight: bold;
         }
 
-        /* ==================== GORRO DE NAVIDAD EN EL LOGO ==================== */
-        .logo-s-wrapper {
-            position: relative;
-            display: inline-block;
-            color: #ffffff !important;
-        }
-
-        .santa-hat-svg {
-            position: absolute;
-            top: -13px;
-            left: -9px;
-            width: 27px;
-            height: auto;
-            transform: rotate(-18deg);
-            pointer-events: none;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
-            z-index: 2;
-        }
 
         .p-logo.netflix {
             color: #e50914;
@@ -522,37 +504,61 @@
             background: linear-gradient(135deg, #ffee55, #fbbf24);
         }
 
-        #snow-container {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            width: 100vw !important;
-            height: 100vh !important;
-            pointer-events: none !important;
-            z-index: 9999 !important;
-            overflow: hidden !important;
-        }
+        /* ==================== EFECTO BLACK FRIDAY (DESTELLOS) ==================== */
+#bf-particles-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    pointer-events: none !important;
+    z-index: 9999 !important;
+    overflow: hidden !important;
+}
 
-        .snowflake {
-            position: absolute;
-            top: -30px;
-            color: rgba(255, 255, 255, 0.7);
-            user-select: none;
-            z-index: 9999;
-            animation: globalFall linear infinite;
-            text-shadow: 0 0 6px rgba(0, 255, 239, 0.5);
-        }
+.bf-spark {
+    position: absolute;
+    top: -25px;
+    color: rgba(0, 255, 239, 0.75);
+    user-select: none;
+    z-index: 9999;
+    animation: bfSparkFall linear infinite;
+    text-shadow: 0 0 8px rgba(0, 255, 239, 0.55);
+}
 
-        @keyframes globalFall {
-            0% {
-                transform: translateY(-30px) translateX(0px);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(105vh) translateX(25px);
-                opacity: 0.1;
-            }
-        }
+@keyframes bfSparkFall {
+    0% {
+        transform: translateY(-25px) translateX(0px) rotate(0deg);
+        opacity: 0.95;
+    }
+    100% {
+        transform: translateY(105vh) translateX(20px) rotate(180deg);
+        opacity: 0.1;
+    }
+}
+
+.logo-s-wrapper {
+    position: relative;
+    display: inline-block;
+    color: #ffffff !important;
+}
+
+.bf-badge-tag {
+    position: absolute;
+    top: -12px;
+    right: -28px;
+    background: #00FFEF;
+    color: #04060b;
+    font-size: 0.55rem;
+    font-weight: 900;
+    padding: 2px 5px;
+    border-radius: 5px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    pointer-events: none;
+    box-shadow: 0 0 10px rgba(0, 255, 239, 0.55);
+    z-index: 2;
+}
 
         .nav-links a,
         .logo-nav,
@@ -1018,25 +1024,12 @@
         <nav class="nav-bar">
             <button class="mobile-menu-btn" onclick="toggleDrawer()">☰</button>
 			
-					<!-- ==================== EFECTO DE NIEVE GLOBAL ==================== -->
-<div id="snow-container"></div>
+					<!-- ==================== EFECTO DE BLACK F ==================== -->
+<div id="bf-particles-container"></div>
 
-			<!-- Logo STREAMIX con Gorro de Navidad -->
+			<!-- Logo STREAMIX - Black Friday -->
 <div class="logo-nav" onclick="mostrarVista('servicios')">
-    <span class="logo-s-wrapper">
-        S
-        <!-- SVG Gorro de Navidad -->
-        <svg class="santa-hat-svg" viewBox="0 0 64 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Cuerpo rojo del gorro -->
-            <path d="M12 36C12 20 24 8 40 8C48 8 54 13 56 18C52 16 46 17 43 21C41 25 43 32 45 36H12Z" fill="#E61919"/>
-            <!-- Sombra sutil del gorro -->
-            <path d="M36 8C45 8 53 13 56 18C52 16 46 17 43 21C42 23 42 26 43 29C39 22 36 14 36 8Z" fill="#B81010"/>
-            <!-- Pompón blanco -->
-            <circle cx="56" cy="19" r="6.5" fill="#FFFFFF"/>
-            <!-- Borde de felpa blanco -->
-            <rect x="8" y="33" width="40" height="10" rx="5" fill="#FFFFFF"/>
-        </svg>
-    </span>TREA<span>MIX</span>
+    <span class="logo-s-wrapper">S<span class="bf-badge-tag">BF</span></span>TREAM<span>IX</span>
 </div>
 
             <!-- Menú Principal Desktop -->
@@ -3251,7 +3244,7 @@ const baseDeDatosPreciosDistri = {
             const totalUSD = (precioUSDActual * cantidad).toFixed(2);
             const totalVES = (precioUSDActual * cantidad * tasaVES).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-            const msg = `🎅🏻 Hola STREAMIX STORE, ya realicé mi pago por ${metodo}.\n\n` +
+            const msg = `⚡ Hola STREAMIX STORE, ya realicé mi pago por ${metodo}.\n\n` +
                 `📌 *Producto:* ${productoNombreActual}\n` +
                 `📦 *Plan:* ${paquete} (x${cantidad})\n` +
                 `👤 *${productoActualData.idLabel}:* ${idCuenta}\n` +
@@ -3482,20 +3475,22 @@ const baseDeDatosPreciosDistri = {
             });
         }
 
-        function iniciarNieve() {
-            const snowContainer = document.getElementById('snow-container');
-            if (!snowContainer) return;
-            for (let i = 0; i < 35; i++) {
-                const snowflake = document.createElement('div');
-                snowflake.classList.add('snowflake');
-                snowflake.innerHTML = Math.random() > 0.4 ? '❄' : '•';
-                snowflake.style.left = Math.random() * 100 + 'vw';
-                snowflake.style.animationDuration = (Math.random() * 7 + 5) + 's';
-                snowflake.style.animationDelay = (Math.random() * 10) + 's';
-                snowflake.style.fontSize = (Math.random() * 0.8 + 0.4) + 'rem';
-                snowContainer.appendChild(snowflake);
-            }
-        }
+        function iniciarEfectoBlackFriday() {
+    const container = document.getElementById('bf-particles-container');
+    if (!container) return;
+    container.innerHTML = '';
+
+    for (let i = 0; i < 30; i++) {
+        const spark = document.createElement('div');
+        spark.classList.add('bf-spark');
+        spark.innerHTML = Math.random() > 0.45 ? '✦' : '•';
+        spark.style.left = Math.random() * 100 + 'vw';
+        spark.style.animationDuration = (Math.random() * 7 + 5) + 's';
+        spark.style.animationDelay = (Math.random() * 10) + 's';
+        spark.style.fontSize = (Math.random() * 0.75 + 0.45) + 'rem';
+        container.appendChild(spark);
+    }
+}
 		
 		function formatearPrecio(montoUSD) {
     return monedaActual === 'VES'
@@ -3584,7 +3579,7 @@ function renderizarPaquetes() {
             setInterval(actualizarEstadoTienda, 30000);
             iniciarContadorBlackFriday();
             aplicarStockTarjetas();
-            iniciarNieve();
+            iniciarEfectoBlackFriday();
             cargarResenas();
             verificarHashUrl();
 
