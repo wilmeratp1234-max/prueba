@@ -647,6 +647,86 @@
 
         .logo-nav { font-weight: 900; font-size: 1.6rem; letter-spacing: 1px; color: #fff; display: flex; align-items: center; text-transform: uppercase; cursor: pointer; text-shadow: 0 0 10px rgba(0, 255, 239, 0.4); }
         .logo-nav span { color: #00FFEF; }
+		
+		/* ==================== ETIQUETA COLGANTE BLACK FRIDAY EN LOGO ==================== */
+.logo-nav {
+    position: relative;
+}
+
+.bf-hang-tag {
+    position: absolute;
+    top: 100%;
+    left: 18px;
+    margin-top: 2px;
+    transform-origin: top center;
+    transform: rotate(-8deg);
+    animation: bfTagSwing 3.4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 20;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Cordón de la etiqueta */
+.bf-hang-string {
+    width: 1.5px;
+    height: 11px;
+    background: linear-gradient(to bottom, #9ca3af, #00FFEF);
+    display: block;
+}
+
+/* Cuerpo de la etiqueta */
+.bf-hang-body {
+    position: relative;
+    background: linear-gradient(145deg, #0d1322 0%, #060911 100%);
+    border: 1px solid #00FFEF;
+    color: #ffffff;
+    font-size: 0.56rem;
+    font-weight: 900;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    padding: 3px 8px 3px 13px;
+    border-radius: 4px 10px 10px 4px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.65), 0 0 10px rgba(0, 255, 239, 0.25);
+    white-space: nowrap;
+}
+
+/* Perforación tipo etiqueta de tienda */
+.bf-hang-body::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4.5px;
+    height: 4.5px;
+    border-radius: 50%;
+    background: #04060b;
+    border: 1px solid #00FFEF;
+}
+
+.bf-hang-body span {
+    color: #00FFEF;
+}
+
+@keyframes bfTagSwing {
+    0%, 100% { transform: rotate(-7deg); }
+    50% { transform: rotate(-11deg); }
+}
+
+@media (max-width: 768px) {
+    .bf-hang-tag {
+        left: 12px;
+    }
+    .bf-hang-string {
+        height: 8px;
+    }
+    .bf-hang-body {
+        font-size: 0.5rem;
+        padding: 2px 6px 2px 11px;
+    }
+}
 
         .nav-links { display: flex; gap: 22px; align-items: center; list-style: none; font-size: 0.9rem; }
         .nav-links a { color: #d1d5db; text-decoration: none; transition: color 0.2s; cursor: pointer; display: flex; align-items: center; gap: 4px; font-weight: 500; white-space: nowrap; }
@@ -1027,9 +1107,13 @@
 					<!-- ==================== EFECTO DE BLACK F ==================== -->
 <div id="bf-particles-container"></div>
 
-			<!-- Logo STREAMIX - Black Friday -->
+			<!-- Logo STREAMIX con etiqueta colgante Black Friday -->
 <div class="logo-nav" onclick="mostrarVista('servicios')">
-    <span class="logo-s-wrapper">S<span class="bf-badge-tag">BF</span></span>TREAM<span>IX</span>
+    <span class="logo-s-wrapper">S</span>TREAM<span>IX</span>
+    <span class="bf-hang-tag">
+        <span class="bf-hang-string"></span>
+        <span class="bf-hang-body">BLACK <span>FRIDAY</span></span>
+    </span>
 </div>
 
             <!-- Menú Principal Desktop -->
