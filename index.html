@@ -117,6 +117,14 @@
     color: #00FFEF;
 }
 
+/* Asegurar visibilidad de la vista de detalle de videojuego */
+.view-section {
+    display: none;
+}
+.view-section.active {
+    display: block !important;
+}
+
 /* ==================== CATÁLOGO Y FICHA DETALLADA DE VIDEOJUEGOS ==================== */
 .vj-kicker {
     font-size: 0.72rem;
@@ -3670,50 +3678,50 @@
         }
 
         // ==================== NAVEGACIÓN Y VISTAS ====================
-        function mostrarVista(vista, actualizarUrl = true) {
-            const vistas = [
-                'vista-servicios', 'vista-recargas', 'vista-distribuidores',
-                'vista-soporte', 'vista-producto', 'vista-binance-gateway',
-                'vista-pagomovil-gateway', 'vista-buscar', 'vista-resenas',
-                'vista-videojuego-detalle'
-            ];
-            vistas.forEach(v => {
-                const el = document.getElementById(v);
-                if (el) el.classList.remove('active');
-            });
+function mostrarVista(vista, actualizarUrl = true) {
+    const vistas = [
+        'vista-servicios', 'vista-recargas', 'vista-distribuidores',
+        'vista-soporte', 'vista-producto', 'vista-binance-gateway',
+        'vista-pagomovil-gateway', 'vista-buscar', 'vista-resenas',
+        'vista-videojuego-detalle'
+    ];
+    vistas.forEach(v => {
+        const el = document.getElementById(v);
+        if (el) el.classList.remove('active');
+    });
 
-            const navs = ['nav-servicios', 'nav-recargas', 'nav-distribuidores', 'nav-buscar', 'nav-soporte', 'nav-resenas'];
-            navs.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.classList.remove('active');
-            });
+    const navs = ['nav-servicios', 'nav-recargas', 'nav-distribuidores', 'nav-buscar', 'nav-soporte', 'nav-resenas'];
+    navs.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove('active');
+    });
 
-            const mapaVistas = {
-                recargas: { sec: 'vista-recargas', nav: 'nav-recargas', hash: '#recargas' },
-                distribuidores: { sec: 'vista-distribuidores', nav: 'nav-distribuidores', hash: '#distribuidores' },
-                buscar: { sec: 'vista-buscar', nav: 'nav-buscar', hash: '#buscar' },
-                soporte: { sec: 'vista-soporte', nav: 'nav-soporte', hash: '#soporte' },
-                resenas: { sec: 'vista-resenas', nav: 'nav-resenas', hash: '#reseñas' },
-                producto: { sec: 'vista-producto', nav: null, hash: null },
-                'videojuego-detalle': { sec: 'vista-videojuego-detalle', nav: 'nav-recargas', hash: null },
-                'binance-gateway': { sec: 'vista-binance-gateway', nav: null, hash: null },
-                'pagomovil-gateway': { sec: 'vista-pagomovil-gateway', nav: null, hash: null },
-                servicios: { sec: 'vista-servicios', nav: 'nav-servicios', hash: ' ' }
-            };
+    const mapaVistas = {
+        recargas: { sec: 'vista-recargas', nav: 'nav-recargas', hash: '#recargas' },
+        distribuidores: { sec: 'vista-distribuidores', nav: 'nav-distribuidores', hash: '#distribuidores' },
+        buscar: { sec: 'vista-buscar', nav: 'nav-buscar', hash: '#buscar' },
+        soporte: { sec: 'vista-soporte', nav: 'nav-soporte', hash: '#soporte' },
+        resenas: { sec: 'vista-resenas', nav: 'nav-resenas', hash: '#reseñas' },
+        producto: { sec: 'vista-producto', nav: null, hash: null },
+        'videojuego-detalle': { sec: 'vista-videojuego-detalle', nav: 'nav-recargas', hash: null },
+        'binance-gateway': { sec: 'vista-binance-gateway', nav: null, hash: null },
+        'pagomovil-gateway': { sec: 'vista-pagomovil-gateway', nav: null, hash: null },
+        servicios: { sec: 'vista-servicios', nav: 'nav-servicios', hash: ' ' }
+    };
 
-            const cfg = mapaVistas[vista] || mapaVistas.servicios;
-            const secEl = document.getElementById(cfg.sec);
-            if (secEl) secEl.classList.add('active');
-            if (cfg.nav) {
-                const navEl = document.getElementById(cfg.nav);
-                if (navEl) navEl.classList.add('active');
-            }
-            if (actualizarUrl && cfg.hash) {
-                history.pushState(null, null, cfg.hash);
-            }
+    const cfg = mapaVistas[vista] || mapaVistas.servicios;
+    const secEl = document.getElementById(cfg.sec);
+    if (secEl) secEl.classList.add('active');
+    if (cfg.nav) {
+        const navEl = document.getElementById(cfg.nav);
+        if (navEl) navEl.classList.add('active');
+    }
+    if (actualizarUrl && cfg.hash) {
+        history.pushState(null, null, cfg.hash);
+    }
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
         function toggleDrawer() {
             const drawer = document.getElementById('mobileDrawer');
