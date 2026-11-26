@@ -4346,27 +4346,90 @@ function abrirDetalleVideojuego(idJuego) {
         }
 
         function verDetalleCuenta(index) {
-            const item = window.cuentasEncontradasCache[index];
-            if (!item) return;
-            const list = document.getElementById('search-accounts-list');
-            if (!list) return;
+    const item = window.cuentasEncontradasCache[index];
+    if (!item) return;
+    const list = document.getElementById('search-accounts-list');
+    if (!list) return;
 
-            list.innerHTML = `
-                <div style="margin-bottom: 12px;">
-                    <button onclick="ejecutarBusquedaDatos()" style="background: #111827; border: 1px solid #1f2937; color: #ffffff; padding: 6px 14px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; cursor: pointer;">
-                        ❮ Volver a la lista
-                    </button>
-                </div>
-                <div style="font-weight: 800; color: #00FFEF; margin-bottom: 12px;">SERVICIO: ${item.servicio || ''}</div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                    <div class="pm-box-field"><div><div class="pm-box-label">CORREO / USUARIO</div><div class="pm-box-val">${item.correo || 'N/A'}</div></div></div>
-                    <div class="pm-box-field"><div><div class="pm-box-label">CONTRASEÑA</div><div class="pm-box-val">${item.clave || 'N/A'}</div></div></div>
-                    <div class="pm-box-field"><div><div class="pm-box-label">PERFIL</div><div class="pm-box-val">${item.perfil || 'Principal'}</div></div></div>
-                    <div class="pm-box-field"><div><div class="pm-box-label">PIN</div><div class="pm-box-val">${item.pin || 'Sin PIN'}</div></div></div>
-                    <div class="pm-box-field" style="grid-column: span 2;"><div><div class="pm-box-label">FECHA DE CORTE</div><div class="pm-box-val" style="color:#00FFEF;">${item.fechaCorte || 'Sin fecha'} (${item.dias || 0} días restantes)</div></div></div>
-                </div>
-            `;
-        }
+    list.innerHTML = `
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px;">
+            <button onclick="ejecutarBusquedaDatos()" style="background: #111827; border: 1px solid #1f2937; color: #ffffff; padding: 7px 14px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; cursor: pointer;">
+                ❮ Volver a la lista
+            </button>
+            <button onclick="verCodigoCuenta(${index})" style="background: #0e1320; border: 1px solid #00FFEF; color: #00FFEF; padding: 7px 16px; border-radius: 12px; font-size: 0.8rem; font-weight: 800; cursor: pointer; box-shadow: 0 0 10px rgba(0, 255, 239, 0.18);">
+                🔐 Ver código
+            </button>
+        </div>
+        <div style="font-weight: 800; color: #00FFEF; margin-bottom: 12px;">SERVICIO: ${item.servicio || ''}</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="pm-box-field"><div><div class="pm-box-label">CORREO / USUARIO</div><div class="pm-box-val">${item.correo || 'N/A'}</div></div></div>
+            <div class="pm-box-field"><div><div class="pm-box-label">CONTRASEÑA</div><div class="pm-box-val">${item.clave || 'N/A'}</div></div></div>
+            <div class="pm-box-field"><div><div class="pm-box-label">PERFIL</div><div class="pm-box-val">${item.perfil || 'Principal'}</div></div></div>
+            <div class="pm-box-field"><div><div class="pm-box-label">PIN</div><div class="pm-box-val">${item.pin || 'Sin PIN'}</div></div></div>
+            <div class="pm-box-field" style="grid-column: span 2;"><div><div class="pm-box-label">FECHA DE CORTE</div><div class="pm-box-val" style="color:#00FFEF;">${item.fechaCorte || 'Sin fecha'} (${item.dias || 0} días restantes)</div></div></div>
+        </div>
+    `;
+}
+
+function verCodigoCuenta(index) {
+    const item = window.cuentasEncontradasCache[index];
+    if (!item) return;
+    const list = document.getElementById('search-accounts-list');
+    if (!list) return;
+
+    const correo = item.correo || '';
+    const servicio = item.servicio || '';
+
+    list.innerHTML = `
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px;">
+            <button onclick="verDetalleCuenta(${index})" style="background: #111827; border: 1px solid #1f2937; color: #ffffff; padding: 7px 14px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; cursor: pointer;">
+                ❮ Volver a detalles
+            </button>
+            <button onclick="ejecutarBusquedaDatos()" style="background: #111827; border: 1px solid #1f2937; color: #9ca3af; padding: 7px 14px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; cursor: pointer;">
+                Lista de cuentas
+            </button>
+        </div>
+        <div style="background: #0b0f19; border: 1px solid #1f2937; border-radius: 16px; padding: 18px;">
+            <div style="font-size: 0.72rem; font-weight: 800; color: #00FFEF; text-transform: uppercase; margin-bottom: 4px;">CÓDIGO DE ACCESO / VERIFICACIÓN</div>
+            <div style="font-size: 1rem; font-weight: 800; color: #ffffff; margin-bottom: 12px;">${correo} <span style="color:#9ca3af; font-size:0.8rem;">(${servicio})</span></div>
+            <div id="codigo-resultado-box" style="background: #070a12; border: 1px solid #1f2937; border-radius: 12px; padding: 18px; text-align: center; color: #00FFEF; font-weight: 700;">
+                ⏳ Consultando código más reciente...
+            </div>
+        </div>
+    `;
+
+    const url = `${URL_GOOGLE_APPS_SCRIPT}?accion=obtenerCodigo&correo=${encodeURIComponent(correo)}&servicio=${encodeURIComponent(servicio)}&token=${encodeURIComponent(TOKEN_SECRETO)}&_t=${Date.now()}`;
+
+    fetch(url, { cache: 'no-store' })
+        .then(res => res.json())
+        .then(data => {
+            const box = document.getElementById('codigo-resultado-box');
+            if (!box) return;
+
+            const codigo = data.codigo || data.code || data.otp || '';
+            if (data.ok && codigo) {
+                box.innerHTML = `
+                    <div style="font-size: 0.72rem; color: #9ca3af; text-transform: uppercase; margin-bottom: 6px;">CÓDIGO DETECTADO</div>
+                    <div style="font-size: 2rem; font-weight: 900; color: #00FFEF; letter-spacing: 3px; margin-bottom: 10px;">${codigo}</div>
+                    ${data.asunto ? `<div style="font-size: 0.78rem; color: #d1d5db; margin-bottom: 4px;">Asunto: ${data.asunto}</div>` : ''}
+                    ${data.fecha ? `<div style="font-size: 0.72rem; color: #6b7280;">Recibido: ${data.fecha}</div>` : ''}
+                `;
+            } else {
+                box.innerHTML = `
+                    <div style="color: #f59e0b; font-size: 0.88rem; margin-bottom: 6px;">
+                        ${data.mensaje || data.error || 'No se encontró un código reciente para esta cuenta.'}
+                    </div>
+                    <div style="font-size: 0.75rem; color: #6b7280;">Si acabas de solicitarlo, espera unos segundos y vuelve a tocar "Ver código".</div>
+                `;
+            }
+        })
+        .catch(() => {
+            const box = document.getElementById('codigo-resultado-box');
+            if (box) {
+                box.innerHTML = `<div style="color: #ff4d4d; font-size: 0.85rem;">Error al consultar el código. Verifica tu conexión o el endpoint en Apps Script.</div>`;
+            }
+        });
+}
 
         // ==================== RESEÑAS ====================
         function abrirModalResena() {
