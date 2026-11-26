@@ -3729,9 +3729,9 @@ async function sincronizarConfigDesdeSheet() {
     if (!URL_GOOGLE_APPS_SCRIPT || !TOKEN_SECRETO) return;
 
     try {
-        const separador = URL_GOOGLE_APPS_SCRIPT.includes('?') ? '&' : '?';
+        const separador = URL_GOOGLE_APPS_SCRIPT.includes("?") ? "&" : "?";
         const url = `${URL_GOOGLE_APPS_SCRIPT}${separador}token=${encodeURIComponent(TOKEN_SECRETO)}&accion=obtenerConfigWeb`;
-        const res = await fetch(url, { cache: 'no-store' });
+        const res = await fetch(url, { cache: "no-store" });
         const data = await res.json();
         if (!data || !data.ok) return;
 
@@ -3742,11 +3742,11 @@ async function sincronizarConfigDesdeSheet() {
             aplicarStockEnTarjetas(data.stock);
         }
     } catch (e) {
-        // Conserva CONTROL_DE_STOCK y tasa local si no hay red
+        // Conserva valores locales si falla la conexión
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     sincronizarConfigDesdeSheet();
 });
 
