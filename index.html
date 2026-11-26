@@ -117,6 +117,203 @@
     color: #00FFEF;
 }
 
+/* ==================== NUEVO DISEÑO SECCIÓN RECARGAS ==================== */
+.recargas-hero-wrapper {
+    max-width: 960px;
+    margin: 10px auto 30px auto;
+}
+
+.recargas-kicker {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #00FFEF;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+}
+
+.recargas-main-title {
+    font-size: 2.3rem;
+    font-weight: 900;
+    color: #ffffff;
+    text-transform: uppercase;
+    line-height: 1.15;
+    margin-bottom: 8px;
+}
+
+.recargas-main-title span {
+    color: #00FFEF;
+    text-shadow: 0 0 12px rgba(0, 255, 239, 0.35);
+}
+
+.recargas-subtitle {
+    color: #9ca3af;
+    font-size: 0.92rem;
+    margin-bottom: 24px;
+}
+
+.recargas-search-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.recargas-search-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #0b0f19;
+    border: 1.5px solid #1f2937;
+    border-radius: 14px;
+    padding: 14px 18px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.recargas-search-box:focus-within {
+    border-color: #00FFEF;
+    box-shadow: 0 0 15px rgba(0, 255, 239, 0.2);
+}
+
+.recargas-search-box svg {
+    width: 18px;
+    height: 18px;
+    fill: #00FFEF;
+    flex-shrink: 0;
+}
+
+.recargas-search-box input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 0.95rem;
+    width: 100%;
+}
+
+.recargas-search-hint {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 8px;
+    margin-bottom: 28px;
+}
+
+/* Grid de 3 Categorías (Videojuegos, Gift Cards, Recargas) */
+.recargas-cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.recarga-cat-card {
+    background: linear-gradient(145deg, #0e1424 0%, #090d18 100%);
+    border: 1px solid #1f2937;
+    border-radius: 18px;
+    padding: 28px 18px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.recarga-cat-card:hover,
+.recarga-cat-card.active {
+    border-color: #00FFEF;
+    background: linear-gradient(145deg, #101b2e 0%, #0b1120 100%);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 255, 239, 0.18);
+}
+
+.recarga-cat-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(0, 255, 239, 0.08);
+    border: 1px solid rgba(0, 255, 239, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+}
+
+.recarga-cat-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.recarga-cat-sub {
+    font-size: 0.78rem;
+    color: #9ca3af;
+}
+
+/* Banner Inferior "Solicitar un producto" */
+.recargas-request-banner {
+    background: linear-gradient(135deg, #0b1324 0%, #0a1c26 50%, #0b0f19 100%);
+    border: 1px solid rgba(0, 255, 239, 0.3);
+    border-radius: 18px;
+    padding: 24px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.recargas-request-text h3 {
+    font-size: 1.15rem;
+    font-weight: 900;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.recargas-request-text p {
+    font-size: 0.85rem;
+    color: #9ca3af;
+}
+
+.btn-solicitar-producto {
+    background: #00FFEF;
+    color: #04060b;
+    padding: 13px 22px;
+    border-radius: 12px;
+    font-weight: 900;
+    font-size: 0.85rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 255, 239, 0.3);
+    white-space: nowrap;
+}
+
+.btn-solicitar-producto:hover {
+    background: #00e6d6;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 239, 0.5);
+}
+
+@media (max-width: 768px) {
+    .recargas-main-title { font-size: 1.65rem; }
+    .recargas-cat-grid { grid-template-columns: 1fr; gap: 12px; }
+    .recarga-cat-card { flex-direction: row; text-align: left; padding: 16px; justify-content: flex-start; gap: 15px; }
+    .recarga-cat-icon { width: 44px; height: 44px; font-size: 1.3rem; margin-bottom: 0; flex-shrink: 0; }
+    .recargas-request-banner { padding: 18px; }
+    .btn-solicitar-producto { width: 100%; justify-content: center; }
+}
+
         /* ==================== BANNER BLACK FRIDAY ==================== */
         .bf-banner-wrapper {
             display: flex;
@@ -1278,9 +1475,9 @@
         <div id="vista-servicios" class="view-section active">
             <div class="carousel-container">
                 <div class="carousel-track" id="carouselTrack">
-                    <div class="carousel-slide"><img src="https://i.imgur.com/SPxom3Z.jpeg" alt="Banner 1"></div>
-                    <div class="carousel-slide"><img src="https://i.imgur.com/SPxom3Z.jpeg" alt="Banner 1"></div>
-                    <div class="carousel-slide"><img src="https://i.imgur.com/SPxom3Z.jpeg" alt="Banner 1"></div>
+                    <div class="carousel-slide"><img src="https://i.imgur.com/N4CeGUL.png" alt="Banner 1"></div>
+                    <div class="carousel-slide"><img src="https://i.imgur.com/N4CeGUL.png" alt="Banner 1"></div>
+                    <div class="carousel-slide"><img src="https://i.imgur.com/N4CeGUL.png" alt="Banner 1"></div>
                 </div>
                 <div class="carousel-indicators">
                     <span class="dot active" onclick="goToSlide(0)"></span>
@@ -1622,39 +1819,118 @@
         </div>
 
         <!-- ==================== VISTA 2: JUEGOS DE RECARGA ==================== -->
-        <div id="vista-recargas" class="view-section">
-            <div class="section-header" style="margin-top: 10px;">
-                <h2 class="section-title">Juegos de <span>Recarga</span></h2>
-                <a href="#" class="btn-ver-todos">Ver todos</a>
+<div id="vista-recargas" class="view-section">
+    <div class="recargas-hero-wrapper">
+        <div class="recargas-kicker">ENCUENTRA LO QUE NECESITAS</div>
+        <h1 class="recargas-main-title">¿QUÉ QUIERES <span>JUGAR HOY?</span></h1>
+        <p class="recargas-subtitle">Busca por nombre o entra directamente a una categoría. El catálogo aparecerá cuando elijas.</p>
+
+        <label class="recargas-search-label" for="buscador-recargas-input">BUSCAR JUEGO, PRODUCTO O CATEGORÍA</label>
+        <div class="recargas-search-box">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input type="text" id="buscador-recargas-input" placeholder="Ej.: Free Fire, Roblox, PSN, Call of Duty..." oninput="filtrarCatalogoRecargas()">
+        </div>
+        <div class="recargas-search-hint">Escribe para ver resultados o selecciona una categoría.</div>
+
+        <!-- 3 Categorías principales (Sin Membresías) -->
+        <div class="recargas-cat-grid" id="recargas-categorias-cards">
+            <div class="recarga-cat-card" id="cat-card-videojuegos" onclick="seleccionarCategoriaRecargas('videojuegos')">
+                <div class="recarga-cat-icon">🎮</div>
+                <div>
+                    <div class="recarga-cat-title">Videojuegos</div>
+                    <div class="recarga-cat-sub">PS4 · PS5 · Xbox · PC</div>
+                </div>
             </div>
 
-            <div class="services-grid">
-                <div class="service-card" onclick="abrirProducto('Free fire', 'GLOBAL', 'https://gamerstyle.com.mx/wp-content/uploads/2022/06/Garena-Free-Fire-Nuevo-Logo-2022.jpg')">
-                    <div class="service-image-box"><img src="https://gamerstyle.com.mx/wp-content/uploads/2022/06/Garena-Free-Fire-Nuevo-Logo-2022.jpg" alt="Free Fire"></div>
-                    <div class="service-content"><span class="service-tag">GLOBAL</span><div class="service-name">Free fire</div></div>
+            <div class="recarga-cat-card" id="cat-card-giftcards" onclick="seleccionarCategoriaRecargas('giftcards')">
+                <div class="recarga-cat-icon">🎁</div>
+                <div>
+                    <div class="recarga-cat-title">Gift Cards</div>
+                    <div class="recarga-cat-sub">Saldo digital</div>
                 </div>
+            </div>
 
-                <div class="service-card" onclick="abrirProducto('Blood Strike', 'GLOBAL', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPFMnmbAyB7z9PX-NEu2m0WhvchXOOmHKODEu_KEX0Dw&s=10')">
-                    <div class="service-image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPFMnmbAyB7z9PX-NEu2m0WhvchXOOmHKODEu_KEX0Dw&s=10" alt="Blood Strike"></div>
-                    <div class="service-content"><span class="service-tag">GLOBAL</span><div class="service-name">Blood Strike</div></div>
-                </div>
-
-                <div class="service-card" onclick="abrirProducto('Mobile Legends', 'GLOBAL', 'https://articles-img.sftcdn.net/t_article_cover_xl/auto-mapping-folder/sites/2/2023/02/How-to-Download-Play-Win-at-Mobile-Legends.jpg')">
-                    <div class="service-image-box"><img src="https://articles-img.sftcdn.net/t_article_cover_xl/auto-mapping-folder/sites/2/2023/02/How-to-Download-Play-Win-at-Mobile-Legends.jpg" alt="Mobile Legends"></div>
-                    <div class="service-content"><span class="service-tag">GLOBAL</span><div class="service-name">Mobile Legends</div></div>
-                </div>
-
-                <div class="service-card" onclick="abrirProducto('Call of Duty Mobile', 'GLOBAL', 'https://images.appspy.com/articles/13712/cod-mobile.jpg')">
-                    <div class="service-image-box"><img src="https://images.appspy.com/articles/13712/cod-mobile.jpg" alt="Call of Duty"></div>
-                    <div class="service-content"><span class="service-tag">GLOBAL</span><div class="service-name">Call of Duty Mobile</div></div>
-                </div>
-
-                <div class="service-card" onclick="abrirProducto('Roblox', 'GLOBAL', 'https://i0.wp.com/mnn.mv/wp-content/uploads/2025/09/roblox.webp?fit=1920%2C1080&ssl=1')">
-                    <div class="service-image-box"><img src="https://i0.wp.com/mnn.mv/wp-content/uploads/2025/09/roblox.webp?fit=1920%2C1080&ssl=1" alt="Roblox"></div>
-                    <div class="service-content"><span class="service-tag">GLOBAL</span><div class="service-name">Roblox</div></div>
+            <div class="recarga-cat-card" id="cat-card-recargas" onclick="seleccionarCategoriaRecargas('recargas')">
+                <div class="recarga-cat-icon">💎</div>
+                <div>
+                    <div class="recarga-cat-title">Recargas</div>
+                    <div class="recarga-cat-sub">Juegos móviles</div>
                 </div>
             </div>
         </div>
+
+        <!-- Contenedor dinámico del catálogo (aparece al elegir categoría o buscar) -->
+        <div id="recargas-catalogo-dinamico" style="display: none; margin-bottom: 30px;">
+            <div class="section-header" style="margin-top: 0;">
+                <h2 class="section-title" id="recargas-catalogo-titulo">Catálogo <span>Disponible</span></h2>
+                <button class="btn-ver-todos" onclick="resetearVistaRecargas()">✕ Cerrar catálogo</button>
+            </div>
+
+            <div class="services-grid" id="recargas-services-grid">
+                <!-- RECARGAS (Juegos Móviles) -->
+                <div class="service-card item-recarga" data-cat="recargas" data-nombre="free fire diamantes" onclick="abrirProducto('Free fire', 'GLOBAL', 'https://gamerstyle.com.mx/wp-content/uploads/2022/06/Garena-Free-Fire-Nuevo-Logo-2022.jpg')">
+                    <div class="service-image-box"><img src="https://gamerstyle.com.mx/wp-content/uploads/2022/06/Garena-Free-Fire-Nuevo-Logo-2022.jpg" alt="Free Fire"></div>
+                    <div class="service-content"><span class="service-tag">RECARGAS · GLOBAL</span><div class="service-name">Free fire</div></div>
+                </div>
+
+                <div class="service-card item-recarga" data-cat="recargas" data-nombre="blood strike oro" onclick="abrirProducto('Blood Strike', 'GLOBAL', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPFMnmbAyB7z9PX-NEu2m0WhvchXOOmHKODEu_KEX0Dw&s=10')">
+                    <div class="service-image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPFMnmbAyB7z9PX-NEu2m0WhvchXOOmHKODEu_KEX0Dw&s=10" alt="Blood Strike"></div>
+                    <div class="service-content"><span class="service-tag">RECARGAS · GLOBAL</span><div class="service-name">Blood Strike</div></div>
+                </div>
+
+                <div class="service-card item-recarga" data-cat="recargas" data-nombre="mobile legends diamantes" onclick="abrirProducto('Mobile Legends', 'GLOBAL', 'https://articles-img.sftcdn.net/t_article_cover_xl/auto-mapping-folder/sites/2/2023/02/How-to-Download-Play-Win-at-Mobile-Legends.jpg')">
+                    <div class="service-image-box"><img src="https://articles-img.sftcdn.net/t_article_cover_xl/auto-mapping-folder/sites/2/2023/02/How-to-Download-Play-Win-at-Mobile-Legends.jpg" alt="Mobile Legends"></div>
+                    <div class="service-content"><span class="service-tag">RECARGAS · GLOBAL</span><div class="service-name">Mobile Legends</div></div>
+                </div>
+
+                <div class="service-card item-recarga" data-cat="recargas" data-nombre="call of duty mobile cp" onclick="abrirProducto('Call of Duty Mobile', 'GLOBAL', 'https://images.appspy.com/articles/13712/cod-mobile.jpg')">
+                    <div class="service-image-box"><img src="https://images.appspy.com/articles/13712/cod-mobile.jpg" alt="Call of Duty"></div>
+                    <div class="service-content"><span class="service-tag">RECARGAS · GLOBAL</span><div class="service-name">Call of Duty Mobile</div></div>
+                </div>
+
+                <div class="service-card item-recarga" data-cat="recargas" data-nombre="roblox robux" onclick="abrirProducto('Roblox', 'GLOBAL', 'https://i0.wp.com/mnn.mv/wp-content/uploads/2025/09/roblox.webp?fit=1920%2C1080&ssl=1')">
+                    <div class="service-image-box"><img src="https://i0.wp.com/mnn.mv/wp-content/uploads/2025/09/roblox.webp?fit=1920%2C1080&ssl=1" alt="Roblox"></div>
+                    <div class="service-content"><span class="service-tag">RECARGAS · GLOBAL</span><div class="service-name">Roblox</div></div>
+                </div>
+
+                <!-- GIFT CARDS (Saldo Digital) -->
+                <div class="service-card item-recarga" data-cat="giftcards" data-nombre="gift card psn playstation" onclick="abrirProducto('Gift Card PSN', 'Gift Cards / Gaming', 'https://static.wikitide.net/avidwiki/thumb/1/1a/PlayStation_%282020%29.png/534px-PlayStation_%282020%29.png')">
+                    <div class="service-image-box"><img src="https://static.wikitide.net/avidwiki/thumb/1/1a/PlayStation_%282020%29.png/534px-PlayStation_%282020%29.png" alt="Gift Card PSN"></div>
+                    <div class="service-content"><span class="service-tag">GIFT CARDS</span><div class="service-name">Gift Card PSN</div></div>
+                </div>
+
+                <div class="service-card item-recarga" data-cat="giftcards" data-nombre="gift card netflix" onclick="abrirProducto('Gift Card Netflix', 'Gift Cards / Streaming', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCSUJQW9nl_BBDzZFbExg6jNfTRb5m7H8cWErYqu2_vd9gnghg_cqAhCk&s=10')">
+                    <div class="service-image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCSUJQW9nl_BBDzZFbExg6jNfTRb5m7H8cWErYqu2_vd9gnghg_cqAhCk&s=10" alt="Gift Card Netflix"></div>
+                    <div class="service-content"><span class="service-tag">GIFT CARDS</span><div class="service-name">Gift Card Netflix</div></div>
+                </div>
+
+                <div class="service-card item-recarga" data-cat="giftcards" data-nombre="gift card apple itunes" onclick="abrirProducto('Gift Card Apple', 'Gift Cards / Apple', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjH0YCzKvrhdNmomagHleVLSSFC9mUYALBTySUmA2Vw&s=10')">
+                    <div class="service-image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjH0YCzKvrhdNmomagHleVLSSFC9mUYALBTySUmA2Vw&s=10" alt="Gift Card Apple"></div>
+                    <div class="service-content"><span class="service-tag">GIFT CARDS</span><div class="service-name">Gift Card Apple</div></div>
+                </div>
+            </div>
+
+            <!-- Mensaje cuando entran a Videojuegos o no hay coincidencias -->
+            <div id="recargas-vacio-msg" style="display: none; background: #0b0f19; border: 1px solid #1f2937; border-radius: 16px; padding: 30px; text-align: center; color: #9ca3af;">
+                <div style="font-size: 2rem; margin-bottom: 8px;">🎮</div>
+                <div style="color: #ffffff; font-weight: 800; margin-bottom: 6px;">Catálogo bajo consulta directa</div>
+                <p style="font-size: 0.85rem; margin-bottom: 15px;">Contamos con títulos digitales para PS4, PS5, Xbox y PC. Consulta disponibilidad al instante.</p>
+                <a href="https://wa.me/584124405245?text=Hola,%20quiero%20consultar%20el%20cat%C3%A1logo%20de%20Videojuegos" target="_blank" class="btn-solicitar-producto">Consultar Videojuegos ↗</a>
+            </div>
+        </div>
+
+        <!-- Banner Inferior "¿No encuentras el juego que buscas?" -->
+        <div class="recargas-request-banner">
+            <div class="recargas-request-text">
+                <h3>¿NO ENCUENTRAS EL JUEGO QUE BUSCAS?</h3>
+                <p>Escríbenos. Consultamos disponibilidad, región y precio para ti.</p>
+            </div>
+            <a href="https://wa.me/584124405245?text=Hola,%20quisiera%20solicitar%20un%20juego%20o%20recarga%20que%20no%20veo%20en%20el%20cat%C3%A1logo" target="_blank" class="btn-solicitar-producto">
+                Solicitar un producto ↗
+            </a>
+        </div>
+    </div>
+</div>
 		
 		<!-- ==================== VISTA: RESEÑAS ==================== -->
         <div id="vista-resenas" class="view-section">
@@ -2234,7 +2510,7 @@
 
      <!-- SCRIPTS CON LA MISMA LÓGICA ORIGINAL DE TU TIENDA -->
     <script>
-        let tasaVES = 1105.00;
+        let tasaVES = 1135.00;
         let monedaActual = 'VES';
         let estadoCheckoutStep = 1;
         let metodoPagoSeleccionado = 'pago_movil';
@@ -2640,7 +2916,7 @@ const baseDeDatosPreciosDistri = {
         tab2Nombre: "Cuentas Mayoristas",
         idLabel: "NOMBRE PARA LA PANTALLA",
         idPlaceholder: "Ingresa el nombre para tu pantalla",
-        paquetesTab1: [{ monto: "1 Pantalla", extra: "Lote Mayorista", precioAntesUSD: 3.90, precioUSD: 3.60, active: true }],
+        paquetesTab1: [{ monto: "1 Pantalla", extra: "Lote Mayorista", precioAntesUSD: 3.90, precioUSD: 3.70, active: true }],
         paquetesTab2: [{ monto: "Cuenta Completa", extra: "Panel VIP", precioAntesUSD: 14.99, precioUSD: 13.99 }]
     },
     "netflix personal": {
@@ -2778,12 +3054,12 @@ const baseDeDatosPreciosDistri = {
             "paramount+": 1,
             "vix": 8,
             "appletv": 1,
-            "universal+": 0,
+            "universal+": 1,
             "viki rakuten": 5,
             "streamix tv": 15,
             "flujotv": 12,
             "spotify premium": 1,
-            "youtube premium": 0,
+            "youtube premium": 1,
             "canva pro edu": 50,
             "capcut": 10,
             "google one": 8,
@@ -2794,8 +3070,8 @@ const baseDeDatosPreciosDistri = {
             "mobile legends": 0,
             "call of duty mobile": 30,
             "roblox": 10,
-            "netflix-vip": 0,
-            "netflix personal-vip": 1,
+            "netflix-vip": 1,
+            "netflix personal-vip": 0,
             "disney+ premium-vip": 0,
             "prime video-vip": 5,
             "hbo max standar-vip": 2,
@@ -2804,7 +3080,7 @@ const baseDeDatosPreciosDistri = {
             "vix-vip": 5,
             "streamix tv-vip": 10,
             "flujotv-vip": 10,
-            "spotify premium-vip": 0,
+            "spotify premium-vip": 1,
             "youtube premium-vip": 10,
             "canva pro edu-vip": 20,
             "capcut-vip": 5
@@ -3657,6 +3933,100 @@ function renderizarPaquetes() {
         };
 
         window.addEventListener('popstate', verificarHashUrl);
+
+// ==================== LÓGICA DE SECCIÓN RECARGAS ====================
+function seleccionarCategoriaRecargas(categoria) {
+    // Limpiar buscador
+    const input = document.getElementById('buscador-recargas-input');
+    if (input) input.value = '';
+
+    // Marcar tarjeta activa
+    document.querySelectorAll('.recarga-cat-card').forEach(c => c.classList.remove('active'));
+    const cardActiva = document.getElementById('cat-card-' + categoria);
+    if (cardActiva) cardActiva.classList.add('active');
+
+    const contenedor = document.getElementById('recargas-catalogo-dinamico');
+    const titulo = document.getElementById('recargas-catalogo-titulo');
+    const grid = document.getElementById('recargas-services-grid');
+    const vacioMsg = document.getElementById('recargas-vacio-msg');
+    const items = document.querySelectorAll('.item-recarga');
+
+    const titulos = {
+        videojuegos: 'Catálogo de <span>Videojuegos</span>',
+        giftcards: 'Tarjetas de Regalo <span>Gift Cards</span>',
+        recargas: 'Recargas de <span>Juegos Móviles</span>'
+    };
+
+    if (titulo) titulo.innerHTML = titulos[categoria] || 'Catálogo <span>Disponible</span>';
+    if (contenedor) contenedor.style.display = 'block';
+
+    let visibles = 0;
+    items.forEach(item => {
+        if (item.getAttribute('data-cat') === categoria) {
+            item.style.display = 'block';
+            visibles++;
+        } else {
+            item.style.display = 'none';
+        }
+    });
+
+    if (visibles === 0) {
+        if (grid) grid.style.display = 'none';
+        if (vacioMsg) vacioMsg.style.display = 'block';
+    } else {
+        if (grid) grid.style.display = 'grid';
+        if (vacioMsg) vacioMsg.style.display = 'none';
+    }
+}
+
+function filtrarCatalogoRecargas() {
+    const input = document.getElementById('buscador-recargas-input');
+    const texto = input ? input.value.trim().toLowerCase() : '';
+
+    document.querySelectorAll('.recarga-cat-card').forEach(c => c.classList.remove('active'));
+
+    const contenedor = document.getElementById('recargas-catalogo-dinamico');
+    const titulo = document.getElementById('recargas-catalogo-titulo');
+    const grid = document.getElementById('recargas-services-grid');
+    const vacioMsg = document.getElementById('recargas-vacio-msg');
+    const items = document.querySelectorAll('.item-recarga');
+
+    if (!texto) {
+        if (contenedor) contenedor.style.display = 'none';
+        return;
+    }
+
+    if (contenedor) contenedor.style.display = 'block';
+    if (titulo) titulo.innerHTML = `Resultados para <span>"${input.value}"</span>`;
+
+    let visibles = 0;
+    items.forEach(item => {
+        const nombre = (item.getAttribute('data-nombre') || '').toLowerCase();
+        const cat = (item.getAttribute('data-cat') || '').toLowerCase();
+        if (nombre.includes(texto) || cat.includes(texto)) {
+            item.style.display = 'block';
+            visibles++;
+        } else {
+            item.style.display = 'none';
+        }
+    });
+
+    if (visibles === 0) {
+        if (grid) grid.style.display = 'none';
+        if (vacioMsg) vacioMsg.style.display = 'block';
+    } else {
+        if (grid) grid.style.display = 'grid';
+        if (vacioMsg) vacioMsg.style.display = 'none';
+    }
+}
+
+function resetearVistaRecargas() {
+    const input = document.getElementById('buscador-recargas-input');
+    const contenedor = document.getElementById('recargas-catalogo-dinamico');
+    if (input) input.value = '';
+    if (contenedor) contenedor.style.display = 'none';
+    document.querySelectorAll('.recarga-cat-card').forEach(c => c.classList.remove('active'));
+}
 
         document.addEventListener("DOMContentLoaded", function() {
             actualizarEstadoTienda();
