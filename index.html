@@ -3642,40 +3642,61 @@ function aplicarTasaDesdeSheet(nuevaTasa) {
     if (typeof actualizarVistaProducto === 'function') actualizarVistaProducto();
 }
 
-function aplicarStockEnTarjetas(stockMap) {
-    estadoStockSheets = stockMap || {};
+function normalizarClaveStock(str) {
+    return String(str || "")
+        .toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .replace(/\(.*?\)/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+}
 
-    // Limpia y llena CONTROL_DE_STOCK únicamente con lo que viene del Sheet
+function aplicarStockEnTarjetas(stockMap) {
+    if (stockMap) estadoStockSheets = stockMap;
+    if (!estadoStockSheets || Object.keys(estadoStockSheets).length === 0) return;
+
     Object.keys(CONTROL_DE_STOCK).forEach(k => delete CONTROL_DE_STOCK[k]);
 
-    Object.keys(estadoStockSheets).forEach(clave => {
-        const info = estadoStockSheets[clave];
-        if (!info) return;
+    // Ordenar claves de mayor a menor longitud para que "netflix personal" gane sobre "netflix"
+    const clavesOrdenadas = Object.keys(estadoStockSheets)
+        .map(k => ({ original: k, limpia: normalizarClaveStock(k), info: estadoStockSheets[k] }))
+        .filter(item => item.limpia && item.info)
+        .sort((a, b) => b.limpia.length - a.limpia.length);
 
-        const valorNumerico = typeof info.stock === 'number'
+    clavesOrdenadas.forEach(({ limpia, info }) => {
+        const valorNum = typeof info.stock === "number"
             ? info.stock
             : (info.disponible ? 1 : 0);
-
-        CONTROL_DE_STOCK[clave] = valorNumerico;
-        CONTROL_DE_STOCK[`${clave}-vip`] = valorNumerico;
+        CONTROL_DE_STOCK[limpia] = valorNum;
+        CONTROL_DE_STOCK[`${limpia}-vip`] = valorNum;
     });
 
-    document.querySelectorAll('.service-card, [data-producto]').forEach(card => {
-        const attrProd = (card.getAttribute('data-producto') || '').trim().toLowerCase();
-        const textoCard = (card.textContent || '').trim().toLowerCase();
+    const tarjetas = document.querySelectorAll(".service-card, [data-producto], [data-servicio], .card");
 
-        let nombreCoincidente = attrProd;
-        if (!nombreCoincidente) {
-            nombreCoincidente = Object.keys(estadoStockSheets).find(k => textoCard.includes(k)) || '';
-        }
+    tarjetas.forEach(card => {
+        const attrRaw =
+            card.getAttribute("data-producto") ||
+            card.getAttribute("data-servicio") ||
+            card.dataset.producto ||
+            card.dataset.servicio ||
+            "";
 
-        if (!nombreCoincidente || !estadoStockSheets[nombreCoincidente]) return;
+        const textoCard = normalizarClaveStock(attrRaw || card.textContent);
+        if (!textoCard) return;
 
-        const estaAgotado = !estadoStockSheets[nombreCoincidente].disponible;
-        card.classList.toggle('agotado', estaAgotado);
+        // Buscar la coincidencia más específica (más larga) que aparezca en la tarjeta
+        const match = clavesOrdenadas.find(({ limpia }) =>
+            textoCard === limpia ||
+            textoCard.includes(limpia)
+        );
+
+        if (!match) return;
+
+        const estaAgotado = !match.info.disponible;
+        card.classList.toggle("agotado", estaAgotado);
     });
 
-    if (typeof aplicarControlStock === 'function') aplicarControlStock();
+    if (typeof aplicarControlStock === "function") aplicarControlStock();
 }
 
 async function sincronizarConfigDesdeSheet() {
