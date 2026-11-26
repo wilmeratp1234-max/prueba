@@ -4495,69 +4495,6 @@ function consultarCodigoConAcceso() {
         });
 }
 
-    const url = `${URL_GOOGLE_APPS_SCRIPT}?accion=obtenerCodigo&plataforma=${encodeURIComponent(plataforma)}&correo=${encodeURIComponent(correo)}&codigoAcceso=${encodeURIComponent(codigoAcceso)}&token=${encodeURIComponent(TOKEN_SECRETO)}&_t=${Date.now()}`;
-
-    fetch(url, { cache: 'no-store' })
-        .then(res => res.json())
-        .then(data => {
-            if (!box) return;
-            const codigo = data.codigo || data.code || data.otp || '';
-
-            if (data.ok && codigo) {
-                box.innerHTML = `
-                    <div style="font-size: 0.7rem; color: #9ca3af; text-transform: uppercase; margin-bottom: 6px;">CÓDIGO DE VERIFICACIÓN</div>
-                    <div style="font-size: 1.9rem; font-weight: 900; color: #00FFEF; letter-spacing: 3px; margin-bottom: 8px;">${codigo}</div>
-                    ${data.asunto ? `<div style="font-size: 0.78rem; color: #d1d5db;">${data.asunto}</div>` : ''}
-                    ${data.fecha ? `<div style="font-size: 0.72rem; color: #6b7280; margin-top: 4px;">${data.fecha}</div>` : ''}
-                `;
-            } else {
-                box.innerHTML = `
-                    <div style="color: #ff4d4d; font-size: 0.85rem; font-weight: 700;">
-                        ${data.error || data.mensaje || 'Código de acceso inválido o sin códigos recientes.'}
-                    </div>
-                `;
-            }
-        })
-        .catch(() => {
-            if (box) {
-                box.innerHTML = `<div style="color: #ff4d4d; font-size: 0.85rem;">Error de conexión al consultar el código.</div>`;
-            }
-        });
-}
-
-    const url = `${URL_GOOGLE_APPS_SCRIPT}?accion=obtenerCodigo&correo=${encodeURIComponent(correo)}&servicio=${encodeURIComponent(servicio)}&token=${encodeURIComponent(TOKEN_SECRETO)}&_t=${Date.now()}`;
-
-    fetch(url, { cache: 'no-store' })
-        .then(res => res.json())
-        .then(data => {
-            const box = document.getElementById('codigo-resultado-box');
-            if (!box) return;
-
-            const codigo = data.codigo || data.code || data.otp || '';
-            if (data.ok && codigo) {
-                box.innerHTML = `
-                    <div style="font-size: 0.72rem; color: #9ca3af; text-transform: uppercase; margin-bottom: 6px;">CÓDIGO DETECTADO</div>
-                    <div style="font-size: 2rem; font-weight: 900; color: #00FFEF; letter-spacing: 3px; margin-bottom: 10px;">${codigo}</div>
-                    ${data.asunto ? `<div style="font-size: 0.78rem; color: #d1d5db; margin-bottom: 4px;">Asunto: ${data.asunto}</div>` : ''}
-                    ${data.fecha ? `<div style="font-size: 0.72rem; color: #6b7280;">Recibido: ${data.fecha}</div>` : ''}
-                `;
-            } else {
-                box.innerHTML = `
-                    <div style="color: #f59e0b; font-size: 0.88rem; margin-bottom: 6px;">
-                        ${data.mensaje || data.error || 'No se encontró un código reciente para esta cuenta.'}
-                    </div>
-                    <div style="font-size: 0.75rem; color: #6b7280;">Si acabas de solicitarlo, espera unos segundos y vuelve a tocar "Ver código".</div>
-                `;
-            }
-        })
-        .catch(() => {
-            const box = document.getElementById('codigo-resultado-box');
-            if (box) {
-                box.innerHTML = `<div style="color: #ff4d4d; font-size: 0.85rem;">Error al consultar el código. Verifica tu conexión o el endpoint en Apps Script.</div>`;
-            }
-        });
-}
-
         // ==================== RESEÑAS ====================
         function abrirModalResena() {
             const el = document.getElementById('modalEscribirResena');
