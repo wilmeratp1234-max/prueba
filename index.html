@@ -3622,72 +3622,31 @@ const baseDeDatosPreciosDistri = {
     }
 };
 
-        const CONTROL_DE_STOCK = {
-    "netflix": 1,
-    "netflix personal": 0,
-    "disney+ premium": 0,
-    "prime video": 10,
-    "hbo max standar": 1,
-    "crunchyroll": 3,
-    "paramount+": 1,
-    "vix": 8,
-    "appletv": 1,
-    "universal+": 1,
-    "viki rakuten": 5,
-    "streamix tv": 15,
-    "flujotv": 12,
-    "spotify premium": 1,
-    "youtube premium": 1,
-    "canva pro edu": 50,
-    "capcut": 10,
-    "google one": 8,
-    "monedas tiktok": 100,
-    "estrellas telegram": 50,
-    "free fire": 100,
-    "blood strike": 0,
-    "mobile legends": 0,
-    "call of duty mobile": 30,
-    "roblox": 10,
-    "netflix-vip": 1,
-    "netflix personal-vip": 0,
-    "disney+ premium-vip": 0,
-    "prime video-vip": 5,
-    "hbo max standar-vip": 2,
-    "crunchyroll-vip": 4,
-    "paramount+-vip": 5,
-    "vix-vip": 5,
-    "streamix tv-vip": 10,
-    "flujotv-vip": 10,
-    "spotify premium-vip": 1,
-    "youtube premium-vip": 10,
-    "canva pro edu-vip": 20,
-    "capcut-vip": 5
-};
-
-// ==================== TASA Y STOCK DESDE GOOGLE SHEETS (CONFIG_WEB) ====================
+        // ==================== CONFIGURACIÓN EN VIVO DESDE GOOGLE SHEETS (CONFIG_WEB) ====================
+const CONTROL_DE_STOCK = {};
 let estadoStockSheets = {};
 
 function aplicarTasaDesdeSheet(nuevaTasa) {
     const tasaNum = Number(String(nuevaTasa).replace(',', '.'));
     if (!tasaNum || isNaN(tasaNum) || tasaNum <= 0) return;
 
-    if (typeof tasaActual !== 'undefined') {
-        tasaActual = tasaNum;
-    } else if (typeof tasaBs !== 'undefined') {
-        tasaBs = tasaNum;
-    } else {
-        window.tasaBs = tasaNum;
+    if (typeof tasaVES !== 'undefined') {
+        tasaVES = tasaNum;
     }
+    window.tasaVES = tasaNum;
 
-    if (typeof actualizarPreciosEnPantalla === 'function') {
-        actualizarPreciosEnPantalla();
-    } else if (typeof renderizarPaquetes === 'function') {
-        renderizarPaquetes();
-    }
+    if (typeof actualizarPreciosEnPantalla === 'function') actualizarPreciosEnPantalla();
+    if (typeof actualizarPrecios === 'function') actualizarPrecios();
+    if (typeof renderizarPaquetes === 'function') renderizarPaquetes();
+    if (typeof calcularPrecios === 'function') calcularPrecios();
+    if (typeof actualizarVistaProducto === 'function') actualizarVistaProducto();
 }
 
 function aplicarStockEnTarjetas(stockMap) {
     estadoStockSheets = stockMap || {};
+
+    // Limpia y llena CONTROL_DE_STOCK únicamente con lo que viene del Sheet
+    Object.keys(CONTROL_DE_STOCK).forEach(k => delete CONTROL_DE_STOCK[k]);
 
     Object.keys(estadoStockSheets).forEach(clave => {
         const info = estadoStockSheets[clave];
@@ -3698,9 +3657,7 @@ function aplicarStockEnTarjetas(stockMap) {
             : (info.disponible ? 1 : 0);
 
         CONTROL_DE_STOCK[clave] = valorNumerico;
-        if (CONTROL_DE_STOCK.hasOwnProperty(`${clave}-vip`)) {
-            CONTROL_DE_STOCK[`${clave}-vip`] = valorNumerico;
-        }
+        CONTROL_DE_STOCK[`${clave}-vip`] = valorNumerico;
     });
 
     document.querySelectorAll('.service-card, [data-producto]').forEach(card => {
@@ -3713,25 +3670,21 @@ function aplicarStockEnTarjetas(stockMap) {
         }
 
         if (!nombreCoincidente || !estadoStockSheets[nombreCoincidente]) return;
-        const estaAgotado = !estadoStockSheets[nombreCoincidente].disponible;
 
+        const estaAgotado = !estadoStockSheets[nombreCoincidente].disponible;
         card.classList.toggle('agotado', estaAgotado);
     });
 
-    if (typeof aplicarControlStock === 'function') {
-        aplicarControlStock();
-    } else if (typeof renderizarServicios === 'function') {
-        renderizarServicios();
-    }
+    if (typeof aplicarControlStock === 'function') aplicarControlStock();
 }
 
 async function sincronizarConfigDesdeSheet() {
     if (!URL_GOOGLE_APPS_SCRIPT || !TOKEN_SECRETO) return;
 
     try {
-        const separador = URL_GOOGLE_APPS_SCRIPT.includes("?") ? "&" : "?";
-        const url = `${URL_GOOGLE_APPS_SCRIPT}${separador}token=${encodeURIComponent(TOKEN_SECRETO)}&accion=obtenerConfigWeb`;
-        const res = await fetch(url, { cache: "no-store" });
+        const separador = URL_GOOGLE_APPS_SCRIPT.includes('?') ? '&' : '?';
+        const url = `${URL_GOOGLE_APPS_SCRIPT}${separador}token=${encodeURIComponent(TOKEN_SECRETO)}&accion=obtenerConfigWeb&_t=${Date.now()}`;
+        const res = await fetch(url, { cache: 'no-store' });
         const data = await res.json();
         if (!data || !data.ok) return;
 
@@ -3742,11 +3695,11 @@ async function sincronizarConfigDesdeSheet() {
             aplicarStockEnTarjetas(data.stock);
         }
     } catch (e) {
-        // Conserva valores locales si falla la conexión
+        // Si falla la red, no aplica datos viejos
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener('load', () => {
     sincronizarConfigDesdeSheet();
 });
 
