@@ -2273,6 +2273,87 @@
                 </div>
             </div>
         </div>
+		
+		<!-- ==================== VISTA DETALLE DE VIDEOJUEGO ==================== -->
+<div id="vista-videojuego-detalle" class="view-section">
+    <div class="breadcrumbs">
+        <a onclick="mostrarVista('recargas')">Recargas</a> &gt;
+        <a onclick="mostrarVista('recargas'); seleccionarCategoriaRecargas('videojuegos');">Videojuegos</a> &gt;
+        <span id="vj-bread-title">Juego</span>
+    </div>
+
+    <div class="vj-detail-layout">
+        <div class="vj-detail-left">
+            <div class="vj-detail-cover-box">
+                <span class="vj-console-pill" id="vj-detail-pill">PLAYSTATION 4 · PLAYSTATION 5</span>
+                <img id="vj-detail-img" src="" alt="Portada Videojuego">
+            </div>
+
+            <div class="vj-badges-3col">
+                <div class="vj-mini-badge">
+                    <div class="vj-mini-badge-title">✓ Producto digital</div>
+                    <div class="vj-mini-badge-sub">Consulta el formato disponible</div>
+                </div>
+                <div class="vj-mini-badge">
+                    <div class="vj-mini-badge-title">🌐 Región</div>
+                    <div class="vj-mini-badge-sub">Confirma compatibilidad antes de comprar</div>
+                </div>
+                <div class="vj-mini-badge">
+                    <div class="vj-mini-badge-title">💬 Atención</div>
+                    <div class="vj-mini-badge-sub">Asesoría por WhatsApp</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="vj-detail-right">
+            <div>
+                <span class="vj-type-tag">VIDEOJUEGO</span>
+                <h1 class="vj-detail-title" id="vj-detail-title">EA SPORTS FC 27 STANDARD EDITION</h1>
+                <div class="vj-console-inline" id="vj-detail-console-badge">PLAYSTATION 4 · PLAYSTATION 5</div>
+                <div class="vj-trust-line"><span>★★★★★</span> Compra acompañada por STREAMIX STORE</div>
+                <p class="vj-detail-desc" id="vj-detail-desc">Descripción del juego.</p>
+
+                <div class="vj-price-big-label">PRECIO</div>
+                <div class="vj-price-big-row">
+                    <div class="vj-price-big-val" id="vj-detail-price">$28.00 USD</div>
+                    <div class="vj-price-big-mod" id="vj-detail-mod-label">Modalidad: PS5 · Primaria</div>
+                </div>
+
+                <label class="vj-select-label" for="vj-modalidad-select">ELIGE TU MODALIDAD</label>
+                <select class="vj-modalidad-select" id="vj-modalidad-select" onchange="actualizarModalidadVideojuego()"></select>
+
+                <label class="vj-select-label">CANTIDAD</label>
+                <div class="quantity-control" style="width: fit-content;">
+                    <button class="btn-qty" onclick="cambiarCantidadVideojuego(-1)">-</button>
+                    <span class="qty-number" id="vj-qty-val">1</span>
+                    <button class="btn-qty" onclick="cambiarCantidadVideojuego(1)">+</button>
+                </div>
+            </div>
+
+            <div>
+                <div class="vj-actions-row">
+                    <button class="btn-vj-buy-now" onclick="comprarVideojuegoDirecto()">Comprar ahora</button>
+                    <button class="btn-vj-keep-shopping" onclick="mostrarVista('recargas'); seleccionarCategoriaRecargas('videojuegos');">← Seguir comprando</button>
+                </div>
+
+                <div class="vj-verify-note">
+                    📍 Antes de confirmar tu pedido verificamos contigo la plataforma, región, modalidad y disponibilidad para evitar incompatibilidades.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="vj-bottom-info-grid">
+        <div class="vj-info-card">
+            <h4>📘 SOBRE ESTE PRODUCTO</h4>
+            <p>Consulta con STREAMIX STORE la versión, plataforma, región y modalidad disponibles para este producto.</p>
+        </div>
+        <div class="vj-info-card">
+            <h4>🛒 ¿CÓMO COMPRAR?</h4>
+            <p>Selecciona las opciones que correspondan y realiza tu pedido. Nuestro equipo te confirmará el precio final, disponibilidad y pasos para completar la entrega.</p>
+        </div>
+    </div>
+</div>
 
         <!-- Contenedor dinámico del catálogo (aparece al elegir categoría o buscar) -->
         <div id="recargas-catalogo-dinamico" style="display: none; margin-bottom: 30px;">
@@ -4526,27 +4607,44 @@
             const juego = CATALOGO_VIDEOJUEGOS.find(j => j.id === idJuego);
             if (!juego) return;
 
+            const vistaDetalle = document.getElementById('vista-videojuego-detalle');
+            if (!vistaDetalle) {
+                alert('Falta pegar el bloque HTML de #vista-videojuego-detalle en tu index.html.');
+                return;
+            }
+
             videojuegoActual = juego;
             cantidadVideojuego = 1;
 
-            document.getElementById('vj-bread-title').innerText = juego.titulo;
-            document.getElementById('vj-detail-pill').innerText = juego.consolas;
-            document.getElementById('vj-detail-console-badge').innerText = juego.consolas;
-            document.getElementById('vj-detail-img').src = juego.imagen;
-            document.getElementById('vj-detail-title').innerText = juego.titulo;
-            document.getElementById('vj-detail-desc').innerText = juego.descripcionCorta;
-            document.getElementById('vj-qty-val').innerText = '1';
+            const setText = (id, val) => {
+                const el = document.getElementById(id);
+                if (el) el.innerText = val;
+            };
+            const setSrc = (id, val) => {
+                const el = document.getElementById(id);
+                if (el) el.src = val;
+            };
+
+            setText('vj-bread-title', juego.titulo);
+            setText('vj-detail-pill', juego.consolas);
+            setText('vj-detail-console-badge', juego.consolas);
+            setSrc('vj-detail-img', juego.imagen);
+            setText('vj-detail-title', juego.titulo);
+            setText('vj-detail-desc', juego.descripcionCorta);
+            setText('vj-qty-val', '1');
 
             const select = document.getElementById('vj-modalidad-select');
-            select.innerHTML = '';
-            juego.modalidades.forEach((mod, idx) => {
-                const opt = document.createElement('option');
-                opt.value = idx;
-                opt.textContent = `${mod.nombre} - ${formatearPrecioVideojuego(mod.precioUSD)}`;
-                select.appendChild(opt);
-            });
+            if (select) {
+                select.innerHTML = '';
+                juego.modalidades.forEach((mod, idx) => {
+                    const opt = document.createElement('option');
+                    opt.value = idx;
+                    opt.textContent = `${mod.nombre} - ${formatearPrecioVideojuego(mod.precioUSD)}`;
+                    select.appendChild(opt);
+                });
+                select.selectedIndex = juego.modalidades.length - 1;
+            }
 
-            select.selectedIndex = juego.modalidades.length - 1;
             actualizarModalidadVideojuego();
             mostrarVista('videojuego-detalle');
         }
