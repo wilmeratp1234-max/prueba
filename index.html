@@ -4377,26 +4377,123 @@ function verCodigoCuenta(index) {
     const list = document.getElementById('search-accounts-list');
     if (!list) return;
 
-    const correo = item.correo || '';
-    const servicio = item.servicio || '';
+    const correoInicial = item.correo || '';
+    const servicioInicial = (item.servicio || '').toLowerCase();
 
     list.innerHTML = `
-        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px;">
+        <div style="margin-bottom: 14px;">
             <button onclick="verDetalleCuenta(${index})" style="background: #111827; border: 1px solid #1f2937; color: #ffffff; padding: 7px 14px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; cursor: pointer;">
                 ❮ Volver a detalles
             </button>
-            <button onclick="ejecutarBusquedaDatos()" style="background: #111827; border: 1px solid #1f2937; color: #9ca3af; padding: 7px 14px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; cursor: pointer;">
-                Lista de cuentas
-            </button>
         </div>
-        <div style="background: #0b0f19; border: 1px solid #1f2937; border-radius: 16px; padding: 18px;">
-            <div style="font-size: 0.72rem; font-weight: 800; color: #00FFEF; text-transform: uppercase; margin-bottom: 4px;">CÓDIGO DE ACCESO / VERIFICACIÓN</div>
-            <div style="font-size: 1rem; font-weight: 800; color: #ffffff; margin-bottom: 12px;">${correo} <span style="color:#9ca3af; font-size:0.8rem;">(${servicio})</span></div>
-            <div id="codigo-resultado-box" style="background: #070a12; border: 1px solid #1f2937; border-radius: 12px; padding: 18px; text-align: center; color: #00FFEF; font-weight: 700;">
-                ⏳ Consultando código más reciente...
+
+        <div style="background: #0b0f19; border: 1px solid #1f2937; border-radius: 18px; padding: 22px;">
+            <div style="text-align: center; margin-bottom: 18px;">
+                <div style="font-size: 1.25rem; font-weight: 900; color: #ffffff;">STREAMIX <span style="color:#00FFEF;">CÓDIGOS</span></div>
+                <div style="font-size: 0.78rem; color: #9ca3af; margin-top: 2px;">Consulta de código de acceso / verificación</div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+                <div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <label class="distri-input-label" style="margin-bottom: 0;">SELECCIONA LA PLATAFORMA</label>
+                        <span style="font-size: 0.68rem; color: #00FFEF; font-weight: 700;">Obligatorio</span>
+                    </div>
+                    <select id="cod-plataforma-select" class="distri-input-code" style="margin-bottom: 0; padding: 12px 14px; cursor: pointer;">
+                        <option value="">Selecciona una plataforma</option>
+                        <option value="netflix" ${servicioInicial.includes('netflix') ? 'selected' : ''}>Netflix</option>
+                        <option value="disney" ${servicioInicial.includes('disney') ? 'selected' : ''}>Disney+</option>
+                        <option value="prime" ${servicioInicial.includes('prime') ? 'selected' : ''}>Prime Video</option>
+                        <option value="max" ${servicioInicial.includes('max') || servicioInicial.includes('hbo') ? 'selected' : ''}>HBO Max</option>
+                        <option value="crunchyroll" ${servicioInicial.includes('crunchyroll') ? 'selected' : ''}>Crunchyroll</option>
+                        <option value="otro" ${!['netflix','disney','prime','max','hbo','crunchyroll'].some(p => servicioInicial.includes(p)) ? 'selected' : ''}>Otro servicio</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="distri-input-label">CORREO</label>
+                    <input type="email" id="cod-correo-input" class="distri-input-code" value="${correoInicial}" placeholder="usuario@dominio.com" style="margin-bottom: 0; padding: 12px 14px;">
+                </div>
+
+                <div>
+                    <label class="distri-input-label">CÓDIGO DE ACCESO</label>
+                    <input type="text" id="cod-acceso-input" class="distri-input-code" placeholder="0 0 0 0 0" maxlength="12" style="margin-bottom: 0; padding: 13px 14px; text-align: center; font-weight: 800; letter-spacing: 4px;">
+                </div>
+
+                <button type="button" class="btn-distri-verify" onclick="consultarCodigoConAcceso()" style="padding: 14px;">
+                    INGRESAR
+                </button>
+
+                <div style="text-align: center; font-size: 0.72rem; color: #6b7280; line-height: 1.4;">
+                    Solo pueden consultar correos activos con tu código de acceso autorizado.
+                </div>
+
+                <div id="codigo-resultado-box" style="display: none; background: #070a12; border: 1px solid #1f2937; border-radius: 12px; padding: 16px; text-align: center; margin-top: 4px;"></div>
             </div>
         </div>
     `;
+}
+
+function consultarCodigoConAcceso() {
+    const plataformaEl = document.getElementById('cod-plataforma-select');
+    const correoEl = document.getElementById('cod-correo-input');
+    const accesoEl = document.getElementById('cod-acceso-input');
+    const box = document.getElementById('codigo-resultado-box');
+
+    const plataforma = plataformaEl ? plataformaEl.value.trim() : '';
+    const correo = correoEl ? correoEl.value.trim() : '';
+    const codigoAcceso = accesoEl ? accesoEl.value.trim() : '';
+
+    if (!plataforma) {
+        alert('Por favor selecciona una plataforma.');
+        if (plataformaEl) plataformaEl.focus();
+        return;
+    }
+    if (!correo) {
+        alert('Por favor ingresa el correo de la cuenta.');
+        if (correoEl) correoEl.focus();
+        return;
+    }
+    if (!codigoAcceso) {
+        alert('Por favor ingresa tu código de acceso.');
+        if (accesoEl) accesoEl.focus();
+        return;
+    }
+
+    if (box) {
+        box.style.display = 'block';
+        box.innerHTML = `<div style="color: #00FFEF; font-weight: 700; font-size: 0.85rem;">⏳ Verificando código de acceso y buscando código...</div>`;
+    }
+
+    const url = `${URL_GOOGLE_APPS_SCRIPT}?accion=obtenerCodigo&plataforma=${encodeURIComponent(plataforma)}&correo=${encodeURIComponent(correo)}&codigoAcceso=${encodeURIComponent(codigoAcceso)}&token=${encodeURIComponent(TOKEN_SECRETO)}&_t=${Date.now()}`;
+
+    fetch(url, { cache: 'no-store' })
+        .then(res => res.json())
+        .then(data => {
+            if (!box) return;
+            const codigo = data.codigo || data.code || data.otp || '';
+
+            if (data.ok && codigo) {
+                box.innerHTML = `
+                    <div style="font-size: 0.7rem; color: #9ca3af; text-transform: uppercase; margin-bottom: 6px;">CÓDIGO DE VERIFICACIÓN</div>
+                    <div style="font-size: 1.9rem; font-weight: 900; color: #00FFEF; letter-spacing: 3px; margin-bottom: 8px;">${codigo}</div>
+                    ${data.asunto ? `<div style="font-size: 0.78rem; color: #d1d5db;">${data.asunto}</div>` : ''}
+                    ${data.fecha ? `<div style="font-size: 0.72rem; color: #6b7280; margin-top: 4px;">${data.fecha}</div>` : ''}
+                `;
+            } else {
+                box.innerHTML = `
+                    <div style="color: #ff4d4d; font-size: 0.85rem; font-weight: 700;">
+                        ${data.error || data.mensaje || 'Código de acceso inválido o sin códigos recientes.'}
+                    </div>
+                `;
+            }
+        })
+        .catch(() => {
+            if (box) {
+                box.innerHTML = `<div style="color: #ff4d4d; font-size: 0.85rem;">Error de conexión al consultar el código.</div>`;
+            }
+        });
+}
 
     const url = `${URL_GOOGLE_APPS_SCRIPT}?accion=obtenerCodigo&correo=${encodeURIComponent(correo)}&servicio=${encodeURIComponent(servicio)}&token=${encodeURIComponent(TOKEN_SECRETO)}&_t=${Date.now()}`;
 
