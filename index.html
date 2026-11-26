@@ -3623,46 +3623,132 @@ const baseDeDatosPreciosDistri = {
 };
 
         const CONTROL_DE_STOCK = {
-            "netflix": 1,
-            "netflix personal": 0,
-            "disney+ premium": 0,
-            "prime video": 10,
-            "hbo max standar": 1,
-            "crunchyroll": 3,
-            "paramount+": 1,
-            "vix": 8,
-            "appletv": 1,
-            "universal+": 1,
-            "viki rakuten": 5,
-            "streamix tv": 15,
-            "flujotv": 12,
-            "spotify premium": 1,
-            "youtube premium": 1,
-            "canva pro edu": 50,
-            "capcut": 10,
-            "google one": 8,
-            "monedas tiktok": 100,
-            "estrellas telegram": 50,
-            "free fire": 100,
-            "blood strike": 0,
-            "mobile legends": 0,
-            "call of duty mobile": 30,
-            "roblox": 10,
-            "netflix-vip": 1,
-            "netflix personal-vip": 0,
-            "disney+ premium-vip": 0,
-            "prime video-vip": 5,
-            "hbo max standar-vip": 2,
-            "crunchyroll-vip": 4,
-            "paramount+-vip": 5,
-            "vix-vip": 5,
-            "streamix tv-vip": 10,
-            "flujotv-vip": 10,
-            "spotify premium-vip": 1,
-            "youtube premium-vip": 10,
-            "canva pro edu-vip": 20,
-            "capcut-vip": 5
-        };
+    "netflix": 1,
+    "netflix personal": 0,
+    "disney+ premium": 0,
+    "prime video": 10,
+    "hbo max standar": 1,
+    "crunchyroll": 3,
+    "paramount+": 1,
+    "vix": 8,
+    "appletv": 1,
+    "universal+": 1,
+    "viki rakuten": 5,
+    "streamix tv": 15,
+    "flujotv": 12,
+    "spotify premium": 1,
+    "youtube premium": 1,
+    "canva pro edu": 50,
+    "capcut": 10,
+    "google one": 8,
+    "monedas tiktok": 100,
+    "estrellas telegram": 50,
+    "free fire": 100,
+    "blood strike": 0,
+    "mobile legends": 0,
+    "call of duty mobile": 30,
+    "roblox": 10,
+    "netflix-vip": 1,
+    "netflix personal-vip": 0,
+    "disney+ premium-vip": 0,
+    "prime video-vip": 5,
+    "hbo max standar-vip": 2,
+    "crunchyroll-vip": 4,
+    "paramount+-vip": 5,
+    "vix-vip": 5,
+    "streamix tv-vip": 10,
+    "flujotv-vip": 10,
+    "spotify premium-vip": 1,
+    "youtube premium-vip": 10,
+    "canva pro edu-vip": 20,
+    "capcut-vip": 5
+};
+
+// ==================== TASA Y STOCK DESDE GOOGLE SHEETS (CONFIG_WEB) ====================
+let estadoStockSheets = {};
+
+function aplicarTasaDesdeSheet(nuevaTasa) {
+    const tasaNum = Number(String(nuevaTasa).replace(',', '.'));
+    if (!tasaNum || isNaN(tasaNum) || tasaNum <= 0) return;
+
+    if (typeof tasaActual !== 'undefined') {
+        tasaActual = tasaNum;
+    } else if (typeof tasaBs !== 'undefined') {
+        tasaBs = tasaNum;
+    } else {
+        window.tasaBs = tasaNum;
+    }
+
+    if (typeof actualizarPreciosEnPantalla === 'function') {
+        actualizarPreciosEnPantalla();
+    } else if (typeof renderizarPaquetes === 'function') {
+        renderizarPaquetes();
+    }
+}
+
+function aplicarStockEnTarjetas(stockMap) {
+    estadoStockSheets = stockMap || {};
+
+    Object.keys(estadoStockSheets).forEach(clave => {
+        const info = estadoStockSheets[clave];
+        if (!info) return;
+
+        const valorNumerico = typeof info.stock === 'number'
+            ? info.stock
+            : (info.disponible ? 1 : 0);
+
+        CONTROL_DE_STOCK[clave] = valorNumerico;
+        if (CONTROL_DE_STOCK.hasOwnProperty(`${clave}-vip`)) {
+            CONTROL_DE_STOCK[`${clave}-vip`] = valorNumerico;
+        }
+    });
+
+    document.querySelectorAll('.service-card, [data-producto]').forEach(card => {
+        const attrProd = (card.getAttribute('data-producto') || '').trim().toLowerCase();
+        const textoCard = (card.textContent || '').trim().toLowerCase();
+
+        let nombreCoincidente = attrProd;
+        if (!nombreCoincidente) {
+            nombreCoincidente = Object.keys(estadoStockSheets).find(k => textoCard.includes(k)) || '';
+        }
+
+        if (!nombreCoincidente || !estadoStockSheets[nombreCoincidente]) return;
+        const estaAgotado = !estadoStockSheets[nombreCoincidente].disponible;
+
+        card.classList.toggle('agotado', estaAgotado);
+    });
+
+    if (typeof aplicarControlStock === 'function') {
+        aplicarControlStock();
+    } else if (typeof renderizarServicios === 'function') {
+        renderizarServicios();
+    }
+}
+
+async function sincronizarConfigDesdeSheet() {
+    if (!URL_GOOGLE_APPS_SCRIPT || !TOKEN_SECRETO) return;
+
+    try {
+        const separador = URL_GOOGLE_APPS_SCRIPT.includes('?') ? '&' : '?';
+        const url = `${URL_GOOGLE_APPS_SCRIPT}${separador}token=${encodeURIComponent(TOKEN_SECRETO)}&accion=obtenerConfigWeb`;
+        const res = await fetch(url, { cache: 'no-store' });
+        const data = await res.json();
+        if (!data || !data.ok) return;
+
+        if (data.tasaBs) {
+            aplicarTasaDesdeSheet(data.tasaBs);
+        }
+        if (data.stock) {
+            aplicarStockEnTarjetas(data.stock);
+        }
+    } catch (e) {
+        // Conserva CONTROL_DE_STOCK y tasa local si no hay red
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    sincronizarConfigDesdeSheet();
+});
 
         // ==================== CUENTA REGRESIVA BLACK FRIDAY (7 DÍAS) ====================
         function iniciarContadorBlackFriday() {
