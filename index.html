@@ -4452,7 +4452,7 @@ async function consultarCodigoConAcceso() {
   if (resultadoEl) resultadoEl.textContent = "Consultando...";
 
   try {
-    const url =
+    const url = `${URL_GOOGLE_APPS_SCRIPT}?accion=obtenerCodigo&plataforma=${encodeURIComponent(plataforma)}&correo=${encodeURIComponent(correo)}&codigoAcceso=${encodeURIComponent(codigoAcceso)}&token=${encodeURIComponent(TOKEN_SECRETO)}`;
       `${URL_GOOGLE_APPS_SCRIPT}` +
       `?accion=obtenerCodigo` +
       `&plataforma=${encodeURIComponent(plataforma)}` +
