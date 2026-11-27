@@ -4459,12 +4459,12 @@ async function consultarCodigoConAcceso() {
 
   try {
     const url =
-      `${URL_GOOGLE_APPS_SCRIPT}` +
-      `?accion=obtenerCodigo` +
-      `&plataforma=${encodeURIComponent(plataforma)}` +
-      `&correo=${encodeURIComponent(correo)}` +
-      `&codigoAcceso=${encodeURIComponent(codigoAcceso)}` +
-      `&token=${encodeURIComponent(TOKEN_SECRETO)}`;
+  URL_GOOGLE_APPS_SCRIPT +
+  "?accion=obtenerCodigo" +
+  "&plataforma=" + encodeURIComponent(plataforma) +
+  "&correo=" + encodeURIComponent(correo) +
+  "&codigoAcceso=" + encodeURIComponent(codigoAcceso) +
+  "&token=" + encodeURIComponent(TOKEN_SECRETO);
 
     const res = await fetch(url, { cache: "no-store" });
     const data = await res.json();
