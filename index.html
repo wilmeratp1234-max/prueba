@@ -4489,7 +4489,6 @@ async function consultarCodigoConAcceso() {
     if (resultadoEl) {
       resultadoEl.style.display = "block";
       resultadoEl.innerHTML = `<strong>${m.asunto}</strong> (${m.fecha})<br><pre style="white-space:pre-wrap;">${m.cuerpoCompleto}</pre>`;
-    }
   } catch (err) {
     if (resultadoEl) {
       resultadoEl.style.display = "block";
